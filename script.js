@@ -42,10 +42,8 @@
             : (user?.username ? user.username[0] : 'X')
         ).toUpperCase();
 
-        const stubUrl =
-            'https://ui-avatars.com/api/?name=' +
-            firstLetter +
-            '&background=2563eb&color=fff&bold=true';
+        // Локальная заглушка — всегда доступна для каждого пользователя
+        const stubUrl = 'image/avatar.png';
 
         // Если есть реальная аватарка из ТГ — используем её
         if (user && user.photo_url) {
