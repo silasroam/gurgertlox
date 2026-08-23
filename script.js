@@ -30,23 +30,28 @@
 
     /* ---------- Header Avatar (Telegram profile) ---------- */
     const headerAvatar = document.getElementById('headerAvatar');
-    const headerAvatarImg = document.getElementById('headerAvatarImg');
+    const avatarImg = document.querySelector('.user-avatar img') || document.getElementById('headerAvatarImg');
 
     function setupHeaderAvatar() {
         const user = tg?.initDataUnsafe?.user;
-        const photoUrl = user?.photo_url;
+        if (!avatarImg) return;
 
-        if (photoUrl) {
-            headerAvatarImg.src = photoUrl;
-            headerAvatarImg.style.display = 'block';
+        // Если есть реальная аватарка из ТГ
+        if (user && user.photo_url) {
+            avatarImg.src = user.photo_url;
         } else {
-            // Дефолтная заглушка: инициал пользователя или буква
-            const fallback = document.createElement('div');
-            fallback.className = 'avatar-fallback';
-            const initial = (user?.first_name?.[0] || user?.username?.[0] || 'U').toUpperCase();
-            fallback.textContent = initial;
-            headerAvatar.appendChild(fallback);
+            // Дефолтная заглушка: красивая плашка с первой буквой имени
+            const initial = user?.first_name ? user.first_name[0].toUpperCase() : 'U';
+            avatarImg.src =
+                'https://ui-avatars.com/api/?name=' +
+                initial +
+                '&background=2563eb&color=fff&bold=true';
         }
+
+        // Резервный вариант на случай, если ссылка на фото ТГ сбагнет/не загрузится
+        avatarImg.onerror = function () {
+            this.src = 'https://ui-avatars.com/api/?name=U&background=2563eb&color=fff';
+        };
     }
 
     if (headerAvatar) {
