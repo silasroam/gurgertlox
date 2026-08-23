@@ -26,6 +26,9 @@
     width: 100%;
     max-width: 400px;
     max-height: 92vh;
+    min-height: 480px; /* Фиксируем высоту под размер второго экрана */
+    display: flex;
+    flex-direction: column;
     background: #0d0e12;
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 20px;
@@ -1012,14 +1015,23 @@
 }
 
 /* ---------- DEPOSIT SCREENS (two-step) ---------- */
-.deposit-screen {
+#deposit-categories,
+#deposit-stars-packages {
     display: flex;
     flex-direction: column;
+    flex: 1; /* Растягиваем на всю доступную высоту */
+}
+
+.deposit-screen {
     padding: 40px 0 8px;
 }
 
 .deposit-screen.hidden {
     display: none;
+}
+
+.categories-list {
+    margin-top: 20px;
 }
 
 .deposit-title {
