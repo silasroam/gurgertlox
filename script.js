@@ -36,22 +36,36 @@
         const user = tg?.initDataUnsafe?.user;
         if (!avatarImg) return;
 
-        // Если есть реальная аватарка из ТГ
+        // Честная логика заглушки: первая буква имени (first_name → username → 'X')
+        const firstLetter = (user?.first_name
+            ? user.first_name[0]
+            : (user?.username ? user.username[0] : 'X')
+        ).toUpperCase();
+
+        const stubUrl =
+            'https://ui-avatars.com/api/?name=' +
+            firstLetter +
+            '&background=2563eb&color=fff&bold=true';
+
+        // Если есть реальная аватарка из ТГ — используем её
         if (user && user.photo_url) {
             avatarImg.src = user.photo_url;
         } else {
-            // Дефолтная заглушка: красивая плашка с первой буквой имени
-            const initial = user?.first_name ? user.first_name[0].toUpperCase() : 'U';
-            avatarImg.src =
-                'https://ui-avatars.com/api/?name=' +
-                initial +
-                '&background=2563eb&color=fff&bold=true';
+            // Иначе сразу ставим заглушку
+            avatarImg.src = stubUrl;
         }
 
-        // Резервный вариант на случай, если ссылка на фото ТГ сбагнет/не загрузится
+        // Резервный вариант: если аватарка ТГ не загрузилась (CORS, 403, битая ссылка) — подменяем на заглушку
         avatarImg.onerror = function () {
-            this.src = 'https://ui-avatars.com/api/?name=U&background=2563eb&color=fff';
+            this.onerror = null; // защита от зацикливания
+            this.src = stubUrl;
         };
+
+        // Обновляем аватарку в секции профиля
+        const profileAvatar = document.querySelector('.tg-avatar.profile-avatar');
+        if (profileAvatar) {
+            profileAvatar.textContent = firstLetter;
+        }
     }
 
     if (headerAvatar) {
