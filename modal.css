@@ -1,0 +1,963 @@
+/* ============================================
+   CASE MODAL — Casino Criptoporno
+   ============================================ */
+
+/* ---------- OVERLAY ---------- */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    background: rgba(5, 6, 8, 0.88);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.modal-overlay[hidden] {
+    display: none;
+}
+
+/* ---------- CARD ---------- */
+.modal-card {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    max-height: 92vh;
+    border-radius: 24px;
+    background: #0B0D11;
+    border: 1px solid rgba(22, 131, 255, 0.22);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7), 0 0 40px rgba(22, 131, 255, 0.08);
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.modal-card::-webkit-scrollbar {
+    display: none;
+}
+
+/* ---------- CLOSE BUTTON ---------- */
+.modal-close {
+    position: sticky;
+    top: 12px;
+    right: 12px;
+    margin-left: auto;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: var(--text-secondary);
+    background: rgba(234, 246, 255, 0.06);
+    border: 1px solid rgba(234, 246, 255, 0.1);
+    z-index: 2;
+    cursor: pointer;
+    transition: color 0.2s ease, background 0.2s ease;
+    float: right;
+    margin-right: 12px;
+    margin-top: 12px;
+}
+
+.modal-close:active {
+    color: var(--text-primary);
+    background: rgba(234, 246, 255, 0.12);
+}
+
+/* ---------- BODY ---------- */
+.modal-body {
+    padding: 20px 18px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+}
+
+.modal-title {
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: var(--text-primary);
+    margin-top: 40px;
+    margin-bottom: 12px;
+}
+
+/* ---------- LARGE 3D VISUAL ---------- */
+.modal-visual {
+    position: relative;
+    width: 170px;
+    height: 170px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+}
+
+.mv-diamond {
+    position: absolute;
+    width: 52px;
+    height: 52px;
+    background: linear-gradient(160deg, #27405A, #101A26);
+    border: 1px solid rgba(22, 131, 255, 0.7);
+    transform: rotate(45deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #1683FF;
+    font-size: 22px;
+    box-shadow: 0 0 22px rgba(22, 131, 255, 0.28);
+}
+
+.mv-ring {
+    position: absolute;
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    border: 2px solid rgba(22, 131, 255, 0.3);
+    box-shadow: 0 0 24px rgba(22, 131, 255, 0.2), inset 0 0 16px rgba(22, 131, 255, 0.1);
+}
+
+.mv-ring-2 {
+    width: 96px;
+    height: 96px;
+    border: 1.5px solid rgba(22, 131, 255, 0.2);
+}
+
+.mv-coin {
+    position: absolute;
+    width: 66px;
+    height: 66px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    font-weight: 800;
+    color: rgba(234, 246, 255, 0.95);
+    background: radial-gradient(circle at 32% 28%, #33415A 0%, #1A2230 55%, #11151C 100%);
+    border: 2.5px solid rgba(22, 131, 255, 0.65);
+    box-shadow: inset 0 0 16px rgba(22, 131, 255, 0.35), 0 0 26px rgba(22, 131, 255, 0.25);
+}
+
+.mv-glow {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    filter: blur(30px);
+    background: rgba(22, 131, 255, 0.14);
+    pointer-events: none;
+}
+
+/* ---------- PRICE ---------- */
+.modal-price {
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 18px;
+    text-shadow: 0 0 18px rgba(22, 131, 255, 0.35);
+}
+
+/* ---------- ROULETTE PLATE ---------- */
+.modal-roulette {
+    position: relative;
+    width: 100%;
+    height: 48px;
+    margin-bottom: 18px;
+    border-radius: 12px;
+}
+
+.roulette-window {
+    position: relative;
+    width: 100%;
+    height: 48px;
+    overflow: hidden;
+    border-radius: 12px;
+    border: 1px solid rgba(22, 131, 255, 0.25);
+    box-shadow: 0 0 18px rgba(22, 131, 255, 0.12), inset 0 0 12px rgba(0, 0, 0, 0.4);
+    background: #0D1015;
+}
+
+.roulette-strip {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    height: 100%;
+    will-change: transform;
+}
+
+.roulette-item {
+    flex-shrink: 0;
+    min-width: 80px;
+    width: 80px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--text-primary);
+    border-radius: 8px;
+}
+
+.roulette-item span {
+    font-size: 14px;
+}
+
+.r-low {
+    background: #14181F;
+}
+
+.r-mid {
+    background: #1A2230;
+}
+
+.r-high {
+    background: #223A57;
+}
+
+.r-hit {
+    background: #1E4063;
+    color: #00A8FF;
+    text-shadow: 0 0 10px rgba(0, 168, 255, 0.8);
+}
+
+.roulette-pointer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -80%);
+    z-index: 2;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 14px solid #1683FF;
+    filter: drop-shadow(0 0 8px rgba(22, 131, 255, 0.8));
+}
+
+/* ---------- WIN RESULT ---------- */
+.win-result {
+    font-size: 22px;
+    font-weight: 800;
+    color: #00A8FF;
+    text-shadow: 0 0 24px rgba(0, 168, 255, 0.7);
+    margin-bottom: 14px;
+    animation: winPop 0.6s ease-out;
+}
+
+.win-result.big-win {
+    animation: winPop 0.6s ease-out, winPulse 1.4s ease-in-out 0.6s infinite;
+}
+
+@keyframes winPop {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    60% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes winPulse {
+    0%, 100% {
+        transform: scale(1);
+        text-shadow: 0 0 24px rgba(0, 168, 255, 0.7);
+    }
+    50% {
+        transform: scale(1.06);
+        text-shadow: 0 0 40px rgba(0, 168, 255, 1);
+    }
+}
+
+/* ---------- PARTICLES ---------- */
+.particles {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 5;
+}
+
+.particle {
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #00A8FF;
+    box-shadow: 0 0 8px #00A8FF;
+    animation: particleFly 1.4s ease-out forwards;
+}
+
+@keyframes particleFly {
+    0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--dx), var(--dy)) scale(0);
+        opacity: 0;
+    }
+}
+
+/* ---------- OPEN BUTTON ---------- */
+.modal-open {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 14px 0;
+    border-radius: 14px;
+    background: linear-gradient(180deg, #2BA1FF 0%, #1683FF 100%);
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    box-shadow: 0 8px 24px rgba(22, 131, 255, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    margin-bottom: 24px;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.modal-open:active {
+    transform: scale(0.97);
+    box-shadow: 0 4px 14px rgba(22, 131, 255, 0.4);
+}
+
+/* ---------- SELL MODAL ---------- */
+.sell-modal-card {
+    max-width: 340px;
+}
+
+.sell-visual {
+    width: 120px;
+    height: 120px;
+    border-radius: 20px;
+    background: #11141A;
+    border: 1px solid rgba(22, 131, 255, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 64px;
+    line-height: 1;
+    margin-bottom: 16px;
+    box-shadow: 0 0 24px rgba(22, 131, 255, 0.15), inset 0 0 20px rgba(22, 131, 255, 0.05);
+}
+
+.sell-item-name {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+}
+
+.sell-price-row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    background: rgba(234, 246, 255, 0.04);
+    border: 1px solid rgba(234, 246, 255, 0.08);
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+.sell-price-label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: var(--text-secondary);
+}
+
+.sell-price-value {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 18px;
+    font-weight: 800;
+    color: #1683FF;
+    text-shadow: 0 0 12px rgba(22, 131, 255, 0.4);
+}
+
+.sell-confirm {
+    margin-bottom: 0;
+}
+
+/* ---------- WITHDRAW MODAL ---------- */
+.withdraw-modal-card {
+    max-width: 360px;
+}
+
+.withdraw-conditions {
+    width: 100%;
+    padding: 10px 12px;
+    background: rgba(255, 179, 0, 0.08);
+    border: 1px solid rgba(255, 179, 0, 0.3);
+    border-radius: 10px;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+}
+
+.withdraw-condition {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.withdraw-condition-icon {
+    font-size: 14px;
+    flex-shrink: 0;
+}
+
+.withdraw-condition-text {
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--text-secondary);
+    text-align: left;
+}
+
+.withdraw-requests {
+    width: 100%;
+    margin-top: 20px;
+    text-align: left;
+}
+
+.withdraw-requests-head {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--text-secondary);
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-subtle);
+    margin-bottom: 10px;
+}
+
+.withdraw-requests-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.withdraw-request-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px 12px;
+    background: rgba(234, 246, 255, 0.04);
+    border: 1px solid rgba(234, 246, 255, 0.06);
+    border-radius: 10px;
+}
+
+.withdraw-request-info {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    min-width: 0;
+}
+
+.withdraw-request-name {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.withdraw-request-date {
+    font-size: 10px;
+    color: var(--text-secondary);
+}
+
+.withdraw-request-status {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    padding: 3px 10px;
+    border-radius: 10px;
+    flex-shrink: 0;
+}
+
+.status-pending {
+    color: #B8C0CC;
+    background: rgba(184, 192, 204, 0.12);
+    border: 1px solid rgba(184, 192, 204, 0.3);
+}
+
+.status-processing {
+    color: #1683FF;
+    background: rgba(22, 131, 255, 0.12);
+    border: 1px solid rgba(22, 131, 255, 0.4);
+}
+
+.status-completed {
+    color: #35D97F;
+    background: rgba(53, 217, 127, 0.12);
+    border: 1px solid rgba(53, 217, 127, 0.35);
+}
+
+.status-rejected {
+    color: #FF4D4D;
+    background: rgba(255, 77, 77, 0.12);
+    border: 1px solid rgba(255, 77, 77, 0.35);
+}
+
+.withdraw-item-select {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    background: rgba(234, 246, 255, 0.04);
+    border: 1px solid rgba(22, 131, 255, 0.25);
+    border-radius: 12px;
+    margin-bottom: 16px;
+}
+
+.withdraw-item-preview {
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    background: #11141A;
+    border: 1px solid rgba(22, 131, 255, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    flex-shrink: 0;
+}
+
+.withdraw-item-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+}
+
+.withdraw-item-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.withdraw-item-price {
+    font-size: 14px;
+    font-weight: 800;
+    color: #1683FF;
+}
+
+.withdraw-item-change {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #1683FF;
+    padding: 6px 10px;
+    border-radius: 8px;
+    background: rgba(22, 131, 255, 0.12);
+    border: 1px solid rgba(22, 131, 255, 0.3);
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.withdraw-address-label {
+    width: 100%;
+    text-align: left;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+}
+
+.withdraw-address-input {
+    width: 100%;
+    padding: 12px 14px;
+    background: #0B0D11;
+    border: 1px solid rgba(22, 131, 255, 0.25);
+    border-radius: 12px;
+    color: var(--text-primary);
+    font-family: var(--font-main);
+    font-size: 13px;
+    outline: none;
+    margin-bottom: 20px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.withdraw-address-input::placeholder {
+    color: var(--text-secondary);
+}
+
+.withdraw-address-input:focus {
+    border-color: #1683FF;
+    box-shadow: 0 0 12px rgba(22, 131, 255, 0.3);
+}
+
+.withdraw-confirm {
+    margin-bottom: 0;
+}
+
+/* ---------- REWARDS LIST ---------- */
+.modal-rewards {
+    width: 100%;
+    text-align: left;
+}
+
+.rewards-head {
+    display: grid;
+    grid-template-columns: 1fr 60px 80px;
+    align-items: center;
+    gap: 10px;
+    padding: 0 12px 8px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.rewards-head span:first-child {
+    text-align: left;
+}
+
+.rewards-head span:nth-child(2) {
+    text-align: center;
+}
+
+.rewards-head span:last-child {
+    text-align: right;
+}
+
+.rewards-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-top: 8px;
+}
+
+.reward-row {
+    display: grid;
+    grid-template-columns: 1fr 60px 80px;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    border-radius: 10px;
+    background: rgba(234, 246, 255, 0.04);
+    border: 1px solid rgba(234, 246, 255, 0.06);
+}
+
+.reward-label {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.reward-icon {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    background: var(--bg-card);
+    color: #1683FF;
+}
+
+.reward-chance-value {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-primary);
+    text-align: center;
+}
+
+.reward-chance {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.reward-bar {
+    width: 80px;
+    height: 5px;
+    border-radius: 3px;
+    background: rgba(234, 246, 255, 0.08);
+    overflow: hidden;
+}
+
+.reward-bar-fill {
+    height: 100%;
+    border-radius: 3px;
+    background: linear-gradient(90deg, #1683FF, #2BA1FF);
+    box-shadow: 0 0 8px rgba(22, 131, 255, 0.4);
+}
+
+/* ============================================
+   RESPONSIVE / ADAPTIVE — Case Modal
+   ============================================ */
+
+/* ---------- COMPACT SCREENS (width ≤ 360px) ---------- */
+@media (max-width: 360px) {
+    .modal-overlay {
+        padding: 10px;
+    }
+
+    .modal-card {
+        max-height: 90vh;
+        border-radius: 18px;
+    }
+
+    .modal-close {
+        width: 30px;
+        height: 30px;
+        top: 10px;
+        right: 10px;
+        margin-top: 10px;
+        margin-right: 10px;
+    }
+
+    .modal-body {
+        padding: 12px 12px 16px;
+    }
+
+    .modal-title {
+        font-size: 15px;
+        margin-top: 32px;
+        margin-bottom: 8px;
+    }
+
+    .modal-visual {
+        width: 120px;
+        height: 120px;
+        margin-bottom: 8px;
+    }
+
+    .mv-diamond {
+        width: 40px;
+        height: 40px;
+        font-size: 17px;
+    }
+
+    .mv-ring {
+        width: 96px;
+        height: 96px;
+    }
+
+    .mv-ring-2 {
+        width: 72px;
+        height: 72px;
+    }
+
+    .mv-coin {
+        width: 50px;
+        height: 50px;
+        font-size: 21px;
+    }
+
+    .mv-glow {
+        width: 108px;
+        height: 108px;
+    }
+
+    .modal-price {
+        font-size: 20px;
+        margin-bottom: 12px;
+    }
+
+    .modal-roulette {
+        height: 40px;
+        margin-bottom: 12px;
+    }
+
+    .roulette-window {
+        height: 40px;
+    }
+
+    .roulette-strip {
+        gap: 6px;
+    }
+
+    .roulette-item {
+        min-width: 64px;
+        width: 64px;
+        font-size: 10px;
+    }
+
+    .roulette-item span {
+        font-size: 12px;
+    }
+
+    .roulette-pointer {
+        border-left: 6px solid transparent;
+        border-right: 6px solid transparent;
+        border-top: 10px solid #1683FF;
+    }
+
+    .win-result {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+
+    .modal-open {
+        padding: 10px 0;
+        font-size: 12px;
+        border-radius: 12px;
+        margin-bottom: 16px;
+    }
+
+    .rewards-head,
+    .reward-row {
+        grid-template-columns: 1fr 48px 64px;
+        gap: 6px;
+    }
+
+    .reward-label {
+        font-size: 11px;
+        gap: 6px;
+    }
+
+    .reward-chance-value {
+        font-size: 10px;
+    }
+
+    .reward-bar {
+        width: 64px;
+    }
+
+    /* Sell modal */
+    .sell-visual {
+        width: 90px;
+        height: 90px;
+        font-size: 48px;
+    }
+
+    .sell-item-name {
+        font-size: 15px;
+    }
+
+    /* Withdraw modal */
+    .withdraw-item-preview {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+    }
+}
+
+/* ---------- LOW HEIGHT SCREENS (height ≤ 700px) ---------- */
+@media (max-height: 700px) {
+    .modal-overlay {
+        align-items: flex-end;
+        padding-bottom: 90px;
+    }
+
+    .modal-card {
+        max-height: 78vh;
+    }
+
+    .modal-body {
+        padding: 12px 16px 14px;
+    }
+
+    .modal-title {
+        margin-top: 30px;
+        margin-bottom: 8px;
+        font-size: 16px;
+    }
+
+    .modal-visual {
+        width: 110px;
+        height: 110px;
+        margin-bottom: 8px;
+    }
+
+    .mv-diamond {
+        width: 36px;
+        height: 36px;
+        font-size: 15px;
+    }
+
+    .mv-ring {
+        width: 88px;
+        height: 88px;
+    }
+
+    .mv-ring-2 {
+        width: 66px;
+        height: 66px;
+    }
+
+    .mv-coin {
+        width: 46px;
+        height: 46px;
+        font-size: 19px;
+    }
+
+    .mv-glow {
+        width: 100px;
+        height: 100px;
+    }
+
+    .modal-price {
+        font-size: 19px;
+        margin-bottom: 10px;
+    }
+
+    .modal-roulette {
+        height: 38px;
+        margin-bottom: 10px;
+    }
+
+    .roulette-window {
+        height: 38px;
+    }
+
+    .roulette-item {
+        min-width: 70px;
+        width: 70px;
+        font-size: 11px;
+    }
+
+    .roulette-item span {
+        font-size: 12px;
+    }
+
+    .win-result {
+        font-size: 18px;
+        margin-bottom: 8px;
+    }
+
+    .modal-open {
+        padding: 10px 0;
+        font-size: 12px;
+        margin-bottom: 12px;
+    }
+
+    .modal-rewards {
+        margin-top: 4px;
+    }
+
+    .reward-label {
+        font-size: 12px;
+    }
+
+    .reward-bar {
+        width: 68px;
+    }
+}

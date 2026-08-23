@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Casino Criptoporno</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="modal.css">
+</head>
+<body>
+    <!-- Спрайт золотой звезды Telegram Stars -->
+    <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+        <defs>
+            <linearGradient id="tgGoldGrad" x1="20%" y1="0%" x2="80%" y2="100%">
+                <stop offset="0%" stop-color="#FFEFB0"/>
+                <stop offset="35%" stop-color="#FFD54F"/>
+                <stop offset="100%" stop-color="#E8A200"/>
+            </linearGradient>
+        </defs>
+        <symbol id="tg-star" viewBox="0 0 24 24">
+            <path fill="url(#tgGoldGrad)" stroke="#C98E00" stroke-width="0.6"
+                d="M12 1.7l2.9 5.9 6.5.6-4.9 4.4 1.4 6.4L12 15.8l-5.9 3.2 1.4-6.4-4.9-4.4 6.5-.6z"/>
+        </symbol>
+    </svg>
+
+    <div class="app-container">
+    <div id="app">
+        <header class="app-header">
+            <div class="casino-balance">
+                <span class="balance-emoji">⭐</span>
+                <span class="balance-amount">1 234.56</span>
+            </div>
+        </header>
+
+        <main class="app-content">
+            <!-- SCREEN: HOME -->
+            <div class="screen" data-screen="home">
+            <!-- ============ PREMIUM LOGO ============ -->
+            <img src="image/logo.png" alt="Logo" class="logo-banner-img">
+
+            <!-- ============ CASES CATALOG ============ -->
+            <div class="catalog">
+
+                <!-- ===== SECTION 1: POPULAR ===== -->
+                <section class="cases-section">
+                    <header class="catalog-head">
+                        <h2 class="catalog-title">Top rated</h2>
+                    </header>
+
+                    <div class="cases-grid">
+                        <div class="case-card tier-3 case-1000">
+                            <div class="case-glow"></div>
+                            <div class="case-image-holder"></div>
+                            <div class="case-card-body">
+                                <span class="case-name">БОГ</span>
+                                <div class="case-price"><svg class="tg-star-icon" width="14" height="14" aria-hidden="true"><use href="#tg-star"/></svg>1000</div>
+                            </div>
+                        </div>
+                        <div class="case-card tier-3 case-500">
+                            <div class="case-glow"></div>
+                            <div class="case-image-holder"></div>
+                            <div class="case-card-body">
+                                <span class="case-name">МАГНАТ</span>
+                                <div class="case-price"><svg class="tg-star-icon" width="14" height="14" aria-hidden="true"><use href="#tg-star"/></svg>500</div>
+                            </div>
+                        </div>
+                        <div class="case-card tier-2 case-250">
+                            <div class="case-glow"></div>
+                            <div class="case-image-holder"></div>
+                            <div class="case-card-body">
+                                <span class="case-name">КРИПТА</span>
+                                <div class="case-price"><svg class="tg-star-icon" width="14" height="14" aria-hidden="true"><use href="#tg-star"/></svg>250</div>
+                            </div>
+                        </div>
+                        <div class="case-card tier-1 case-100">
+                            <div class="case-glow"></div>
+                            <div class="case-image-holder"></div>
+                            <div class="case-card-body">
+                                <span class="case-name">ТОКЕН</span>
+                                <div class="case-price"><svg class="tg-star-icon" width="14" height="14" aria-hidden="true"><use href="#tg-star"/></svg>100</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ===== SECTION 2: BUDGET ===== -->
+                <section class="cases-section">
+                    <header class="catalog-head">
+                        <h2 class="catalog-title">Starter</h2>
+                    </header>
+
+                    <div class="cases-grid">
+                        <div class="case-card tier-1 case-20">
+                            <div class="case-glow"></div>
+                            <div class="case-image-holder"></div>
+                            <div class="case-card-body">
+                                <span class="case-name">OCEAN CASE</span>
+                                <div class="case-price"><svg class="tg-star-icon" width="14" height="14" aria-hidden="true"><use href="#tg-star"/></svg>20</div>
+                            </div>
+                        </div>
+                        <div class="case-card tier-1 case-30">
+                            <div class="case-glow"></div>
+                            <div class="case-image-holder"></div>
+                            <div class="case-card-body">
+                                <span class="case-name">СТАРТ</span>
+                                <div class="case-price"><svg class="tg-star-icon" width="14" height="14" aria-hidden="true"><use href="#tg-star"/></svg>30</div>
+                            </div>
+                        </div>
+                        <div class="case-card tier-1 case-50">
+                            <div class="case-glow"></div>
+                            <div class="case-image-holder"></div>
+                            <div class="case-card-body">
+                                <span class="case-name">НЕОН</span>
+                                <div class="case-price"><svg class="tg-star-icon" width="14" height="14" aria-hidden="true"><use href="#tg-star"/></svg>50</div>
+                            </div>
+                        </div>
+                        <div class="case-card tier-1 case-100">
+                            <div class="case-glow"></div>
+                            <div class="case-image-holder"></div>
+                            <div class="case-card-body">
+                                <span class="case-name">ТОКЕН</span>
+                                <div class="case-price"><svg class="tg-star-icon" width="14" height="14" aria-hidden="true"><use href="#tg-star"/></svg>100</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ===== SECTION 3: MEDIUM ===== -->
+                <section class="cases-section">
+                    <header class="catalog-head">
+                        <h2 class="catalog-title">Balanced</h2>
+                    </header>
+
+                    <div class="cases-grid">
+                        <div class="case-card tier-2 case-150">
+                            <div class="case-glow"></div>
+                            <div class="case-image-holder"></div>
+                            <div class="case-card-body">
+                                <span class="case-name">КИБЕР</span>
+                                <div class="case-price"><svg class="tg-star-icon" width="14" height="14" aria-hidden="true"><use href="#tg-star"/></svg>150</div>
+                            </div>
+                        </div>
+                        <div class="case-card tier-2 case-250">
+                            <div class="case-glow"></div>
+                            <div class="case-image-holder"></div>
+                            <div class="case-card-body">
+                                <span class="case-name">КРИПТА</span>
+                                <div class="case-price"><svg class="tg-star-icon" width="14" height="14" aria-hidden="true"><use href="#tg-star"/></svg>250</div>
+                            </div>
+                        </div>
+                        <div class="case-card tier-3 case-400">
+                            <div class="case-glow"></div>
+                            <div class="case-image-holder"></div>
+                            <div class="case-card-body">
+                                <span class="case-name">ЛЕГЕНДА</span>
+                                <div class="case-price"><svg class="tg-star-icon" width="14" height="14" aria-hidden="true"><use href="#tg-star"/></svg>400</div>
+                            </div>
+                        </div>
+                        <div class="case-card tier-3 case-500">
+                            <div class="case-glow"></div>
+                            <div class="case-image-holder"></div>
+                            <div class="case-card-body">
+                                <span class="case-name">МАГНАТ</span>
+                                <div class="case-price"><svg class="tg-star-icon" width="14" height="14" aria-hidden="true"><use href="#tg-star"/></svg>500</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ===== SECTION 4: LUXURY ===== -->
+                <section class="cases-section">
+                    <header class="catalog-head">
+                        <h2 class="catalog-title">Luxury</h2>
+                    </header>
+
+                    <div class="cases-grid">
+                        <div class="case-card tier-3 case-750">
+                            <div class="case-glow"></div>
+                            <div class="case-image-holder"></div>
+                            <div class="case-card-body">
+                                <span class="case-name">ИМПЕРИЯ</span>
+                                <div class="case-price"><svg class="tg-star-icon" width="14" height="14" aria-hidden="true"><use href="#tg-star"/></svg>750</div>
+                            </div>
+                        </div>
+                        <div class="case-card tier-3 case-1000">
+                            <div class="case-glow"></div>
+                            <div class="case-image-holder"></div>
+                            <div class="case-card-body">
+                                <span class="case-name">БОГ</span>
+                                <div class="case-price"><svg class="tg-star-icon" width="14" height="14" aria-hidden="true"><use href="#tg-star"/></svg>1000</div>
+                            </div>
+                        </div>
+                        <div class="case-card tier-3 case-500">
+                            <div class="case-glow"></div>
+                            <div class="case-image-holder"></div>
+                            <div class="case-card-body">
+                                <span class="case-name">МАГНАТ</span>
+                                <div class="case-price"><svg class="tg-star-icon" width="14" height="14" aria-hidden="true"><use href="#tg-star"/></svg>500</div>
+                            </div>
+                        </div>
+                        <div class="case-card tier-2 case-250">
+                            <div class="case-glow"></div>
+                            <div class="case-image-holder"></div>
+                            <div class="case-card-body">
+                                <span class="case-name">КРИПТА</span>
+                                <div class="case-price"><svg class="tg-star-icon" width="14" height="14" aria-hidden="true"><use href="#tg-star"/></svg>250</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+            </div>
+
+            <!-- SCREEN: GAMES (CATALOG) -->
+            <div class="screen hidden" data-screen="games">
+                <section class="games-section">
+                    <div class="games-head">
+                        <h2 class="games-title">ИГРЫ</h2>
+                    </div>
+
+                    <div class="games-grid">
+                        <!-- CRASH -->
+                        <div class="game-card" data-game="crash">
+                            <div class="game-visual">
+                                <div class="game-glow"></div>
+                                <div class="game-icon game-icon-crash">📈</div>
+                            </div>
+                            <span class="game-name">CRASH</span>
+                            <span class="game-badge">МНОЖИТЕЛЬ</span>
+                        </div>
+
+                        <!-- MINES -->
+                        <div class="game-card" data-game="mines">
+                            <div class="game-visual">
+                                <div class="game-glow"></div>
+                                <div class="game-icon game-icon-mines">💣</div>
+                            </div>
+                            <span class="game-name">MINES</span>
+                            <span class="game-badge">МИНЫ</span>
+                        </div>
+
+                        <!-- X50 -->
+                        <div class="game-card" data-game="x50">
+                            <div class="game-visual">
+                                <div class="game-glow"></div>
+                                <div class="game-icon game-icon-x50">🎯</div>
+                            </div>
+                            <span class="game-name">X50</span>
+                            <span class="game-badge">X50</span>
+                        </div>
+
+                        <!-- UPGRADER -->
+                        <div class="game-card" data-game="upgrader">
+                            <div class="game-visual">
+                                <div class="game-glow"></div>
+                                <div class="game-icon game-icon-upgrader">⬆️</div>
+                            </div>
+                            <span class="game-name">UPGRADER</span>
+                            <span class="game-badge">АПГРЕЙД</span>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- SCREEN: MINES GAME -->
+            <div class="screen hidden" data-screen="mines">
+                <section class="mines-section">
+                    <button class="crash-back" id="minesBack">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M10 2L4 8L10 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        НАЗАД
+                    </button>
+
+                    <div class="mines-card">
+                        <div class="mines-top">
+                            <div class="mines-info">
+                                <span class="mines-label">МИНЫ</span>
+                                <span class="mines-value" id="minesCount">3</span>
+                            </div>
+                            <div class="mines-info">
+                                <span class="mines-label">МНОЖИТЕЛЬ</span>
+                                <span class="mines-value mines-multiplier" id="minesMultiplier">1.00x</span>
+                            </div>
+                        </div>
+
+                        <div class="mines-grid" id="minesGrid">
+                            <!-- 5x5 grid generated by JS -->
+                        </div>
+
+                        <div class="mines-controls">
+                            <div class="mines-bet-row">
+                                <div class="mines-bet-label">СТАВКА</div>
+                                <div class="mines-bet-input-wrap">
+                                    <span class="mines-bet-icon">₴</span>
+                                    <input type="number" class="mines-bet-input" id="minesBet" value="10" min="1" step="1">
+                                </div>
+                            </div>
+
+                            <div class="mines-mines-row">
+                                <div class="mines-bet-label">МИНЫ</div>
+                                <div class="mines-select-wrap">
+                                    <button class="mines-select-btn" id="minesMinus">−</button>
+                                    <span class="mines-select-value" id="minesSelectValue">3</span>
+                                    <button class="mines-select-btn" id="minesPlus">+</button>
+                                </div>
+                            </div>
+
+                            <button class="mines-cashout" id="minesCashout" disabled>
+                                ЗАБРАТЬ ВЫИГРЫШ
+                            </button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- SCREEN: X50 GAME -->
+            <div class="screen hidden" data-screen="x50">
+                <section class="x50-section">
+                    <button class="crash-back" id="x50Back">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M10 2L4 8L10 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        НАЗАД
+                    </button>
+
+                    <div class="x50-card">
+                        <div class="x50-glow"></div>
+
+                        <div class="x50-top">
+                            <span class="x50-title">X50</span>
+                            <span class="x50-multiplier" id="x50Multiplier">ВЫБЕРИ СЕКТОР</span>
+                        </div>
+
+                        <div class="x50-wheel" id="x50Wheel">
+                            <div class="x50-wheel-glow"></div>
+                            <div class="x50-sectors" id="x50Sectors">
+                                <!-- 12 sectors generated by JS -->
+                            </div>
+                            <div class="x50-center">
+                                <span class="x50-center-coin">🎯</span>
+                            </div>
+                        </div>
+
+                        <div class="x50-bets">
+                            <button class="x50-bet-chip" data-mult="2">x2</button>
+                            <button class="x50-bet-chip" data-mult="5">x5</button>
+                            <button class="x50-bet-chip" data-mult="10">x10</button>
+                            <button class="x50-bet-chip" data-mult="25">x25</button>
+                            <button class="x50-bet-chip" data-mult="50">x50</button>
+                        </div>
+
+                        <div class="x50-controls">
+                            <div class="x50-bet-row">
+                                <div class="x50-bet-label">СТАВКА</div>
+                                <div class="x50-bet-input-wrap">
+                                    <span class="x50-bet-icon">₴</span>
+                                    <input type="number" class="x50-bet-input" id="x50Bet" value="10" min="1" step="1">
+                                </div>
+                            </div>
+
+                            <button class="x50-spin" id="x50Spin">КРУТИТЬ</button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- SCREEN: UPGRADER GAME -->
+            <div class="screen hidden" data-screen="upgrader">
+                <section class="upgrader-section">
+                    <button class="crash-back" id="upgraderBack">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M10 2L4 8L10 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        НАЗАД
+                    </button>
+
+                    <div class="upgrader-card">
+                        <div class="upgrader-top">
+                            <span class="upgrader-title">UPGRADER</span>
+                            <span class="upgrader-level" id="upgraderLevel">УРОВЕНЬ 1</span>
+                        </div>
+
+                        <div class="upgrader-items">
+                            <!-- Текущий предмет -->
+                            <div class="upgrader-item-card current">
+                                <div class="upgrader-item-label">ТЕКУЩИЙ</div>
+                                <div class="upgrader-item-visual" id="upgraderCurrentVisual">🐻</div>
+                                <div class="upgrader-item-name" id="upgraderCurrentName">NFT Bear</div>
+                                <div class="upgrader-item-value" id="upgraderCurrentValue">2 500</div>
+                            </div>
+
+                            <!-- Круговой индикатор -->
+                            <div class="upgrader-chance">
+                                <div class="upgrader-ring" id="upgraderRing">
+                                    <div class="upgrader-ring-inner">
+                                        <span class="upgrader-percent" id="upgraderPercent">75%</span>
+                                        <span class="upgrader-percent-label">УСПЕХ</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Целевой предмет -->
+                            <div class="upgrader-item-card target">
+                                <div class="upgrader-item-label">ЦЕЛЬ</div>
+                                <div class="upgrader-item-visual" id="upgraderTargetVisual">🐻‍❄️</div>
+                                <div class="upgrader-item-name" id="upgraderTargetName">NFT Bear Ice</div>
+                                <div class="upgrader-item-value" id="upgraderTargetValue">5 000</div>
+                            </div>
+                        </div>
+
+                        <button class="upgrader-btn" id="upgraderBtn">UPGRADE</button>
+                    </div>
+                </section>
+            </div>
+
+            <!-- SCREEN: CRASH GAME -->
+            <div class="screen hidden" data-screen="crash">
+                <section class="crash-section">
+                    <button class="crash-back" id="crashBack">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M10 2L4 8L10 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        НАЗАД
+                    </button>
+
+                    <div class="crash-card">
+                        <div class="crash-history">
+                            <span class="crash-history-label">ПРОШЛЫЕ РАУНДЫ</span>
+                            <div class="crash-history-list" id="crashHistory">
+                                <span class="crash-history-item">1.24x</span>
+                                <span class="crash-history-item">2.87x</span>
+                                <span class="crash-history-item">0.98x</span>
+                                <span class="crash-history-item">3.45x</span>
+                                <span class="crash-history-item">1.67x</span>
+                                <span class="crash-history-item">5.12x</span>
+                                <span class="crash-history-item">1.02x</span>
+                                <span class="crash-history-item">2.34x</span>
+                            </div>
+                        </div>
+
+                        <div class="crash-screen">
+                            <div class="crash-grid"></div>
+                            <div class="crash-line" id="crashLine"></div>
+                            <div class="crash-multiplier" id="crashMultiplier">1.00x</div>
+                            <div class="crash-status" id="crashStatus">ОЖИДАНИЕ СТАВКИ</div>
+                        </div>
+
+                        <div class="crash-controls">
+                            <div class="crash-bet-row">
+                                <div class="crash-bet-label">СТАВКА</div>
+                                <div class="crash-bet-input-wrap">
+                                    <span class="crash-bet-icon">₴</span>
+                                    <input type="number" class="crash-bet-input" id="crashBet" value="10" min="1" step="1">
+                                </div>
+                            </div>
+
+                            <button class="crash-cashout" id="crashCashout" disabled>
+                                CASH OUT
+                            </button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- SCREEN: FREE REWARD -->
+            <div class="screen hidden" data-screen="free">
+                <section class="free-section">
+                    <div class="free-card">
+                        <div class="free-glow"></div>
+
+                        <div class="free-badge">
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                                <path d="M7 0.5L13.5 7L7 13.5L0.5 7L7 0.5Z" stroke="#EAF6FF" stroke-width="1.2" fill="none"/>
+                            </svg>
+                            FREE CASE
+                        </div>
+
+                        <div class="free-visual">
+                            <div class="free-ring"></div>
+                            <div class="free-ring free-ring-2"></div>
+                            <div class="free-coin">₿</div>
+                        </div>
+
+                        <h2 class="free-title">ЕЖЕДНЕВНАЯ<br>НАГРАДА</h2>
+
+                        <p class="free-desc">
+                            Награду можно продать, выбить предмет или использовать в играх
+                        </p>
+
+                        <div class="free-timer">
+                            <div class="timer-label">ДО СЛЕДУЮЩЕЙ НАГРАДЫ</div>
+                            <div class="timer-digits" id="freeTimer">
+                                <span class="timer-unit">
+                                    <span class="timer-num" id="timerHours">24</span>
+                                    <span class="timer-text">ЧАС</span>
+                                </span>
+                                <span class="timer-sep">:</span>
+                                <span class="timer-unit">
+                                    <span class="timer-num" id="timerMinutes">00</span>
+                                    <span class="timer-text">МИН</span>
+                                </span>
+                                <span class="timer-sep">:</span>
+                                <span class="timer-unit">
+                                    <span class="timer-num" id="timerSeconds">00</span>
+                                    <span class="timer-text">СЕК</span>
+                                </span>
+                            </div>
+                        </div>
+
+                        <button class="free-cta" id="freeClaimBtn" disabled>
+                            ЗАБРАТЬ FREE CASE
+                        </button>
+                    </div>
+                </section>
+            </div>
+
+            <!-- SCREEN: PROFILE -->
+            <div class="screen hidden" data-screen="profile">
+                <section class="profile-section">
+                    <div class="profile-card">
+                        <div class="profile-top">
+                            <div class="tg-avatar profile-avatar">S</div>
+                            <div class="profile-meta">
+                                <span class="profile-username">@silasroam</span>
+                                <span class="profile-tgid">Telegram ID: <b>123456789</b></span>
+                            </div>
+                        </div>
+                        <div class="profile-balance-row">
+                            <span class="profile-balance-label">CASINO BALANCE</span>
+                            <div class="profile-balance-amount">
+                                <svg class="tg-star-icon" width="16" height="16" aria-hidden="true"><use href="#tg-star"/></svg>
+                                <span>1 234.56</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- INVENTORY -->
+                    <div class="inventory-section">
+                        <div class="inventory-head">
+                            <h3 class="inventory-title">ИНВЕНТАРЬ</h3>
+                            <span class="inventory-count">2 предмета</span>
+                        </div>
+
+                        <div class="inventory-grid">
+                            <!-- NFT BEAR -->
+                            <div class="inventory-card">
+                                <div class="inventory-visual">
+                                    <div class="nft-badge">NFT</div>
+                                    <div class="nft-art nft-bear">🐻</div>
+                                </div>
+                                <div class="inventory-info">
+                                    <span class="inventory-name">NFT Bear</span>
+                                    <span class="inventory-price">
+                                        <svg width="12" height="12" viewBox="0 0 11 11" fill="none">
+                                            <path d="M5.5 0.5C8 0.5 10.5 2.5 10.5 5.5C10.5 8.5 8 10.5 5.5 10.5C3 10.5 0.5 8.5 0.5 5.5C0.5 2.5 3 0.5 5.5 0.5Z" stroke="#1683FF" stroke-width="1.2"/>
+                                            <path d="M5.5 2.5V8.5M3.5 4.5H6.5C7.5 4.5 7.5 6.5 6.5 6.5H4.5C3.5 6.5 3.5 8.5 4.5 8.5H7.5" stroke="#1683FF" stroke-width="1.2" stroke-linecap="round"/>
+                                        </svg>
+                                        2 500
+                                    </span>
+                                </div>
+                                <div class="inventory-actions">
+                                    <button class="inv-btn inv-sell">Sell</button>
+                                    <button class="inv-btn inv-withdraw">Withdraw</button>
+                                </div>
+                            </div>
+
+                            <!-- NFT CAKE -->
+                            <div class="inventory-card">
+                                <div class="inventory-visual">
+                                    <div class="nft-badge">NFT</div>
+                                    <div class="nft-art nft-cake">🎂</div>
+                                </div>
+                                <div class="inventory-info">
+                                    <span class="inventory-name">NFT Cake</span>
+                                    <span class="inventory-price">
+                                        <svg width="12" height="12" viewBox="0 0 11 11" fill="none">
+                                            <path d="M5.5 0.5C8 0.5 10.5 2.5 10.5 5.5C10.5 8.5 8 10.5 5.5 10.5C3 10.5 0.5 8.5 0.5 5.5C0.5 2.5 3 0.5 5.5 0.5Z" stroke="#1683FF" stroke-width="1.2"/>
+                                            <path d="M5.5 2.5V8.5M3.5 4.5H6.5C7.5 4.5 7.5 6.5 6.5 6.5H4.5C3.5 6.5 3.5 8.5 4.5 8.5H7.5" stroke="#1683FF" stroke-width="1.2" stroke-linecap="round"/>
+                                        </svg>
+                                        1 200
+                                    </span>
+                                </div>
+                                <div class="inventory-actions">
+                                    <button class="inv-btn inv-sell">Sell</button>
+                                    <button class="inv-btn inv-withdraw">Withdraw</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- HISTORY -->
+                    <div class="history-section">
+                        <div class="history-head">
+                            <h3 class="history-title">ИСТОРИЯ</h3>
+                        </div>
+
+                        <div class="history-filters">
+                            <button class="history-filter active" data-filter="all">Все</button>
+                            <button class="history-filter" data-filter="case">Кейсы</button>
+                            <button class="history-filter" data-filter="game">Игры</button>
+                            <button class="history-filter" data-filter="sell">Продажи</button>
+                            <button class="history-filter" data-filter="deposit">Депозиты</button>
+                            <button class="history-filter" data-filter="withdraw">Выводы</button>
+                        </div>
+
+                        <div class="history-list">
+                            <div class="history-item" data-type="case">
+                                <div class="history-icon">🎁</div>
+                                <div class="history-info">
+                                    <span class="history-name">Открытие кейса «БОГ»</span>
+                                    <span class="history-date">21.08.2026, 19:12</span>
+                                </div>
+                                <div class="history-status">
+                                    <span class="history-amount">+₴ 500</span>
+                                    <span class="history-badge badge-success">Успех</span>
+                                </div>
+                            </div>
+
+                            <div class="history-item" data-type="game">
+                                <div class="history-icon">🎮</div>
+                                <div class="history-info">
+                                    <span class="history-name">Игра «Double»</span>
+                                    <span class="history-date">21.08.2026, 18:45</span>
+                                </div>
+                                <div class="history-status">
+                                    <span class="history-amount">+₴ 120</span>
+                                    <span class="history-badge badge-success">Выигрыш</span>
+                                </div>
+                            </div>
+
+                            <div class="history-item" data-type="sell">
+                                <div class="history-icon">💰</div>
+                                <div class="history-info">
+                                    <span class="history-name">Продажа NFT Bear</span>
+                                    <span class="history-date">21.08.2026, 17:30</span>
+                                </div>
+                                <div class="history-status">
+                                    <span class="history-amount">+₴ 15</span>
+                                    <span class="history-badge badge-success">Продано</span>
+                                </div>
+                            </div>
+
+                            <div class="history-item" data-type="deposit">
+                                <div class="history-icon">📥</div>
+                                <div class="history-info">
+                                    <span class="history-name">Депозит</span>
+                                    <span class="history-date">20.08.2026, 14:02</span>
+                                </div>
+                                <div class="history-status">
+                                    <span class="history-amount">+₴ 1 000</span>
+                                    <span class="history-badge badge-success">Зачислен</span>
+                                </div>
+                            </div>
+
+                            <div class="history-item" data-type="withdraw">
+                                <div class="history-icon">📤</div>
+                                <div class="history-info">
+                                    <span class="history-name">Вывод средств</span>
+                                    <span class="history-date">19.08.2026, 10:20</span>
+                                </div>
+                                <div class="history-status">
+                                    <span class="history-amount">-₴ 250</span>
+                                    <span class="history-badge badge-pending">В обработке</span>
+                                </div>
+                            </div>
+
+                            <div class="history-item" data-type="case">
+                                <div class="history-icon">🎁</div>
+                                <div class="history-info">
+                                    <span class="history-name">Открытие кейса «КРИПТА»</span>
+                                    <span class="history-date">18.08.2026, 22:05</span>
+                                </div>
+                                <div class="history-status">
+                                    <span class="history-amount">+₴ 40</span>
+                                    <span class="history-badge badge-success">Успех</span>
+                                </div>
+                            </div>
+
+                            <div class="history-item" data-type="game">
+                                <div class="history-icon">🎮</div>
+                                <div class="history-info">
+                                    <span class="history-name">Игра «x50»</span>
+                                    <span class="history-date">18.08.2026, 21:40</span>
+                                </div>
+                                <div class="history-status">
+                                    <span class="history-amount">-₴ 50</span>
+                                    <span class="history-badge badge-fail">Проигрыш</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <nav class="app-nav">
+            <button class="nav-item active">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 3L20 20H4L12 3Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                </svg>
+                <span>Главная</span>
+            </button>
+            <button class="nav-item">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                    <rect x="3" y="3" width="18" height="18" rx="4" stroke="currentColor" stroke-width="2"/>
+                    <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/>
+                </svg>
+                <span>Игры</span>
+            </button>
+            <button class="nav-item">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                    <rect x="3" y="7" width="18" height="14" rx="3" stroke="currentColor" stroke-width="2"/>
+                    <path d="M12 7V21M3 12H21M8 7C8 4.5 10 3 12 3C14 3 16 4.5 16 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                <span>Фри награда</span>
+            </button>
+            <button class="nav-item">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="2"/>
+                    <path d="M4 21C4 16.5 7.5 14 12 14C16.5 14 20 16.5 20 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                <span>Профиль</span>
+            </button>
+        </nav>
+
+        <!-- WITHDRAW MODAL -->
+        <div class="modal-overlay" id="withdrawModal" hidden>
+            <div class="modal-card withdraw-modal-card">
+                <button class="modal-close" id="withdrawModalClose" aria-label="Закрыть">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                        <path d="M2 2L12 12M12 2L2 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </button>
+
+                <div class="modal-body">
+                    <h3 class="modal-title">ВЫВОД ПРЕДМЕТА</h3>
+
+                    <div class="withdraw-conditions">
+                        <div class="withdraw-condition">
+                            <span class="withdraw-condition-icon">⭐</span>
+                            <span class="withdraw-condition-text">Требуется подтверждённый депозит минимум 100 Telegram Stars</span>
+                        </div>
+                    </div>
+
+                    <div class="withdraw-item-select" id="withdrawItemSelect">
+                        <div class="withdraw-item-preview" id="withdrawItemPreview">🐻</div>
+                        <div class="withdraw-item-info">
+                            <span class="withdraw-item-name" id="withdrawItemName">NFT Bear</span>
+                            <span class="withdraw-item-price" id="withdrawItemPrice">15</span>
+                        </div>
+                        <span class="withdraw-item-change" id="withdrawItemChange">ИЗМЕНИТЬ</span>
+                    </div>
+
+                    <div class="withdraw-address-label">АДРЕС / РЕКВИЗИТЫ</div>
+                    <input type="text" class="withdraw-address-input" id="withdrawAddress" placeholder="Введите адрес кошелька или реквизиты">
+
+                    <button class="modal-open withdraw-confirm" id="withdrawConfirm">ЗАПРОСИТЬ ВЫВОД</button>
+
+                    <div class="withdraw-requests">
+                        <div class="withdraw-requests-head">
+                            <span>МОИ ЗАЯВКИ</span>
+                        </div>
+                        <div class="withdraw-requests-list" id="withdrawRequestsList">
+                            <div class="withdraw-request-item">
+                                <div class="withdraw-request-info">
+                                    <span class="withdraw-request-name">NFT Bear</span>
+                                    <span class="withdraw-request-date">21.08.2026, 14:30</span>
+                                </div>
+                                <span class="withdraw-request-status status-pending">Pending</span>
+                            </div>
+                            <div class="withdraw-request-item">
+                                <div class="withdraw-request-info">
+                                    <span class="withdraw-request-name">NFT Cake</span>
+                                    <span class="withdraw-request-date">20.08.2026, 09:15</span>
+                                </div>
+                                <span class="withdraw-request-status status-processing">Processing</span>
+                            </div>
+                            <div class="withdraw-request-item">
+                                <div class="withdraw-request-info">
+                                    <span class="withdraw-request-name">NFT Bear</span>
+                                    <span class="withdraw-request-date">19.08.2026, 16:45</span>
+                                </div>
+                                <span class="withdraw-request-status status-completed">Completed</span>
+                            </div>
+                            <div class="withdraw-request-item">
+                                <div class="withdraw-request-info">
+                                    <span class="withdraw-request-name">NFT Cake</span>
+                                    <span class="withdraw-request-date">18.08.2026, 11:20</span>
+                                </div>
+                                <span class="withdraw-request-status status-rejected">Rejected</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SELL MODAL -->
+        <div class="modal-overlay" id="sellModal" hidden>
+            <div class="modal-card sell-modal-card">
+                <button class="modal-close" id="sellModalClose" aria-label="Закрыть">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                        <path d="M2 2L12 12M12 2L2 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </button>
+
+                <div class="modal-body">
+                    <h3 class="modal-title">ПРОДАЖА</h3>
+
+                    <div class="sell-visual" id="sellVisual">🐻</div>
+
+                    <div class="sell-item-name" id="sellItemName">NFT Bear</div>
+
+                    <div class="sell-price-row">
+                        <span class="sell-price-label">Цена продажи</span>
+                        <div class="sell-price-value" id="sellPriceValue">
+                            <svg width="16" height="16" viewBox="0 0 11 11" fill="none">
+                                <path d="M5.5 0.5C8 0.5 10.5 2.5 10.5 5.5C10.5 8.5 8 10.5 5.5 10.5C3 10.5 0.5 8.5 0.5 5.5C0.5 2.5 3 0.5 5.5 0.5Z" stroke="#1683FF" stroke-width="1.2"/>
+                                <path d="M5.5 2.5V8.5M3.5 4.5H6.5C7.5 4.5 7.5 6.5 6.5 6.5H4.5C3.5 6.5 3.5 8.5 4.5 8.5H7.5" stroke="#1683FF" stroke-width="1.2" stroke-linecap="round"/>
+                            </svg>
+                            <span id="sellPriceAmount">15</span>
+                        </div>
+                    </div>
+
+                    <button class="modal-open sell-confirm" id="sellConfirm">ПОДТВЕРДИТЬ ПРОДАЖУ</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- CASE MODAL -->
+        <div class="modal-overlay" id="caseModal" hidden>
+            <div class="modal-card">
+                <button class="modal-close" id="modalClose" aria-label="Закрыть">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                        <path d="M2 2L12 12M12 2L2 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </button>
+
+                <div class="modal-body">
+                    <h3 class="modal-title" id="modalTitle">КЕЙС</h3>
+
+                    <!-- Large 3D visual -->
+                    <div class="modal-visual" id="modalVisual"></div>
+
+                    <div class="modal-price" id="modalPrice">₴ 0</div>
+
+                    <!-- Roulette plate -->
+                    <div class="modal-roulette" id="modalRoulette">
+                        <div class="roulette-window">
+                            <div class="roulette-strip" id="rouletteStrip"></div>
+                        </div>
+                        <div class="roulette-pointer"></div>
+                    </div>
+
+                    <!-- Open button -->
+                    <button class="modal-open" id="modalOpen">OPEN FOR <span id="modalOpenValue">0</span></button>
+
+                    <!-- Win result label -->
+                    <div class="win-result" id="winResult" hidden></div>
+                    <div class="particles" id="particles"></div>
+
+                    <!-- Rewards list -->
+                    <div class="modal-rewards">
+                        <div class="rewards-head">
+                            <span>ВЫИГРЫШ</span>
+                            <span>ШАНС</span>
+                        </div>
+                        <div class="rewards-list" id="rewardsList"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
