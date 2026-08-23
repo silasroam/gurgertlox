@@ -1000,14 +1000,14 @@
     const starsView = document.getElementById('deposit-stars-packages');
     const selectStarsCategory = document.getElementById('select-stars-category');
     const backBtn = document.getElementById('back-btn');
-    const modalTitle = document.getElementById('modal-title');
+    const depositModalTitle = document.getElementById('modal-title');
 
     // Переход к звёздам
     selectStarsCategory?.addEventListener('click', () => {
         categoriesView.classList.add('hidden');
         starsView.classList.remove('hidden');
         backBtn.classList.remove('hidden');
-        modalTitle.textContent = 'Купить звёзды';
+        depositModalTitle.textContent = 'Купить звёзды';
     });
 
     // Возврат к категориям
@@ -1015,7 +1015,7 @@
         starsView.classList.add('hidden');
         categoriesView.classList.remove('hidden');
         backBtn.classList.add('hidden');
-        modalTitle.textContent = 'Пополнение баланса';
+        depositModalTitle.textContent = 'Пополнение баланса';
     });
 
     // Сброс на первый экран при закрытии модалки
@@ -1024,7 +1024,7 @@
         starsView.classList.add('hidden');
         categoriesView.classList.remove('hidden');
         backBtn.classList.add('hidden');
-        modalTitle.textContent = 'Пополнение баланса';
+        depositModalTitle.textContent = 'Пополнение баланса';
     });
 
     // Открытие модалки — всегда показываем Экран 1
@@ -1033,7 +1033,7 @@
         starsView.classList.add('hidden');
         categoriesView.classList.remove('hidden');
         backBtn.classList.add('hidden');
-        modalTitle.textContent = 'Пополнение баланса';
+        depositModalTitle.textContent = 'Пополнение баланса';
     });
 
     // Закрытие по клику на фон
@@ -1043,7 +1043,7 @@
             starsView.classList.add('hidden');
             categoriesView.classList.remove('hidden');
             backBtn.classList.add('hidden');
-            modalTitle.textContent = 'Пополнение баланса';
+            depositModalTitle.textContent = 'Пополнение баланса';
         }
     });
 
