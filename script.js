@@ -991,4 +991,59 @@
             });
         });
     });
+
+    /* ============ DEPOSIT MODAL (Telegram Stars) ============ */
+    const depositModal = document.getElementById('deposit-modal');
+    const openDepositBtn = document.getElementById('open-deposit-btn');
+    const closeDepositBtn = document.getElementById('close-modal-btn');
+
+    // Открытие / Закрытие модалки
+    openDepositBtn?.addEventListener('click', () => {
+        depositModal.classList.remove('hidden');
+    });
+
+    closeDepositBtn?.addEventListener('click', () => {
+        depositModal.classList.add('hidden');
+    });
+
+    // Закрытие по клику на фон
+    depositModal?.addEventListener('click', (e) => {
+        if (e.target === depositModal) {
+            depositModal.classList.add('hidden');
+        }
+    });
+
+    // Вызов инвойса Telegram Stars
+    document.querySelectorAll('.star-card').forEach((card) => {
+        card.addEventListener('click', async () => {
+            const amount = card.dataset.amount;
+
+            // Запрос к бэкенду на получение invoiceLink
+            try {
+                const response = await fetch('/api/create-invoice', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ amount: Number(amount) })
+                });
+                const data = await response.json();
+
+                if (data.invoiceLink && window.Telegram?.WebApp) {
+                    window.Telegram.WebApp.openInvoice(data.invoiceLink, (status) => {
+                        if (status === 'paid') {
+                            depositModal.classList.add('hidden');
+                            // Обновить баланс пользователя
+                            const balanceEls = document.querySelectorAll('.balance-amount, .profile-balance-amount span');
+                            balanceEls.forEach((el) => {
+                                const current = parseFloat(el.textContent.replace(/\s/g, '')) || 0;
+                                const newVal = current + Number(amount);
+                                el.textContent = newVal.toLocaleString('ru-RU', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                            });
+                        }
+                    });
+                }
+            } catch (e) {
+                console.error("Ошибка проведения платежа:", e);
+            }
+        });
+    });
 })();

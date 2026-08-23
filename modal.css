@@ -961,3 +961,176 @@
         width: 68px;
     }
 }
+
+/* ============================================
+   DEPOSIT MODAL — Покупка Telegram Stars
+   ============================================ */
+
+/* Класс hidden для модалки пополнения (работает с classList) */
+.modal-overlay.hidden {
+    display: none;
+}
+
+/* ---------- HEADER ---------- */
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 20px 0;
+}
+
+.modal-header h3 {
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    color: var(--text-primary);
+}
+
+.close-btn {
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: var(--text-secondary);
+    background: rgba(234, 246, 255, 0.06);
+    border: 1px solid rgba(234, 246, 255, 0.1);
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+    transition: color 0.2s ease, background 0.2s ease;
+}
+
+.close-btn:active {
+    color: var(--text-primary);
+    background: rgba(234, 246, 255, 0.12);
+}
+
+/* ---------- SUBTITLE ---------- */
+.modal-subtitle {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    padding: 8px 20px 16px;
+    text-align: left;
+}
+
+/* ---------- PACKAGES ---------- */
+.stars-packages {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0 20px 24px;
+}
+
+.star-card {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 14px 16px;
+    background: #1a1b23;
+    border: 1px solid #2a2c38;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: border-color 0.2s ease, transform 0.15s ease;
+}
+
+.star-card:active {
+    transform: scale(0.98);
+    border-color: #22c55e;
+}
+
+.star-card.popular {
+    border-color: #22c55e;
+}
+
+.star-card.best-value {
+    border-color: #22c55e;
+}
+
+.star-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.star-icon {
+    font-size: 20px;
+    line-height: 1;
+}
+
+.star-amount {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--text-primary);
+}
+
+.buy-btn {
+    padding: 8px 16px;
+    border-radius: 10px;
+    background: #22c55e;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    box-shadow: inset 0 2px 0 rgba(255,255,255,0.35), 0 3px 0 #15803d;
+    transition: all 0.05s ease;
+    flex-shrink: 0;
+}
+
+.buy-btn:active {
+    transform: translateY(2px);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.2), 0 1px 0 #15803d;
+}
+
+/* ---------- BADGE ---------- */
+.badge {
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    padding: 3px 8px;
+    border-radius: 8px;
+    text-transform: uppercase;
+}
+
+.badge.green {
+    color: #22c55e;
+    background: rgba(34, 197, 94, 0.12);
+    border: 1px solid rgba(34, 197, 94, 0.4);
+}
+
+/* ---------- COMPACT SCREENS (width ≤ 360px) ---------- */
+@media (max-width: 360px) {
+    .modal-header {
+        padding: 16px 16px 0;
+    }
+
+    .modal-subtitle {
+        padding: 6px 16px 12px;
+        font-size: 11px;
+    }
+
+    .stars-packages {
+        padding: 0 16px 18px;
+    }
+
+    .star-card {
+        padding: 12px 14px;
+    }
+
+    .star-amount {
+        font-size: 14px;
+    }
+
+    .buy-btn {
+        padding: 7px 12px;
+        font-size: 12px;
+    }
+}
