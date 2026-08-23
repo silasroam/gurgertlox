@@ -28,40 +28,54 @@
         });
     }
 
+    /* ---------- Header Avatar (Telegram profile) ---------- */
+    const headerAvatar = document.getElementById('headerAvatar');
+    const headerAvatarImg = document.getElementById('headerAvatarImg');
+
+    function setupHeaderAvatar() {
+        const user = tg?.initDataUnsafe?.user;
+        const photoUrl = user?.photo_url;
+
+        if (photoUrl) {
+            headerAvatarImg.src = photoUrl;
+            headerAvatarImg.style.display = 'block';
+        } else {
+            // Дефолтная заглушка: инициал пользователя или буква
+            const fallback = document.createElement('div');
+            fallback.className = 'avatar-fallback';
+            const initial = (user?.first_name?.[0] || user?.username?.[0] || 'U').toUpperCase();
+            fallback.textContent = initial;
+            headerAvatar.appendChild(fallback);
+        }
+    }
+
+    if (headerAvatar) {
+        headerAvatar.addEventListener('click', () => {
+            // Переход на экран профиля
+            navItems.forEach((i) => i.classList.remove('active'));
+            const profileNav = [...navItems].find((i) => i.querySelector('span').textContent === 'Профиль');
+            if (profileNav) profileNav.classList.add('active');
+            showScreen('profile');
+        });
+    }
+
+    setupHeaderAvatar();
+
     navItems.forEach((item) => {
         item.addEventListener('click', () => {
             navItems.forEach((i) => i.classList.remove('active'));
             item.classList.add('active');
 
-            const label = item.querySelector('span').textContent;
-            if (label === 'Главная') showScreen('home');
-            else if (label === 'Игры') showScreen('games');
-            else if (label === 'Фри награда') showScreen('free');
-            else if (label === 'Профиль') showScreen('profile');
-        });
-    });
-
-    /* ============ GAMES CATALOG ============ */
-    const gameCards = document.querySelectorAll('.game-card');
-    const crashBack = document.getElementById('crashBack');
-
-    gameCards.forEach((card) => {
-        card.addEventListener('click', () => {
-            const game = card.dataset.game;
-            if (game === 'crash') {
-                showScreen('crash');
-            } else if (game === 'mines') {
-                showScreen('mines');
-            } else if (game === 'x50') {
-                showScreen('x50');
-            } else if (game === 'upgrader') {
-                showScreen('upgrader');
+            const screen = item.dataset.screen;
+            if (screen) {
+                showScreen(screen);
+            } else {
+                const label = item.querySelector('span').textContent;
+                if (label === 'Главная') showScreen('home');
+                else if (label === 'Фри награда') showScreen('free');
+                else if (label === 'Профиль') showScreen('profile');
             }
         });
-    });
-
-    crashBack.addEventListener('click', () => {
-        showScreen('games');
     });
 
     /* ============ MINES GAME ============ */
@@ -162,7 +176,7 @@
     }
 
     minesBack.addEventListener('click', () => {
-        showScreen('games');
+        showScreen('upgrade');
     });
 
     minesCashout.addEventListener('click', cashOutMines);
@@ -214,7 +228,7 @@
     }
 
     x50Back.addEventListener('click', () => {
-        showScreen('games');
+        showScreen('upgrade');
     });
 
     // Выбор коэффициента через чипы
@@ -296,7 +310,7 @@
     }
 
     upgraderBack.addEventListener('click', () => {
-        showScreen('games');
+        showScreen('upgrade');
     });
 
     upgraderBtn.addEventListener('click', () => {
@@ -319,6 +333,7 @@
     updateUpgraderUI();
 
     /* ============ CRASH GAME ============ */
+    const crashBack = document.getElementById('crashBack');
     const crashLine = document.getElementById('crashLine');
     const crashMultiplier = document.getElementById('crashMultiplier');
     const crashStatus = document.getElementById('crashStatus');
@@ -396,6 +411,10 @@
         addCrashHistory(crashMultiplierVal);
     }
 
+    crashBack.addEventListener('click', () => {
+        showScreen('upgrade');
+    });
+
     crashCashout.addEventListener('click', cashOut);
 
     // Автозапуск при клике на экран (для демо)
@@ -405,14 +424,11 @@
 
     /* ============ FREE REWARD TIMER ============ */
     const FREE_DURATION = 24 * 60 * 60; // 24 часа в секундах
-    const timerHours = document.getElementById('timerHours');
-    const timerMinutes = document.getElementById('timerMinutes');
-    const timerSeconds = document.getElementById('timerSeconds');
     const freeClaimBtn = document.getElementById('freeClaimBtn');
 
     // Сохраняем время последнего получения в localStorage
     const FREE_KEY = 'casino_free_reward_time';
-    let freeRemaining = FREE_DURATION;
+    let freeRemaining = 0;
 
     const lastClaim = parseInt(localStorage.getItem(FREE_KEY) || '0', 10);
     if (lastClaim) {
@@ -426,20 +442,19 @@
 
     function updateFreeTimer() {
         if (freeRemaining <= 0) {
-            timerHours.textContent = '00';
-            timerMinutes.textContent = '00';
-            timerSeconds.textContent = '00';
+            // Таймер завершён или не запускался - кнопка активна
             freeClaimBtn.disabled = false;
+            freeClaimBtn.textContent = 'ОТКРЫТЬ КЕЙС';
             return;
         }
 
+        // Таймер идёт - кнопка заблокирована с отображением времени
         const h = Math.floor(freeRemaining / 3600);
         const m = Math.floor((freeRemaining % 3600) / 60);
         const s = freeRemaining % 60;
 
-        timerHours.textContent = pad(h);
-        timerMinutes.textContent = pad(m);
-        timerSeconds.textContent = pad(s);
+        freeClaimBtn.disabled = true;
+        freeClaimBtn.textContent = `ДОСТУПНО ЧЕРЕЗ ${pad(h)}:${pad(m)}:${pad(s)}`;
 
         freeRemaining--;
     }
@@ -785,37 +800,174 @@
         modal.hidden = false;
     }
 
-    /* ---------- Wire case cards ---------- */
-    document.querySelectorAll('.case-card').forEach((card) => {
-        card.addEventListener('click', () => {
-            const match = card.className.match(/case-(\d+)/);
-            if (match) {
-                openCaseModal(parseInt(match[1], 10));
+    /* ---------- Open button ---------- */
+    if (modalOpenBtn) {
+        modalOpenBtn.addEventListener('click', () => {
+            if (currentPrice !== null && !spinLock) {
+                spinRoulette();
+            }
+        });
+    }
+
+    /* ---------- Close modal ---------- */
+    function closeCaseModal() {
+        if (modal) modal.hidden = true;
+        spinLock = false;
+        if (winResult) winResult.hidden = true;
+        if (particlesBox) particlesBox.innerHTML = '';
+    }
+
+    if (modalClose) {
+        modalClose.addEventListener('click', closeCaseModal);
+    }
+
+    if (modal) {
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeCaseModal();
+            }
+        });
+    }
+
+    /* ============ CASE DETAIL SCREEN ============ */
+    const caseDetailBack = document.getElementById('caseDetailBack');
+    const caseDetailTitle = document.getElementById('caseDetailTitle');
+    const caseDetailOpenValue = document.getElementById('caseDetailOpenValue');
+    const caseDetailOpenBtn = document.getElementById('caseDetailOpen');
+    const caseDetailQuickBtn = document.getElementById('caseDetailQuick');
+    const caseDetailMultipliers = document.querySelectorAll('.case-detail-mult');
+    const caseDetailItems = document.getElementById('caseDetailItems');
+    const caseDetailContentsCount = document.getElementById('caseDetailContentsCount');
+
+    let caseDetailBasePrice = 100;
+    let caseDetailMult = 1;
+
+    // Предметы кейса (демо-данные, заглушки вместо стикеров)
+    const CASE_DETAIL_ITEMS = [
+        { icon: 'IMG', name: 'Bronze Coin', price: 2, rarity: 'common' },
+        { icon: 'IMG', name: 'Silver Fragment', price: 4, rarity: 'common' },
+        { icon: 'IMG', name: 'Neon Token', price: 8, rarity: 'rare' },
+        { icon: 'IMG', name: 'Plasma Crystal', price: 12, rarity: 'rare' },
+        { icon: 'IMG', name: 'Ruby Shard', price: 20, rarity: 'epic' },
+        { icon: 'IMG', name: 'Sapphire Heart', price: 30, rarity: 'epic' },
+        { icon: 'IMG', name: "Dragon's Breath", price: 50, rarity: 'legendary' },
+        { icon: 'IMG', name: 'Golden Idol', price: 80, rarity: 'legendary' },
+        { icon: 'IMG', name: 'Godslayer Edge', price: 120, rarity: 'mythic' },
+        { icon: 'IMG', name: 'Copper Coin', price: 1, rarity: 'common' },
+        { icon: 'IMG', name: 'Cyan Shard', price: 6, rarity: 'rare' },
+        { icon: 'IMG', name: 'Amber Gem', price: 15, rarity: 'epic' },
+        { icon: 'IMG', name: 'Royal Crown', price: 60, rarity: 'legendary' },
+        { icon: 'IMG', name: 'Skull Token', price: 25, rarity: 'epic' },
+        { icon: 'IMG', name: 'Iron Coin', price: 3, rarity: 'common' },
+        { icon: 'IMG', name: 'Blue Crystal', price: 10, rarity: 'rare' },
+        { icon: 'IMG', name: 'Violet Orb', price: 18, rarity: 'epic' },
+        { icon: 'IMG', name: 'Flame Core', price: 45, rarity: 'legendary' },
+        { icon: 'IMG', name: 'Aegis Shield', price: 70, rarity: 'legendary' },
+        { icon: 'IMG', name: 'Meteorite', price: 100, rarity: 'mythic' },
+        { icon: 'IMG', name: 'Gold Coin', price: 5, rarity: 'common' },
+        { icon: 'IMG', name: 'Holo Disc', price: 14, rarity: 'rare' },
+    ];
+
+    function buildCaseDetailItems() {
+        caseDetailItems.innerHTML = '';
+        CASE_DETAIL_ITEMS.forEach((item) => {
+            const card = document.createElement('div');
+            card.className = 'case-detail-item rarity-' + item.rarity;
+
+            const visual = document.createElement('div');
+            visual.className = 'case-detail-item-visual';
+            visual.textContent = item.icon;
+
+            const name = document.createElement('span');
+            name.className = 'case-detail-item-name';
+            name.textContent = item.name;
+
+            const price = document.createElement('span');
+            price.className = 'case-detail-item-price';
+            price.innerHTML = `
+                <svg class="tg-star-icon" width="12" height="12" aria-hidden="true"><use href="#tg-star"/></svg>
+                ${item.price}
+            `;
+
+            card.appendChild(visual);
+            card.appendChild(name);
+            card.appendChild(price);
+            caseDetailItems.appendChild(card);
+        });
+        caseDetailContentsCount.textContent = CASE_DETAIL_ITEMS.length;
+    }
+
+    function updateCaseDetailPrice() {
+        const total = caseDetailBasePrice * caseDetailMult;
+        caseDetailOpenValue.textContent = total;
+    }
+
+    function openCaseDetail(name, price) {
+        caseDetailTitle.textContent = name || 'QUANT';
+        caseDetailBasePrice = price || 100;
+        caseDetailMult = 1;
+
+        // Сброс табов
+        caseDetailMultipliers.forEach((btn) => {
+            btn.classList.toggle('active', btn.dataset.mult === '1');
+        });
+
+        updateCaseDetailPrice();
+        buildCaseDetailItems();
+        showScreen('case-detail');
+    }
+
+    // Назад на главную
+    caseDetailBack.addEventListener('click', () => {
+        showScreen('home');
+    });
+
+    // Переключение множителей
+    caseDetailMultipliers.forEach((btn) => {
+        btn.addEventListener('click', () => {
+            caseDetailMultipliers.forEach((b) => b.classList.remove('active'));
+            btn.classList.add('active');
+            caseDetailMult = parseInt(btn.dataset.mult, 10);
+            updateCaseDetailPrice();
+        });
+    });
+
+    // Открыть кейс (демо)
+    caseDetailOpenBtn.addEventListener('click', () => {
+        const cost = caseDetailBasePrice * caseDetailMult;
+        const balanceEls = document.querySelectorAll('.balance-amount, .profile-balance-amount span');
+        balanceEls.forEach((el) => {
+            const current = parseFloat(el.textContent.replace(/\s/g, '')) || 0;
+            if (current >= cost) {
+                const newVal = current - cost;
+                el.textContent = newVal.toLocaleString('ru-RU', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
             }
         });
     });
 
-    /* ---------- Open button ---------- */
-    modalOpenBtn.addEventListener('click', () => {
-        if (currentPrice !== null && !spinLock) {
-            spinRoulette();
-        }
+    // Быстрое открытие (демо)
+    caseDetailQuickBtn.addEventListener('click', () => {
+        const cost = caseDetailBasePrice * caseDetailMult;
+        const balanceEls = document.querySelectorAll('.balance-amount, .profile-balance-amount span');
+        balanceEls.forEach((el) => {
+            const current = parseFloat(el.textContent.replace(/\s/g, '')) || 0;
+            if (current >= cost) {
+                const newVal = current - cost;
+                el.textContent = newVal.toLocaleString('ru-RU', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            }
+        });
     });
 
-    /* ---------- Close modal ---------- */
-    function closeCaseModal() {
-        modal.hidden = true;
-        spinLock = false;
-        winResult.hidden = true;
-        particlesBox.innerHTML = '';
-    }
-
-    modalClose.addEventListener('click', closeCaseModal);
-
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            closeCaseModal();
-        }
+    // Клик по карточке кейса → открыть case-detail
+    document.querySelectorAll('.case-card').forEach((card) => {
+        card.addEventListener('click', () => {
+            const match = card.className.match(/case-(\d+)/);
+            const nameEl = card.querySelector('.case-name');
+            const name = nameEl ? nameEl.textContent : 'QUANT';
+            if (match) {
+                openCaseDetail(name, parseInt(match[1], 10));
+            }
+        });
     });
 
     /* ============ WITHDRAW MODAL ============ */
