@@ -990,7 +990,11 @@
     padding: 20px 20px 0;
 }
 
-.modal-header h3 {
+.modal-header h3,
+#modal-title {
+    text-align: center;
+    width: 100%;
+    margin: 0 auto;
     font-size: 18px;
     font-weight: 800;
     letter-spacing: 0.5px;
