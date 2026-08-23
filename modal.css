@@ -984,24 +984,27 @@
 
 /* ---------- HEADER ---------- */
 .modal-header {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
-    justify-content: space-between;
+    width: 100%;
     padding: 20px 20px 0;
 }
 
-.modal-header h3,
 #modal-title {
+    justify-self: center;
     text-align: center;
-    width: 100%;
-    margin: 0 auto;
     font-size: 18px;
     font-weight: 800;
     letter-spacing: 0.5px;
     color: var(--text-primary);
+    line-height: 1;
+    margin: 0;
+    padding: 0;
 }
 
 .close-btn {
+    justify-self: end;
     width: 32px;
     height: 32px;
     background: rgba(255, 255, 255, 0.05);
@@ -1013,6 +1016,8 @@
     justify-content: center;
     cursor: pointer;
     transition: all 0.2s ease;
+    margin: 0;
+    padding: 0;
 }
 
 .close-btn:hover {
@@ -1021,6 +1026,7 @@
 }
 
 .back-btn {
+    justify-self: start;
     height: 32px;
     display: flex;
     align-items: center;
@@ -1032,6 +1038,7 @@
     cursor: pointer;
     padding: 0 10px;
     margin: 0;
+    line-height: 1;
     transition: color 0.2s ease;
 }
 
