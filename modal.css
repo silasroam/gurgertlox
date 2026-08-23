@@ -987,24 +987,25 @@
 }
 
 .close-btn {
-    width: 34px;
-    height: 34px;
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    width: 32px;
+    height: 32px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    color: #9ca3af;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 50%;
-    color: var(--text-secondary);
-    background: rgba(234, 246, 255, 0.06);
-    border: 1px solid rgba(234, 246, 255, 0.1);
-    font-size: 20px;
-    line-height: 1;
     cursor: pointer;
-    transition: color 0.2s ease, background 0.2s ease;
+    transition: all 0.2s ease;
 }
 
-.close-btn:active {
-    color: var(--text-primary);
-    background: rgba(234, 246, 255, 0.12);
+.close-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
 }
 
 /* ---------- SUBTITLE ---------- */
