@@ -836,30 +836,27 @@
         <!-- DEPOSIT MODAL -->
         <div id="deposit-modal" class="modal-overlay hidden">
             <div class="modal-card">
-                <button id="close-modal-btn" class="close-btn">&times;</button>
+                <!-- Шапка модалки -->
+                <div class="modal-header">
+                    <button id="back-btn" class="back-btn hidden">← Назад</button>
+                    <h3 id="modal-title">Пополнение баланса</h3>
+                    <button id="close-modal-btn" class="close-btn">&times;</button>
+                </div>
 
-                <!-- SCREEN 1: CATEGORIES -->
-                <div id="deposit-categories" class="deposit-screen">
-                    <h3 class="deposit-title">Пополнение баланса</h3>
-
-                    <div class="categories-list">
-                        <button type="button" class="deposit-category method-card active" id="deposit-cat-stars">
-                            <span>⭐️ Telegram Stars</span>
-                            <span class="deposit-chevron">›</span>
-                        </button>
-
-                        <button type="button" class="deposit-category method-card disabled" id="deposit-cat-crypto" disabled>
-                            <span>💎 Криптовалюта</span>
-                            <span class="deposit-soon">Скоро</span>
-                        </button>
+                <!-- ЭКРАН 1: Выбор категории (виден по умолчанию) -->
+                <div id="deposit-categories">
+                    <div class="method-card" id="select-stars-category">
+                        <span>⭐️ Telegram Stars</span>
+                        <span>&rsaquo;</span>
+                    </div>
+                    <div class="method-card disabled">
+                        <span>💎 Криптовалюта</span>
+                        <span class="badge">СКОРО</span>
                     </div>
                 </div>
 
-                <!-- SCREEN 2: STARS PACKAGES -->
-                <div id="deposit-stars-packages" class="deposit-screen hidden">
-                    <button type="button" class="deposit-back" id="deposit-back-btn">← Назад</button>
-                    <h3 class="deposit-title">Купить звёзды</h3>
-
+                <!-- ЭКРАН 2: Список звёзд (скрыт по умолчанию!) -->
+                <div id="deposit-stars-packages" class="hidden">
                     <div class="stars-packages">
                         <!-- Пакет 50 -->
                         <div class="star-card" data-amount="50">

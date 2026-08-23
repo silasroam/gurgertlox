@@ -20,6 +20,11 @@
     display: none;
 }
 
+/* Универсальный класс скрытия — работает с !important */
+.hidden {
+    display: none !important;
+}
+
 /* ---------- CARD ---------- */
 .modal-card {
     position: relative;
@@ -993,9 +998,6 @@
 }
 
 .close-btn {
-    position: absolute;
-    top: 18px;
-    right: 18px;
     width: 32px;
     height: 32px;
     background: rgba(255, 255, 255, 0.05);
@@ -1014,41 +1016,8 @@
     color: #fff;
 }
 
-/* ---------- DEPOSIT SCREENS (two-step) ---------- */
-#deposit-categories,
-#deposit-stars-packages {
-    display: flex;
-    flex-direction: column;
-    flex: 1; /* Растягиваем на всю доступную высоту */
-}
-
-.deposit-screen {
-    padding: 40px 0 8px;
-}
-
-.deposit-screen.hidden {
-    display: none;
-}
-
-.categories-list {
-    margin-top: 20px;
-}
-
-.deposit-title {
-    font-size: 18px;
-    font-weight: 800;
-    letter-spacing: 0.5px;
-    color: #EAF6FF;
-    text-align: center;
-    margin-top: 40px;
-    margin-bottom: 20px;
-}
-
-.deposit-back {
-    position: absolute;
-    top: 18px;
-    left: 18px;
-    height: 32px; /* Такая же высота, как у крестика */
+.back-btn {
+    height: 32px;
     display: flex;
     align-items: center;
     background: transparent;
@@ -1062,37 +1031,27 @@
     transition: color 0.2s ease;
 }
 
-.deposit-back:hover {
+.back-btn:hover {
     color: #ffffff;
 }
 
-.deposit-category {
-    width: 100%;
+/* ---------- DEPOSIT SCREENS (two-step) ---------- */
+#deposit-categories,
+#deposit-stars-packages {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    text-align: left;
-    color: #EAF6FF;
-    cursor: pointer;
+    flex-direction: column;
+    flex: 1; /* Растягиваем на всю доступную высоту */
 }
 
-.deposit-category.active {
-    color: #EAF6FF;
+#deposit-categories {
+    padding: 20px 0 8px;
 }
 
-.deposit-category.disabled {
-    color: #6b7280;
-    cursor: not-allowed;
+#deposit-stars-packages {
+    padding: 20px 0 8px;
 }
 
-.deposit-chevron {
-    color: #9ca3af;
-    font-size: 22px;
-    font-weight: 600;
-    line-height: 1;
-}
-
-.deposit-soon {
+.method-card .badge {
     font-size: 10px;
     font-weight: 700;
     letter-spacing: 0.5px;

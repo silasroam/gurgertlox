@@ -996,47 +996,54 @@
     const depositModal = document.getElementById('deposit-modal');
     const openDepositBtn = document.getElementById('open-deposit-btn');
     const closeDepositBtn = document.getElementById('close-modal-btn');
-    const depositCategories = document.getElementById('deposit-categories');
-    const depositStars = document.getElementById('deposit-stars-packages');
-    const depositCatStars = document.getElementById('deposit-cat-stars');
-    const depositBackBtn = document.getElementById('deposit-back-btn');
+    const categoriesView = document.getElementById('deposit-categories');
+    const starsView = document.getElementById('deposit-stars-packages');
+    const selectStarsCategory = document.getElementById('select-stars-category');
+    const backBtn = document.getElementById('back-btn');
+    const modalTitle = document.getElementById('modal-title');
 
-    // Навигация: показать экран категорий (Экран 1)
-    function showDepositCategories() {
-        depositCategories?.classList.remove('hidden');
-        depositStars?.classList.add('hidden');
-    }
-
-    // Навигация: показать список пакетов звёзд (Экран 2)
-    function showDepositStars() {
-        depositCategories?.classList.add('hidden');
-        depositStars?.classList.remove('hidden');
-    }
-
-    // Открытие / Закрытие модалки
-    openDepositBtn?.addEventListener('click', () => {
-        showDepositCategories();
-        depositModal.classList.remove('hidden');
+    // Переход к звёздам
+    selectStarsCategory?.addEventListener('click', () => {
+        categoriesView.classList.add('hidden');
+        starsView.classList.remove('hidden');
+        backBtn.classList.remove('hidden');
+        modalTitle.textContent = 'Купить звёзды';
     });
 
-    // По клику на "Telegram Stars" переходим к пакетам
-    depositCatStars?.addEventListener('click', () => {
-        showDepositStars();
+    // Возврат к категориям
+    backBtn?.addEventListener('click', () => {
+        starsView.classList.add('hidden');
+        categoriesView.classList.remove('hidden');
+        backBtn.classList.add('hidden');
+        modalTitle.textContent = 'Пополнение баланса';
     });
 
-    // Кнопка "← Назад" возвращает к категориям
-    depositBackBtn?.addEventListener('click', () => {
-        showDepositCategories();
-    });
-
+    // Сброс на первый экран при закрытии модалки
     closeDepositBtn?.addEventListener('click', () => {
         depositModal.classList.add('hidden');
+        starsView.classList.add('hidden');
+        categoriesView.classList.remove('hidden');
+        backBtn.classList.add('hidden');
+        modalTitle.textContent = 'Пополнение баланса';
+    });
+
+    // Открытие модалки — всегда показываем Экран 1
+    openDepositBtn?.addEventListener('click', () => {
+        depositModal.classList.remove('hidden');
+        starsView.classList.add('hidden');
+        categoriesView.classList.remove('hidden');
+        backBtn.classList.add('hidden');
+        modalTitle.textContent = 'Пополнение баланса';
     });
 
     // Закрытие по клику на фон
     depositModal?.addEventListener('click', (e) => {
         if (e.target === depositModal) {
             depositModal.classList.add('hidden');
+            starsView.classList.add('hidden');
+            categoriesView.classList.remove('hidden');
+            backBtn.classList.add('hidden');
+            modalTitle.textContent = 'Пополнение баланса';
         }
     });
 
