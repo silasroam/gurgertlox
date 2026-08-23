@@ -1040,24 +1040,30 @@
     letter-spacing: 0.5px;
     color: #EAF6FF;
     text-align: center;
+    margin-top: 40px;
     margin-bottom: 20px;
 }
 
 .deposit-back {
-    align-self: flex-start;
-    margin-bottom: 16px;
-    background: none;
+    position: absolute;
+    top: 18px;
+    left: 18px;
+    height: 32px; /* Такая же высота, как у крестика */
+    display: flex;
+    align-items: center;
+    background: transparent;
     border: none;
     color: #9ca3af;
-    font-size: 13px;
-    font-weight: 600;
+    font-size: 14px;
+    font-weight: 500;
     cursor: pointer;
-    padding: 4px 0;
+    padding: 0 10px;
+    margin: 0;
     transition: color 0.2s ease;
 }
 
 .deposit-back:hover {
-    color: #fff;
+    color: #ffffff;
 }
 
 .deposit-category {
