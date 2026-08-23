@@ -992,14 +992,41 @@
         });
     });
 
-    /* ============ DEPOSIT MODAL (Telegram Stars) ============ */
+    /* ============ DEPOSIT MODAL (two-step) ============ */
     const depositModal = document.getElementById('deposit-modal');
     const openDepositBtn = document.getElementById('open-deposit-btn');
     const closeDepositBtn = document.getElementById('close-modal-btn');
+    const depositCategories = document.getElementById('deposit-categories');
+    const depositStars = document.getElementById('deposit-stars-packages');
+    const depositCatStars = document.getElementById('deposit-cat-stars');
+    const depositBackBtn = document.getElementById('deposit-back-btn');
+
+    // Навигация: показать экран категорий (Экран 1)
+    function showDepositCategories() {
+        depositCategories?.classList.remove('hidden');
+        depositStars?.classList.add('hidden');
+    }
+
+    // Навигация: показать список пакетов звёзд (Экран 2)
+    function showDepositStars() {
+        depositCategories?.classList.add('hidden');
+        depositStars?.classList.remove('hidden');
+    }
 
     // Открытие / Закрытие модалки
     openDepositBtn?.addEventListener('click', () => {
+        showDepositCategories();
         depositModal.classList.remove('hidden');
+    });
+
+    // По клику на "Telegram Stars" переходим к пакетам
+    depositCatStars?.addEventListener('click', () => {
+        showDepositStars();
+    });
+
+    // Кнопка "← Назад" возвращает к категориям
+    depositBackBtn?.addEventListener('click', () => {
+        showDepositCategories();
     });
 
     closeDepositBtn?.addEventListener('click', () => {

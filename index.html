@@ -836,39 +836,58 @@
         <!-- DEPOSIT MODAL -->
         <div id="deposit-modal" class="modal-overlay hidden">
             <div class="modal-card">
-                <div class="modal-header">
-                    <h3>Купить звёзды</h3>
-                    <button id="close-modal-btn" class="close-btn">&times;</button>
+                <button id="close-modal-btn" class="close-btn">&times;</button>
+
+                <!-- SCREEN 1: CATEGORIES -->
+                <div id="deposit-categories" class="deposit-screen">
+                    <h3 class="deposit-title">Пополнение баланса</h3>
+
+                    <button type="button" class="deposit-category method-card active" id="deposit-cat-stars">
+                        <span>⭐️ Telegram Stars</span>
+                        <span class="deposit-chevron">›</span>
+                    </button>
+
+                    <button type="button" class="deposit-category method-card disabled" id="deposit-cat-crypto" disabled>
+                        <span>💎 Криптовалюта</span>
+                        <span class="deposit-soon">Скоро</span>
+                    </button>
                 </div>
-                <div class="stars-packages">
-                    <!-- Пакет 50 -->
-                    <div class="star-card" data-amount="50">
-                        <div class="star-info"><span class="star-icon">⭐</span> <span class="star-amount">50</span></div>
-                        <button class="buy-btn">50 ⭐️</button>
-                    </div>
 
-                    <!-- Пакет 100 -->
-                    <div class="star-card" data-amount="100">
-                        <div class="star-info"><span class="star-icon">⭐</span> <span class="star-amount">100</span></div>
-                        <button class="buy-btn">100 ⭐️</button>
-                    </div>
+                <!-- SCREEN 2: STARS PACKAGES -->
+                <div id="deposit-stars-packages" class="deposit-screen hidden">
+                    <button type="button" class="deposit-back" id="deposit-back-btn">← Назад</button>
+                    <h3 class="deposit-title">Купить звёзды</h3>
 
-                    <!-- Пакет 250 -->
-                    <div class="star-card" data-amount="250">
-                        <div class="star-info"><span class="star-icon">⭐</span> <span class="star-amount">250</span></div>
-                        <button class="buy-btn">250 ⭐️</button>
-                    </div>
+                    <div class="stars-packages">
+                        <!-- Пакет 50 -->
+                        <div class="star-card" data-amount="50">
+                            <div class="star-info"><span class="star-icon">⭐</span> <span class="star-amount">50</span></div>
+                            <button class="buy-btn">50 ⭐️</button>
+                        </div>
 
-                    <!-- Пакет 500 -->
-                    <div class="star-card" data-amount="500">
-                        <div class="star-info"><span class="star-icon">⭐</span> <span class="star-amount">500</span></div>
-                        <button class="buy-btn">500 ⭐️</button>
-                    </div>
+                        <!-- Пакет 100 -->
+                        <div class="star-card" data-amount="100">
+                            <div class="star-info"><span class="star-icon">⭐</span> <span class="star-amount">100</span></div>
+                            <button class="buy-btn">100 ⭐️</button>
+                        </div>
 
-                    <!-- Пакет 1000 -->
-                    <div class="star-card" data-amount="1000">
-                        <div class="star-info"><span class="star-icon">⭐</span> <span class="star-amount">1000</span></div>
-                        <button class="buy-btn">1 000 ⭐️</button>
+                        <!-- Пакет 250 -->
+                        <div class="star-card" data-amount="250">
+                            <div class="star-info"><span class="star-icon">⭐</span> <span class="star-amount">250</span></div>
+                            <button class="buy-btn">250 ⭐️</button>
+                        </div>
+
+                        <!-- Пакет 500 -->
+                        <div class="star-card" data-amount="500">
+                            <div class="star-info"><span class="star-icon">⭐</span> <span class="star-amount">500</span></div>
+                            <button class="buy-btn">500 ⭐️</button>
+                        </div>
+
+                        <!-- Пакет 1000 -->
+                        <div class="star-card" data-amount="1000">
+                            <div class="star-info"><span class="star-icon">⭐</span> <span class="star-amount">1000</span></div>
+                            <button class="buy-btn">1 000 ⭐️</button>
+                        </div>
                     </div>
                 </div>
             </div>
