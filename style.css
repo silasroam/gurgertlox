@@ -1642,14 +1642,24 @@ button {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    background-color: #020617;
-    background-image: 
-        radial-gradient(circle at 50% 20%, rgba(29, 78, 216, 0.15) 0%, transparent 70%),
-        radial-gradient(rgba(30, 58, 138, 0.45) 1.5px, #020617 1.5px);
-    background-size: 100% 100%, 14px 14px;
+    background: radial-gradient(circle at 50% 30%, #123C3E 0%, #0A2223 45%, #061012 100%) !important;
     overflow-y: auto;
     border-radius: 0 0 24px 24px;
     position: relative;
+    z-index: 0;
+}
+
+.case-detail-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('pepe_pattern.svg');
+    background-repeat: repeat;
+    background-size: 70px 70px;
+    opacity: 0.2;
+    mix-blend-mode: overlay;
+    filter: drop-shadow(0 0 2px rgba(16, 185, 129, 0.3));
+    pointer-events: none;
     z-index: 0;
 }
 
@@ -1734,9 +1744,12 @@ button {
     background: transparent;
     border: none;
     box-shadow: 0 0 30px rgba(37, 99, 235, 0.35);
+    filter: drop-shadow(0 0 45px rgba(13, 51, 53, 0.9));
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
+    z-index: 1;
 }
 
 /* ---------- Roulette Container ---------- */
