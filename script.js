@@ -848,11 +848,12 @@
 
     /* ============ CASE DETAIL SCREEN ============ */
     const caseDetailBack = document.getElementById('caseDetailBack');
+    const caseDetailClose = document.getElementById('caseDetailClose');
     const caseDetailTitle = document.getElementById('caseDetailTitle');
     const caseDetailOpenValue = document.getElementById('caseDetailOpenValue');
-    const caseDetailOpenBtn = document.getElementById('caseDetailOpen');
-    const caseDetailQuickBtn = document.getElementById('caseDetailQuick');
-    const caseDetailMultipliers = document.querySelectorAll('.case-detail-mult');
+    const caseDetailOpenBtn = document.getElementById('btn-open-main');
+    const caseDetailQuickBtn = document.getElementById('btn-open-fast');
+    const caseDetailMultipliers = document.querySelectorAll('.mult-btn');
     const caseDetailItems = document.getElementById('caseDetailItems');
     const caseDetailContentsCount = document.getElementById('caseDetailContentsCount');
 
@@ -889,18 +890,18 @@
         caseDetailItems.innerHTML = '';
         CASE_DETAIL_ITEMS.forEach((item) => {
             const card = document.createElement('div');
-            card.className = 'case-detail-item rarity-' + item.rarity;
+            card.className = 'drop-card';
 
             const visual = document.createElement('div');
-            visual.className = 'case-detail-item-visual';
+            visual.className = 'drop-card-visual';
             visual.textContent = item.icon;
 
             const name = document.createElement('span');
-            name.className = 'case-detail-item-name';
+            name.className = 'drop-card-name';
             name.textContent = item.name;
 
             const price = document.createElement('span');
-            price.className = 'case-detail-item-price';
+            price.className = 'drop-card-price';
             price.innerHTML = `
                 <svg class="tg-star-icon" width="12" height="12" aria-hidden="true"><use href="#tg-star"/></svg>
                 ${item.price}
@@ -938,6 +939,13 @@
     caseDetailBack.addEventListener('click', () => {
         showScreen('home');
     });
+
+    // Закрыть экран
+    if (caseDetailClose) {
+        caseDetailClose.addEventListener('click', () => {
+            showScreen('home');
+        });
+    }
 
     // Переключение множителей
     caseDetailMultipliers.forEach((btn) => {

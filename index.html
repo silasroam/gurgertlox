@@ -866,61 +866,72 @@
             <div class="screen hidden" data-screen="case-detail">
                 <section class="case-detail-section">
                     <!-- Header -->
-                    <header class="case-detail-header">
-                        <button class="case-detail-back" id="caseDetailBack">
-                            <svg width="18" height="18" viewBox="0 0 16 16" fill="none">
+                    <header class="case-header">
+                        <button class="case-back-btn" id="caseDetailBack">
+                            <svg width="20" height="20" viewBox="0 0 16 16" fill="none">
                                 <path d="M10 2L4 8L10 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
-                            <span>Назад</span>
                         </button>
-                        <h2 class="case-detail-title" id="caseDetailTitle">QUANT</h2>
-                        <div class="case-detail-header-spacer"></div>
+                        <h2 class="case-title" id="caseDetailTitle">КЕЙС</h2>
+                        <button class="case-close-btn" id="caseDetailClose">
+                            <svg width="20" height="20" viewBox="0 0 16 16" fill="none">
+                                <path d="M2 2L14 14M14 2L2 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </button>
                     </header>
 
-                    <!-- Case visual block -->
-                    <div class="case-detail-visual" id="caseDetailVisual">
-                        <div class="case-detail-glow"></div>
-                        <div class="case-detail-visual-inner">
-                            <span class="case-detail-visual-placeholder">CASE</span>
-                        </div>
+                    <!-- Case preview area -->
+                    <div class="case-preview-area">
+                        <div class="case-image-placeholder" id="caseDetailVisual"></div>
                     </div>
 
-                    <!-- Open buttons -->
-                    <div class="case-detail-actions">
-                        <button class="case-detail-open" id="caseDetailOpen">
-                            <span class="case-detail-open-label">Открыть за</span>
-                            <span class="case-detail-open-price" id="caseDetailOpenPrice">
-                                <svg class="tg-star-icon" width="16" height="16" aria-hidden="true"><use href="#tg-star"/></svg>
+                    <!-- Roulette container -->
+                    <div class="case-roulette-container">
+                        <div class="roulette-arrow-top">▼</div>
+                        <div class="roulette-strip" id="caseDetailRouletteStrip">
+                            <div class="roulette-item"></div>
+                            <div class="roulette-item"></div>
+                            <div class="roulette-item"></div>
+                            <div class="roulette-item"></div>
+                            <div class="roulette-item"></div>
+                        </div>
+                        <div class="roulette-arrow-bottom">▲</div>
+                    </div>
+
+                    <!-- Controls -->
+                    <div class="case-controls">
+                        <button class="btn-open-main" id="btn-open-main">
+                            <span class="btn-open-label">Открыть за</span>
+                            <span class="btn-open-price">
+                                <svg class="tg-star-icon" width="14" height="14" aria-hidden="true"><use href="#tg-star"/></svg>
                                 <span id="caseDetailOpenValue">100</span>
                             </span>
                         </button>
-
-                        <button class="case-detail-quick" id="caseDetailQuick">
-                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                <path d="M8 1L9.5 6.5L15 8L9.5 9.5L8 15L6.5 9.5L1 8L6.5 6.5L8 1Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
-                            </svg>
+                        <button class="btn-open-fast" id="btn-open-fast">
                             <span>Быстрое открытие</span>
                         </button>
-                    </div>
-
-                    <!-- Multiplier tabs -->
-                    <div class="case-detail-multipliers" id="caseDetailMultipliers">
-                        <button class="case-detail-mult active" data-mult="1">x1</button>
-                        <button class="case-detail-mult" data-mult="2">x2</button>
-                        <button class="case-detail-mult" data-mult="3">x3</button>
-                        <button class="case-detail-mult" data-mult="4">x4</button>
-                        <button class="case-detail-mult" data-mult="5">x5</button>
-                    </div>
-
-                    <!-- Contents section -->
-                    <div class="case-detail-contents">
-                        <div class="case-detail-contents-head">
-                            <h3 class="case-detail-contents-title">Содержимое</h3>
-                            <span class="case-detail-contents-count" id="caseDetailContentsCount">22</span>
+                        <div class="mult-selector">
+                            <button class="mult-btn active" data-mult="1">x1</button>
+                            <button class="mult-btn" data-mult="2">x2</button>
+                            <button class="mult-btn" data-mult="3">x3</button>
+                            <button class="mult-btn" data-mult="4">x4</button>
+                            <button class="mult-btn" data-mult="5">x5</button>
                         </div>
+                    </div>
 
-                        <div class="case-detail-items" id="caseDetailItems">
-                            <!-- Item cards generated by JS -->
+                    <!-- Drops section -->
+                    <div class="case-drops-section">
+                        <div class="drops-header">
+                            <h3 class="drops-title">Содержимое</h3>
+                            <span class="drops-count" id="caseDetailContentsCount">22</span>
+                        </div>
+                        <div class="drops-grid" id="caseDetailItems">
+                            <div class="drop-card"></div>
+                            <div class="drop-card"></div>
+                            <div class="drop-card"></div>
+                            <div class="drop-card"></div>
+                            <div class="drop-card"></div>
+                            <div class="drop-card"></div>
                         </div>
                     </div>
                 </section>
