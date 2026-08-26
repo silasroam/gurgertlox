@@ -1201,7 +1201,8 @@
         caseDetailRouletteStrip.style.transition = 'none';
         caseDetailRouletteStrip.style.transform = 'translate3d(0px, 0, 0)';
         caseDetailRouletteStrip.style.setProperty('--ss', '0px'); // старт AFK с начала экрана
-        // AFK-прокрутка очень медленная (400с) — пользователь успевает рассмотреть карточки
+        // AFK-прокрутка очень медленная (Nс) — пользователь успевает рассмотреть карточки.
+        // Для кейса 19 — 150с (пол-ленты ≈ период из 16+ предметов), остальные — 400с.
         caseDetailRouletteStrip.style.animation = 'scrollRight ' + afkScrollDuration() + 's linear infinite';
     }
 
