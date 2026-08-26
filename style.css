@@ -237,12 +237,51 @@ button {
     text-shadow: 0 0 8px rgba(255, 213, 79, 0.5);
 }
 
+/* Иконка TON (картинка toncoin.svg/png) вместо эмодзи конвертации */
+.toncoin-ico {
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+    display: inline-block;
+    vertical-align: -2px;
+    border-radius: 50%;
+    filter: drop-shadow(0 0 4px rgba(41, 152, 255, 0.55));
+}
+.currency-toggle .toncoin-ico {
+    width: 14px;
+    height: 14px;
+}
+
 .balance-amount {
     font-size: 16px;
     font-weight: 700;
     letter-spacing: 0.2px;
     color: var(--text-primary);
 }
+
+/* Кнопка переключения валюты (Stars / TON) в шапке */
+.currency-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 7px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.06);
+    color: #1683FF;
+    font-size: 13px;
+    line-height: 1;
+    cursor: pointer;
+    flex-shrink: 0;
+    margin-left: 2px;
+    transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+}
+.currency-toggle:hover { background: rgba(22, 131, 255, 0.15); border-color: rgba(22, 131, 255, 0.5); }
+.currency-toggle:active { transform: scale(0.88); }
+
+/* Баланс в режиме отображения TON */
+.balance-amount.ton-mode { color: #7c9dff; }
 
 /* ---------- BALANCE PLUS BUTTON (зелёная сияющая) ---------- */
 .balance-plus-btn {
@@ -1340,73 +1379,66 @@ button {
 }
 
 .case-card {
-    /* Полупрозрачное стекло, чтобы сетка просвечивала */
+    /* Карточка = два блока без внешней рамки: сверху прозрачный контейнер
+       с артом, снизу тёмная плашка с названием и ценой. */
     position: relative;
-    background-color: rgba(20, 25, 35, 0.4);
-    backdrop-filter: blur(2px);
-    -webkit-backdrop-filter: blur(2px);
+    background-color: transparent;
     border-radius: 12px;
-
-    /* Многослойные грани (Bevel эффект) */
-    border: 1px solid rgba(255, 255, 255, 0.03);
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-
-    /* Глубокая черная тень без размытия по краям */
-    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.85);
-
-    overflow: hidden;
     display: flex;
     flex-direction: column;
-    transition: transform 0.2s ease, border-color 0.2s ease;
+    overflow: visible;
+    transition: transform 0.2s ease;
+    cursor: pointer;
 }
 
 .case-card:hover {
     transform: translateY(-4px);
-    /* Легкая подсветка грани при наведении, без неона */
-    border-top: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .case-card:active {
-    transform: scale(0.97);
+    transform: scale(0.98);
 }
 
 .case-glow {
-    position: absolute;
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    filter: blur(24px);
-    pointer-events: none;
+    display: none; /* декоративный слой не нужен — карточка теперь из двух блоков */
 }
 
+/* ---------- Верхний блок: контейнер для картинки ---------- */
 .case-image-holder {
-    /* Внутренний слой для графики */
+    /* Прозрачный контейнер. Дно сундука прижато к плашке (flex-end),
+       а увеличенная вверх крышка/пламя помещается внутри, не перекрывая соседние карточки. */
     position: relative;
-    width: calc(100% - clamp(8px, 3vw, 12px) * 2);
-    margin: clamp(8px, 3vw, 12px) auto 0;
-    aspect-ratio: 1 / 1;
-    border-radius: 8px;
-    background: #181A22;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
-    box-shadow: inset 0 -4px 12px rgba(0, 0, 0, 0.2);
-    display: block;
-    overflow: hidden;
-}
-
-.case-image {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: 220px;
+    background: transparent;
+    border-radius: 12px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    overflow: visible;
+}
+
+/* ---------- Картинка сундука (ГЛАВНАЯ страница) ---------- */
+.main-page-case-img {
+    width: 100%;
+    height: auto;
+    max-height: 130px;          /* до масштаба — после scale(1.65) помещается в контейнер */
+    object-fit: contain;
+    transform: scale(1.65);      /* арт увеличен вверх и в стороны */
+    transform-origin: bottom center; /* дно сундука стоит на плашке с названием */
     display: block;
 }
 
+/* ---------- Нижний блок: тёмная плашка с названием и ценой ---------- */
 .case-card-body {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 16px 12px;
+    padding: 12px;
     gap: 10px;
+    background: #12141d;
+    border-radius: 12px;
 }
 
 .case-name {
@@ -1418,15 +1450,19 @@ button {
 }
 
 .case-price {
-    display: inline-flex;
+    display: flex;
     align-items: center;
     justify-content: center;
     gap: 5px;
-    font-size: clamp(12px, 3.5vw, 14px);
-    font-weight: 600;
-    letter-spacing: 0.5px;
+    line-height: 1;
     color: #3B82F6;
     text-shadow: none !important;
+}
+.case-price .case-price-stars {
+    font-size: clamp(12px, 3.5vw, 14px);
+    font-weight: 700;
+    color: #3B82F6;
+    letter-spacing: 0.5px;
     line-height: 1;
 }
 
@@ -1737,53 +1773,137 @@ button {
 }
 
 .case-image-placeholder {
-    width: 220px;
-    height: 220px;
+    width: 80%;
+    max-width: 280px;
+    height: auto;
     margin: 10px auto;
     border-radius: 16px;
     background: transparent;
     border: none;
-    box-shadow: 0 0 30px rgba(37, 99, 235, 0.35);
-    filter: drop-shadow(0 0 45px rgba(13, 51, 53, 0.9));
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: block;
     position: relative;
     z-index: 1;
+    transform: scale(1.3);          /* кейс на странице открытия увеличен на 30% */
+    transform-origin: center;
+}
+
+/* Картинка кейса на странице открытия (над рулеткой) — БЕЗ масштабирования,
+   сохраняет текущие размеры и пропорции. */
+.roulette-page-case-img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    border-radius: 12px;
 }
 
 /* ---------- Roulette Container ---------- */
 .case-roulette-container {
-    width: 100%;
-    height: 90px;
-    margin: 12px 0;
-    border-radius: 12px;
-    background: linear-gradient(145deg, rgba(30, 41, 59, 0.6) 0%, rgba(15, 23, 42, 0.75) 100%);
-    backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+    width: calc(100% - 32px);
+    height: 110px;
+    /* Внешние отступы — место под стрелки-указатели, вынесенные за контейнер */
+    margin: 36px auto 44px;
     position: relative;
-    overflow: hidden;
+    /* Обёртка полностью прозрачна: видны только карточки и стрелки */
+    background: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+/* Внутреннее окно: обрезает ленту на границах прокрутки, стрелки снаружи не трогает */
+.roulette-clip {
+    width: 100%;
+    height: 100%;
     display: flex;
     align-items: center;
-    justify-content: center;
+    /* Лента шире окна: без центрирования, иначе расчёт остановки ломается */
+    justify-content: flex-start;
+    overflow: hidden;
 }
 
 .roulette-strip {
     display: flex;
-    gap: 8px;
+    gap: 4px;
     padding: 0 16px;
     align-items: center;
-    justify-content: center;
+    width: max-content;
+    /* GPU-слой для плавных 60+ FPS при анимации transform */
+    will-change: transform;
+    /* AFK-прокрутка очень медленная (400с на пол-ленты), чтобы можно было рассмотреть карточки */
+    animation: scrollRight 400s linear infinite;
+}
+
+@keyframes scrollRight {
+    0% {
+        transform: translate3d(var(--ss, 0px), 0, 0);
+    }
+    100% {
+        transform: translate3d(calc(var(--ss, 0px) - 50%), 0, 0);
+    }
 }
 
 .roulette-item {
-    width: 70px;
-    height: 70px;
-    border-radius: 12px;
+    width: 120px !important;
+    height: 120px !important;
+    min-width: 120px !important;
+    min-height: 120px !important;
+    flex-shrink: 0 !important;
+    aspect-ratio: 1 / 1 !important;
+    border-radius: 14px;
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Карточка ленты рулетки (Кейсы / Просмотр лута) — реальные PNG вместо заглушек */
+.roulette-item-dev .roulette-item,
+#caseDetailRouletteStrip .roulette-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* NFT выглядят крупнее — убираем лишнее пространство внутри карточки */
+    padding: 2px;
+    box-sizing: border-box;
+    margin: 0 5px; /* небольшие отступы между карточками */
+    overflow: hidden;
+}
+
+#caseDetailRouletteStrip .roulette-item-visual {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     flex-shrink: 0;
+}
+.roulette-item .cur-price { font-size: 10px; }
+.roulette-item .cur-price-sub { font-size: 8px; }
+.roulette-item-name { font-size: 7px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+#caseDetailRouletteStrip .roulette-item-visual img {
+    /* Обычные подарки (standard-gifts): уменьшаем до 75% карточки */
+    width: 75%;
+    height: 75%;
+    object-fit: contain;
+    margin: 0 auto;
+    display: block;
+    box-sizing: border-box;
+}
+/* NFT-предметы: увеличиваем масштаб (в PNG много внутренних прозрачных отступов) */
+#caseDetailRouletteStrip .roulette-item-visual img.is-nft {
+    max-width: 120% !important;
+    max-height: 120% !important;
+    transform: scale(1.65);
+    transform-origin: center;
+}
+
+/* Картинка в инвентаре игрока */
+.inventory-visual .inventory-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 10px;
+    display: block;
 }
 
 .roulette-arrow-top,
@@ -1791,17 +1911,20 @@ button {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 12px;
-    color: rgba(22, 131, 255, 0.6);
-    z-index: 2;
+    font-size: 24px;
+    line-height: 1;
+    width: 24px;
+    text-align: center;
+    color: rgba(22, 131, 255, 0.9);
+    z-index: 10;
 }
 
 .roulette-arrow-top {
-    top: 4px;
+    top: -28px;
 }
 
 .roulette-arrow-bottom {
-    bottom: 4px;
+    bottom: -28px;
 }
 
 /* ---------- Controls ---------- */
@@ -1852,6 +1975,34 @@ button {
 .btn-open-price .tg-star-icon {
     margin-top: -1px;
 }
+
+/* Вторичный ценник в другой валюте под стоимостью прокрута */
+.btn-open-sub {
+    display: block;
+    font-size: 10px;
+    font-weight: 600;
+    color: rgba(234, 246, 255, 0.55);
+    margin-top: 2px;
+}
+
+/* Цены в активной валюте на карточках лута и вторичные ценники */
+.cur-price {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    font-size: 11px;
+    font-weight: 800;
+    color: #1683FF;
+    line-height: 1;
+}
+.cur-price-sub {
+    display: block;
+    font-size: 9px;
+    font-weight: 600;
+    color: #8D96A3;
+    line-height: 1;
+}
+.drop-card-price { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; }
 
 .btn-open-fast {
     background: linear-gradient(135deg, rgba(245, 158, 11, 0.95) 0%, rgba(180, 83, 9, 0.9) 100%);
@@ -1954,17 +2105,19 @@ button {
 
 .drop-card {
     min-height: 210px;
-    padding: 8px;
+    padding: 2px;
     border-radius: 14px;
     background: linear-gradient(145deg, rgba(30, 41, 59, 0.6) 0%, rgba(15, 23, 42, 0.75) 100%);
     backdrop-filter: blur(16px);
     border: 1px solid rgba(255, 255, 255, 0.08);
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 10px 25px -5px rgba(0, 0, 0, 0.5);
     position: relative;
+    overflow: hidden; /* чтобы увеличенная NFT не вылезала за края рамки */
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+    box-sizing: border-box;
     transition: transform 0.15s ease;
 }
 
@@ -1984,9 +2137,17 @@ button {
 
 .drop-card-visual img,
 .drop-card-visual .item-placeholder {
-    max-width: 90%;
-    max-height: 90%;
+    width: 75%;
+    height: 75%;
     object-fit: contain;
+    margin: 0 auto;
+}
+/* NFT-предметы в сетке: увеличиваем масштаб (прозрачные отступы PNG) */
+.drop-card-visual img.is-nft {
+    max-width: 120% !important;
+    max-height: 120% !important;
+    transform: scale(1.65);
+    transform-origin: center;
 }
 
 .drop-card-name {

@@ -1,10 +1,37 @@
 /* ============================================
-   Casino Criptoporno — Telegram Mini App
-   Fullscreen WebApp bootstrap + Case Roulette
-   ============================================ */
+    Casino Criptoporno — Telegram Mini App
+    Fullscreen WebApp bootstrap + Case Roulette
+    ============================================ */
+// Added by Roo assistant
 
 (function () {
     'use strict';
+
+    /* ---------- Точки зацепа: всегда открывать страницу сверху ---------- */
+    // Запрещаем браузеру восстанавливать позицию скролла при обновлении/навигации
+    // (history.scrollRestoration управляет авто-восстановлением скролла браузером).
+    try {
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+        }
+    } catch (e) {}
+
+    // Мгновенный сброс в самый верх на странице при каждой загрузке/переходе
+    function scrollToTop() {
+        window.scrollTo(0, 0);
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0; // Safari
+    }
+
+    // Гарантированный сброс при загрузке и После повторного входа (b.f-cache),
+    // даже если браузер пытается вернуть прежний скролл.
+    window.addEventListener('pageshow', scrollToTop);
+    // Резерв: некоторые браузеры восстанавливают скролл после «load» — дожидаемся и сбрасываем ещё раз.
+    if (document.readyState === 'complete') {
+        scrollToTop();
+    } else {
+        window.addEventListener('load', scrollToTop);
+    }
 
     /* ---------- Telegram WebApp ---------- */
     const tg = window.Telegram?.WebApp;
@@ -26,6 +53,9 @@
         screens.forEach((s) => {
             s.classList.toggle('hidden', s.dataset.screen !== name);
         });
+        // Точка зацепа: при каждом переходе между экранами (вход в кейс,
+        // возврат «Назад»/«Закрыть», нижняя навигация) — показываем самый верх.
+        scrollToTop();
     }
 
     /* ---------- Header Avatar (Telegram profile) ---------- */
@@ -77,6 +107,117 @@
     }
 
     setupHeaderAvatar();
+
+    /* ============ CURRENCY SYSTEM (TON ⇄ Stars, 1 TON = 160 XTR) ============ */
+    // БАЗОВАЯ валюта проекта — TON: цены в giftsData.js (напр. 61.90) — это TON.
+    // Stars (XTR) = ton * 160. Конвертеры и курс живут в currency.js (window.CURRENCY).
+    const CURR = window.CURRENCY || {
+        TON_TO_STARS_RATE: 160,
+        tonToStars: (t) => (Number(t) || 0) * 160,
+        starsToTon: (s) => (Number(s) || 0) / 160,
+        formatNumber: (v, d) => (Number(v) || 0).toLocaleString('ru-RU', { minimumFractionDigits: (d === undefined ? 2 : d), maximumFractionDigits: (d === undefined ? 2 : d) }),
+        toDisplay: (v) => (Number(v) || 0),
+        formatDisplay: (v, d) => CURR_STR((Number(v) || 0)),
+        state: { display: 'ton', base: 'ton' },
+        setDisplay: function () {},
+        onDisplayChange: function () {},
+        isTonDisplay: () => true
+    };
+    function CURR_STR(v) { return (Number(v) || 0).toLocaleString('ru-RU', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' TON'; }
+
+    // ── Баланс пользователя ─────────────────────────────────────────────
+    // Единственный источник правды — число rawBalanceTon (в TON).
+    // Никогда НЕ парсим оформленный текст из DOM (там пробелы и запятая —
+    // parseFloat резал бы число и каждое перерисовывание «распухало» баланс).
+    // Значение хранится в localStorage как число и форматируется только при выводе.
+    const BALANCE_KEY = 'casino_balance_ton';
+    const DEFAULT_BALANCE_TON = 100; // 100 TON = 16 000 Stars
+
+    let rawBalanceTon = DEFAULT_BALANCE_TON;
+
+    function loadBalance() {
+        try {
+            const stored = localStorage.getItem(BALANCE_KEY);
+            const v = stored === null ? NaN : parseFloat(stored);
+            rawBalanceTon = Number.isFinite(v) && v >= 0 ? v : DEFAULT_BALANCE_TON;
+        } catch (e) {
+            rawBalanceTon = DEFAULT_BALANCE_TON;
+        }
+    }
+
+    function saveBalance() {
+        try {
+            localStorage.setItem(BALANCE_KEY, String(rawBalanceTon));
+        } catch (e) { /* ignore */ }
+    }
+
+    // Читает баланс из хранилища (метод оставлен для обратной совместимости вызовов).
+    function readRawBalance() {
+        loadBalance();
+    }
+
+    // Отрисовка баланса (в шапке и профиле). Баланс всегда в Telegram Stars.
+    function renderBalance() {
+        const header = document.getElementById('headerBalanceAmount');
+        const profile = document.getElementById('profileBalanceAmount');
+        const emoji = document.getElementById('balanceEmoji');
+
+        // Показываем баланс СТРОГО в Stars: stars = ton * 160, целым числом (напр. 15 680 ⭐).
+        const stars = CURR.tonToStars(rawBalanceTon);
+        const displayVal = Math.round(stars).toLocaleString('ru-RU', { maximumFractionDigits: 0 });
+
+        if (header) header.textContent = displayVal;
+        if (profile) profile.textContent = displayVal;
+        if (emoji) emoji.innerHTML = '⭐';
+        document.querySelectorAll('.balance-amount').forEach((el) => {
+            el.classList.remove('ton-mode');
+        });
+        if (profile) {
+            profile.style.color = '#FFD54F';
+        }
+        saveBalance();
+    }
+
+    // ГЛАВНАЯ цена на карточке — в активной валюте отображения.
+    // По умолчанию (display='ton') показывает главной ценой TON: 61.90 TON.
+    function priceHTML(rawTon) {
+        const sym = CURR.isTonDisplay() ? 'TON' : '⭐';
+        const val = CURR.toDisplay(rawTon); // raw — в TON, конвертим в display
+        const d = 2;
+        return `<span class="cur-price">${val.toLocaleString('ru-RU', { minimumFractionDigits: d, maximumFractionDigits: d })} ${sym}</span>`;
+    }
+
+    // Цена предмета в Telegram Stars (XTR) — для предметов из casesConfig (цена в Stars).
+    function priceStarsHTML(value) {
+        const stars = (Number(value) || 0).toLocaleString('ru-RU', { maximumFractionDigits: 0 });
+        return `<span class="cur-price cur-price-stars">${stars} ★</span>`;
+    }
+
+    // ВТОРИЧНАЯ подпись в другой валюте.
+    // В режиме TON: главная=TON, подпись=Stars (≈ ton*160 ⭐).
+    // В режиме Stars: главная=Stars, подпись=TON.
+    function dualPriceHTML(rawTon) {
+        if (CURR.isTonDisplay()) {
+            const stars = CURR.tonToStars(rawTon);
+            return `<span class="cur-price cur-price-sub">≈ ${stars.toLocaleString('ru-RU', { maximumFractionDigits: 0 })} ⭐</span>`;
+        }
+        const ton = Number(rawTon) || 0;
+        return `<span class="cur-price cur-price-sub">≈ ${ton.toLocaleString('ru-RU', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} TON</span>`;
+    }
+
+    if (typeof CURR.onDisplayChange === 'function') {
+        CURR.onDisplayChange(() => {
+            readRawBalance();
+            renderBalance();
+            // Перерисуем цены там, где они уже на экране.
+            try { if (typeof buildCaseDetailItems === 'function') buildCaseDetailItems(); } catch (e) {}
+            try { if (typeof buildRouletteStrip === 'function') buildRouletteStrip(); } catch (e) {}
+            try { if (typeof updateCaseDetailPrice === 'function') updateCaseDetailPrice(); } catch (e) {}
+        });
+    }
+
+    readRawBalance();
+    renderBalance();
 
     navItems.forEach((item) => {
         item.addEventListener('click', () => {
@@ -504,7 +645,7 @@
     const particlesBox = document.getElementById('particles');
 
     const ITEM_W = 56; // px width of one roulette item
-    const SPIN_DURATION = 4500; // ms
+    const SPIN_DURATION = 5500; // ms — плавное вращение ~5.5 с с мягким замедлением
     const ROUGE_LOOPS = 8; // full passes before stopping
 
     let currentPrice = null;
@@ -697,8 +838,8 @@
         setTimeout(() => (particlesBox.innerHTML = ''), 1900);
     }
 
-    /* ---------- Main spin ---------- */
-    function spinRoulette() {
+    /* ---------- Main spin (Case Modal) ---------- */
+    function spinCaseModalRoulette() {
         if (spinLock || !currentRewards.length) return;
         spinLock = true;
         modalOpenBtn.disabled = true;
@@ -736,7 +877,7 @@
 
         // --- Запуск через 50ms с плавным торможением ---
         setTimeout(() => {
-            rouletteStrip.style.transition = `transform ${SPIN_DURATION}ms cubic-bezier(0.15, 0.9, 0.15, 1)`;
+            rouletteStrip.style.transition = `transform ${SPIN_DURATION}ms cubic-bezier(0.15, 0.9, 0.2, 1)`;
             rouletteStrip.style.transform = `translateX(-${targetOffset}px)`;
         }, 50);
 
@@ -821,7 +962,7 @@
     if (modalOpenBtn) {
         modalOpenBtn.addEventListener('click', () => {
             if (currentPrice !== null && !spinLock) {
-                spinRoulette();
+                spinCaseModalRoulette();
             }
         });
     }
@@ -851,50 +992,130 @@
     const caseDetailClose = document.getElementById('caseDetailClose');
     const caseDetailTitle = document.getElementById('caseDetailTitle');
     const caseDetailOpenValue = document.getElementById('caseDetailOpenValue');
+    const caseDetailOpenSub = document.getElementById('caseDetailOpenSub');
     const caseDetailOpenBtn = document.getElementById('btn-open-main');
     const caseDetailQuickBtn = document.getElementById('btn-open-fast');
     const caseDetailMultipliers = document.querySelectorAll('.mult-btn');
     const caseDetailItems = document.getElementById('caseDetailItems');
     const caseDetailContentsCount = document.getElementById('caseDetailContentsCount');
+    const caseDetailRouletteStrip = document.getElementById('caseDetailRouletteStrip');
 
     let caseDetailBasePrice = 100;
     let caseDetailMult = 1;
 
-    // Предметы кейса (демо-данные, заглушки вместо стикеров)
-    const CASE_DETAIL_ITEMS = [
-        { icon: 'IMG', name: 'Bronze Coin', price: 2, rarity: 'common' },
-        { icon: 'IMG', name: 'Silver Fragment', price: 4, rarity: 'common' },
-        { icon: 'IMG', name: 'Neon Token', price: 8, rarity: 'rare' },
-        { icon: 'IMG', name: 'Plasma Crystal', price: 12, rarity: 'rare' },
-        { icon: 'IMG', name: 'Ruby Shard', price: 20, rarity: 'epic' },
-        { icon: 'IMG', name: 'Sapphire Heart', price: 30, rarity: 'epic' },
-        { icon: 'IMG', name: "Dragon's Breath", price: 50, rarity: 'legendary' },
-        { icon: 'IMG', name: 'Golden Idol', price: 80, rarity: 'legendary' },
-        { icon: 'IMG', name: 'Godslayer Edge', price: 120, rarity: 'mythic' },
-        { icon: 'IMG', name: 'Copper Coin', price: 1, rarity: 'common' },
-        { icon: 'IMG', name: 'Cyan Shard', price: 6, rarity: 'rare' },
-        { icon: 'IMG', name: 'Amber Gem', price: 15, rarity: 'epic' },
-        { icon: 'IMG', name: 'Royal Crown', price: 60, rarity: 'legendary' },
-        { icon: 'IMG', name: 'Skull Token', price: 25, rarity: 'epic' },
-        { icon: 'IMG', name: 'Iron Coin', price: 3, rarity: 'common' },
-        { icon: 'IMG', name: 'Blue Crystal', price: 10, rarity: 'rare' },
-        { icon: 'IMG', name: 'Violet Orb', price: 18, rarity: 'epic' },
-        { icon: 'IMG', name: 'Flame Core', price: 45, rarity: 'legendary' },
-        { icon: 'IMG', name: 'Aegis Shield', price: 70, rarity: 'legendary' },
-        { icon: 'IMG', name: 'Meteorite', price: 100, rarity: 'mythic' },
-        { icon: 'IMG', name: 'Gold Coin', price: 5, rarity: 'common' },
-        { icon: 'IMG', name: 'Holo Disc', price: 14, rarity: 'rare' },
-    ];
+    // Рарность по цене предмета (для цветов свечения и дропа)
+    function rarityForPrice(price) {
+        if (price < 5) return 'common';
+        if (price < 20) return 'rare';
+        if (price < 60) return 'epic';
+        if (price < 160) return 'legendary';
+        return 'mythic';
+    }
+
+    // Кодирует пробелы в пути к изображению, чтобы браузер корректно открыл файл.
+    function safeImgSrc(p) {
+        return String(p || '').replace(/"/g, '%22').replace(/ /g, '%20');
+    }
+
+    // Текущий выбранный кейс (id из casesData.js), по умолчанию первый.
+    let currentCaseId = null;
+
+    // ── Точечная подвязка валидных картинок (ТОЛЬКО отображение) ──────────
+    // standard-gifts -> реальные PNG; stars/jackpot -> image/star.png;
+    // синтетические nft_* -> реальный PNG из базы giftsData.js (по ближайшей цене).
+    const STANDARD_GIFT_IMG = {
+        heart_15: 'standard-gifts/heart_15.png',
+        bear_15: 'standard-gifts/bear_15.png',
+        gift_25: 'standard-gifts/gift_25.png',
+        rose_25: 'standard-gifts/rose_25.png',
+        cake_50: 'standard-gifts/cake_50.png',
+        bouquet_50: 'standard-gifts/bouquet_50.png',
+        rocket_50: 'standard-gifts/rocket_50.png',
+        champagne_50: 'standard-gifts/champagne_50.png',
+        trophy_100: 'standard-gifts/trophy_100.png',
+        ring_100: 'standard-gifts/ring_100.png',
+        diamond_100: 'standard-gifts/diamond_100.png'
+    };
+    let _nftByPrice = null;
+    function nearestNftImage(value) {
+        const db = window.GIFTS_DB;
+        if (!db || !db.length) return null;
+        if (!_nftByPrice) _nftByPrice = db.slice().sort((a, b) => a.priceInStars - b.priceInStars);
+        const t = Number(value) || 0;
+        let best = _nftByPrice[0];
+        for (const x of _nftByPrice) {
+            if (Math.abs(x.priceInStars - t) < Math.abs(best.priceInStars - t)) best = x;
+        }
+        return best.imagePath;
+    }
+    function resolveItemImage(g) {
+        if (STANDARD_GIFT_IMG[g.id]) return STANDARD_GIFT_IMG[g.id];
+        if (g.type === 'stars' || g.type === 'jackpot') return 'image/star.png';
+        if (!g.image || /telegram-stars/.test(String(g.image))) {
+            const nftImg = nearestNftImage(g.value);
+            if (nftImg) return nftImg;
+        }
+        return g.image || 'image/star.png';
+    }
+
+    // Читает предметы КОНКРЕТНОГО кейса из сгенерированного casesData.js (window.CASES).
+    // Каждый предмет получает rarity и путь к картинке из standard-gifts/.
+    function getCaseItems() {
+        const list = (typeof window !== 'undefined' && Array.isArray(window.CASES))
+            ? window.CASES
+            : null;
+        const def = list && (list.find((c) => c.id === currentCaseId) || list[0]);
+        if (def && Array.isArray(def.items) && def.items.length) {
+            return def.items.map((g) => ({
+                id: g.id,
+                name: g.name,
+                price: Number(g.value) || 0,   // цена в Telegram Stars (XTR)
+                image: resolveItemImage(g),
+                type: g.type,
+                weight: Number(g.weight) || 0, // вес на шкале 1 000 000
+                drop_chance_percent: Number(g.drop_chance_percent) || 0,
+                rarity: rarityForPrice(Number(g.value) || 0),
+                currency: 'XTR',
+                icon: g.image ? '' : (g.name || 'X').split(/\s+/)[0].slice(0, 2).toUpperCase(),
+            }));
+        }
+
+        // Фолбэк: если конфиг не загрузился — старые демо-предметы.
+        return [
+            { icon: 'IMG', name: 'Bronze Coin', price: 2, image: '', rarity: 'common' },
+            { icon: 'IMG', name: 'Silver Fragment', price: 4, image: '', rarity: 'common' },
+            { icon: 'IMG', name: 'Neon Token', price: 8, image: '', rarity: 'rare' },
+            { icon: 'IMG', name: 'Plasma Crystal', price: 12, image: '', rarity: 'rare' },
+            { icon: 'IMG', name: 'Ruby Shard', price: 20, image: '', rarity: 'epic' },
+            { icon: 'IMG', name: 'Sapphire Heart', price: 30, image: '', rarity: 'epic' },
+            { icon: 'IMG', name: "Dragon's Breath", price: 50, image: '', rarity: 'legendary' },
+            { icon: 'IMG', name: 'Golden Idol', price: 80, image: '', rarity: 'legendary' },
+            { icon: 'IMG', name: 'Godslayer Edge', price: 120, image: '', rarity: 'mythic' },
+        ];
+    }
 
     function buildCaseDetailItems() {
         caseDetailItems.innerHTML = '';
-        CASE_DETAIL_ITEMS.forEach((item) => {
+        const items = getCaseItems();
+        items.forEach((item) => {
             const card = document.createElement('div');
             card.className = 'drop-card';
 
             const visual = document.createElement('div');
             visual.className = 'drop-card-visual';
-            visual.textContent = item.icon;
+            if (item.image) {
+                const img = document.createElement('img');
+                img.src = safeImgSrc(item.image);
+                img.alt = item.name;
+                img.loading = 'lazy';
+                // NFT-предметы получают .is-nft — подтягивают масштаб в сетке (прозрачные отступы PNG)
+                if (item.type === 'nft') img.classList.add('is-nft');
+                // Защита: битая картинка -> дефолтная иконка звезды
+                img.onerror = function () { this.onerror = null; this.src = 'image/star.png'; };
+                visual.appendChild(img);
+            } else {
+                visual.textContent = item.icon;
+            }
 
             const name = document.createElement('span');
             name.className = 'drop-card-name';
@@ -902,28 +1123,142 @@
 
             const price = document.createElement('span');
             price.className = 'drop-card-price';
-            price.innerHTML = `
-                <svg class="tg-star-icon" width="12" height="12" aria-hidden="true"><use href="#tg-star"/></svg>
-                ${item.price}
-            `;
+            price.innerHTML = priceStarsHTML(item.price);
 
             card.appendChild(visual);
             card.appendChild(name);
             card.appendChild(price);
             caseDetailItems.appendChild(card);
         });
-        caseDetailContentsCount.textContent = CASE_DETAIL_ITEMS.length;
+        caseDetailContentsCount.textContent = items.length;
+    }
+
+    /* ---------- Render a single case-detail item as a roulette card ---------- */
+    function renderRouletteCard(item) {
+        const card = document.createElement('div');
+        card.className = 'roulette-item';
+
+        const visual = document.createElement('div');
+        visual.className = 'roulette-item-visual';
+        if (item.image) {
+            const img = document.createElement('img');
+            img.src = safeImgSrc(item.image);
+            img.alt = item.name;
+            img.draggable = false;
+            // NFT-предметы получают маркер .is-nft — увеличиваем их масштаб в рулетке
+            if (item.type === 'nft') img.classList.add('is-nft');
+            // Защита: битая картинка -> дефолтная иконка звезды
+            img.onerror = function () { this.onerror = null; this.src = 'image/star.png'; };
+            visual.appendChild(img);
+        } else {
+            visual.textContent = item.icon;
+        }
+
+        // ВАЖНО: на крутящейся ленте название и цена не показываются —
+        // остаётся только обёртка карточки и картинка. Название и цена
+        // предмета видны в модальном окне выигрыша (showWinOverlay).
+        card.appendChild(visual);
+
+        return card;
+    }
+
+// Длительность AFK-прокрутки ленты (в секундах на пол-ленты).
+    // Для кейса 19 — 150 секунд; остальные — 400 секунд.
+    function afkScrollDuration() {
+        return currentCaseId === 'case_19' ? 150 : 400;
+    }
+
+    function buildRouletteStrip() {
+        caseDetailRouletteStrip.innerHTML = '';
+        const items = getCaseItems();
+
+        // Стартовая AFK-лента — та же визуальная рандомизация, что и у основной ленты:
+        //   - случайное кол-во NFT (2–8) на период;
+        //   - остальные позиции — обычные подарки (равномерно, НЕ по реальным весам);
+        //   - ни один предмет не идёт 3+ раз подряд;
+        //   - порядок обязательно перемешивается.
+        // Каждый вход в кейс генерирует новую случайную комбинацию (фиксированного ряда нет).
+        const periodLen = Math.max(items.length * 4, 16);
+        let period = generateVisualSpinItems(periodLen, items);
+        // Убеждаемся, что первый и последний элементы периода разные, — иначе на стыке
+        // дублированной ленты (бесшовный CSS-цикл -50%) могли бы появиться 3+ одинаковых подряд.
+        let guard = 0;
+        while (period.length && period[0] === period[period.length - 1] && guard < 6) {
+            period = generateVisualSpinItems(periodLen, items);
+            guard++;
+        }
+        if (period[0] === period[period.length - 1]) {
+            period.push(period.shift());
+        }
+        // Двойной период подряд: первые 50% == последние 50% → бесшовный scrollRight.
+        const duplicatedItems = [...period, ...period];
+
+        duplicatedItems.forEach((item) => {
+            caseDetailRouletteStrip.appendChild(renderRouletteCard(item));
+        });
+
+        // Reset transform and re-enable idle scroll animation
+        caseDetailRouletteStrip.style.transition = 'none';
+        caseDetailRouletteStrip.style.transform = 'translate3d(0px, 0, 0)';
+        caseDetailRouletteStrip.style.setProperty('--ss', '0px'); // старт AFK с начала экрана
+        // AFK-прокрутка очень медленная (400с) — пользователь успевает рассмотреть карточки
+        caseDetailRouletteStrip.style.animation = 'scrollRight ' + afkScrollDuration() + 's linear infinite';
+    }
+
+    // Возобновляет AFK-прокрутку ленты после закрытия окна выигрыша («Забрать»/«Продать»).
+    // Лента пересобирается со СЛУЧАЙНЫМ порядком предметов, а прокрутка стартует с позиции
+    // остановки последнего спина (lastSpinStopX) — без «телепорта» в начало.
+    function resumeIdleScroll() {
+        const strip = caseDetailRouletteStrip;
+
+        // Перемешиваем базовый набор предметов
+        const items = getCaseItems();
+        const shuffled = [...items].sort(() => Math.random() - 0.5);
+        // 4 копии перемешанного набора: первые 2 копии == последние 2 → бесшовный цикл (-50%)
+        const duplicatedItems = [...shuffled, ...shuffled, ...shuffled, ...shuffled];
+
+        strip.innerHTML = '';
+        duplicatedItems.forEach((item) => {
+            strip.appendChild(renderRouletteCard(item));
+        });
+
+        // Стартовая позиция = место остановки спина (без скачка в начало)
+        const startX = lastSpinStopX || 0;
+        strip.style.transition = 'none';
+        strip.style.transform = `translate3d(${startX}px, 0, 0)`;
+        strip.style.setProperty('--ss', startX + 'px');
+        strip.style.animation = 'scrollRight ' + afkScrollDuration() + 's linear infinite';
     }
 
     function updateCaseDetailPrice() {
-        const total = caseDetailBasePrice * caseDetailMult;
-        caseDetailOpenValue.textContent = total;
+        const totalStars = caseDetailBasePrice * caseDetailMult; // цена кейса в Stars
+        // ГЛАВНАЯ цена на кнопке — сами Stars (акцентная) — число уже в Stars.
+        if (caseDetailOpenValue) {
+            caseDetailOpenValue.textContent = totalStars.toLocaleString('ru-RU', { maximumFractionDigits: 0 });
+        }
+        // Вторичный ценник — в TON, мелкими буквами.
+        if (caseDetailOpenSub) {
+            const ton = CURR.starsToTon(totalStars);
+            caseDetailOpenSub.textContent = '≈ ' + ton.toLocaleString('ru-RU', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' TON';
+        }
     }
 
-    function openCaseDetail(name, price) {
+    function openCaseDetail(name, price, caseId) {
+        currentCaseId = caseId || null;
         caseDetailTitle.textContent = name || 'QUANT';
-        caseDetailBasePrice = price || 100;
+        caseDetailBasePrice = price || 100;   // цена кейса в Telegram Stars
         caseDetailMult = 1;
+
+        // Картинка кейса в превью. Кейс СТАРТ (30) показывает hellcase.webp
+        const detailVisual = document.getElementById('caseDetailVisual');
+        if (detailVisual) {
+            const isHellcase = (parseInt(price, 10) === 30) || (name && name.toUpperCase().indexOf('СТАРТ') !== -1);
+            if (isHellcase) {
+                detailVisual.innerHTML = '<img src="image/hellcase.webp" alt="Хеллкейс" class="roulette-page-case-img">';
+            } else {
+                detailVisual.innerHTML = '';
+            }
+        }
 
         // Сброс табов
         caseDetailMultipliers.forEach((btn) => {
@@ -932,6 +1267,7 @@
 
         updateCaseDetailPrice();
         buildCaseDetailItems();
+        buildRouletteStrip();
         showScreen('case-detail');
     }
 
@@ -959,40 +1295,371 @@
 
     // Открыть кейс (демо)
     caseDetailOpenBtn.addEventListener('click', () => {
-        const cost = caseDetailBasePrice * caseDetailMult;
-        const balanceEls = document.querySelectorAll('.balance-amount, .profile-balance-amount span');
-        balanceEls.forEach((el) => {
-            const current = parseFloat(el.textContent.replace(/\s/g, '')) || 0;
-            if (current >= cost) {
-                const newVal = current - cost;
-                el.textContent = newVal.toLocaleString('ru-RU', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-            }
-        });
+        const costTon = CURR.starsToTon(caseDetailBasePrice * caseDetailMult); // Stars -> TON
+        readRawBalance();
+        if (rawBalanceTon >= costTon) {
+            rawBalanceTon -= costTon;
+            renderBalance();
+            spinRoulette();
+        }
     });
+
+    /* ---------- Roulette spin config ---------- */
+    const PRE_ROLL_COUNT = 45;         // случайные карточки до точки остановки (№1–45)
+    const POST_ROLL_COUNT = 14;        // случайные карточки после точки остановки (№47–60), итого ровно 60
+    const STOP_INDEX = PRE_ROLL_COUNT; // 46-я карточка — позиция остановки ленты
+    const SPIN_DURATION_MS = 5500;     // длительность вращения = 5.5с (transition === таймеру)
+    const SPIN_EASING = 'cubic-bezier(0.15, 0.9, 0.2, 1)'; // плавный старт + мягкое замедление в конце
+    const QUICK_SPIN_DURATION_MS = 2000; // «Быстрое открытие»: ровно 2 секунды
+    const QUICK_SPIN_EASING = 'cubic-bezier(0.1, 0.9, 0.2, 1)'; // резкий крутёж → эффектное торможение
+    const CARD_WIDTH_PX = 120;         // px — ширина карточки (.roulette-item) — синхронизировано с CSS 120px
+    const SEAM_SAFETY_MARGIN_PX = 8;   // px — отступ от шва (gap + margin карточек): стрелка не встаёт в стык
+    const WIN_REVEAL_DELAY_MS = 400;   // пауза после остановки ленты до появления экрана выигрыша
+    // Позиция остановки последнего спина — с неё возобновляется AFK-прокрутка (без «телепорта» в начало)
+    let lastSpinStopX = 0;
+
+    /* ---------- Взвешенный выбор предмета по цене (Drop Rate) ---------- */
+    // Чем дешевле предмет — тем выше шанс выпадения.
+    // Вес = 1 / (price + 1): дорогие высоковейте-НFT получают малый вес, дешёвые — большой.
+    function weightedPick(items) {
+        if (!items.length) return null;
+        const weights = items.map((it) => (Number(it.weight) > 0 ? Number(it.weight) : 1 / (Number(it.price) + 1)));
+        const total = weights.reduce((s, w) => s + w, 0);
+        let roll = Math.random() * total;
+        for (let i = 0; i < items.length; i++) {
+            roll -= weights[i];
+            if (roll <= 0) return items[i];
+        }
+        return items[items.length - 1];
+    }
+
+    function pickRandomCaseItem() {
+        const items = getCaseItems();
+        if (!items.length) return null;
+        return weightedPick(items);
+    }
+
+/* ---------- Визуальная генерация ленты (только вид, НЕ реальный дроп) ---------- */
+    // Лента собирается независимо от реальных шансов выпадения, чтобы выглядела
+    // разнообразно и непредсказуемо:
+    //   - NFT выбираются случайно (2–8 шт. на ленту) и встречаются реже подарков;
+    //   - обычные подарки берутся случайно и равномерно (НЕ по реальным весам);
+    //   - любой предмет не идёт 3+ раз подряд;
+    //   - после сборки весь порядок обязательно перемешивается.
+    function shuffle(arr) {
+        for (let i = arr.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            const t = arr[i]; arr[i] = arr[j]; arr[j] = t;
+        }
+        return arr;
+    }
+
+    // Устраняет длинные повторы: ни один предмет не встречается 3+ раз подряд
+    // (в т.ч. после перемешивания).
+    function sanitizeRuns(arr) {
+        let fixed = false;
+        let guard = 0;
+        do {
+            fixed = false;
+            guard++;
+            if (guard > 1000) break;
+            for (let i = 0; i < arr.length - 2; i++) {
+                if (arr[i] === arr[i + 1] && arr[i + 1] === arr[i + 2]) {
+                    for (let j = i + 2; j < arr.length; j++) {
+                        if (arr[i + 1] !== arr[j]) {
+                            const t = arr[i + 1]; arr[i + 1] = arr[j]; arr[j] = t;
+                            fixed = true;
+                            break;
+                        }
+                    }
+                }
+            }
+        } while (fixed);
+        return arr;
+    }
+
+    // Генерирует визуальную ленту из length карточек.
+    // Возвращаемый массив ПЕРЕМЕШАН; место остановки (победитель) подставляет spinRoulette.
+    function generateVisualSpinItems(length, allItems) {
+        const nftItems = allItems.filter((it) => it.type === 'nft');
+        const giftItems = allItems.filter((it) => it.type === 'gift');
+        // Если в кейсе нет явных NFT/подарков — используем весь набор как пул для вида.
+        const poolNft = nftItems.length ? nftItems : allItems;
+        const poolGift = giftItems.length ? giftItems : allItems;
+
+        // Кол-во NFT визуально: 2–8, но не больше 1/3 ленты и не больше доступных NFT.
+        const maxNft = Math.min(8, Math.floor(length / 3), poolNft.length);
+        const minNft = Math.min(2, maxNft);
+        const nftCount = maxNft < minNft ? maxNft : (minNft + Math.floor(Math.random() * (maxNft - minNft + 1)));
+
+        // Черновой список: nftCount случайных NFT + остальные обычные подарки (равномерно).
+        const draft = [];
+        for (let i = 0; i < nftCount; i++) {
+            draft.push(poolNft[Math.floor(Math.random() * poolNft.length)]);
+        }
+        for (let i = nftCount; i < length; i++) {
+            draft.push(poolGift[Math.floor(Math.random() * poolGift.length)]);
+        }
+
+        // Перемешиваем весь порядок и разбавляем длинные серии.
+        shuffle(draft);
+        sanitizeRuns(draft);
+        return draft;
+    }
+
+    function spinRoulette(durationMs = SPIN_DURATION_MS, easing = SPIN_EASING) {
+        if (caseDetailOpenBtn.disabled) return;
+
+        // Disable button during spin
+        caseDetailOpenBtn.disabled = true;
+
+        const strip = caseDetailRouletteStrip;
+
+        // --- Stop idle CSS scroll animation ---
+        strip.style.animation = 'none';
+
+        // --- Spin Track Generator: ровно 60 карточек, сплошная лента без пустот ---
+        // Выигрышный предмет выбирается по взвешенному дропу (дорогие — реже),
+        // а затем ПОДСТАВЛЯЕТСЯ в позицию остановки ленты (STOP_INDEX),
+        // чтобы стрелка визуально указывала ровно на выигравший предмет.
+        const allItems = getCaseItems();
+        // Реальный выигрыш определяется СТАРОЙ логикой (взвешенный дроп) — НЕ трогаем.
+        const winningItem = weightedPick(allItems);
+        const TOTAL_CARDS = PRE_ROLL_COUNT + POST_ROLL_COUNT + 1; // 45 + 14 + 1 = 60
+        // Визуальный конвейер генерируется ОТДЕЛЬНО от реальных шансов (чисто для вида).
+        // Реальная частота предметов здесь НЕ совпадает с их настоящими шансами выпадения.
+        const spinItems = generateVisualSpinItems(TOTAL_CARDS, allItems);
+        // Гарантированно ставим победителя точно под стрелку остановки.
+        spinItems[STOP_INDEX] = winningItem;
+
+        // --- Рендерим ленту в трек рулетки ---
+        strip.innerHTML = '';
+        spinItems.forEach((item) => {
+            strip.appendChild(renderRouletteCard(item));
+        });
+
+        // --- Сброс в базовую позицию и ЗАМЕР реальной геометрии ---
+        // Не полагаемся на арифметику ширины/gap/центрирования flex-контейнера:
+        // замеряем фактические координаты через getBoundingClientRect()
+        strip.style.transition = 'none';
+        strip.style.transform = 'translate3d(0px, 0, 0)';
+        void strip.offsetWidth; // принудительный reflow — сброс применяется до замера
+
+        // Базовое центрирование: (центр контейнера) − (центр карточки остановки) в текущем layout.
+        const contRect = strip.parentElement.getBoundingClientRect();
+        const stopRect = strip.children[STOP_INDEX].getBoundingClientRect();
+        const centerX = (contRect.left + contRect.width / 2) - (stopRect.left + stopRect.width / 2);
+
+        // --- Пиксельная (дробная) рандомизация остановки ---
+        // Случайный сдвиг на N пикселей влево/вправо от центра карточки,
+        // с запасом от швов: стрелка всегда визуально остаётся в пределах карточки.
+        const maxOffset = (CARD_WIDTH_PX / 2) - SEAM_SAFETY_MARGIN_PX; // 45 − 6 = 39px
+        const randomPixelOffset = (Math.random() * 2 - 1) * maxOffset; // −39..+39, с долями пикселя
+        const targetX = centerX + randomPixelOffset;
+        lastSpinStopX = targetX; // запоминаем позицию остановки — для возобновления AFK-прокрутки
+
+        // --- Start spin animation on next frame (after reset is applied) ---
+        // translate3d — аппаратное ускорение GPU; дробные пиксели интерполируются плавно.
+        // cubic-bezier(0.15, 0.9, 0.2, 1) — плавный динамичный старт + мягкое
+        // замедление в конце: лента «докатывается» к выигрышу без резких рывков.
+        requestAnimationFrame(() => {
+            strip.style.transition = `transform ${durationMs}ms ${easing}`;
+            strip.style.transform = `translate3d(${targetX}px, 0, 0)`;
+        });
+
+        // --- После остановки: просто разблокируем кнопку «Открыть» ---
+        // Лента НЕ очищается и НЕ прячется: фиксируем её на финальной позиции transform
+        setTimeout(() => {
+            strip.style.transition = 'none';
+            strip.style.transform = `translate3d(${targetX}px, 0, 0)`;
+            caseDetailOpenBtn.disabled = false;
+            // Пауза 400мс: пользователь чётко видит остановку стрелки, затем — экран выигрыша
+            setTimeout(() => showWinOverlay(winningItem), WIN_REVEAL_DELAY_MS);
+        }, durationMs);
+    }
+
+    /* ---------- Win overlay: цвета редкости и действия ---------- */
+    const RARITY_GLOW_COLORS = {
+        common: '#8D96A3',
+        rare: '#1683FF',
+        epic: '#9D4EDD',
+        legendary: '#FFB800',
+        mythic: '#FF3C3C',
+    };
+
+    function rarityColor(rarity) {
+        return RARITY_GLOW_COLORS[rarity] || RARITY_GLOW_COLORS.rare;
+    }
+
+    function itemMonogram(item) {
+        // Иконки предметов — пока заглушки 'IMG': показываем монограмму имени
+        if (item.icon !== 'IMG') return item.icon;
+        return item.name.split(/\s+/).map((w) => w[0]).join('').slice(0, 2).toUpperCase();
+    }
+
+    function creditBalance(amount) {
+        readRawBalance();
+        rawBalanceTon += Number(amount) || 0;
+        renderBalance();
+    }
+
+    function addItemToInventory(item) {
+        const grid = document.querySelector('.inventory-grid');
+        if (!grid) return;
+
+        const visualContent = item.image
+            ? `<img src="${safeImgSrc(item.image)}" alt="${item.name}" class="inventory-img">`
+            : `<div class="nft-art">${itemMonogram(item)}</div>`;
+
+        const card = document.createElement('div');
+        card.className = 'inventory-card';
+        card.innerHTML = `
+            <div class="inventory-visual">
+                ${visualContent}
+            </div>
+            <div class="inventory-info">
+                <span class="inventory-name">${item.name}</span>
+                <span class="inventory-price">
+                    ${priceHTML(item.price)}
+                </span>
+            </div>`;
+        grid.prepend(card);
+
+        // Пересчёт счётчика «N предмета/предметов»
+        const counter = document.querySelector('.inventory-count');
+        if (counter) {
+            const match = counter.textContent.match(/\d+/);
+            const n = (match ? parseInt(match[0], 10) : 0) + 1;
+            const mod10 = n % 10;
+            const mod100 = n % 100;
+            let word = 'предметов';
+            if (mod10 === 1 && mod100 !== 11) word = 'предмет';
+            else if (mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14)) word = 'предмета';
+            counter.textContent = `${n} ${word}`;
+        }
+    }
+
+    function showWinOverlay(item) {
+        const color = rarityColor(item.rarity);
+
+        const overlay = document.createElement('div');
+        overlay.style.cssText = `
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* Глухой тёмный фон: полностью перекрывает интерфейс за модалкой */
+            background: #0a0a0c;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        `;
+        overlay.innerHTML = `
+            <div style="
+                display: flex; flex-direction: column; align-items: center; text-align: center;
+                padding: 24px; max-width: 320px; width: 88%;
+                transform: scale(0.8); opacity: 0;
+                transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.2), opacity 0.35s ease;
+            ">
+                <div style="font-size: 20px; font-weight: 800; color: #EAF6FF; margin-bottom: 16px;">${item.name}</div>
+                <div style="position: relative; width: 200px; height: 200px; margin-bottom: 26px;">
+                    <div style="position: absolute; inset: -10px; border-radius: 24px;
+                        background: radial-gradient(closest-side, ${color}88 0%, transparent 76%);
+                        filter: blur(16px);"></div>
+                    ${item.image
+                        ? `<img src="${safeImgSrc(item.image)}" alt="${item.name}" draggable="false"
+                            onerror="this.onerror=null;this.src='image/star.png'"
+                            style="position: relative; display: block; width: 100%; height: 100%;
+                                object-fit: contain; padding: 10px; background: #0d1220; border-radius: 16px;
+                                border: 1px solid ${color}55;
+                                box-shadow: 0 0 70px ${color}66, 0 0 24px ${color}44;"/>`
+                        : `<img src="https://placehold.co/200x200/131c30/${color.slice(1)}?text=${encodeURIComponent(item.name)}"
+                            alt="${item.name}" draggable="false"
+                            style="position: relative; display: block; width: 100%; height: 100%;
+                                object-fit: cover; border-radius: 16px;
+                                border: 1px solid ${color}55;
+                                box-shadow: 0 0 70px ${color}66, 0 0 24px ${color}44;"/>`}
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 12px; width: 100%;">
+                    <button data-act="keep" class="btn-open-main" style="
+                        width: 100%; height: 48px; margin-bottom: 0; font-size: 15px;">Забрать</button>
+                    <button data-act="sell" class="btn-open-fast" style="
+                        width: 100%; height: 44px; font-size: 14px;">Продать за ${(Number(item.price)||0).toLocaleString('ru-RU', { maximumFractionDigits: 0 })} ⭐</button>
+                </div>
+            </div>`;
+
+        document.body.appendChild(overlay);
+
+        // Плавное появление: подложка fade-in + карточка scale 0.8 → 1.0
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+            overlay.style.opacity = '1';
+            const panel = overlay.firstElementChild;
+            panel.style.transform = 'scale(1)';
+            panel.style.opacity = '1';
+        }));
+
+        const close = () => {
+            overlay.style.opacity = '0';
+            const panel = overlay.firstElementChild;
+            panel.style.transform = 'scale(0.85)';
+            panel.style.opacity = '0';
+            setTimeout(() => {
+                overlay.remove();
+                // После закрытия окна выигрыша лента снова начинает крутиться в idle/AFK режиме
+                resumeIdleScroll();
+            }, 320);
+        };
+
+        overlay.querySelector('[data-act="keep"]').addEventListener('click', () => {
+            addItemToInventory(item);
+            close();
+        });
+        overlay.querySelector('[data-act="sell"]').addEventListener('click', () => {
+            creditBalance(CURR.starsToTon(item.price));  // предмет в Stars -> баланс в TON
+            close();
+        });
+    }
 
     // Быстрое открытие (демо)
     caseDetailQuickBtn.addEventListener('click', () => {
-        const cost = caseDetailBasePrice * caseDetailMult;
-        const balanceEls = document.querySelectorAll('.balance-amount, .profile-balance-amount span');
-        balanceEls.forEach((el) => {
-            const current = parseFloat(el.textContent.replace(/\s/g, '')) || 0;
-            if (current >= cost) {
-                const newVal = current - cost;
-                el.textContent = newVal.toLocaleString('ru-RU', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-            }
-        });
+        const costTon = CURR.starsToTon(caseDetailBasePrice * caseDetailMult); // Stars -> TON
+        readRawBalance();
+        if (rawBalanceTon >= costTon) {
+            rawBalanceTon -= costTon;
+            renderBalance();
+            spinRoulette(QUICK_SPIN_DURATION_MS, QUICK_SPIN_EASING);
+        }
     });
 
-    // Клик по карточке кейса → открыть case-detail
-    document.querySelectorAll('.case-card').forEach((card) => {
-        card.addEventListener('click', () => {
-            const match = card.className.match(/case-(\d+)/);
-            const nameEl = card.querySelector('.case-name');
-            const name = nameEl ? nameEl.textContent : 'QUANT';
-            if (match) {
-                openCaseDetail(name, parseInt(match[1], 10));
-            }
+    // ── Цены кейсов на главной ──────────────────────────────────────────────
+    // Источник правды — класс `case-NNN` (цена кейса в TON).
+    // Главная/единственная цена на карточке — в Telegram Stars: stars = ton * 160.
+    // Пример: вместо «10 TON / ≈ 1 600 ⭐» на карточке ровно «1 600 ⭐».
+    function renderCaseCardPrices() {
+        document.querySelectorAll('.case-card').forEach((card) => {
+            const m = card.className.match(/case-(\d+)/);
+            if (!m) return;
+            const ton = parseInt(m[1], 10) || 0;
+            const priceEl = card.querySelector('.case-price');
+            if (!priceEl) return;
+            const stars = Math.round(CURR.tonToStars(ton));
+            priceEl.innerHTML =
+                '<span class="case-price-stars">' + stars.toLocaleString('ru-RU', { maximumFractionDigits: 0 }) + ' ⭐</span>';
         });
+    }
+    renderCaseCardPrices();
+
+    // Клик по карточке кейса → открыть case-detail.
+    // Делегирование: карточки рендерятся ДИНАМИЧЕСКИ ES-модулем из casesData.js
+    // и несут data-case="<case_id>" — прямые биндеры их не видят.
+    document.addEventListener('click', (e) => {
+        const card = e.target.closest('.case-card[data-case]');
+        if (!card) return;
+        const def = (Array.isArray(window.CASES) ? window.CASES : [])
+            .find((c) => c.id === card.dataset.case);
+        if (!def) return;
+        openCaseDetail(def.name, def.price, def.id);
     });
 
     /* ============ WITHDRAW MODAL ============ */
@@ -1122,13 +1789,8 @@
     sellConfirm.addEventListener('click', () => {
         if (!currentSellCard || !currentSellItem) return;
 
-        // Добавляем стоимость к Casino Balance (шапка и профиль)
-        const balanceEls = document.querySelectorAll('.balance-amount, .profile-balance-amount span');
-        balanceEls.forEach((el) => {
-            const current = parseFloat(el.textContent.replace(/\s/g, '')) || 0;
-            const newVal = current + currentSellItem.sellPrice;
-            el.textContent = newVal.toLocaleString('ru-RU', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-        });
+        // Добавляем стоимость к Casino Balance (шапка и профиль) в активной валюте
+        creditBalance(currentSellItem.sellPrice);
 
         // Удаляем карточку из инвентаря
         currentSellCard.remove();
@@ -1242,13 +1904,8 @@
                     window.Telegram.WebApp.openInvoice(data.invoiceLink, (status) => {
                         if (status === 'paid') {
                             depositModal.classList.add('hidden');
-                            // Обновить баланс пользователя
-                            const balanceEls = document.querySelectorAll('.balance-amount, .profile-balance-amount span');
-                            balanceEls.forEach((el) => {
-                                const current = parseFloat(el.textContent.replace(/\s/g, '')) || 0;
-                                const newVal = current + Number(amount);
-                                el.textContent = newVal.toLocaleString('ru-RU', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-                            });
+                            // Обновить баланс пользователя в активной валюте
+                            creditBalance(Number(amount));
                         }
                     });
                 }
