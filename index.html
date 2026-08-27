@@ -931,12 +931,48 @@
                             <span class="drops-count" id="caseDetailContentsCount">22</span>
                         </div>
                         <div class="drops-grid" id="caseDetailItems">
-                            <div class="drop-card"></div>
-                            <div class="drop-card"></div>
-                            <div class="drop-card"></div>
-                            <div class="drop-card"></div>
-                            <div class="drop-card"></div>
-                            <div class="drop-card"></div>
+                            <div class="drop-card">
+                                <div class="drop-card-visual"></div>
+                                <div class="item-info-card">
+                                    <span class="drop-card-name"></span>
+                                    <span class="drop-card-price"></span>
+                                </div>
+                            </div>
+                            <div class="drop-card">
+                                <div class="drop-card-visual"></div>
+                                <div class="item-info-card">
+                                    <span class="drop-card-name"></span>
+                                    <span class="drop-card-price"></span>
+                                </div>
+                            </div>
+                            <div class="drop-card">
+                                <div class="drop-card-visual"></div>
+                                <div class="item-info-card">
+                                    <span class="drop-card-name"></span>
+                                    <span class="drop-card-price"></span>
+                                </div>
+                            </div>
+                            <div class="drop-card">
+                                <div class="drop-card-visual"></div>
+                                <div class="item-info-card">
+                                    <span class="drop-card-name"></span>
+                                    <span class="drop-card-price"></span>
+                                </div>
+                            </div>
+                            <div class="drop-card">
+                                <div class="drop-card-visual"></div>
+                                <div class="item-info-card">
+                                    <span class="drop-card-name"></span>
+                                    <span class="drop-card-price"></span>
+                                </div>
+                            </div>
+                            <div class="drop-card">
+                                <div class="drop-card-visual"></div>
+                                <div class="item-info-card">
+                                    <span class="drop-card-name"></span>
+                                    <span class="drop-card-price"></span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -959,7 +995,9 @@
         function cardHTML(c) {
             return '<div class="case-card ' + (tierCls[c.tier] || 'tier-1') + '" data-case="' + c.id + '">' +
                 '<div class="case-glow"></div>' +
-                '<div class="case-image-holder"></div>' +
+                '<div class="case-image-holder">' +
+                    (c.image ? '<img src="' + c.image + '" alt="' + c.name + '" class="main-page-case-img">' : '') +
+                '</div>' +
                 '<div class="case-card-body">' +
                     '<span class="case-name">' + c.name + '</span>' +
                     '<div class="case-price">' +

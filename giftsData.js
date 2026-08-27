@@ -34,6 +34,7 @@ export const giftsData = [
   { id: 'snoop_doggs__dog-Photoroom', name: 'Snoop Doggs', price: 4.20, currency: 'TON', image: 'gift image/dog-Photoroom.png' },
   { id: 'durov_s_caps__dur1-Photoroom', name: 'Durov\'s Caps', price: 390, currency: 'TON', image: 'gift image/dur1-Photoroom.png' },
   { id: 'durov_s_caps__dur-Photoroom', name: 'Durov\'s Caps', price: 390, currency: 'TON', image: 'gift image/dur-Photoroom.png' },
+  { id: 'easter_eggs__eas1-Photoroom', name: 'Easter Eggs', price: 3.67, currency: 'TON', image: 'gift image/eas1-Photoroom.png' },
   { id: 'easter_eggs__eas-Photoroom', name: 'Easter Eggs', price: 3.67, currency: 'TON', image: 'gift image/eas-Photoroom.png' },
   { id: 'electric_skulls__ele-Photoroom', name: 'Electric Skulls', price: 23, currency: 'TON', image: 'gift image/ele-Photoroom.png' },
   { id: 'eternal_candles__ete-Photoroom', name: 'Eternal Candles', price: 5.7, currency: 'TON', image: 'gift image/ete-Photoroom.png' },
@@ -43,6 +44,7 @@ export const giftsData = [
   { id: 'gem_signets__gem1-Photoroom', name: 'Gem Signets', price: 62.79, currency: 'TON', image: 'gift image/gem1-Photoroom.png' },
   { id: 'gem_signets__gem-Photoroom', name: 'Gem Signets', price: 62.79, currency: 'TON', image: 'gift image/gem-Photoroom.png' },
   { id: 'genie_lamps__gen-Photoroom', name: 'Genie Lamps', price: 36.5, currency: 'TON', image: 'gift image/gen-Photoroom.png' },
+  { id: 'ginger_cookies__gin-Photoroom', name: 'Ginger Cookies', price: 3.95, currency: 'TON', image: 'gift image/gin-Photoroom.png' },
   { id: 'hanging_stars__han-Photoroom', name: 'Hanging Stars', price: 8.94, currency: 'TON', image: 'gift image/han-Photoroom.png' },
   { id: 'heart_lockets__hea1-Photoroom', name: 'Heart Lockets', price: 1100, currency: 'TON', image: 'gift image/hea1-Photoroom.png' },
   { id: 'heart_lockets__hea2-Photoroom', name: 'Heart Lockets', price: 1100, currency: 'TON', image: 'gift image/hea2-Photoroom.png' },
@@ -86,6 +88,8 @@ export const giftsData = [
   { id: 'plush_pepes__plu2-Photoroom', name: 'Plush Pepes', price: 5149, currency: 'TON', image: 'gift image/plu2-Photoroom.png' },
   { id: 'plush_pepes__plu3-Photoroom', name: 'Plush Pepes', price: 5149, currency: 'TON', image: 'gift image/plu3-Photoroom.png' },
   { id: 'plush_pepes__plu-Photoroom', name: 'Plush Pepes', price: 5149, currency: 'TON', image: 'gift image/plu-Photoroom.png' },
+  { id: 'plush_pepes__plu4-Photoroom', name: 'Plush Pepes', price: 5149, currency: 'TON', image: 'gift image/plu4-Photoroom.png' },
+  { id: 'pool_floats__poo-Photoroom', name: 'Pool Floats', price: 3.78, currency: 'TON', image: 'gift image/poo-Photoroom.png' },
   { id: 'precious_peaches__pre1-Photoroom', name: 'Precious Peaches', price: 240.20, currency: 'TON', image: 'gift image/pre1-Photoroom.png' },
   { id: 'precious_peaches__pre2-Photoroom', name: 'Precious Peaches', price: 240.20, currency: 'TON', image: 'gift image/pre2-Photoroom.png' },
   { id: 'precious_peaches__pre-Photoroom', name: 'Precious Peaches', price: 240.20, currency: 'TON', image: 'gift image/pre-Photoroom.png' },
@@ -95,6 +99,7 @@ export const giftsData = [
   { id: 'sharp_tongues__sha-Photoroom', name: 'Sharp Tongues', price: 38.89, currency: 'TON', image: 'gift image/sha-Photoroom.png' },
   { id: 'skull_flowers__sku-Photoroom', name: 'Skull Flowers', price: 9.45, currency: 'TON', image: 'gift image/sku-Photoroom.png' },
   { id: 'snoop_cigars__sno-Photoroom', name: 'Snoop Cigars', price: 10.63, currency: 'TON', image: 'gift image/sno-Photoroom.png' },
+  { id: 'spring_baskets__spr-Photoroom', name: 'Spring Baskets', price: 5.51, currency: 'TON', image: 'gift image/spr-Photoroom.png' },
   { id: 'swag_bags__swa1-Photoroom', name: 'Swag Bags', price: 5.20, currency: 'TON', image: 'gift image/swa1-Photoroom.png' },
   { id: 'swag_bags__swa2-Photoroom', name: 'Swag Bags', price: 5.20, currency: 'TON', image: 'gift image/swa2-Photoroom.png' },
   { id: 'swag_bags__swa-Photoroom', name: 'Swag Bags', price: 5.20, currency: 'TON', image: 'gift image/swa-Photoroom.png' },
@@ -111,7 +116,7 @@ export const giftsData = [
   { id: 'witch_hats__wit-Photoroom', name: 'Witch Hats', price: 4.14, currency: 'TON', image: 'gift image/wit-Photoroom.png' },
 ];
 
-export const giftsCount = 108;
+export const giftsCount = 113;
 
 // Базовые стандартные подарки (реестр). Цены указаны в Telegram Stars (XTR).
 // Изображения лежат в папке standard-gifts/.

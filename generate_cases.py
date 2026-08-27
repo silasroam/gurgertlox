@@ -100,76 +100,38 @@ def img_for(spec):
 # ---------------------------------------------------------------------------
 # СБОРКА ОДНОГО КЕЙСА (16–22 предмета, RTP ровно 85%)
 # ---------------------------------------------------------------------------
-def build_case(*, case_id, name, tier, price, jackpot_value, jackpot_weight,
-               common, rare, epic):
+def placeholder_items(case_id, price, n=16):
+    """Возвращает ровно n карточек-заглушек с равными весами.
+
+    value подбирается так, чтобы EV == 0.85 * price (RTP ровно 85%):
+      16 * (value * weight/SCALE) = 0.85 * price
+    weight = SCALE // n (сумма весов = SCALE).
     """
-    common/rare/epic — список спецификаций (dict из пула либо stars()/nf()).
-    Каждый получает малый фикс. вес; «регулирующий» Common-предмет
-    (calib_<case_id>) добирает остаток веса до 1 000 000, его цена
-    калибруется под EV = 0.85*price.
+    val = round(price * RTP, 2)          # 0.85 * price
+    weight = SCALE // n                  # напр. 1_000_000 // 16 = 62 500
+    items = []
+    for k in range(1, n + 1):
+        items.append({
+            "id": "ph_%s_%d" % (case_id, k),
+            "type": "gift",
+            "value": val,
+            "weight": weight,
+            "drop_chance_percent": round(weight / SCALE * 100, 4),
+            "name": "Placeholder %d" % k,
+            "image": "image/star.png",
+        })
+    return items
+
+
+def build_case(*, case_id, name, tier, price, image, jackpot_value, jackpot_weight,
+               common, rare, epic):
+    """Кейс с 16 карточками-заглушками (RTP ровно 85%).
+
+    Параметры common/rare/epic/jackpot_value/jackpot_weight больше не влияют
+    на состав — содержимое очищено и заменено 16 унифицированными заглушками.
     """
     target_ev = round(price * RTP, 2)
-
-    items = [{"id": "jackpot_" + str(case_id), "type": "jackpot",
-              "value": jackpot_value, "weight": jackpot_weight}]
-
-    def put(spec, mult, weight):
-        items.append({
-            "spec": spec,
-            "type": spec.get("type", "gift"),
-            "value": round(spec.get("value", mult * price), 2),
-            "weight": weight,
-        })
-
-    # Common (звёзды-пакеты + базовые гифты) — фикс. малые веса
-    for spec, w in common:
-        put(spec, 0.30, w)
-    # Rare
-    for spec, w in rare:
-        put(spec, 1.00, w)
-    # Epic
-    for spec, w in epic:
-        put(spec, 3.00, w)
-
-    # Консоляция: 3 разных пачки Stars (3/5/10)
-    used = sum_weight(items)
-    tail = SCALE - used
-    w_a = int(tail * 0.40)
-    w_b = int(tail * 0.35)
-    w_c = tail - w_a - w_b
-    items.append({"spec": {"id": "stars_min_3", "type": "stars",
-                           "value": 3, "name": "Bonus"}, "type": "common",
-                  "value": 3, "weight": w_a})
-    items.append({"spec": {"id": "stars_min_5", "type": "stars",
-                           "value": 5, "name": "5 Stars"}, "type": "common",
-                  "value": 5, "weight": w_b})
-    items.append({"spec": {"id": "stars_min_10", "type": "stars",
-                           "value": 10, "name": "10 Stars"}, "type": "common",
-                  "value": 10, "weight": w_c})
-    # Калибруем цену первого (самого тяжёлого) консоль-дропа под точный RTP
-    calibrate(items, len(items) - 3, target_ev, price * 0.05, price * 5.0)
-
-    # Финальные объекты (id/name/image/drop) + сортировка по весу
-    payload = []
-    for i, it in enumerate(items):
-        spec = dict(it.get("spec") or {})
-        if it["type"] == "jackpot":
-            ident = "jackpot_" + str(case_id)
-            nm = "JACKPOT"
-        else:
-            ident = spec.get("id", "item_%d" % i)
-            nm = spec.get("name") or (BY_ID.get(ident, {}).get("name") or ident)
-        payload.append({
-            "id": ident,
-            "type": it["type"],
-            "value": it["value"],
-            "weight": it["weight"],
-            "drop_chance_percent": round(it["weight"] / SCALE * 100, 4),
-            "name": nm,
-            "image": IMG_STARS if it["type"] == "jackpot" else img_for(spec),
-        })
-    payload[1:] = sorted(payload[1:], key=lambda it: it["weight"], reverse=True)
-    items = payload
+    items = placeholder_items(case_id, price, n=16)
 
     ev = sum(i["value"] * i["weight"] for i in items) / SCALE
     rtp_pct = ev / price * 100
@@ -179,146 +141,871 @@ def build_case(*, case_id, name, tier, price, jackpot_value, jackpot_weight,
         "name": name,
         "tier": tier,
         "price": price,
+        "image": image,
         "target_ev": round(price * RTP, 2),
         "calculated_ev": round(ev, 4),
         "rtp_percent": round(rtp_pct, 4),
-        "jackpot_multiplier": round(jackpot_value / price, 2),
+        "jackpot_multiplier": round(price * RTP / price, 2),
         "items": items,
     }
 
 def build_gift_case_19():
-    """Кейс «Basic 19» — специальный подарочный кейс с 16 фиксированными
-    предметами (без джекпота и консоляций). RTP ≈ 85%, сумма весов = 1 000 000.
-    """
+    """Кейс «sumercase» (19 звёзд): первые 2 карточки — Ice Creams и Pool Floats
+    (редкие дропы), остальные 14 — заглушки. Общий RTP ≈ 85%."""
     price = 19
-    # (id, name, value(stars), weight, image) — от дорогих к дешёвым
-    rows = [
-        ("nft_easter",  "Easter Eggs NFT", 587,      12, "gift image/eas-Photoroom.png"),
-        ("nft_big",     "Big Years NFT",   546,      12, "gift image/big-Photoroom.png"),
-        ("nft_chill",   "Chill Flames NFT",514,      12, "gift image/chi-Photoroom.png"),
-        ("nft_ice",     "Ice Creams NFT",  454,      12, "gift image/ice-Photoroom.png"),
-        ("nft_jester",  "Jester Hats NFT", 400,      12, "gift image/jes-Photoroom.png"),
-        ("trophy_100",  "Trophy",          100,      80, "standard-gifts/trophy_100.png"),
-        ("ring_100",    "Ring",            100,      80, "standard-gifts/ring_100.png"),
-        ("diamond_100", "Diamond",         100,      80, "standard-gifts/diamond_100.png"),
-        ("rocket_50",   "Rocket",           50,    1860, "standard-gifts/rocket_50.png"),
-        ("champagne_50","Champagne",        50,    1860, "standard-gifts/champagne_50.png"),
-        ("cake_50",     "Cake",             50,    1860, "standard-gifts/cake_50.png"),
-        ("bouquet_50",  "Bouquet",          50,    1860, "standard-gifts/bouquet_50.png"),
-        ("rose_25",     "Rose",             25,   43270, "standard-gifts/rose_25.png"),
-        ("gift_25",     "Gift",             25,   43270, "standard-gifts/gift_25.png"),
-        ("heart_15",    "Heart",            15,  452860, "standard-gifts/heart_15.png"),
-        ("bear_15",     "Bear",             15,  452860, "standard-gifts/bear_15.png"),
+    name = "sumercase"
+    image = "image/sumercase.webp"
+    target_ev = round(price * RTP, 2)   # 16.15
+
+    # Первые 3 карты в списке содержимого кейса.
+    featured = [
+        {"id": "ice_creams__ice-Photoroom", "name": "Ice Creams",
+         "type": "gift", "value": 227, "image": "gift image/ice-Photoroom.png"},
+        {"id": "pool_floats__poo-Photoroom", "name": "Pool Floats",
+         "type": "gift", "value": 302, "image": "gift image/poo-Photoroom.png"},
+        {"id": "valentine_boxes__val-Photoroom", "name": "Valentine Boxes",
+         "type": "gift", "value": 852, "image": "gift image/val-Photoroom.png"},
     ]
+    w_feat = 3000   # шанс выпадения ~0.3% на каждый
+
     items = []
-    for gid, name, val, w, img in rows:
+    feat_ev = 0
+    for it in featured:
         items.append({
-            "id": gid,
-            "type": "nft" if val >= 200 else "gift",
-            "value": val,
+            "id": it["id"], "type": it["type"], "value": it["value"],
+            "weight": w_feat,
+            "drop_chance_percent": round(w_feat / SCALE * 100, 4),
+            "name": it["name"], "image": it["image"],
+        })
+        feat_ev += it["value"] * w_feat
+    feat_ev /= SCALE
+
+    # Оставшиеся 11 карт — стандартные подарки из standard-gifts/.
+    gifts = [
+        {"id": "heart_15",       "name": "Heart",          "value": 15,  "image": "standard-gifts/heart_15.png"},
+        {"id": "bear_15",        "name": "Teddy Bear",     "value": 15,  "image": "standard-gifts/bear_15.png"},
+        {"id": "gift_25",        "name": "Gift Box",       "value": 25,  "image": "standard-gifts/gift_25.png"},
+        {"id": "rose_25",        "name": "Red Rose",       "value": 25,  "image": "standard-gifts/rose_25.png"},
+        {"id": "cake_50",        "name": "Birthday Cake",  "value": 50,  "image": "standard-gifts/cake_50.png"},
+        {"id": "bouquet_50",     "name": "Bouquet",        "value": 50,  "image": "standard-gifts/bouquet_50.png"},
+        {"id": "rocket_50",      "name": "Rocket",         "value": 50,  "image": "standard-gifts/rocket_50.png"},
+        {"id": "champagne_50",   "name": "Champagne",      "value": 50,  "image": "standard-gifts/champagne_50.png"},
+        {"id": "trophy_100",     "name": "Trophy",         "value": 100, "image": "standard-gifts/trophy_100.png"},
+        {"id": "ring_100",       "name": "Diamond Ring",   "value": 100, "image": "standard-gifts/ring_100.png"},
+        {"id": "diamond_100",    "name": "Diamond",        "value": 100, "image": "standard-gifts/diamond_100.png"},
+    ]
+    rem_w = SCALE - w_feat * len(featured)      # 1_000_000 - 9000 = 991_000
+    g_w = rem_w // len(gifts)                    # 90 090
+    last_w = rem_w - g_w * len(gifts)            # хвост 99010 - ... -> 10
+    for k, it in enumerate(gifts):
+        w = g_w + (last_w if k == 0 else 0)
+        items.append({
+            "id": it["id"], "type": "gift", "value": it["value"],
             "weight": w,
             "drop_chance_percent": round(w / SCALE * 100, 4),
-            "name": name,
-            "image": img,
+            "name": it["name"], "image": it["image"],
         })
+
     ev = sum(i["value"] * i["weight"] for i in items) / SCALE
+    rtp_pct = ev / price * 100
+
+    # Сортировка по цене: дорогие сверху, дешёвые внизу (стабильная).
+    items.sort(key=lambda it: it["value"], reverse=True)
+
     return {
         "id": "case_19",
-        "name": "Basic 19",
+        "name": name,
         "tier": "basic",
         "price": price,
-        "target_ev": round(price * RTP, 2),
+        "image": image,
+        "target_ev": target_ev,
         "calculated_ev": round(ev, 4),
-        "rtp_percent": round(ev / price * 100, 4),
-        "jackpot_multiplier": 0,
+        "rtp_percent": round(rtp_pct, 4),
+        "jackpot_multiplier": round(target_ev / price, 2),
         "items": items,
     }
+
+def build_newyear_case_39():
+    """Кейс «newyearcase» за 39 ⭐: первые 5 карточек — новые новогодние
+    предметы (Santa Hats, Sleigh Bells, Jingle Bells + 2 доп.), остальные —
+    стандартные подарки. 16 предметов, сумма весов строго 1_000_000."""
+    price = 39
+    name = "newyearcase"
+    image = "image/newyearcase.webp"
+    target_ev = round(price * RTP, 2)   # 33.15
+
+    # Первые 5 карточек — новогодние предметы (изображения из gift image/).
+    featured = [
+        {"id": "santa_hats__han-Photoroom", "name": "Santa Hats",   "value": 352,  "image": "gift image/han-Photoroom.png"},
+        {"id": "sleigh_bells__gin-Photoroom","name": "Sleigh Bells", "value": 509, "image": "gift image/gin-Photoroom.png"},
+        {"id": "jingle_bells__san-Photoroom","name": "Jingle Bells", "value": 639, "image": "gift image/san-Photoroom.png"},
+        {"id": "sleig_set__sle-Photoroom",   "name": "Sleig Set",    "value": 600, "image": "gift image/sle-Photoroom.png"},
+        {"id": "jing_decor__jin-Photoroom",  "name": "Jing Decor",   "value": 450, "image": "gift image/jin-Photoroom.png"},
+    ]
+    w_feat = 30000   # шанс выпадения ~3% на каждый
+
+    items = []
+    for it in featured:
+        items.append({
+            "id": it["id"], "type": "gift", "value": it["value"],
+            "weight": w_feat,
+            "drop_chance_percent": round(w_feat / SCALE * 100, 4),
+            "name": it["name"], "image": it["image"],
+        })
+
+    # Ещё 11 карточек — стандартные подарки из standard-gifts/.
+    gifts = [
+        {"id": "heart_15",       "name": "Heart",          "value": 15,  "image": "standard-gifts/heart_15.png"},
+        {"id": "bear_15",        "name": "Teddy Bear",     "value": 15,  "image": "standard-gifts/bear_15.png"},
+        {"id": "gift_25",        "name": "Gift Box",       "value": 25,  "image": "standard-gifts/gift_25.png"},
+        {"id": "rose_25",        "name": "Red Rose",       "value": 25,  "image": "standard-gifts/rose_25.png"},
+        {"id": "cake_50",        "name": "Birthday Cake",  "value": 50,  "image": "standard-gifts/cake_50.png"},
+        {"id": "bouquet_50",     "name": "Bouquet",        "value": 50,  "image": "standard-gifts/bouquet_50.png"},
+        {"id": "rocket_50",      "name": "Rocket",         "value": 50,  "image": "standard-gifts/rocket_50.png"},
+        {"id": "champagne_50",   "name": "Champagne",      "value": 50,  "image": "standard-gifts/champagne_50.png"},
+        {"id": "trophy_100",     "name": "Trophy",         "value": 100, "image": "standard-gifts/trophy_100.png"},
+        {"id": "ring_100",       "name": "Diamond Ring",   "value": 100, "image": "standard-gifts/ring_100.png"},
+        {"id": "diamond_100",    "name": "Diamond",        "value": 100, "image": "standard-gifts/diamond_100.png"},
+    ]
+    rem_w = SCALE - w_feat * len(featured)      # 1_000_000 - 150_000 = 850_000
+    g_w = rem_w // len(gifts)                    # 850_000 // 11 = 77 272
+    last_w = rem_w - g_w * len(gifts)            # остаток
+    for k, it in enumerate(gifts):
+        w = g_w + (last_w if k == 0 else 0)
+        items.append({
+            "id": it["id"], "type": "gift", "value": it["value"],
+            "weight": w,
+            "drop_chance_percent": round(w / SCALE * 100, 4),
+            "name": it["name"], "image": it["image"],
+        })
+
+    ev = sum(i["value"] * i["weight"] for i in items) / SCALE
+    rtp_pct = ev / price * 100
+
+    # Сортировка по цене: дорогие сверху, дешёвые вниз (стабильная).
+    items.sort(key=lambda it: it["value"], reverse=True)
+
+    return {
+        "id": "case_49",
+        "name": name,
+        "tier": "basic",
+        "price": price,
+        "image": image,
+        "target_ev": target_ev,
+        "calculated_ev": round(ev, 4),
+        "rtp_percent": round(rtp_pct, 4),
+        "jackpot_multiplier": round(target_ev / price, 2),
+        "items": items,
+    }
+
+def build_toxic_case_99():
+    """Кейс «toxiccase» за 79 ⭐: первые 2 карточки — Magic Potions и
+    Love Candles, остальные 14 — зелёные NFT + подарки 50–100 ⭐.
+    16 предметов, сумма весов строго 1_000_000."""
+    price = 79
+    name = "toxiccase"
+    image = "image/toxiccase.webp"
+    target_ev = round(price * RTP, 2)   # 67.15
+
+    # Первые 2 карточки — новые предметы (изображения из gift image/).
+    featured = [
+        {"id": "magic_potions__mag-Photoroom", "name": "Magic Potions", "value": 4397, "image": "gift image/mag-Photoroom.png"},
+        {"id": "love_candles__lov-Photoroom",  "name": "Love Candles",  "value": 654, "image": "gift image/lov-Photoroom.png"},
+    ]
+    w_feat = 30000   # шанс выпадения ~3% на каждый
+
+    items = []
+    for it in featured:
+        items.append({
+            "id": it["id"], "type": "gift", "value": it["value"],
+            "weight": w_feat,
+            "drop_chance_percent": round(w_feat / SCALE * 100, 4),
+            "name": it["name"], "image": it["image"],
+        })
+
+    # Реальные предметы вместо NFT-заглушек (картинки из gift image/).
+    nfts = [
+        {"id": "hex_potions__hex-Photoroom",      "name": "Hex Potions",      "value": 333,  "image": "gift image/hex-Photoroom.png"},
+        {"id": "eternal_candles__ete-Photoroom",  "name": "Eternal Candles",  "value": 456,  "image": "gift image/ete-Photoroom.png"},
+        {"id": "electric_skulls__ele-Photoroom",  "name": "Electric Skulls",  "value": 1840, "image": "gift image/ele-Photoroom.png"},
+        {"id": "evil_eyes__evi1-Photoroom",       "name": "Evil Eyes",        "value": 536,  "image": "gift image/evi1-Photoroom.png"},
+        {"id": "cookie_hearts__coo-Photoroom",    "name": "Cookie Hearts",    "value": 367,  "image": "gift image/coo-Photoroom.png"},
+        {"id": "chill_flames__chi1-Photoroom",    "name": "Chill Flames",     "value": 257,  "image": "gift image/chi1-Photoroom.png"},
+        {"id": "candy_canes__can1-Photoroom",     "name": "Candy Canes",      "value": 318,  "image": "gift image/can1-Photoroom.png"},
+    ]
+    # Подарки 50–100 ⭐ из standard-gifts/.
+    gifts = [
+        {"id": "cake_50",       "name": "Birthday Cake", "value": 50,  "image": "standard-gifts/cake_50.png"},
+        {"id": "bouquet_50",    "name": "Bouquet",       "value": 50,  "image": "standard-gifts/bouquet_50.png"},
+        {"id": "rocket_50",     "name": "Rocket",        "value": 50,  "image": "standard-gifts/rocket_50.png"},
+        {"id": "champagne_50",  "name": "Champagne",     "value": 50,  "image": "standard-gifts/champagne_50.png"},
+        {"id": "trophy_100",    "name": "Trophy",        "value": 100, "image": "standard-gifts/trophy_100.png"},
+        {"id": "ring_100",      "name": "Diamond Ring",  "value": 100, "image": "standard-gifts/ring_100.png"},
+        {"id": "diamond_100",   "name": "Diamond",       "value": 100, "image": "standard-gifts/diamond_100.png"},
+    ]
+
+    # 14 оставшихся карточек: 7 NFT + 7 подарков.
+    rest = nfts + gifts
+    rem_w = SCALE - w_feat * len(featured)      # 1_000_000 - 60_000 = 940_000
+    g_w = rem_w // len(rest)                     # 940_000 // 14 = 67 142
+    last_w = rem_w - g_w * len(rest)             # остаток
+    for k, it in enumerate(rest):
+        w = g_w + (last_w if k == 0 else 0)
+        # NFT-предметы из списка nfts уже имеют type/value/name/imаge-заглушку
+        if it.get("type") == "nft":
+            items.append({
+                "id": it["id"], "type": "nft", "value": it["value"],
+                "weight": w,
+                "drop_chance_percent": round(w / SCALE * 100, 4),
+                "name": it["name"], "image": it.get("image", "image/star.png"),
+            })
+        else:
+            items.append({
+                "id": it["id"], "type": "gift", "value": it["value"],
+                "weight": w,
+                "drop_chance_percent": round(w / SCALE * 100, 4),
+                "name": it["name"], "image": it["image"],
+            })
+
+    ev = sum(i["value"] * i["weight"] for i in items) / SCALE
+    rtp_pct = ev / price * 100
+
+    # Сортировка по цене: дорогие сверху, дешёвые вниз (стабильная).
+    items.sort(key=lambda it: it["value"], reverse=True)
+
+    return {
+        "id": "case_99",
+        "name": name,
+        "tier": "basic",
+        "price": price,
+        "image": image,
+        "target_ev": target_ev,
+        "calculated_ev": round(ev, 4),
+        "rtp_percent": round(rtp_pct, 4),
+        "jackpot_multiplier": round(target_ev / price, 2),
+        "items": items,
+    }
+
+def build_ocean_case_199():
+    """Кейс «oceancase» за 149 ⭐: добавить 14 предметов (wes1,wit1,vin,swa2,
+    sno,nek1,low2,ice1,ete,ele,dog,cry2,chi1,bon1) + 3 классических подарка
+    за 100 ⭐. Итого 17 предметов, сумма весов строго 1_000_000."""
+    price = 149
+    name = "oceancase"
+    image = "image/oceancase.webp"
+    target_ev = round(price * RTP, 2)   # 126.65
+
+    # 14 новых предметов (изображения из gift image/), цены в Stars (TON*80).
+    new_items = [
+        {"id": "westside_signs__wes1-Photoroom", "name": "Westside Signs", "value": 7520, "image": "gift image/wes1-Photoroom.png"},
+        {"id": "low_riders__low2-Photoroom",     "name": "Low Riders",     "value": 3632, "image": "gift image/low2-Photoroom.png"},
+        {"id": "bonded_rings__bon1-Photoroom",   "name": "Bonded Rings",   "value": 3040, "image": "gift image/bon1-Photoroom.png"},
+        {"id": "neko_helmets__nek1-Photoroom",   "name": "Neko Helmets",   "value": 2820, "image": "gift image/nek1-Photoroom.png"},
+        {"id": "vintage_cigars__vin-Photoroom",  "name": "Vintage Cigars", "value": 2720, "image": "gift image/vin-Photoroom.png"},
+        {"id": "electric_skulls__ele-Photoroom", "name": "Electric Skulls","value": 1840, "image": "gift image/ele-Photoroom.png"},
+        {"id": "crystal_balls__cry2-Photoroom",  "name": "Crystal Balls",  "value": 960,  "image": "gift image/cry2-Photoroom.png"},
+        {"id": "snoop_cigars__sno-Photoroom",    "name": "Snoop Cigars",   "value": 851,  "image": "gift image/sno-Photoroom.png"},
+        {"id": "eternal_candles__ete-Photoroom", "name": "Eternal Candles", "value": 456, "image": "gift image/ete-Photoroom.png"},
+        {"id": "swag_bags__swa2-Photoroom",      "name": "Swag Bags",      "value": 416,  "image": "gift image/swa2-Photoroom.png"},
+        {"id": "snoop_doggs__dog-Photoroom",     "name": "Snoop Doggs",    "value": 336,  "image": "gift image/dog-Photoroom.png"},
+        {"id": "witch_hats__wit1-Photoroom",     "name": "Witch Hats",     "value": 331,  "image": "gift image/wit1-Photoroom.png"},
+        {"id": "chill_flames__chi1-Photoroom",   "name": "Chill Flames",   "value": 257,  "image": "gift image/chi1-Photoroom.png"},
+        {"id": "ice_creams__ice1-Photoroom",     "name": "Ice Creams",     "value": 227,  "image": "gift image/ice1-Photoroom.png"},
+    ]
+
+    # 3 классических подарка за 100 ⭐ (реальные PNG из standard-gifts/).
+    classic100 = [
+        {"id": "trophy_100",    "name": "Trophy",       "value": 100, "image": "standard-gifts/trophy_100.png"},
+        {"id": "ring_100",      "name": "Diamond Ring", "value": 100, "image": "standard-gifts/ring_100.png"},
+        {"id": "diamond_100",   "name": "Diamond",      "value": 100, "image": "standard-gifts/diamond_100.png"},
+    ]
+
+    all_items = new_items + classic100   # 14 + 3 = 17
+    n = len(all_items)                    # 17
+    w = SCALE // n                        # 1_000_000 // 17 = 58 823
+    last_w = SCALE - w * n                # остаток
+    items = []
+    for k, it in enumerate(all_items):
+        wi = w + (last_w if k == 0 else 0)
+        items.append({
+            "id": it["id"], "type": "gift", "value": it["value"],
+            "weight": wi,
+            "drop_chance_percent": round(wi / SCALE * 100, 4),
+            "name": it["name"], "image": it["image"],
+        })
+
+    ev = sum(i["value"] * i["weight"] for i in items) / SCALE
+    rtp_pct = ev / price * 100
+
+    # Сортировка по цене: дорогие сверху, дешёвые вниз (стабильная).
+    items.sort(key=lambda it: it["value"], reverse=True)
+
+    return {
+        "id": "case_199",
+        "name": name,
+        "tier": "basic",
+        "price": price,
+        "image": image,
+        "target_ev": target_ev,
+        "calculated_ev": round(ev, 4),
+        "rtp_percent": round(rtp_pct, 4),
+        "jackpot_multiplier": round(target_ev / price, 2),
+        "items": items,
+    }
+
+def build_pasha_case_399():
+    """Кейс «pashacase» (пасха) за 299 ⭐: 15 новых предметов + 3 подарка
+    по 100 ⭐. Итого 18 предметов, сумма весов строго 1_000_000."""
+    price = 299
+    name = "pashacase"
+    image = "image/pashacase.webp"
+    target_ev = round(price * RTP, 2)   # 254.15
+
+    # 15 новых предметов (изображения из gift image/), цены в Stars (TON*80).
+    new_items = [
+        {"id": "heroic_helmets__her1-Photoroom", "name": "Heroic Helmets", "value": 13920, "image": "gift image/her1-Photoroom.png"},
+        {"id": "scared_cats__sca-Photoroom",      "name": "Scared Cats",    "value": 12320, "image": "gift image/sca-Photoroom.png"},
+        {"id": "loot_bags__loo1-Photoroom",       "name": "Loot Bags",      "value": 9022,  "image": "gift image/loo1-Photoroom.png"},
+        {"id": "nail_bracelets__nai1-Photoroom",  "name": "Nail Bracelets", "value": 8934,  "image": "gift image/nai1-Photoroom.png"},
+        {"id": "mighty_arms__mig1-Photoroom",     "name": "Mighty Arms",    "value": 8386,  "image": "gift image/mig1-Photoroom.png"},
+        {"id": "perfume_bottles__per-Photoroom",  "name": "Perfume Bottles", "value": 5146, "image": "gift image/per-Photoroom.png"},
+        {"id": "swiss_watches__swi-Photoroom",    "name": "Swiss Watches",  "value": 3674,  "image": "gift image/swi-Photoroom.png"},
+        {"id": "neko_helmets__nek-Photoroom",     "name": "Neko Helmets",   "value": 2820,  "image": "gift image/nek-Photoroom.png"},
+        {"id": "vintage_cigars__vin-Photoroom",   "name": "Vintage Cigars", "value": 2720,  "image": "gift image/vin-Photoroom.png"},
+        {"id": "trapped_hearts__tra-Photoroom",   "name": "Trapped Hearts", "value": 1191,  "image": "gift image/tra-Photoroom.png"},
+        {"id": "sleig_set__sle-Photoroom",        "name": "Sleig Set",      "value": 600,   "image": "gift image/sle-Photoroom.png"},
+        {"id": "jelly_bunnies__jel-Photoroom",    "name": "Jelly Bunnies",  "value": 558,   "image": "gift image/jel-Photoroom.png"},
+        {"id": "spring_baskets__spr-Photoroom",   "name": "Spring Baskets", "value": 441,   "image": "gift image/spr-Photoroom.png"},
+        {"id": "easter_eggs__eas1-Photoroom",     "name": "Easter Eggs",    "value": 294,   "image": "gift image/eas1-Photoroom.png"},
+        {"id": "ice_creams__ice1-Photoroom",      "name": "Ice Creams",     "value": 227,   "image": "gift image/ice1-Photoroom.png"},
+    ]
+
+    # 3 классических подарка за 100 ⭐ (реальные PNG из standard-gifts/).
+    classic100 = [
+        {"id": "trophy_100",    "name": "Trophy",       "value": 100, "image": "standard-gifts/trophy_100.png"},
+        {"id": "ring_100",      "name": "Diamond Ring", "value": 100, "image": "standard-gifts/ring_100.png"},
+        {"id": "diamond_100",   "name": "Diamond",      "value": 100, "image": "standard-gifts/diamond_100.png"},
+    ]
+
+    all_items = new_items + classic100   # 15 + 3 = 18
+    n = len(all_items)                    # 18
+    w = SCALE // n                        # 1_000_000 // 18 = 55 555
+    last_w = SCALE - w * n                # остаток
+    items = []
+    for k, it in enumerate(all_items):
+        wi = w + (last_w if k == 0 else 0)
+        items.append({
+            "id": it["id"], "type": "gift", "value": it["value"],
+            "weight": wi,
+            "drop_chance_percent": round(wi / SCALE * 100, 4),
+            "name": it["name"], "image": it["image"],
+        })
+
+    ev = sum(i["value"] * i["weight"] for i in items) / SCALE
+    rtp_pct = ev / price * 100
+
+    # Сортировка по цене: дорогие сверху, дешёвые вниз (стабильная).
+    items.sort(key=lambda it: it["value"], reverse=True)
+
+    return {
+        "id": "case_399",
+        "name": name,
+        "tier": "medium",
+        "price": price,
+        "image": image,
+        "target_ev": target_ev,
+        "calculated_ev": round(ev, 4),
+        "rtp_percent": round(rtp_pct, 4),
+        "jackpot_multiplier": round(target_ev / price, 2),
+        "items": items,
+    }
+
+
+def build_day_case_799():
+    """Кейс «daycase» за 399 ⭐: 18 новых предметов (изображения из gift image/)
+    + 2 классических подарка за 100 ⭐ (standard-gifts/).
+    Итого 20 предметов, сумма весов строго 1_000_000."""
+    price = 399
+    name = "daycase"
+    image = "image/daycase.webp"
+    target_ev = round(price * RTP, 2)   # 339.15
+
+    new_items = [
+        {"id": "nail_bracelets__nai-Photoroom",       "name": "Nail Bracelets", "value": 8934, "image": "gift image/nai-Photoroom.png"},
+        {"id": "gem_signets__gem1-Photoroom",         "name": "Gem Signets",    "value": 5023, "image": "gift image/gem1-Photoroom.png"},
+        {"id": "ion_gems__ion-Photoroom",             "name": "Ion Gems",       "value": 4638, "image": "gift image/ion-Photoroom.png"},
+        {"id": "magic_potions__mag1-Photoroom",       "name": "Magic Potions",  "value": 4397, "image": "gift image/mag1-Photoroom.png"},
+        {"id": "low_riders__low-Photoroom",           "name": "Low Riders",     "value": 3632, "image": "gift image/low-Photoroom.png"},
+        {"id": "sharp_tongues__sha1-Photoroom",       "name": "Sharp Tongues",  "value": 3111, "image": "gift image/sha1-Photoroom.png"},
+        {"id": "neko_helmets__nek1-Photoroom",        "name": "Neko Helmets",   "value": 2820, "image": "gift image/nek1-Photoroom.png"},
+        {"id": "vintage_cigars__vin-Photoroom",       "name": "Vintage Cigars", "value": 2720, "image": "gift image/vin-Photoroom.png"},
+        {"id": "electric_skulls__ele-Photoroom",      "name": "Electric Skulls","value": 1840, "image": "gift image/ele-Photoroom.png"},
+        {"id": "cupid_charms__cup2-Photoroom",        "name": "Cupid Charms",   "value": 1680, "image": "gift image/cup2-Photoroom.png"},
+        {"id": "crystal_balls__cry-Photoroom",        "name": "Crystal Balls",  "value": 960,  "image": "gift image/cry-Photoroom.png"},
+        {"id": "skull_flowers__sku-Photoroom",        "name": "Skull Flowers",  "value": 756,  "image": "gift image/sku-Photoroom.png"},
+        {"id": "evil_eyes__evi1-Photoroom",           "name": "Evil Eyes",      "value": 536,  "image": "gift image/evi1-Photoroom.png"},
+        {"id": "eternal_candles__ete-Photoroom",      "name": "Eternal Candles","value": 456,  "image": "gift image/ete-Photoroom.png"},
+        {"id": "swag_bags__swa1-Photoroom",           "name": "Swag Bags",      "value": 416,  "image": "gift image/swa1-Photoroom.png"},
+        {"id": "b_day_candles__bda2-Photoroom",       "name": "B-Day Candles",  "value": 334,  "image": "gift image/bda2-Photoroom.png"},
+        {"id": "witch_hats__wit-Photoroom",           "name": "Witch Hats",     "value": 331,  "image": "gift image/wit-Photoroom.png"},
+        {"id": "hex_pots__hex-Photoroom",             "name": "Hex Pots",       "value": 332,  "image": "gift image/hex-Photoroom.png"},
+    ]
+
+    # 2 классических подарка за 100 ⭐ (реальные PNG из standard-gifts/).
+    classic100 = [
+        {"id": "trophy_100",    "name": "Trophy",       "value": 100, "image": "standard-gifts/trophy_100.png"},
+        {"id": "diamond_100",   "name": "Diamond",      "value": 100, "image": "standard-gifts/diamond_100.png"},
+    ]
+
+    all_items = new_items + classic100   # 18 + 2 = 20
+    n = len(all_items)                    # 20
+    w = SCALE // n                        # 1_000_000 // 20 = 50 000
+    last_w = SCALE - w * n                # остаток
+    items = []
+    for k, it in enumerate(all_items):
+        wi = w + (last_w if k == 0 else 0)
+        items.append({
+            "id": it["id"], "type": "gift", "value": it["value"],
+            "weight": wi,
+            "drop_chance_percent": round(wi / SCALE * 100, 4),
+            "name": it["name"], "image": it["image"],
+        })
+
+    ev = sum(i["value"] * i["weight"] for i in items) / SCALE
+    rtp_pct = ev / price * 100
+
+    # Сортировка по цене: дорогие сверху, дешёвые вниз (стабильная).
+    items.sort(key=lambda it: it["value"], reverse=True)
+
+    return {
+        "id": "case_799",
+        "name": name,
+        "tier": "medium",
+        "price": price,
+        "image": image,
+        "target_ev": target_ev,
+        "calculated_ev": round(ev, 4),
+        "rtp_percent": round(rtp_pct, 4),
+        "jackpot_multiplier": round(target_ev / price, 2),
+        "items": items,
+    }
+
+
+def build_halouincase_1249():
+    """Кейс «halouincase» за 499 ⭐: 20 реальных предметов (изображения из gift image/).
+    Итого 20 предметов, сумма весов строго 1_000_000."""
+    price = 499
+    name = "halouincase"
+    image = "image/halouincase.webp"
+    target_ev = round(price * RTP, 2)   # 424.15
+
+    new_items = [
+        {"id": "witch_hats__wit-Photoroom",      "name": "Witch Hats",     "value": 331,  "image": "gift image/wit-Photoroom.png"},
+        {"id": "voodoo_dolls__voo-Photoroom",    "name": "Voodoo Dolls",   "value": 2563, "image": "gift image/voo-Photoroom.png"},
+        {"id": "valentine_boxes__val-Photoroom", "name": "Valentine Boxes","value": 852,  "image": "gift image/val-Photoroom.png"},
+        {"id": "top_hats__top-Photoroom",        "name": "Top Hats",       "value": 800,  "image": "gift image/top-Photoroom.png"},
+        {"id": "swiss_watches__swi-Photoroom",   "name": "Swiss Watches",  "value": 3674,  "image": "gift image/swi-Photoroom.png"},
+        {"id": "skull_flowers__sku-Photoroom",   "name": "Skull Flowers",  "value": 756,  "image": "gift image/sku-Photoroom.png"},
+        {"id": "scared_cats__sca-Photoroom",     "name": "Scared Cats",    "value": 12320, "image": "gift image/sca-Photoroom.png"},
+        {"id": "mini_oscars__min-Photoroom",     "name": "Mini Oscars",    "value": 5588,  "image": "gift image/min-Photoroom.png"},
+        {"id": "mighty_arms__mig2-Photoroom",    "name": "Mighty Arms",    "value": 8386,  "image": "gift image/mig2-Photoroom.png"},
+        {"id": "magic_potions__mag1-Photoroom",  "name": "Magic Potions",  "value": 4397,  "image": "gift image/mag1-Photoroom.png"},
+        {"id": "loot_bags__loo-Photoroom",       "name": "Loot Bags",      "value": 9022,  "image": "gift image/loo-Photoroom.png"},
+        {"id": "light_swords__lig-Photoroom",    "name": "Light Swords",   "value": 466,  "image": "gift image/lig-Photoroom.png"},
+        {"id": "ion_gems__ion1-Photoroom",       "name": "Ion Gems",       "value": 4638,  "image": "gift image/ion1-Photoroom.png"},
+        {"id": "genie_lamps__gen-Photoroom",     "name": "Genie Lamps",    "value": 2920,  "image": "gift image/gen-Photoroom.png"},
+        {"id": "gem_signets__gem1-Photoroom",    "name": "Gem Signets",    "value": 5023,  "image": "gift image/gem1-Photoroom.png"},
+        {"id": "flying_brooms__fly-Photoroom",   "name": "Flying Brooms",  "value": 880,   "image": "gift image/fly-Photoroom.png"},
+        {"id": "evil_eyes__evi1-Photoroom",      "name": "Evil Eyes",      "value": 536,   "image": "gift image/evi1-Photoroom.png"},
+        {"id": "electric_skulls__ele-Photoroom", "name": "Electric Skulls","value": 1840,  "image": "gift image/ele-Photoroom.png"},
+        {"id": "diamond_rings__dia1-Photoroom",  "name": "Diamond Rings",  "value": 2376,  "image": "gift image/dia1-Photoroom.png"},
+        {"id": "cupid_charms__cup-Photoroom",    "name": "Cupid Charms",   "value": 1680,  "image": "gift image/cup-Photoroom.png"},
+    ]
+
+    n = len(new_items)                    # 20
+    w = SCALE // n                        # 1_000_000 // 20 = 50 000
+    last_w = SCALE - w * n                # остаток (0)
+    items = []
+    for k, it in enumerate(new_items):
+        wi = w + (last_w if k == 0 else 0)
+        items.append({
+            "id": it["id"], "type": "gift", "value": it["value"],
+            "weight": wi,
+            "drop_chance_percent": round(wi / SCALE * 100, 4),
+            "name": it["name"], "image": it["image"],
+        })
+
+    ev = sum(i["value"] * i["weight"] for i in items) / SCALE
+    rtp_pct = ev / price * 100
+
+    # Сортировка по цене: дорогие сверху, дешёвые вниз (стабильная).
+    items.sort(key=lambda it: it["value"], reverse=True)
+
+    return {
+        "id": "case_1249",
+        "name": name,
+        "tier": "medium",
+        "price": price,
+        "image": image,
+        "target_ev": target_ev,
+        "calculated_ev": round(ev, 4),
+        "rtp_percent": round(rtp_pct, 4),
+        "jackpot_multiplier": round(target_ev / price, 2),
+        "items": items,
+    }
+
+
+def build_lovecase_1999():
+    """Кейс «lovecase» за 599 ⭐: 17 реальных предметов (изображения из gift image/).
+    Итого 17 предметов, сумма весов строго 1_000_000."""
+    price = 599
+    name = "lovecase"
+    image = "image/lovecase.webp"
+    target_ev = round(price * RTP, 2)   # 509.15
+
+    new_items = [
+        {"id": "witch_hats__wit1-Photoroom",       "name": "Witch Hats",     "value": 331,  "image": "gift image/wit1-Photoroom.png"},
+        {"id": "westside_signs__wes-Photoroom",    "name": "Westside Signs", "value": 7520, "image": "gift image/wes-Photoroom.png"},
+        {"id": "voodoo_dolls__voo-Photoroom",      "name": "Voodoo Dolls",   "value": 2563, "image": "gift image/voo-Photoroom.png"},
+        {"id": "valentine_boxes__val-Photoroom",   "name": "Valentine Boxes","value": 852,  "image": "gift image/val-Photoroom.png"},
+        {"id": "top_hats__top-Photoroom",          "name": "Top Hats",       "value": 800,  "image": "gift image/top-Photoroom.png"},
+        {"id": "spring_baskets__spr-Photoroom",    "name": "Spring Baskets", "value": 441,  "image": "gift image/spr-Photoroom.png"},
+        {"id": "sharp_tongues__sha1-Photoroom",    "name": "Sharp Tongues",  "value": 3111,  "image": "gift image/sha1-Photoroom.png"},
+        {"id": "precious_peaches__pre1-Photoroom", "name": "Precious Peaches","value": 19216,"image": "gift image/pre1-Photoroom.png"},
+        {"id": "perfume_bottles__per1-Photoroom",  "name": "Perfume Bottles", "value": 5146,  "image": "gift image/per1-Photoroom.png"},
+        {"id": "neko_helmets__nek-Photoroom",      "name": "Neko Helmets",   "value": 2820,  "image": "gift image/nek-Photoroom.png"},
+        {"id": "nail_bracelets__nai-Photoroom",    "name": "Nail Bracelets", "value": 8934,  "image": "gift image/nai-Photoroom.png"},
+        {"id": "magic_potions__mag1-Photoroom",    "name": "Magic Potions",  "value": 4397,  "image": "gift image/mag1-Photoroom.png"},
+        {"id": "low_riders__low1-Photoroom",       "name": "Low Riders",     "value": 3632,  "image": "gift image/low1-Photoroom.png"},
+        {"id": "loot_bags__loo-Photoroom",         "name": "Loot Bags",      "value": 9022,  "image": "gift image/loo-Photoroom.png"},
+        {"id": "ion_gems__ion2-Photoroom",         "name": "Ion Gems",       "value": 4638,  "image": "gift image/ion2-Photoroom.png"},
+        {"id": "light_swords__lig-Photoroom",      "name": "Light Swords",   "value": 466,   "image": "gift image/lig-Photoroom.png"},
+        {"id": "flying_brooms__fly-Photoroom",     "name": "Flying Brooms",  "value": 880,   "image": "gift image/fly-Photoroom.png"},
+    ]
+
+    n = len(new_items)                    # 17
+    w = SCALE // n                        # 1_000_000 // 17 = 58 823
+    last_w = SCALE - w * n                # остаток (9 — добавится к первой карточке)
+    items = []
+    for k, it in enumerate(new_items):
+        wi = w + (last_w if k == 0 else 0)
+        items.append({
+            "id": it["id"], "type": "gift", "value": it["value"],
+            "weight": wi,
+            "drop_chance_percent": round(wi / SCALE * 100, 4),
+            "name": it["name"], "image": it["image"],
+        })
+
+    ev = sum(i["value"] * i["weight"] for i in items) / SCALE
+    rtp_pct = ev / price * 100
+
+    # Сортировка по цене: дорогие сверху, дешёвые вниз (стабильная).
+    items.sort(key=lambda it: it["value"], reverse=True)
+
+    return {
+        "id": "case_1999",
+        "name": name,
+        "tier": "medium",
+        "price": price,
+        "image": image,
+        "target_ev": target_ev,
+        "calculated_ev": round(ev, 4),
+        "rtp_percent": round(rtp_pct, 4),
+        "jackpot_multiplier": round(target_ev / price, 2),
+        "items": items,
+    }
+
+
+def build_gemcase_2999():
+    """Кейс «gemcase» за 999 ⭐: 19 реальных предметов (изображения из gift image/).
+    Итого 19 предметов, сумма весов строго 1_000_000."""
+    price = 999
+    name = "gemcase"
+    image = "image/gemcase.webp"
+    target_ev = round(price * RTP, 2)   # 849.15
+
+    new_items = [
+        {"id": "westside_signs__wes-Photoroom",   "name": "Westside Signs", "value": 7520,  "image": "gift image/wes-Photoroom.png"},
+        {"id": "voodoo_dolls__voo-Photoroom",     "name": "Voodoo Dolls",   "value": 2563,  "image": "gift image/voo-Photoroom.png"},
+        {"id": "valentine_boxes__val-Photoroom",  "name": "Valentine Boxes","value": 852,   "image": "gift image/val-Photoroom.png"},
+        {"id": "trapped_hearts__tra-Photoroom",   "name": "Trapped Hearts", "value": 1191,  "image": "gift image/tra-Photoroom.png"},
+        {"id": "top_hats__top-Photoroom",         "name": "Top Hats",       "value": 800,   "image": "gift image/top-Photoroom.png"},
+        {"id": "sharp_tongues__sha-Photoroom",    "name": "Sharp Tongues",  "value": 3111,  "image": "gift image/sha-Photoroom.png"},
+        {"id": "jingle_bells__san-Photoroom",     "name": "Jingle Bells",   "value": 639,   "image": "gift image/san-Photoroom.png"},
+        {"id": "mighty_arms__mig2-Photoroom",     "name": "Mighty Arms",    "value": 8386,  "image": "gift image/mig2-Photoroom.png"},
+        {"id": "magic_potions__mag1-Photoroom",   "name": "Magic Potions",  "value": 4397,  "image": "gift image/mag1-Photoroom.png"},
+        {"id": "low_riders__low1-Photoroom",      "name": "Low Riders",     "value": 3632,  "image": "gift image/low1-Photoroom.png"},
+        {"id": "loot_bags__loo-Photoroom",        "name": "Loot Bags",      "value": 9022,  "image": "gift image/loo-Photoroom.png"},
+        {"id": "light_swords__lig-Photoroom",     "name": "Light Swords",   "value": 466,   "image": "gift image/lig-Photoroom.png"},
+        {"id": "ion_gems__ion2-Photoroom",        "name": "Ion Gems",       "value": 4638,  "image": "gift image/ion2-Photoroom.png"},
+        {"id": "artisan_bricks__art-Photoroom",   "name": "Artisan Bricks", "value": 4952,  "image": "gift image/art-Photoroom.png"},
+        {"id": "astral_shards__ast3-Photoroom",   "name": "Astral Shards",  "value": 10400, "image": "gift image/ast3-Photoroom.png"},
+        {"id": "b_day_candles__bda1-Photoroom",   "name": "B-Day Candles",  "value": 334,   "image": "gift image/bda1-Photoroom.png"},
+        {"id": "candy_canes__can-Photoroom",      "name": "Candy Canes",    "value": 318,   "image": "gift image/can-Photoroom.png"},
+        {"id": "bonded_rings__bon-Photoroom",     "name": "Bonded Rings",   "value": 3040,  "image": "gift image/bon-Photoroom.png"},
+        {"id": "cupid_charms__cup-Photoroom",     "name": "Cupid Charms",   "value": 1680,  "image": "gift image/cup-Photoroom.png"},
+    ]
+
+    n = len(new_items)                    # 19
+    w = SCALE // n                        # 1_000_000 // 19 = 52 631
+    last_w = SCALE - w * n                # остаток (11 — добавится к первой карточке)
+    items = []
+    for k, it in enumerate(new_items):
+        wi = w + (last_w if k == 0 else 0)
+        items.append({
+            "id": it["id"], "type": "gift", "value": it["value"],
+            "weight": wi,
+            "drop_chance_percent": round(wi / SCALE * 100, 4),
+            "name": it["name"], "image": it["image"],
+        })
+
+    ev = sum(i["value"] * i["weight"] for i in items) / SCALE
+    rtp_pct = ev / price * 100
+
+    # Сортировка по цене: дорогие сверху, дешёвые вниз (стабильная).
+    items.sort(key=lambda it: it["value"], reverse=True)
+
+    return {
+        "id": "case_2999",
+        "name": name,
+        "tier": "elite",
+        "price": price,
+        "image": image,
+        "target_ev": target_ev,
+        "calculated_ev": round(ev, 4),
+        "rtp_percent": round(rtp_pct, 4),
+        "jackpot_multiplier": round(target_ev / price, 2),
+        "items": items,
+    }
+
+
+def build_forestcase_4999():
+    """Кейс «forestcase» за 1499 ⭐: 21 реальный предмет (изображения из gift image/).
+    Итого 21 предмет, сумма весов строго 1_000_000."""
+    price = 1499
+    name = "forestcase"
+    image = "image/forestcase.webp"
+    target_ev = round(price * RTP, 2)   # 1274.15
+
+    new_items = [
+        {"id": "swiss_watches__swi-Photoroom",     "name": "Swiss Watches",  "value": 3674,  "image": "gift image/swi-Photoroom.png"},
+        {"id": "swag_bags__swa-Photoroom",         "name": "Swag Bags",      "value": 416,   "image": "gift image/swa-Photoroom.png"},
+        {"id": "scared_cats__sca1-Photoroom",      "name": "Scared Cats",    "value": 12320, "image": "gift image/sca1-Photoroom.png"},
+        {"id": "precious_peaches__pre1-Photoroom", "name": "Precious Peaches","value": 19216,"image": "gift image/pre1-Photoroom.png"},
+        {"id": "perfume_bottles__per1-Photoroom",  "name": "Perfume Bottles", "value": 5146,  "image": "gift image/per1-Photoroom.png"},
+        {"id": "nail_bracelets__nai2-Photoroom",   "name": "Nail Bracelets", "value": 8934,  "image": "gift image/nai2-Photoroom.png"},
+        {"id": "mini_oscars__min1-Photoroom",      "name": "Mini Oscars",    "value": 5588,  "image": "gift image/min1-Photoroom.png"},
+        {"id": "love_candles__lov-Photoroom",      "name": "Love Candles",   "value": 654,   "image": "gift image/lov-Photoroom.png"},
+        {"id": "loot_bags__loo1-Photoroom",        "name": "Loot Bags",      "value": 9022,  "image": "gift image/loo1-Photoroom.png"},
+        {"id": "jolly_chimps__jol-Photoroom",      "name": "Jolly Chimps",   "value": 507,   "image": "gift image/jol-Photoroom.png"},
+        {"id": "heroic_helmets__her-Photoroom",    "name": "Heroic Helmets", "value": 13920, "image": "gift image/her-Photoroom.png"},
+        {"id": "cookie_hearts__coo-Photoroom",      "name": "Cookie Hearts",  "value": 367,   "image": "gift image/coo-Photoroom.png"},
+        {"id": "genie_lamps__gen-Photoroom",       "name": "Genie Lamps",    "value": 2920,  "image": "gift image/gen-Photoroom.png"},
+        {"id": "gem_signets__gem-Photoroom",       "name": "Gem Signets",    "value": 5023,  "image": "gift image/gem-Photoroom.png"},
+        {"id": "durovs_caps__dur1-Photoroom",      "name": "Durov's Caps",   "value": 31200, "image": "gift image/dur1-Photoroom.png"},
+        {"id": "diamond_rings__dia-Photoroom",     "name": "Diamond Rings",  "value": 2376,  "image": "gift image/dia-Photoroom.png"},
+        {"id": "cupid_charms__cup2-Photoroom",     "name": "Cupid Charms",   "value": 1680,  "image": "gift image/cup2-Photoroom.png"},
+        {"id": "bonded_rings__bon-Photoroom",      "name": "Bonded Rings",   "value": 3040,  "image": "gift image/bon-Photoroom.png"},
+        {"id": "scared_cats__sca-Photoroom",       "name": "Scared Cats",    "value": 12320, "image": "gift image/sca-Photoroom.png"},
+        {"id": "artisan_bricks__art2-Photoroom",   "name": "Artisan Bricks", "value": 4952,  "image": "gift image/art2-Photoroom.png"},
+        {"id": "astral_shards__ast2-Photoroom",    "name": "Astral Shards",  "value": 10400, "image": "gift image/ast2-Photoroom.png"},
+    ]
+
+    n = len(new_items)                    # 21
+    w = SCALE // n                        # 1_000_000 // 21 = 47 619
+    last_w = SCALE - w * n                # остаток (1 — добавится к первой карточке)
+    items = []
+    for k, it in enumerate(new_items):
+        wi = w + (last_w if k == 0 else 0)
+        items.append({
+            "id": it["id"], "type": "gift", "value": it["value"],
+            "weight": wi,
+            "drop_chance_percent": round(wi / SCALE * 100, 4),
+            "name": it["name"], "image": it["image"],
+        })
+
+    ev = sum(i["value"] * i["weight"] for i in items) / SCALE
+    rtp_pct = ev / price * 100
+
+    # Сортировка по цене: дорогие сверху, дешёвые вниз (стабильная).
+    items.sort(key=lambda it: it["value"], reverse=True)
+
+    return {
+        "id": "case_4999",
+        "name": name,
+        "tier": "elite",
+        "price": price,
+        "image": image,
+        "target_ev": target_ev,
+        "calculated_ev": round(ev, 4),
+        "rtp_percent": round(rtp_pct, 4),
+        "jackpot_multiplier": round(target_ev / price, 2),
+        "items": items,
+    }
+
+
+def build_hellcase_9999():
+    """Кейс «hellcase» за 2999 ⭐: 16 реальных предметов (изображения из gift image/).
+    Итого 16 предметов, сумма весов строго 1_000_000."""
+    price = 2999
+    name = "hellcase"
+    image = "image/hellcase.webp"
+    target_ev = round(price * RTP, 2)   # 2549.15
+
+    new_items = [
+        {"id": "heroic_helmets__her3-Photoroom",  "name": "Heroic Helmets", "value": 13920, "image": "gift image/her3-Photoroom.png"},
+        {"id": "heart_lockets__hea2-Photoroom",   "name": "Heart Lockets",  "value": 88000, "image": "gift image/hea2-Photoroom.png"},
+        {"id": "westside_signs__wes-Photoroom",   "name": "Westside Signs", "value": 7520,  "image": "gift image/wes-Photoroom.png"},
+        {"id": "voodoo_dolls__voo-Photoroom",     "name": "Voodoo Dolls",   "value": 2563,  "image": "gift image/voo-Photoroom.png"},
+        {"id": "top_hats__top-Photoroom",         "name": "Top Hats",       "value": 800,   "image": "gift image/top-Photoroom.png"},
+        {"id": "sharp_tongues__sha-Photoroom",    "name": "Sharp Tongues",  "value": 3111,  "image": "gift image/sha-Photoroom.png"},
+        {"id": "perfume_bottles__per1-Photoroom", "name": "Perfume Bottles", "value": 5146,  "image": "gift image/per1-Photoroom.png"},
+        {"id": "mighty_arms__mig2-Photoroom",     "name": "Mighty Arms",    "value": 8386,  "image": "gift image/mig2-Photoroom.png"},
+        {"id": "magic_potions__mag1-Photoroom",   "name": "Magic Potions",  "value": 4397,  "image": "gift image/mag1-Photoroom.png"},
+        {"id": "mad_pumpkins__mad-Photoroom",     "name": "Mad Pumpkins",   "value": 736,   "image": "gift image/mad-Photoroom.png"},
+        {"id": "loot_bags__loo-Photoroom",        "name": "Loot Bags",      "value": 9022,  "image": "gift image/loo-Photoroom.png"},
+        {"id": "ion_gems__ion2-Photoroom",        "name": "Ion Gems",       "value": 4638,  "image": "gift image/ion2-Photoroom.png"},
+        {"id": "diamond_rings__dia1-Photoroom",   "name": "Diamond Rings",  "value": 2376,  "image": "gift image/dia1-Photoroom.png"},
+        {"id": "cupid_charms__cup1-Photoroom",    "name": "Cupid Charms",   "value": 1680,  "image": "gift image/cup1-Photoroom.png"},
+        {"id": "astral_shards__ast3-Photoroom",   "name": "Astral Shards",  "value": 10400, "image": "gift image/ast3-Photoroom.png"},
+        {"id": "artisan_bricks__art-Photoroom",   "name": "Artisan Bricks", "value": 4952,  "image": "gift image/art-Photoroom.png"},
+    ]
+
+    n = len(new_items)                    # 16
+    w = SCALE // n                        # 1_000_000 // 16 = 62 500
+    last_w = SCALE - w * n                # остаток (0)
+    items = []
+    for k, it in enumerate(new_items):
+        wi = w + (last_w if k == 0 else 0)
+        items.append({
+            "id": it["id"], "type": "gift", "value": it["value"],
+            "weight": wi,
+            "drop_chance_percent": round(wi / SCALE * 100, 4),
+            "name": it["name"], "image": it["image"],
+        })
+
+    ev = sum(i["value"] * i["weight"] for i in items) / SCALE
+    rtp_pct = ev / price * 100
+
+    # Сортировка по цене: дорогие сверху, дешёвые вниз (стабильная).
+    items.sort(key=lambda it: it["value"], reverse=True)
+
+    return {
+        "id": "case_9999",
+        "name": name,
+        "tier": "elite",
+        "price": price,
+        "image": image,
+        "target_ev": target_ev,
+        "calculated_ev": round(ev, 4),
+        "rtp_percent": round(rtp_pct, 4),
+        "jackpot_multiplier": round(target_ev / price, 2),
+        "items": items,
+    }
+
+
+def build_pokercase_19999():
+    """Кейс «pokercase» за 3999 ⭐: 27 реальных предметов (изображения из gift image/).
+    Итого 27 предметов, сумма весов строго 1_000_000."""
+    price = 3999
+    name = "pokercase"
+    image = "image/pokercase.webp"
+    target_ev = round(price * RTP, 2)   # 3399.15
+
+    new_items = [
+        {"id": "plush_pepes__plu-Photoroom",       "name": "Plush Pepes",     "value": 411920, "image": "gift image/plu-Photoroom.png"},
+        {"id": "plush_pepes__plu1-Photoroom",      "name": "Plush Pepes",     "value": 411920, "image": "gift image/plu1-Photoroom.png"},
+        {"id": "westside_signs__wes-Photoroom",    "name": "Westside Signs",  "value": 7520,   "image": "gift image/wes-Photoroom.png"},
+        {"id": "westside_signs__wes1-Photoroom",   "name": "Westside Signs",  "value": 7520,   "image": "gift image/wes1-Photoroom.png"},
+        {"id": "scared_cats__sca3-Photoroom",      "name": "Scared Cats",     "value": 12320,  "image": "gift image/sca3-Photoroom.png"},
+        {"id": "scared_cats__sca2-Photoroom",      "name": "Scared Cats",     "value": 12320,  "image": "gift image/sca2-Photoroom.png"},
+        {"id": "precious_peaches__pre1-Photoroom", "name": "Precious Peaches","value": 19216,  "image": "gift image/pre1-Photoroom.png"},
+        {"id": "precious_peaches__pre-Photoroom",  "name": "Precious Peaches","value": 19216,  "image": "gift image/pre-Photoroom.png"},
+        {"id": "mighty_arms__mig-Photoroom",       "name": "Mighty Arms",     "value": 8386,   "image": "gift image/mig-Photoroom.png"},
+        {"id": "magic_potions__mag1-Photoroom",    "name": "Magic Potions",   "value": 4397,   "image": "gift image/mag1-Photoroom.png"},
+        {"id": "loot_bags__loo-Photoroom",         "name": "Loot Bags",       "value": 9022,   "image": "gift image/loo-Photoroom.png"},
+        {"id": "loot_bags__loo1-Photoroom",        "name": "Loot Bags",       "value": 9022,   "image": "gift image/loo1-Photoroom.png"},
+        {"id": "ion_gems__ion4-Photoroom",         "name": "Ion Gems",        "value": 4638,   "image": "gift image/ion4-Photoroom.png"},
+        {"id": "ion_gems__ion5-Photoroom",         "name": "Ion Gems",        "value": 4638,   "image": "gift image/ion5-Photoroom.png"},
+        {"id": "heroic_helmets__her1-Photoroom",   "name": "Heroic Helmets",  "value": 13920,  "image": "gift image/her1-Photoroom.png"},
+        {"id": "heroic_helmets__her2-Photoroom",   "name": "Heroic Helmets",  "value": 13920,  "image": "gift image/her2-Photoroom.png"},
+        {"id": "heart_lockets__hea3-Photoroom",    "name": "Heart Lockets",   "value": 88000,  "image": "gift image/hea3-Photoroom.png"},
+        {"id": "durov_s_caps__dur1-Photoroom",     "name": "Durov's Caps",    "value": 31200,  "image": "gift image/dur1-Photoroom.png"},
+        {"id": "durov_s_caps__dur-Photoroom",      "name": "Durov's Caps",    "value": 31200,  "image": "gift image/dur-Photoroom.png"},
+        {"id": "diamond_rings__dia-Photoroom",     "name": "Diamond Rings",   "value": 2376,   "image": "gift image/dia-Photoroom.png"},
+        {"id": "diamond_rings__dia1-Photoroom",    "name": "Diamond Rings",   "value": 2376,   "image": "gift image/dia1-Photoroom.png"},
+        {"id": "artisan_bricks__art1-Photoroom",   "name": "Artisan Bricks",  "value": 4952,   "image": "gift image/art1-Photoroom.png"},
+        {"id": "artisan_bricks__art2-Photoroom",   "name": "Artisan Bricks",  "value": 4952,   "image": "gift image/art2-Photoroom.png"},
+        {"id": "neko_helmets__nek-Photoroom",      "name": "Neko Helmets",    "value": 2820,   "image": "gift image/nek-Photoroom.png"},
+        {"id": "neko_helmets__nek1-Photoroom",     "name": "Neko Helmets",    "value": 2820,   "image": "gift image/nek1-Photoroom.png"},
+        {"id": "sharp_tongues__sha-Photoroom",     "name": "Sharp Tongues",   "value": 3111,   "image": "gift image/sha-Photoroom.png"},
+        {"id": "sharp_tongues__sha1-Photoroom",    "name": "Sharp Tongues",   "value": 3111,   "image": "gift image/sha1-Photoroom.png"},
+    ]
+
+    n = len(new_items)                    # 27
+    w = SCALE // n                        # 1_000_000 // 27 = 37 037
+    last_w = SCALE - w * n                # остаток (1 — добавится к первой карточке)
+    items = []
+    for k, it in enumerate(new_items):
+        wi = w + (last_w if k == 0 else 0)
+        items.append({
+            "id": it["id"], "type": "gift", "value": it["value"],
+            "weight": wi,
+            "drop_chance_percent": round(wi / SCALE * 100, 4),
+            "name": it["name"], "image": it["image"],
+        })
+
+    ev = sum(i["value"] * i["weight"] for i in items) / SCALE
+    rtp_pct = ev / price * 100
+
+    # Сортировка по цене: дорогие сверху, дешёвые вниз (стабильная).
+    items.sort(key=lambda it: it["value"], reverse=True)
+
+    return {
+        "id": "case_19999",
+        "name": name,
+        "tier": "elite",
+        "price": price,
+        "image": image,
+        "target_ev": target_ev,
+        "calculated_ev": round(ev, 4),
+        "rtp_percent": round(rtp_pct, 4),
+        "jackpot_multiplier": round(target_ev / price, 2),
+        "items": items,
+    }
+
+
 # ===========================================================================
-# СПЕЦИФИКАЦИИ 12 КЕЙСОВ (16–22 предмета в каждом)
+# СПЕЦИФИКАЦИИ 12 КЕЙСОВ (16–22 предметов в каждом)
 # Состав: 1 джекпот + common + rare + epic + консоляции + регулятор.
 # ===========================================================================
 CASES = [
     # -------------------------------------- БАЗОВЫЕ (x50) --------------------
     # ----- БАЗОВЫЙ ПОДАРОЧНЫЙ КЕЙС (16 предметов, RTP 85%) -----
     build_gift_case_19(),
-    build_case(case_id="case_49", name="Basic 49", tier="basic", price=49,
-               jackpot_value=2450, jackpot_weight=4000,
-               common=[(stars(20), 24000), (stars(30), 21000), (stars(45), 19000),
-                       (H15, 16000), (B15, 15000), (G25, 14000), (R25, 12000)],
-               rare=[(C50, 18000), (BQ50, 17000), (CH50, 16000), (T100, 15000)],
-               epic=[(RI100, 10000), (D100, 9000), (nf(200), 8000)]),
-    build_case(case_id="case_99", name="Basic 99", tier="basic", price=99,
-               jackpot_value=4950, jackpot_weight=4000,
-               common=[(stars(25), 27000), (stars(50), 24000), (stars(75), 21000),
-                       (H15, 20000), (B15, 19000), (G25, 18000), (R25, 17000)],
-               rare=[(C50, 22000), (BQ50, 21000), (RI100, 20000), (D100, 19000)],
-               epic=[(nf(200), 11000), (nf(300), 10000), (nf(450), 9000)]),
+    build_newyear_case_39(),
+    build_toxic_case_99(),
 
     # -------------------------------------- СРЕДНИЕ (x100) ------------------
-    build_case(case_id="case_199", name="Medium 199", tier="medium", price=199,
-               jackpot_value=19900, jackpot_weight=1200,
-               common=[(stars(35), 30000), (stars(80), 27000), (stars(120), 24000),
-                       (H15, 23000), (B15, 22000), (G25, 21000), (R25, 20000)],
-               rare=[(C50, 25000), (BQ50, 24000), (RI100, 23000), (nf(200), 20000)],
-               epic=[(nf(400), 12000), (nf(600), 11000), (nf(900), 10000)]),
+    build_ocean_case_199(),
 ]
 
 # ------------------------------- СРЕДНИЕ (продолжение) х100 ---------------
 CASES.extend([
-    build_case(case_id="case_399", name="Medium 399", tier="medium", price=399,
-               jackpot_value=39900, jackpot_weight=1200,
-               common=[(stars(80), 33000), (stars(150), 30000), (stars(250), 27000),
-                       (H15, 26000), (B15, 25000), (G25, 24000), (RI100, 23000)],
-               rare=[(nf(400), 28000), (nf(450), 26000), (nf(480), 24000), (nf(380), 22000)],
-               epic=[(nf(1000), 13000), (nf(1500), 12000), (nf(1900), 11000)]),
-    build_case(case_id="case_799", name="Medium 799", tier="medium", price=799,
-               jackpot_value=160000, jackpot_weight=1200,
-               common=[(stars(150), 34000), (stars(300), 31000), (stars(500), 28000),
-                       (H15, 27000), (B15, 26000), (G25, 25000), (RI100, 24000)],
-               rare=[(nf(800), 29000), (nf(900), 27000), (nf(950), 25000), (nf(760), 23000)],
-               epic=[(nf(2000), 13000), (nf(3000), 12000), (nf(3900), 11000)]),
+    build_pasha_case_399(),
+    build_day_case_799(),
 ])
 
 # ------------------------------- ЭЛИТНЫЕ (1249-4999) ------------------------
 CASES.extend([
-    build_case(case_id="case_1249", name="Elite 1249", tier="elite", price=1249,
-               jackpot_value=250000, jackpot_weight=400,
-               common=[(stars(200), 35000), (stars(500), 32000), (stars(800), 29000),
-                       (H15, 28000), (B15, 27000), (G25, 26000), (RI100, 25000)],
-               rare=[(nf(1300), 30000), (nf(1500), 28000), (nf(1600), 26000), (nf(1200), 24000)],
-               epic=[(nf(3200), 13000), (nf(6000), 12000), (nf(7400), 11000)]),
-    build_case(case_id="case_1999", name="Elite 1999", tier="elite", price=1999,
-               jackpot_value=400000, jackpot_weight=300,
-               common=[(stars(350), 36000), (stars(700), 33000), (stars(1100), 30000),
-                       (H15, 29000), (B15, 28000), (G25, 27000), (RI100, 26000)],
-               rare=[(nf(2200), 31000), (nf(2500), 29000), (nf(2700), 27000), (nf(2000), 25000)],
-               epic=[(nf(5200), 14000), (nf(8000), 13000), (nf(9800), 12000)]),
-    build_case(case_id="case_2999", name="Elite 2999", tier="elite", price=2999,
-               jackpot_value=600000, jackpot_weight=250,
-               common=[(stars(400), 36000), (stars(900), 34000), (stars(1400), 32000),
-                       (H15, 30000), (B15, 29000), (G25, 28000), (RI100, 27000)],
-               rare=[(nf(3000), 34000), (nf(3400), 32000), (nf(3700), 30000), (nf(2800), 28000)],
-               epic=[(nf(8200), 14000), (nf(14000), 13000), (nf(17000), 12000)]),
-    build_case(case_id="case_4999", name="Elite 4999", tier="elite", price=4999,
-               jackpot_value=1000000, jackpot_weight=200,
-               common=[(stars(600), 36000), (stars(1200), 34000), (stars(2000), 32000),
-                       (H15, 30000), (B15, 29000), (G25, 28000), (RI100, 27000)],
-               rare=[(nf(5000), 32000), (nf(5500), 30000), (nf(4800), 28000), (nf(4600), 26000)],
-               epic=[(nf(12000), 14000), (nf(20000), 13000), (nf(24900), 12000)]),
+    build_halouincase_1249(),
+    build_lovecase_1999(),
+    build_gemcase_2999(),
+    build_forestcase_4999(),
 
     # --------------------------------- МИФИК (9999-19999) --------------------------
-    build_case(case_id="case_9999", name="Mythic 9999", tier="elite", price=9999,
-               jackpot_value=2000000, jackpot_weight=180,
-               common=[(stars(1500), 34000), (stars(3000), 32000), (stars(5000), 30000),
-                       (nf(8000), 28000), (nf(10000), 26000), (nf(13000), 24000), (RI100, 23000)],
-               rare=[(nf(10000), 34000), (nf(11000), 32000), (nf(12000), 30000), (nf(9000), 28000)],
-               epic=[(nf(25000), 15000), (nf(40000), 14000), (nf(49000), 13000)]),
-    build_case(case_id="case_19999", name="Mythic 19999", tier="elite", price=19999,
-               jackpot_value=4000000, jackpot_weight=120,
-               common=[(stars(2500), 34000), (stars(6000), 32000), (stars(10000), 30000),
-                       (nf(16000), 28000), (nf(20000), 26000), (nf(24000), 24000), (RI100, 23000)],
-               rare=[(nf(20000), 34000), (nf(23000), 32000), (nf(25000), 30000), (nf(18000), 28000)],
-               epic=[(nf(50000), 15000), (nf(80000), 14000), (nf(99000), 13000)]),
+    build_hellcase_9999(),
+    build_pokercase_19999(),
 ])
 
 # ===========================================================================
@@ -360,7 +1047,8 @@ def main():
     for c in CASES:
         js_cases.append({
             "id": c["id"], "name": c["name"], "tier": c["tier"],
-            "price": c["price"], "target_ev": c["target_ev"],
+            "price": c["price"], "image": c["image"],
+            "target_ev": c["target_ev"],
             "jackpot_multiplier": c["jackpot_multiplier"],
             "items": [{"id": i["id"], "type": i["type"], "value": i["value"],
                        "weight": i["weight"],

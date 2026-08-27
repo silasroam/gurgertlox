@@ -1,12 +1,12 @@
 /* ============================================
    CURRENCY SYSTEM — Casino Criptoporno
-   Фиксированный курс: 1 TON = 160 Telegram Stars (XTR)
+   Фиксированный курс: 1 TON = 80 Telegram Stars (XTR)
    ============================================ */
 (function () {
     'use strict';
 
     // ---- Фиксированный курс конвертации ----
-    const TON_TO_STARS_RATE = 160;
+    const TON_TO_STARS_RATE = 80;
 
     // ---- Конвертеры ----
     function tonToStars(tonAmount) {
@@ -34,7 +34,7 @@
     // ---- Валюта отображения ----
     // base:    'ton'   — исходные цены в giftsData.js заданы в TON (напр. 61.90 TON).
     // display: 'ton'   — по умолчанию показываем главной ценой TON,
-    //                    а Stars (XTR) = ton * 160 — вторичной подписью.
+    //                    а Stars (XTR) = ton * 80 — вторичной подписью.
     const state = {
         base: 'ton',   // внутренняя валюта цен/баланса — TON
         display: 'ton' // активная валюта отображения
@@ -43,8 +43,8 @@
     /**
      * Переводит внутреннее «сырое» значение (в TON) в валюту отображения.
      * base='ton', display='ton'  -> value
-     * base='ton', display='stars'-> value * 160
-     * base='stars',display='ton' -> value / 160
+     * base='ton', display='stars'-> value * 80
+     * base='stars',display='ton' -> value / 80
      */
     function toDisplay(rawValue) {
         const v = Number(rawValue) || 0;

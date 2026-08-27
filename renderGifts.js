@@ -7,13 +7,13 @@
 //
 // ВАЛЮТА: базовые цены в giftsData.js заданы в TON (напр. 61.90 TON).
 //   * Главная цена на карточке — в исходной валюте предмета (TON).
-//   * Подпись снизу — эквивалент в Telegram Stars (XTR): 1 TON = 160 ⭐.
+//   * Подпись снизу — эквивалент в Telegram Stars (XTR): 1 TON = 80 ⭐.
 import { giftsData } from './giftsData.js';
 
-// Фиксированный курс: 1 TON = 160 Telegram Stars (XTR).
-const STARS_PER_TON = 160;
+// Фиксированный курс: 1 TON = 80 Telegram Stars (XTR).
+const STARS_PER_TON = 80;
 
-// Переводит тон (base) в Telegram Stars: stars = ton * 160.
+// Переводит тон (base) в Telegram Stars: stars = ton * 80.
 function tonToStars(tonAmount) {
     return (Number(tonAmount) || 0) * STARS_PER_TON;
 }

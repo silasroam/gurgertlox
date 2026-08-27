@@ -1,8 +1,8 @@
 // giftMatcher.js — динамический подбор NFT-подарка из базы (giftsData.js) по цене.
-// Курс: 1 TON = 160 Telegram Stars (XTR) — синхронизировано с currency.js.
+// Курс: 1 TON = 80 Telegram Stars (XTR) — синхронизировано с currency.js.
 import { giftsData } from './giftsData.js';
 
-const TON_TO_STARS = 160;
+const TON_TO_STARS = 80;
 
 // Нормализованная база: у каждого предмета есть цена в Stars и путь к PNG.
 const DB = giftsData.map((g) => ({

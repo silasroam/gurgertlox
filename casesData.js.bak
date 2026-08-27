@@ -454,7 +454,7 @@ export const cases = [
   {
     "id": "case_199",
     "name": "oceancase",
-    "tier": "basic",
+    "tier": "medium",
     "price": 149,
     "image": "image/oceancase.webp",
     "target_ev": 126.65,
@@ -982,7 +982,7 @@ export const cases = [
   {
     "id": "case_1249",
     "name": "halouincase",
-    "tier": "medium",
+    "tier": "elite",
     "price": 499,
     "image": "image/halouincase.webp",
     "target_ev": 424.15,
@@ -1173,7 +1173,7 @@ export const cases = [
   {
     "id": "case_1999",
     "name": "lovecase",
-    "tier": "medium",
+    "tier": "elite",
     "price": 599,
     "image": "image/lovecase.webp",
     "target_ev": 509.15,

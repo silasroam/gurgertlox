@@ -1865,7 +1865,11 @@ button {
     padding: 2px;
     box-sizing: border-box;
     margin: 0 5px; /* небольшие отступы между карточками */
-    overflow: hidden;
+    /* Слоты полностью прозрачные, рамки скрыты — картинка «висит» на фоне,
+       как в блоке содержимого. Увеличенные иконки не обрезаются слотом. */
+    background: transparent;
+    border: none;
+    overflow: visible;
 }
 
 #caseDetailRouletteStrip .roulette-item-visual {
@@ -1881,19 +1885,30 @@ button {
 .roulette-item-name { font-size: 7px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
 #caseDetailRouletteStrip .roulette-item-visual img {
-    /* Обычные подарки (standard-gifts): уменьшаем до 75% карточки */
-    width: 75%;
-    height: 75%;
-    object-fit: contain;
-    margin: 0 auto;
-    display: block;
+    /* Обычные подарки: размер увеличен ровно в 2 раза (75% -> 150% от слота) */
+    display: block;      /* центрирование без inline-зазора */
+    width: 150%;         /* x2 от прежних 75% */
+    height: 150%;        /* x2 от прежних 75% */
+    max-width: none;     /* чтобы увеличение не срезалось ограничениями */
+    flex-shrink: 0;      /* flex не сжимает увеличенную картинку */
+    object-fit: contain; /* пропорции сохраняются */
+    margin: 0 auto;      /* центр слота по горизонтали */
     box-sizing: border-box;
 }
-/* NFT-предметы: увеличиваем масштаб (в PNG много внутренних прозрачных отступов) */
+/* Подарки из standard-gifts: компактные (75% слота), но увеличены на 20% -> 90%.
+   Целиком помещаются в слоте, с аккуратными отступами сверху/снизу.
+   Остальные предметы (gift image/*.png) остаются в размере 150%. */
+#caseDetailRouletteStrip .roulette-item-visual img.gift-standard {
+    width: 90%;
+    height: 90%;
+    max-width: 90%;
+    max-height: 90%;
+}
+/* NFT-предметы: масштаб увеличен в 2 раза от прежнего (120% -> 240%, 1.65 -> 3.3) */
 #caseDetailRouletteStrip .roulette-item-visual img.is-nft {
-    max-width: 120% !important;
-    max-height: 120% !important;
-    transform: scale(1.65);
+    max-width: 240% !important;
+    max-height: 240% !important;
+    transform: scale(3.3);
     transform-origin: center;
 }
 
@@ -2104,49 +2119,75 @@ button {
 }
 
 .drop-card {
-    min-height: 210px;
-    padding: 2px;
-    border-radius: 14px;
-    background: linear-gradient(145deg, rgba(30, 41, 59, 0.6) 0%, rgba(15, 23, 42, 0.75) 100%);
-    backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+    /* Карточка предмета = структура карточки кейса с главной: прозрачный фон
+       без общей рамки; сверху прозрачная зона с картинкой, снизу тёмная
+       плашка .item-info-card с названием и ценой. */
     position: relative;
-    overflow: hidden; /* чтобы увеличенная NFT не вылезала за края рамки */
+    border-radius: 12px;
+    background: transparent;
+    border: none;
+    backdrop-filter: none;
+    box-shadow: none;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    align-items: stretch;
+    overflow: visible;
     box-sizing: border-box;
     transition: transform 0.15s ease;
 }
 
+.drop-card:hover {
+    transform: translateY(-4px);
+}
+
 .drop-card-visual {
+    /* Прозрачная зона предмета — картинка висит прямо на фоне страницы (как кейсы) */
     width: 100%;
     height: 189px;
-    border-radius: 10px;
-    background: rgba(22, 131, 255, 0.1);
-    border: 1px solid rgba(22, 131, 255, 0.2);
+    border-radius: 12px;
+    background: transparent;
+    border: none;
     display: flex;
     align-items: center;
     justify-content: center;
+    /* Картинка предмета увеличена в 2 раза и может выходить за границы зоны — не обрезаем */
+    overflow: visible;
     font-size: 10px;
     font-weight: 800;
     color: rgba(234, 246, 255, 0.3);
 }
 
+/* ---------- Нижний блок: тёмная плашка с названием и ценой (как .case-card-body) ---------- */
+.item-info-card {
+    position: relative; /* поверх зоны предмета при увеличенных NFT-картинках */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 6px;
+    padding: 10px 8px;
+    background: #12141d;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+}
+
+/* Предмет в карточке содержимого: размер увеличен ровно в 2 раза (75% -> 150%) */
 .drop-card-visual img,
 .drop-card-visual .item-placeholder {
-    width: 75%;
-    height: 75%;
-    object-fit: contain;
-    margin: 0 auto;
+    display: block;        /* убирает inline-зазор под картинкой */
+    width: 150%;           /* x2 от прежних 75% */
+    height: 150%;          /* x2 от прежних 75% */
+    max-width: none;       /* снимаем ограничение, чтобы увеличение применялось полностью */
+    flex-shrink: 0;        /* flex-контейнер не должен сжимать увеличенную картинку */
+    object-fit: contain;   /* пропорции сохраняются, рисунок ровно в 2 раза больше */
+    margin: 0 auto;        /* центрирование по горизонтали над плашкой с названием/ценой */
 }
-/* NFT-предметы в сетке: увеличиваем масштаб (прозрачные отступы PNG) */
+/* NFT-предметы в сетке: масштаб увеличен в 2 раза от прежнего (120% -> 240%, 1.65 -> 3.3) */
 .drop-card-visual img.is-nft {
-    max-width: 120% !important;
-    max-height: 120% !important;
-    transform: scale(1.65);
+    max-width: 240% !important;
+    max-height: 240% !important;
+    transform: scale(3.3);
     transform-origin: center;
 }
 
@@ -2159,8 +2200,6 @@ button {
     overflow: hidden;
     text-overflow: ellipsis;
     width: 100%;
-    opacity: 0.85;
-    margin-top: 2px;
 }
 
 .drop-card-price {
@@ -2169,8 +2208,9 @@ button {
     color: #1683FF;
     display: flex;
     align-items: center;
+    justify-content: center;
+    text-align: center;
     gap: 4px;
-    opacity: 0.9;
 }
 
 /* ---------- MEDIA QUERIES ---------- */

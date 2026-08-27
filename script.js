@@ -108,13 +108,13 @@
 
     setupHeaderAvatar();
 
-    /* ============ CURRENCY SYSTEM (TON ⇄ Stars, 1 TON = 160 XTR) ============ */
+    /* ============ CURRENCY SYSTEM (TON ⇄ Stars, 1 TON = 80 XTR) ============ */
     // БАЗОВАЯ валюта проекта — TON: цены в giftsData.js (напр. 61.90) — это TON.
-    // Stars (XTR) = ton * 160. Конвертеры и курс живут в currency.js (window.CURRENCY).
+    // Stars (XTR) = ton * 80. Конвертеры и курс живут в currency.js (window.CURRENCY).
     const CURR = window.CURRENCY || {
-        TON_TO_STARS_RATE: 160,
-        tonToStars: (t) => (Number(t) || 0) * 160,
-        starsToTon: (s) => (Number(s) || 0) / 160,
+        TON_TO_STARS_RATE: 80,
+        tonToStars: (t) => (Number(t) || 0) * 80,
+        starsToTon: (s) => (Number(s) || 0) / 80,
         formatNumber: (v, d) => (Number(v) || 0).toLocaleString('ru-RU', { minimumFractionDigits: (d === undefined ? 2 : d), maximumFractionDigits: (d === undefined ? 2 : d) }),
         toDisplay: (v) => (Number(v) || 0),
         formatDisplay: (v, d) => CURR_STR((Number(v) || 0)),
@@ -162,7 +162,7 @@
         const profile = document.getElementById('profileBalanceAmount');
         const emoji = document.getElementById('balanceEmoji');
 
-        // Показываем баланс СТРОГО в Stars: stars = ton * 160, целым числом (напр. 15 680 ⭐).
+        // Показываем баланс СТРОГО в Stars: stars = ton * 80, целым числом (напр. 7 840 ⭐).
         const stars = CURR.tonToStars(rawBalanceTon);
         const displayVal = Math.round(stars).toLocaleString('ru-RU', { maximumFractionDigits: 0 });
 
@@ -194,7 +194,7 @@
     }
 
     // ВТОРИЧНАЯ подпись в другой валюте.
-    // В режиме TON: главная=TON, подпись=Stars (≈ ton*160 ⭐).
+    // В режиме TON: главная=TON, подпись=Stars (≈ ton*80 ⭐).
     // В режиме Stars: главная=Stars, подпись=TON.
     function dualPriceHTML(rawTon) {
         if (CURR.isTonDisplay()) {
@@ -1125,9 +1125,14 @@
             price.className = 'drop-card-price';
             price.innerHTML = priceStarsHTML(item.price);
 
+            // Название и цена — в тёмной плашке внутри карточки (как .case-card-body у кейсов)
+            const infoCard = document.createElement('div');
+            infoCard.className = 'item-info-card';
+            infoCard.appendChild(name);
+            infoCard.appendChild(price);
+
             card.appendChild(visual);
-            card.appendChild(name);
-            card.appendChild(price);
+            card.appendChild(infoCard);
             caseDetailItems.appendChild(card);
         });
         caseDetailContentsCount.textContent = items.length;
@@ -1147,6 +1152,11 @@
             img.draggable = false;
             // NFT-предметы получают маркер .is-nft — увеличиваем их масштаб в рулетке
             if (item.type === 'nft') img.classList.add('is-nft');
+            // Подарки из standard-gifts компактные — уменьшаем их в ленте на 50%
+            // (150% -> 75% слота). Остальные предметы остаются без изменений.
+            if (String(item.image).indexOf('standard-gifts/') === 0) {
+                img.classList.add('gift-standard');
+            }
             // Защита: битая картинка -> дефолтная иконка звезды
             img.onerror = function () { this.onerror = null; this.src = 'image/star.png'; };
             visual.appendChild(img);
@@ -1244,18 +1254,20 @@
         }
     }
 
-    function openCaseDetail(name, price, caseId) {
-        currentCaseId = caseId || null;
-        caseDetailTitle.textContent = name || 'QUANT';
-        caseDetailBasePrice = price || 100;   // цена кейса в Telegram Stars
+    function openCaseDetail(caseData) {
+        const name = (caseData && caseData.name) || 'QUANT';
+        const price = (caseData && caseData.price) || 100;   // цена кейса в Telegram Stars
+        const caseImage = (caseData && caseData.image) || '';
+        currentCaseId = caseData ? caseData.id || null : null;
+        caseDetailTitle.textContent = name;
+        caseDetailBasePrice = price;
         caseDetailMult = 1;
 
-        // Картинка кейса в превью. Кейс СТАРТ (30) показывает hellcase.webp
+        // Картинка кейса в превью — берём обложку кейса из casesData (image/<name>.webp).
         const detailVisual = document.getElementById('caseDetailVisual');
         if (detailVisual) {
-            const isHellcase = (parseInt(price, 10) === 30) || (name && name.toUpperCase().indexOf('СТАРТ') !== -1);
-            if (isHellcase) {
-                detailVisual.innerHTML = '<img src="image/hellcase.webp" alt="Хеллкейс" class="roulette-page-case-img">';
+            if (caseImage) {
+                detailVisual.innerHTML = '<img src="' + caseImage + '" alt="' + name + '" class="roulette-page-case-img">';
             } else {
                 detailVisual.innerHTML = '';
             }
@@ -1635,8 +1647,8 @@
 
     // ── Цены кейсов на главной ──────────────────────────────────────────────
     // Источник правды — класс `case-NNN` (цена кейса в TON).
-    // Главная/единственная цена на карточке — в Telegram Stars: stars = ton * 160.
-    // Пример: вместо «10 TON / ≈ 1 600 ⭐» на карточке ровно «1 600 ⭐».
+    // Главная/единственная цена на карточке — в Telegram Stars: stars = ton * 80.
+    // Пример: вместо «10 TON / ≈ 800 ⭐» на карточке ровно «800 ⭐».
     function renderCaseCardPrices() {
         document.querySelectorAll('.case-card').forEach((card) => {
             const m = card.className.match(/case-(\d+)/);
@@ -1660,7 +1672,7 @@
         const def = (Array.isArray(window.CASES) ? window.CASES : [])
             .find((c) => c.id === card.dataset.case);
         if (!def) return;
-        openCaseDetail(def.name, def.price, def.id);
+        openCaseDetail(def);
     });
 
     /* ============ WITHDRAW MODAL ============ */
