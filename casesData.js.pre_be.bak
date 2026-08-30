@@ -1,0 +1,6344 @@
+// Auto-generated from TelegramGiftsAssests-main — не редактировать вручную.
+// 12 кейсов: только реальные NFT (цена = floor_price_ton*80 ⭐).
+// min = 0.5*price кейса; max = price*20 (<999) / price*50 (999–<3999) / price*150 (>=3999).
+// Использование (ES-модуль):
+//   import { cases } from './casesData.js'
+// Пересборка: python rebuild_cases.py
+
+export const cases = [
+  {
+    "id": "case_19",
+    "name": "sumercase",
+    "tier": "basic",
+    "price": 19,
+    "image": "image/sumercase.webp",
+    "target_ev": 16.15,
+    "jackpot_multiplier": 0.85,
+    "items": [
+      {
+        "id": "snoop_dogg",
+        "type": "gift",
+        "value": 370,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Snoop Dogg",
+        "image": "TelegramGiftsAssests-main/webp/by_name/snoop_dogg.webp"
+      },
+      {
+        "id": "faith_amulet",
+        "type": "gift",
+        "value": 366,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Faith Amulet",
+        "image": "TelegramGiftsAssests-main/webp/by_name/faith_amulet.webp"
+      },
+      {
+        "id": "pretty_posy",
+        "type": "gift",
+        "value": 359,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Pretty Posy",
+        "image": "TelegramGiftsAssests-main/webp/by_name/pretty_posy.webp"
+      },
+      {
+        "id": "homemade_cake",
+        "type": "gift",
+        "value": 355,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Homemade Cake",
+        "image": "TelegramGiftsAssests-main/webp/by_name/homemade_cake.webp"
+      },
+      {
+        "id": "mousse_cake",
+        "type": "gift",
+        "value": 353,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Mousse Cake",
+        "image": "TelegramGiftsAssests-main/webp/by_name/mousse_cake.webp"
+      },
+      {
+        "id": "bday_candle",
+        "type": "gift",
+        "value": 352,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "B-Day Candle",
+        "image": "TelegramGiftsAssests-main/webp/by_name/bday_candle.webp"
+      },
+      {
+        "id": "restless_jar",
+        "type": "gift",
+        "value": 352,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Restless Jar",
+        "image": "TelegramGiftsAssests-main/webp/by_name/restless_jar.webp"
+      },
+      {
+        "id": "witch_hat",
+        "type": "gift",
+        "value": 350,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Witch Hat",
+        "image": "TelegramGiftsAssests-main/webp/by_name/witch_hat.webp"
+      },
+      {
+        "id": "bow_tie",
+        "type": "gift",
+        "value": 348,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Bow Tie",
+        "image": "TelegramGiftsAssests-main/webp/by_name/bow_tie.webp"
+      },
+      {
+        "id": "cookie_heart",
+        "type": "gift",
+        "value": 344,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Cookie Heart",
+        "image": "TelegramGiftsAssests-main/webp/by_name/cookie_heart.webp"
+      },
+      {
+        "id": "desk_calendar",
+        "type": "gift",
+        "value": 342,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Desk Calendar",
+        "image": "TelegramGiftsAssests-main/webp/by_name/desk_calendar.webp"
+      },
+      {
+        "id": "spiced_wine",
+        "type": "gift",
+        "value": 336,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Spiced Wine",
+        "image": "TelegramGiftsAssests-main/webp/by_name/spiced_wine.webp"
+      },
+      {
+        "id": "stellar_rocket",
+        "type": "gift",
+        "value": 336,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Stellar Rocket",
+        "image": "TelegramGiftsAssests-main/webp/by_name/stellar_rocket.webp"
+      },
+      {
+        "id": "spy_agaric",
+        "type": "gift",
+        "value": 334,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Spy Agaric",
+        "image": "TelegramGiftsAssests-main/webp/by_name/spy_agaric.webp"
+      },
+      {
+        "id": "clover_pin",
+        "type": "gift",
+        "value": 327,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Clover Pin",
+        "image": "TelegramGiftsAssests-main/webp/by_name/clover_pin.webp"
+      },
+      {
+        "id": "snow_mittens",
+        "type": "gift",
+        "value": 327,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Snow Mittens",
+        "image": "TelegramGiftsAssests-main/webp/by_name/snow_mittens.webp"
+      },
+      {
+        "id": "snow_globe",
+        "type": "gift",
+        "value": 322,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Snow Globe",
+        "image": "TelegramGiftsAssests-main/webp/by_name/snow_globe.webp"
+      },
+      {
+        "id": "money_pot",
+        "type": "gift",
+        "value": 320,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Money Pot",
+        "image": "TelegramGiftsAssests-main/webp/by_name/money_pot.webp"
+      },
+      {
+        "id": "jackinthebox",
+        "type": "gift",
+        "value": 312,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Jack-in-the-Box",
+        "image": "TelegramGiftsAssests-main/webp/by_name/jackinthebox.webp"
+      },
+      {
+        "id": "victory_medal",
+        "type": "gift",
+        "value": 310,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Victory Medal",
+        "image": "TelegramGiftsAssests-main/webp/by_name/victory_medal.webp"
+      },
+      {
+        "id": "happy_brownie",
+        "type": "gift",
+        "value": 306,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Happy Brownie",
+        "image": "TelegramGiftsAssests-main/webp/by_name/happy_brownie.webp"
+      },
+      {
+        "id": "mood_pack",
+        "type": "gift",
+        "value": 304,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Mood Pack",
+        "image": "TelegramGiftsAssests-main/webp/by_name/mood_pack.webp"
+      },
+      {
+        "id": "star_notepad",
+        "type": "gift",
+        "value": 301,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Star Notepad",
+        "image": "TelegramGiftsAssests-main/webp/by_name/star_notepad.webp"
+      },
+      {
+        "id": "fresh_socks",
+        "type": "gift",
+        "value": 300,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Fresh Socks",
+        "image": "TelegramGiftsAssests-main/webp/by_name/fresh_socks.webp"
+      },
+      {
+        "id": "hex_pot",
+        "type": "gift",
+        "value": 299,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Hex Pot",
+        "image": "TelegramGiftsAssests-main/webp/by_name/hex_pot.webp"
+      },
+      {
+        "id": "party_sparkler",
+        "type": "gift",
+        "value": 288,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Party Sparkler",
+        "image": "TelegramGiftsAssests-main/webp/by_name/party_sparkler.webp"
+      },
+      {
+        "id": "timeless_book",
+        "type": "gift",
+        "value": 288,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Timeless Book",
+        "image": "TelegramGiftsAssests-main/webp/by_name/timeless_book.webp"
+      },
+      {
+        "id": "liberty_figure",
+        "type": "gift",
+        "value": 282,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Liberty Figure",
+        "image": "TelegramGiftsAssests-main/webp/by_name/liberty_figure.webp"
+      },
+      {
+        "id": "ginger_cookie",
+        "type": "gift",
+        "value": 280,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Ginger Cookie",
+        "image": "TelegramGiftsAssests-main/webp/by_name/ginger_cookie.webp"
+      },
+      {
+        "id": "santa_hat",
+        "type": "gift",
+        "value": 280,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Santa Hat",
+        "image": "TelegramGiftsAssests-main/webp/by_name/santa_hat.webp"
+      },
+      {
+        "id": "hypno_lollipop",
+        "type": "gift",
+        "value": 272,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Hypno Lollipop",
+        "image": "TelegramGiftsAssests-main/webp/by_name/hypno_lollipop.webp"
+      },
+      {
+        "id": "jester_hat",
+        "type": "gift",
+        "value": 264,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Jester Hat",
+        "image": "TelegramGiftsAssests-main/webp/by_name/jester_hat.webp"
+      },
+      {
+        "id": "pet_snake",
+        "type": "gift",
+        "value": 264,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Pet Snake",
+        "image": "TelegramGiftsAssests-main/webp/by_name/pet_snake.webp"
+      },
+      {
+        "id": "whip_cupcake",
+        "type": "gift",
+        "value": 264,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Whip Cupcake",
+        "image": "TelegramGiftsAssests-main/webp/by_name/whip_cupcake.webp"
+      },
+      {
+        "id": "holiday_drink",
+        "type": "gift",
+        "value": 258,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Holiday Drink",
+        "image": "TelegramGiftsAssests-main/webp/by_name/holiday_drink.webp"
+      },
+      {
+        "id": "easter_egg",
+        "type": "gift",
+        "value": 257,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Easter Egg",
+        "image": "TelegramGiftsAssests-main/webp/by_name/easter_egg.webp"
+      },
+      {
+        "id": "winter_wreath",
+        "type": "gift",
+        "value": 257,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Winter Wreath",
+        "image": "TelegramGiftsAssests-main/webp/by_name/winter_wreath.webp"
+      },
+      {
+        "id": "ice_cream",
+        "type": "gift",
+        "value": 256,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Ice Cream",
+        "image": "TelegramGiftsAssests-main/webp/by_name/ice_cream.webp"
+      },
+      {
+        "id": "lol_pop",
+        "type": "gift",
+        "value": 254,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Lol Pop",
+        "image": "TelegramGiftsAssests-main/webp/by_name/lol_pop.webp"
+      },
+      {
+        "id": "big_year",
+        "type": "gift",
+        "value": 252,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Big Year",
+        "image": "TelegramGiftsAssests-main/webp/by_name/big_year.webp"
+      },
+      {
+        "id": "tama_gadget",
+        "type": "gift",
+        "value": 252,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Tama Gadget",
+        "image": "TelegramGiftsAssests-main/webp/by_name/tama_gadget.webp"
+      },
+      {
+        "id": "instant_ramen",
+        "type": "gift",
+        "value": 250,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Instant Ramen",
+        "image": "TelegramGiftsAssests-main/webp/by_name/instant_ramen.webp"
+      },
+      {
+        "id": "vice_cream",
+        "type": "gift",
+        "value": 250,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Vice Cream",
+        "image": "TelegramGiftsAssests-main/webp/by_name/vice_cream.webp"
+      },
+      {
+        "id": "snake_box",
+        "type": "gift",
+        "value": 249,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Snake Box",
+        "image": "TelegramGiftsAssests-main/webp/by_name/snake_box.webp"
+      },
+      {
+        "id": "candy_cane",
+        "type": "gift",
+        "value": 248,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Candy Cane",
+        "image": "TelegramGiftsAssests-main/webp/by_name/candy_cane.webp"
+      },
+      {
+        "id": "xmas_stocking",
+        "type": "gift",
+        "value": 247,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Xmas Stocking",
+        "image": "TelegramGiftsAssests-main/webp/by_name/xmas_stocking.webp"
+      },
+      {
+        "id": "pool_float",
+        "type": "gift",
+        "value": 245,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Pool Float",
+        "image": "TelegramGiftsAssests-main/webp/by_name/pool_float.webp"
+      },
+      {
+        "id": "lunar_snake",
+        "type": "gift",
+        "value": 236,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Lunar Snake",
+        "image": "TelegramGiftsAssests-main/webp/by_name/lunar_snake.webp"
+      },
+      {
+        "id": "chill_flame",
+        "type": "gift",
+        "value": 236,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Chill Flame",
+        "image": "TelegramGiftsAssests-main/webp/by_name/chill_flame.webp"
+      },
+      {
+        "id": "trophy_100",
+        "type": "gift",
+        "value": 100,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Trophy",
+        "image": "standard-gifts/trophy_100.png"
+      },
+      {
+        "id": "ring_100",
+        "type": "gift",
+        "value": 100,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Diamond Ring",
+        "image": "standard-gifts/ring_100.png"
+      },
+      {
+        "id": "diamond_100",
+        "type": "gift",
+        "value": 100,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Diamond",
+        "image": "standard-gifts/diamond_100.png"
+      },
+      {
+        "id": "cake_50",
+        "type": "gift",
+        "value": 50,
+        "weight": 4288,
+        "drop_chance_percent": 0.4288,
+        "name": "Birthday Cake",
+        "image": "standard-gifts/cake_50.png"
+      },
+      {
+        "id": "bouquet_50",
+        "type": "gift",
+        "value": 50,
+        "weight": 4687,
+        "drop_chance_percent": 0.4687,
+        "name": "Bouquet",
+        "image": "standard-gifts/bouquet_50.png"
+      },
+      {
+        "id": "rocket_50",
+        "type": "gift",
+        "value": 50,
+        "weight": 4687,
+        "drop_chance_percent": 0.4687,
+        "name": "Rocket",
+        "image": "standard-gifts/rocket_50.png"
+      },
+      {
+        "id": "champagne_50",
+        "type": "gift",
+        "value": 50,
+        "weight": 4687,
+        "drop_chance_percent": 0.4687,
+        "name": "Champagne",
+        "image": "standard-gifts/champagne_50.png"
+      },
+      {
+        "id": "gift_25",
+        "type": "gift",
+        "value": 25,
+        "weight": 72186,
+        "drop_chance_percent": 7.2186,
+        "name": "Gift Box",
+        "image": "standard-gifts/gift_25.png"
+      },
+      {
+        "id": "rose_25",
+        "type": "gift",
+        "value": 25,
+        "weight": 72186,
+        "drop_chance_percent": 7.2186,
+        "name": "Red Rose",
+        "image": "standard-gifts/rose_25.png"
+      },
+      {
+        "id": "heart_15",
+        "type": "gift",
+        "value": 15,
+        "weight": 418788,
+        "drop_chance_percent": 41.8788,
+        "name": "Heart",
+        "image": "standard-gifts/heart_15.png"
+      },
+      {
+        "id": "bear_15",
+        "type": "gift",
+        "value": 15,
+        "weight": 418439,
+        "drop_chance_percent": 41.8439,
+        "name": "Teddy Bear",
+        "image": "standard-gifts/bear_15.png"
+      }
+    ],
+    "calculated_ev": 17.1,
+    "rtp_percent": 90.0,
+    "_achieved": 17.1,
+    "_ok": true,
+    "_vmin": 15,
+    "_alpha": 3.44
+  },
+  {
+    "id": "case_49",
+    "name": "newyearcase",
+    "tier": "basic",
+    "price": 39,
+    "image": "image/newyearcase.webp",
+    "target_ev": 33.15,
+    "jackpot_multiplier": 0.85,
+    "items": [
+      {
+        "id": "jolly_chimp",
+        "type": "gift",
+        "value": 519,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Jolly Chimp",
+        "image": "TelegramGiftsAssests-main/webp/by_name/jolly_chimp.webp"
+      },
+      {
+        "id": "joyful_bundle",
+        "type": "gift",
+        "value": 518,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Joyful Bundle",
+        "image": "TelegramGiftsAssests-main/webp/by_name/joyful_bundle.webp"
+      },
+      {
+        "id": "surge_board",
+        "type": "gift",
+        "value": 505,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Surge Board",
+        "image": "TelegramGiftsAssests-main/webp/by_name/surge_board.webp"
+      },
+      {
+        "id": "sleigh_bell",
+        "type": "gift",
+        "value": 474,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Sleigh Bell",
+        "image": "TelegramGiftsAssests-main/webp/by_name/sleigh_bell.webp"
+      },
+      {
+        "id": "light_sword",
+        "type": "gift",
+        "value": 440,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Light Sword",
+        "image": "TelegramGiftsAssests-main/webp/by_name/light_sword.webp"
+      },
+      {
+        "id": "moon_pendant",
+        "type": "gift",
+        "value": 428,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Moon Pendant",
+        "image": "TelegramGiftsAssests-main/webp/by_name/moon_pendant.webp"
+      },
+      {
+        "id": "lush_bouquet",
+        "type": "gift",
+        "value": 423,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Lush Bouquet",
+        "image": "TelegramGiftsAssests-main/webp/by_name/lush_bouquet.webp"
+      },
+      {
+        "id": "swag_bag",
+        "type": "gift",
+        "value": 398,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Swag Bag",
+        "image": "TelegramGiftsAssests-main/webp/by_name/swag_bag.webp"
+      },
+      {
+        "id": "input_key",
+        "type": "gift",
+        "value": 397,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Input Key",
+        "image": "TelegramGiftsAssests-main/webp/by_name/input_key.webp"
+      },
+      {
+        "id": "eternal_candle",
+        "type": "gift",
+        "value": 395,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Eternal Candle",
+        "image": "TelegramGiftsAssests-main/webp/by_name/eternal_candle.webp"
+      },
+      {
+        "id": "spring_basket",
+        "type": "gift",
+        "value": 392,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Spring Basket",
+        "image": "TelegramGiftsAssests-main/webp/by_name/spring_basket.webp"
+      },
+      {
+        "id": "snoop_dogg",
+        "type": "gift",
+        "value": 370,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Snoop Dogg",
+        "image": "TelegramGiftsAssests-main/webp/by_name/snoop_dogg.webp"
+      },
+      {
+        "id": "faith_amulet",
+        "type": "gift",
+        "value": 366,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Faith Amulet",
+        "image": "TelegramGiftsAssests-main/webp/by_name/faith_amulet.webp"
+      },
+      {
+        "id": "pretty_posy",
+        "type": "gift",
+        "value": 359,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Pretty Posy",
+        "image": "TelegramGiftsAssests-main/webp/by_name/pretty_posy.webp"
+      },
+      {
+        "id": "homemade_cake",
+        "type": "gift",
+        "value": 355,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Homemade Cake",
+        "image": "TelegramGiftsAssests-main/webp/by_name/homemade_cake.webp"
+      },
+      {
+        "id": "mousse_cake",
+        "type": "gift",
+        "value": 353,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Mousse Cake",
+        "image": "TelegramGiftsAssests-main/webp/by_name/mousse_cake.webp"
+      },
+      {
+        "id": "bday_candle",
+        "type": "gift",
+        "value": 352,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "B-Day Candle",
+        "image": "TelegramGiftsAssests-main/webp/by_name/bday_candle.webp"
+      },
+      {
+        "id": "restless_jar",
+        "type": "gift",
+        "value": 352,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Restless Jar",
+        "image": "TelegramGiftsAssests-main/webp/by_name/restless_jar.webp"
+      },
+      {
+        "id": "witch_hat",
+        "type": "gift",
+        "value": 350,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Witch Hat",
+        "image": "TelegramGiftsAssests-main/webp/by_name/witch_hat.webp"
+      },
+      {
+        "id": "bow_tie",
+        "type": "gift",
+        "value": 348,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Bow Tie",
+        "image": "TelegramGiftsAssests-main/webp/by_name/bow_tie.webp"
+      },
+      {
+        "id": "cookie_heart",
+        "type": "gift",
+        "value": 344,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Cookie Heart",
+        "image": "TelegramGiftsAssests-main/webp/by_name/cookie_heart.webp"
+      },
+      {
+        "id": "desk_calendar",
+        "type": "gift",
+        "value": 342,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Desk Calendar",
+        "image": "TelegramGiftsAssests-main/webp/by_name/desk_calendar.webp"
+      },
+      {
+        "id": "spiced_wine",
+        "type": "gift",
+        "value": 336,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Spiced Wine",
+        "image": "TelegramGiftsAssests-main/webp/by_name/spiced_wine.webp"
+      },
+      {
+        "id": "stellar_rocket",
+        "type": "gift",
+        "value": 336,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Stellar Rocket",
+        "image": "TelegramGiftsAssests-main/webp/by_name/stellar_rocket.webp"
+      },
+      {
+        "id": "spy_agaric",
+        "type": "gift",
+        "value": 334,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Spy Agaric",
+        "image": "TelegramGiftsAssests-main/webp/by_name/spy_agaric.webp"
+      },
+      {
+        "id": "clover_pin",
+        "type": "gift",
+        "value": 327,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Clover Pin",
+        "image": "TelegramGiftsAssests-main/webp/by_name/clover_pin.webp"
+      },
+      {
+        "id": "snow_mittens",
+        "type": "gift",
+        "value": 327,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Snow Mittens",
+        "image": "TelegramGiftsAssests-main/webp/by_name/snow_mittens.webp"
+      },
+      {
+        "id": "snow_globe",
+        "type": "gift",
+        "value": 322,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Snow Globe",
+        "image": "TelegramGiftsAssests-main/webp/by_name/snow_globe.webp"
+      },
+      {
+        "id": "money_pot",
+        "type": "gift",
+        "value": 320,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Money Pot",
+        "image": "TelegramGiftsAssests-main/webp/by_name/money_pot.webp"
+      },
+      {
+        "id": "jackinthebox",
+        "type": "gift",
+        "value": 312,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Jack-in-the-Box",
+        "image": "TelegramGiftsAssests-main/webp/by_name/jackinthebox.webp"
+      },
+      {
+        "id": "victory_medal",
+        "type": "gift",
+        "value": 310,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Victory Medal",
+        "image": "TelegramGiftsAssests-main/webp/by_name/victory_medal.webp"
+      },
+      {
+        "id": "happy_brownie",
+        "type": "gift",
+        "value": 306,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Happy Brownie",
+        "image": "TelegramGiftsAssests-main/webp/by_name/happy_brownie.webp"
+      },
+      {
+        "id": "mood_pack",
+        "type": "gift",
+        "value": 304,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Mood Pack",
+        "image": "TelegramGiftsAssests-main/webp/by_name/mood_pack.webp"
+      },
+      {
+        "id": "star_notepad",
+        "type": "gift",
+        "value": 301,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Star Notepad",
+        "image": "TelegramGiftsAssests-main/webp/by_name/star_notepad.webp"
+      },
+      {
+        "id": "fresh_socks",
+        "type": "gift",
+        "value": 300,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Fresh Socks",
+        "image": "TelegramGiftsAssests-main/webp/by_name/fresh_socks.webp"
+      },
+      {
+        "id": "hex_pot",
+        "type": "gift",
+        "value": 299,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Hex Pot",
+        "image": "TelegramGiftsAssests-main/webp/by_name/hex_pot.webp"
+      },
+      {
+        "id": "party_sparkler",
+        "type": "gift",
+        "value": 288,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Party Sparkler",
+        "image": "TelegramGiftsAssests-main/webp/by_name/party_sparkler.webp"
+      },
+      {
+        "id": "timeless_book",
+        "type": "gift",
+        "value": 288,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Timeless Book",
+        "image": "TelegramGiftsAssests-main/webp/by_name/timeless_book.webp"
+      },
+      {
+        "id": "liberty_figure",
+        "type": "gift",
+        "value": 282,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Liberty Figure",
+        "image": "TelegramGiftsAssests-main/webp/by_name/liberty_figure.webp"
+      },
+      {
+        "id": "ginger_cookie",
+        "type": "gift",
+        "value": 280,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Ginger Cookie",
+        "image": "TelegramGiftsAssests-main/webp/by_name/ginger_cookie.webp"
+      },
+      {
+        "id": "santa_hat",
+        "type": "gift",
+        "value": 280,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Santa Hat",
+        "image": "TelegramGiftsAssests-main/webp/by_name/santa_hat.webp"
+      },
+      {
+        "id": "hypno_lollipop",
+        "type": "gift",
+        "value": 272,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Hypno Lollipop",
+        "image": "TelegramGiftsAssests-main/webp/by_name/hypno_lollipop.webp"
+      },
+      {
+        "id": "jester_hat",
+        "type": "gift",
+        "value": 264,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Jester Hat",
+        "image": "TelegramGiftsAssests-main/webp/by_name/jester_hat.webp"
+      },
+      {
+        "id": "pet_snake",
+        "type": "gift",
+        "value": 264,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Pet Snake",
+        "image": "TelegramGiftsAssests-main/webp/by_name/pet_snake.webp"
+      },
+      {
+        "id": "whip_cupcake",
+        "type": "gift",
+        "value": 264,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Whip Cupcake",
+        "image": "TelegramGiftsAssests-main/webp/by_name/whip_cupcake.webp"
+      },
+      {
+        "id": "holiday_drink",
+        "type": "gift",
+        "value": 258,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Holiday Drink",
+        "image": "TelegramGiftsAssests-main/webp/by_name/holiday_drink.webp"
+      },
+      {
+        "id": "easter_egg",
+        "type": "gift",
+        "value": 257,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Easter Egg",
+        "image": "TelegramGiftsAssests-main/webp/by_name/easter_egg.webp"
+      },
+      {
+        "id": "winter_wreath",
+        "type": "gift",
+        "value": 257,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Winter Wreath",
+        "image": "TelegramGiftsAssests-main/webp/by_name/winter_wreath.webp"
+      },
+      {
+        "id": "ice_cream",
+        "type": "gift",
+        "value": 256,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Ice Cream",
+        "image": "TelegramGiftsAssests-main/webp/by_name/ice_cream.webp"
+      },
+      {
+        "id": "lol_pop",
+        "type": "gift",
+        "value": 254,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Lol Pop",
+        "image": "TelegramGiftsAssests-main/webp/by_name/lol_pop.webp"
+      },
+      {
+        "id": "big_year",
+        "type": "gift",
+        "value": 252,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Big Year",
+        "image": "TelegramGiftsAssests-main/webp/by_name/big_year.webp"
+      },
+      {
+        "id": "tama_gadget",
+        "type": "gift",
+        "value": 252,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Tama Gadget",
+        "image": "TelegramGiftsAssests-main/webp/by_name/tama_gadget.webp"
+      },
+      {
+        "id": "instant_ramen",
+        "type": "gift",
+        "value": 250,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Instant Ramen",
+        "image": "TelegramGiftsAssests-main/webp/by_name/instant_ramen.webp"
+      },
+      {
+        "id": "vice_cream",
+        "type": "gift",
+        "value": 250,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Vice Cream",
+        "image": "TelegramGiftsAssests-main/webp/by_name/vice_cream.webp"
+      },
+      {
+        "id": "snake_box",
+        "type": "gift",
+        "value": 249,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Snake Box",
+        "image": "TelegramGiftsAssests-main/webp/by_name/snake_box.webp"
+      },
+      {
+        "id": "candy_cane",
+        "type": "gift",
+        "value": 248,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Candy Cane",
+        "image": "TelegramGiftsAssests-main/webp/by_name/candy_cane.webp"
+      },
+      {
+        "id": "xmas_stocking",
+        "type": "gift",
+        "value": 247,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Xmas Stocking",
+        "image": "TelegramGiftsAssests-main/webp/by_name/xmas_stocking.webp"
+      },
+      {
+        "id": "pool_float",
+        "type": "gift",
+        "value": 245,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Pool Float",
+        "image": "TelegramGiftsAssests-main/webp/by_name/pool_float.webp"
+      },
+      {
+        "id": "lunar_snake",
+        "type": "gift",
+        "value": 236,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Lunar Snake",
+        "image": "TelegramGiftsAssests-main/webp/by_name/lunar_snake.webp"
+      },
+      {
+        "id": "chill_flame",
+        "type": "gift",
+        "value": 236,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Chill Flame",
+        "image": "TelegramGiftsAssests-main/webp/by_name/chill_flame.webp"
+      },
+      {
+        "id": "trophy_100",
+        "type": "gift",
+        "value": 100,
+        "weight": 30636,
+        "drop_chance_percent": 3.0636,
+        "name": "Trophy",
+        "image": "standard-gifts/trophy_100.png"
+      },
+      {
+        "id": "ring_100",
+        "type": "gift",
+        "value": 100,
+        "weight": 30853,
+        "drop_chance_percent": 3.0853,
+        "name": "Diamond Ring",
+        "image": "standard-gifts/ring_100.png"
+      },
+      {
+        "id": "diamond_100",
+        "type": "gift",
+        "value": 100,
+        "weight": 30853,
+        "drop_chance_percent": 3.0853,
+        "name": "Diamond",
+        "image": "standard-gifts/diamond_100.png"
+      },
+      {
+        "id": "cake_50",
+        "type": "gift",
+        "value": 50,
+        "weight": 69631,
+        "drop_chance_percent": 6.9631,
+        "name": "Birthday Cake",
+        "image": "standard-gifts/cake_50.png"
+      },
+      {
+        "id": "bouquet_50",
+        "type": "gift",
+        "value": 50,
+        "weight": 69631,
+        "drop_chance_percent": 6.9631,
+        "name": "Bouquet",
+        "image": "standard-gifts/bouquet_50.png"
+      },
+      {
+        "id": "rocket_50",
+        "type": "gift",
+        "value": 50,
+        "weight": 69631,
+        "drop_chance_percent": 6.9631,
+        "name": "Rocket",
+        "image": "standard-gifts/rocket_50.png"
+      },
+      {
+        "id": "champagne_50",
+        "type": "gift",
+        "value": 50,
+        "weight": 69631,
+        "drop_chance_percent": 6.9631,
+        "name": "Champagne",
+        "image": "standard-gifts/champagne_50.png"
+      },
+      {
+        "id": "gift_25",
+        "type": "gift",
+        "value": 25,
+        "weight": 124201,
+        "drop_chance_percent": 12.4201,
+        "name": "Gift Box",
+        "image": "standard-gifts/gift_25.png"
+      },
+      {
+        "id": "rose_25",
+        "type": "gift",
+        "value": 25,
+        "weight": 124201,
+        "drop_chance_percent": 12.4201,
+        "name": "Red Rose",
+        "image": "standard-gifts/rose_25.png"
+      },
+      {
+        "id": "heart_15",
+        "type": "gift",
+        "value": 15,
+        "weight": 190415,
+        "drop_chance_percent": 19.0415,
+        "name": "Heart",
+        "image": "standard-gifts/heart_15.png"
+      },
+      {
+        "id": "bear_15",
+        "type": "gift",
+        "value": 15,
+        "weight": 190257,
+        "drop_chance_percent": 19.0257,
+        "name": "Teddy Bear",
+        "image": "standard-gifts/bear_15.png"
+      }
+    ],
+    "calculated_ev": 35.1,
+    "rtp_percent": 90.0,
+    "_achieved": 35.1,
+    "_ok": true,
+    "_vmin": 15,
+    "_alpha": 0.835
+  },
+  {
+    "id": "case_99",
+    "name": "toxiccase",
+    "tier": "basic",
+    "price": 79,
+    "image": "image/toxiccase.webp",
+    "target_ev": 67.15,
+    "jackpot_multiplier": 0.85,
+    "items": [
+      {
+        "id": "jolly_chimp",
+        "type": "gift",
+        "value": 519,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Jolly Chimp",
+        "image": "TelegramGiftsAssests-main/webp/by_name/jolly_chimp.webp"
+      },
+      {
+        "id": "joyful_bundle",
+        "type": "gift",
+        "value": 518,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Joyful Bundle",
+        "image": "TelegramGiftsAssests-main/webp/by_name/joyful_bundle.webp"
+      },
+      {
+        "id": "surge_board",
+        "type": "gift",
+        "value": 505,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Surge Board",
+        "image": "TelegramGiftsAssests-main/webp/by_name/surge_board.webp"
+      },
+      {
+        "id": "sleigh_bell",
+        "type": "gift",
+        "value": 474,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Sleigh Bell",
+        "image": "TelegramGiftsAssests-main/webp/by_name/sleigh_bell.webp"
+      },
+      {
+        "id": "light_sword",
+        "type": "gift",
+        "value": 440,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Light Sword",
+        "image": "TelegramGiftsAssests-main/webp/by_name/light_sword.webp"
+      },
+      {
+        "id": "moon_pendant",
+        "type": "gift",
+        "value": 428,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Moon Pendant",
+        "image": "TelegramGiftsAssests-main/webp/by_name/moon_pendant.webp"
+      },
+      {
+        "id": "lush_bouquet",
+        "type": "gift",
+        "value": 423,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Lush Bouquet",
+        "image": "TelegramGiftsAssests-main/webp/by_name/lush_bouquet.webp"
+      },
+      {
+        "id": "swag_bag",
+        "type": "gift",
+        "value": 398,
+        "weight": 3,
+        "drop_chance_percent": 0.0003,
+        "name": "Swag Bag",
+        "image": "TelegramGiftsAssests-main/webp/by_name/swag_bag.webp"
+      },
+      {
+        "id": "input_key",
+        "type": "gift",
+        "value": 397,
+        "weight": 3,
+        "drop_chance_percent": 0.0003,
+        "name": "Input Key",
+        "image": "TelegramGiftsAssests-main/webp/by_name/input_key.webp"
+      },
+      {
+        "id": "eternal_candle",
+        "type": "gift",
+        "value": 395,
+        "weight": 3,
+        "drop_chance_percent": 0.0003,
+        "name": "Eternal Candle",
+        "image": "TelegramGiftsAssests-main/webp/by_name/eternal_candle.webp"
+      },
+      {
+        "id": "spring_basket",
+        "type": "gift",
+        "value": 392,
+        "weight": 4,
+        "drop_chance_percent": 0.0004,
+        "name": "Spring Basket",
+        "image": "TelegramGiftsAssests-main/webp/by_name/spring_basket.webp"
+      },
+      {
+        "id": "snoop_dogg",
+        "type": "gift",
+        "value": 370,
+        "weight": 12,
+        "drop_chance_percent": 0.0012,
+        "name": "Snoop Dogg",
+        "image": "TelegramGiftsAssests-main/webp/by_name/snoop_dogg.webp"
+      },
+      {
+        "id": "faith_amulet",
+        "type": "gift",
+        "value": 366,
+        "weight": 14,
+        "drop_chance_percent": 0.0014,
+        "name": "Faith Amulet",
+        "image": "TelegramGiftsAssests-main/webp/by_name/faith_amulet.webp"
+      },
+      {
+        "id": "pretty_posy",
+        "type": "gift",
+        "value": 359,
+        "weight": 20,
+        "drop_chance_percent": 0.002,
+        "name": "Pretty Posy",
+        "image": "TelegramGiftsAssests-main/webp/by_name/pretty_posy.webp"
+      },
+      {
+        "id": "homemade_cake",
+        "type": "gift",
+        "value": 355,
+        "weight": 25,
+        "drop_chance_percent": 0.0025,
+        "name": "Homemade Cake",
+        "image": "TelegramGiftsAssests-main/webp/by_name/homemade_cake.webp"
+      },
+      {
+        "id": "mousse_cake",
+        "type": "gift",
+        "value": 353,
+        "weight": 28,
+        "drop_chance_percent": 0.0028,
+        "name": "Mousse Cake",
+        "image": "TelegramGiftsAssests-main/webp/by_name/mousse_cake.webp"
+      },
+      {
+        "id": "bday_candle",
+        "type": "gift",
+        "value": 352,
+        "weight": 29,
+        "drop_chance_percent": 0.0029,
+        "name": "B-Day Candle",
+        "image": "TelegramGiftsAssests-main/webp/by_name/bday_candle.webp"
+      },
+      {
+        "id": "restless_jar",
+        "type": "gift",
+        "value": 352,
+        "weight": 29,
+        "drop_chance_percent": 0.0029,
+        "name": "Restless Jar",
+        "image": "TelegramGiftsAssests-main/webp/by_name/restless_jar.webp"
+      },
+      {
+        "id": "witch_hat",
+        "type": "gift",
+        "value": 350,
+        "weight": 32,
+        "drop_chance_percent": 0.0032,
+        "name": "Witch Hat",
+        "image": "TelegramGiftsAssests-main/webp/by_name/witch_hat.webp"
+      },
+      {
+        "id": "bow_tie",
+        "type": "gift",
+        "value": 348,
+        "weight": 36,
+        "drop_chance_percent": 0.0036,
+        "name": "Bow Tie",
+        "image": "TelegramGiftsAssests-main/webp/by_name/bow_tie.webp"
+      },
+      {
+        "id": "cookie_heart",
+        "type": "gift",
+        "value": 344,
+        "weight": 44,
+        "drop_chance_percent": 0.0044,
+        "name": "Cookie Heart",
+        "image": "TelegramGiftsAssests-main/webp/by_name/cookie_heart.webp"
+      },
+      {
+        "id": "desk_calendar",
+        "type": "gift",
+        "value": 342,
+        "weight": 48,
+        "drop_chance_percent": 0.0048,
+        "name": "Desk Calendar",
+        "image": "TelegramGiftsAssests-main/webp/by_name/desk_calendar.webp"
+      },
+      {
+        "id": "spiced_wine",
+        "type": "gift",
+        "value": 336,
+        "weight": 65,
+        "drop_chance_percent": 0.0065,
+        "name": "Spiced Wine",
+        "image": "TelegramGiftsAssests-main/webp/by_name/spiced_wine.webp"
+      },
+      {
+        "id": "stellar_rocket",
+        "type": "gift",
+        "value": 336,
+        "weight": 65,
+        "drop_chance_percent": 0.0065,
+        "name": "Stellar Rocket",
+        "image": "TelegramGiftsAssests-main/webp/by_name/stellar_rocket.webp"
+      },
+      {
+        "id": "spy_agaric",
+        "type": "gift",
+        "value": 334,
+        "weight": 72,
+        "drop_chance_percent": 0.0072,
+        "name": "Spy Agaric",
+        "image": "TelegramGiftsAssests-main/webp/by_name/spy_agaric.webp"
+      },
+      {
+        "id": "clover_pin",
+        "type": "gift",
+        "value": 327,
+        "weight": 103,
+        "drop_chance_percent": 0.0103,
+        "name": "Clover Pin",
+        "image": "TelegramGiftsAssests-main/webp/by_name/clover_pin.webp"
+      },
+      {
+        "id": "snow_mittens",
+        "type": "gift",
+        "value": 327,
+        "weight": 103,
+        "drop_chance_percent": 0.0103,
+        "name": "Snow Mittens",
+        "image": "TelegramGiftsAssests-main/webp/by_name/snow_mittens.webp"
+      },
+      {
+        "id": "snow_globe",
+        "type": "gift",
+        "value": 322,
+        "weight": 133,
+        "drop_chance_percent": 0.0133,
+        "name": "Snow Globe",
+        "image": "TelegramGiftsAssests-main/webp/by_name/snow_globe.webp"
+      },
+      {
+        "id": "money_pot",
+        "type": "gift",
+        "value": 320,
+        "weight": 147,
+        "drop_chance_percent": 0.0147,
+        "name": "Money Pot",
+        "image": "TelegramGiftsAssests-main/webp/by_name/money_pot.webp"
+      },
+      {
+        "id": "jackinthebox",
+        "type": "gift",
+        "value": 312,
+        "weight": 220,
+        "drop_chance_percent": 0.022,
+        "name": "Jack-in-the-Box",
+        "image": "TelegramGiftsAssests-main/webp/by_name/jackinthebox.webp"
+      },
+      {
+        "id": "victory_medal",
+        "type": "gift",
+        "value": 310,
+        "weight": 244,
+        "drop_chance_percent": 0.0244,
+        "name": "Victory Medal",
+        "image": "TelegramGiftsAssests-main/webp/by_name/victory_medal.webp"
+      },
+      {
+        "id": "happy_brownie",
+        "type": "gift",
+        "value": 306,
+        "weight": 298,
+        "drop_chance_percent": 0.0298,
+        "name": "Happy Brownie",
+        "image": "TelegramGiftsAssests-main/webp/by_name/happy_brownie.webp"
+      },
+      {
+        "id": "mood_pack",
+        "type": "gift",
+        "value": 304,
+        "weight": 330,
+        "drop_chance_percent": 0.033,
+        "name": "Mood Pack",
+        "image": "TelegramGiftsAssests-main/webp/by_name/mood_pack.webp"
+      },
+      {
+        "id": "star_notepad",
+        "type": "gift",
+        "value": 301,
+        "weight": 384,
+        "drop_chance_percent": 0.0384,
+        "name": "Star Notepad",
+        "image": "TelegramGiftsAssests-main/webp/by_name/star_notepad.webp"
+      },
+      {
+        "id": "fresh_socks",
+        "type": "gift",
+        "value": 300,
+        "weight": 404,
+        "drop_chance_percent": 0.0404,
+        "name": "Fresh Socks",
+        "image": "TelegramGiftsAssests-main/webp/by_name/fresh_socks.webp"
+      },
+      {
+        "id": "hex_pot",
+        "type": "gift",
+        "value": 299,
+        "weight": 425,
+        "drop_chance_percent": 0.0425,
+        "name": "Hex Pot",
+        "image": "TelegramGiftsAssests-main/webp/by_name/hex_pot.webp"
+      },
+      {
+        "id": "party_sparkler",
+        "type": "gift",
+        "value": 288,
+        "weight": 742,
+        "drop_chance_percent": 0.0742,
+        "name": "Party Sparkler",
+        "image": "TelegramGiftsAssests-main/webp/by_name/party_sparkler.webp"
+      },
+      {
+        "id": "timeless_book",
+        "type": "gift",
+        "value": 288,
+        "weight": 742,
+        "drop_chance_percent": 0.0742,
+        "name": "Timeless Book",
+        "image": "TelegramGiftsAssests-main/webp/by_name/timeless_book.webp"
+      },
+      {
+        "id": "liberty_figure",
+        "type": "gift",
+        "value": 282,
+        "weight": 1006,
+        "drop_chance_percent": 0.1006,
+        "name": "Liberty Figure",
+        "image": "TelegramGiftsAssests-main/webp/by_name/liberty_figure.webp"
+      },
+      {
+        "id": "ginger_cookie",
+        "type": "gift",
+        "value": 280,
+        "weight": 1113,
+        "drop_chance_percent": 0.1113,
+        "name": "Ginger Cookie",
+        "image": "TelegramGiftsAssests-main/webp/by_name/ginger_cookie.webp"
+      },
+      {
+        "id": "santa_hat",
+        "type": "gift",
+        "value": 280,
+        "weight": 1113,
+        "drop_chance_percent": 0.1113,
+        "name": "Santa Hat",
+        "image": "TelegramGiftsAssests-main/webp/by_name/santa_hat.webp"
+      },
+      {
+        "id": "hypno_lollipop",
+        "type": "gift",
+        "value": 272,
+        "weight": 1669,
+        "drop_chance_percent": 0.1669,
+        "name": "Hypno Lollipop",
+        "image": "TelegramGiftsAssests-main/webp/by_name/hypno_lollipop.webp"
+      },
+      {
+        "id": "jester_hat",
+        "type": "gift",
+        "value": 264,
+        "weight": 2502,
+        "drop_chance_percent": 0.2502,
+        "name": "Jester Hat",
+        "image": "TelegramGiftsAssests-main/webp/by_name/jester_hat.webp"
+      },
+      {
+        "id": "pet_snake",
+        "type": "gift",
+        "value": 264,
+        "weight": 2502,
+        "drop_chance_percent": 0.2502,
+        "name": "Pet Snake",
+        "image": "TelegramGiftsAssests-main/webp/by_name/pet_snake.webp"
+      },
+      {
+        "id": "whip_cupcake",
+        "type": "gift",
+        "value": 264,
+        "weight": 2502,
+        "drop_chance_percent": 0.2502,
+        "name": "Whip Cupcake",
+        "image": "TelegramGiftsAssests-main/webp/by_name/whip_cupcake.webp"
+      },
+      {
+        "id": "holiday_drink",
+        "type": "gift",
+        "value": 258,
+        "weight": 3390,
+        "drop_chance_percent": 0.339,
+        "name": "Holiday Drink",
+        "image": "TelegramGiftsAssests-main/webp/by_name/holiday_drink.webp"
+      },
+      {
+        "id": "easter_egg",
+        "type": "gift",
+        "value": 257,
+        "weight": 3566,
+        "drop_chance_percent": 0.3566,
+        "name": "Easter Egg",
+        "image": "TelegramGiftsAssests-main/webp/by_name/easter_egg.webp"
+      },
+      {
+        "id": "winter_wreath",
+        "type": "gift",
+        "value": 257,
+        "weight": 3566,
+        "drop_chance_percent": 0.3566,
+        "name": "Winter Wreath",
+        "image": "TelegramGiftsAssests-main/webp/by_name/winter_wreath.webp"
+      },
+      {
+        "id": "ice_cream",
+        "type": "gift",
+        "value": 256,
+        "weight": 3751,
+        "drop_chance_percent": 0.3751,
+        "name": "Ice Cream",
+        "image": "TelegramGiftsAssests-main/webp/by_name/ice_cream.webp"
+      },
+      {
+        "id": "lol_pop",
+        "type": "gift",
+        "value": 254,
+        "weight": 4151,
+        "drop_chance_percent": 0.4151,
+        "name": "Lol Pop",
+        "image": "TelegramGiftsAssests-main/webp/by_name/lol_pop.webp"
+      },
+      {
+        "id": "big_year",
+        "type": "gift",
+        "value": 252,
+        "weight": 4594,
+        "drop_chance_percent": 0.4594,
+        "name": "Big Year",
+        "image": "TelegramGiftsAssests-main/webp/by_name/big_year.webp"
+      },
+      {
+        "id": "tama_gadget",
+        "type": "gift",
+        "value": 252,
+        "weight": 4594,
+        "drop_chance_percent": 0.4594,
+        "name": "Tama Gadget",
+        "image": "TelegramGiftsAssests-main/webp/by_name/tama_gadget.webp"
+      },
+      {
+        "id": "instant_ramen",
+        "type": "gift",
+        "value": 250,
+        "weight": 5083,
+        "drop_chance_percent": 0.5083,
+        "name": "Instant Ramen",
+        "image": "TelegramGiftsAssests-main/webp/by_name/instant_ramen.webp"
+      },
+      {
+        "id": "vice_cream",
+        "type": "gift",
+        "value": 250,
+        "weight": 5083,
+        "drop_chance_percent": 0.5083,
+        "name": "Vice Cream",
+        "image": "TelegramGiftsAssests-main/webp/by_name/vice_cream.webp"
+      },
+      {
+        "id": "snake_box",
+        "type": "gift",
+        "value": 249,
+        "weight": 5347,
+        "drop_chance_percent": 0.5347,
+        "name": "Snake Box",
+        "image": "TelegramGiftsAssests-main/webp/by_name/snake_box.webp"
+      },
+      {
+        "id": "candy_cane",
+        "type": "gift",
+        "value": 248,
+        "weight": 5625,
+        "drop_chance_percent": 0.5625,
+        "name": "Candy Cane",
+        "image": "TelegramGiftsAssests-main/webp/by_name/candy_cane.webp"
+      },
+      {
+        "id": "xmas_stocking",
+        "type": "gift",
+        "value": 247,
+        "weight": 5917,
+        "drop_chance_percent": 0.5917,
+        "name": "Xmas Stocking",
+        "image": "TelegramGiftsAssests-main/webp/by_name/xmas_stocking.webp"
+      },
+      {
+        "id": "pool_float",
+        "type": "gift",
+        "value": 245,
+        "weight": 6548,
+        "drop_chance_percent": 0.6548,
+        "name": "Pool Float",
+        "image": "TelegramGiftsAssests-main/webp/by_name/pool_float.webp"
+      },
+      {
+        "id": "lunar_snake",
+        "type": "gift",
+        "value": 236,
+        "weight": 10327,
+        "drop_chance_percent": 1.0327,
+        "name": "Lunar Snake",
+        "image": "TelegramGiftsAssests-main/webp/by_name/lunar_snake.webp"
+      },
+      {
+        "id": "chill_flame",
+        "type": "gift",
+        "value": 236,
+        "weight": 10327,
+        "drop_chance_percent": 1.0327,
+        "name": "Chill Flame",
+        "image": "TelegramGiftsAssests-main/webp/by_name/chill_flame.webp"
+      },
+      {
+        "id": "trophy_100",
+        "type": "gift",
+        "value": 100,
+        "weight": 76518,
+        "drop_chance_percent": 7.6518,
+        "name": "Trophy",
+        "image": "standard-gifts/trophy_100.png"
+      },
+      {
+        "id": "ring_100",
+        "type": "gift",
+        "value": 100,
+        "weight": 76518,
+        "drop_chance_percent": 7.6518,
+        "name": "Diamond Ring",
+        "image": "standard-gifts/ring_100.png"
+      },
+      {
+        "id": "diamond_100",
+        "type": "gift",
+        "value": 100,
+        "weight": 76518,
+        "drop_chance_percent": 7.6518,
+        "name": "Diamond",
+        "image": "standard-gifts/diamond_100.png"
+      },
+      {
+        "id": "cake_50",
+        "type": "gift",
+        "value": 50,
+        "weight": 80792,
+        "drop_chance_percent": 8.0792,
+        "name": "Birthday Cake",
+        "image": "standard-gifts/cake_50.png"
+      },
+      {
+        "id": "bouquet_50",
+        "type": "gift",
+        "value": 50,
+        "weight": 80792,
+        "drop_chance_percent": 8.0792,
+        "name": "Bouquet",
+        "image": "standard-gifts/bouquet_50.png"
+      },
+      {
+        "id": "rocket_50",
+        "type": "gift",
+        "value": 50,
+        "weight": 80792,
+        "drop_chance_percent": 8.0792,
+        "name": "Rocket",
+        "image": "standard-gifts/rocket_50.png"
+      },
+      {
+        "id": "champagne_50",
+        "type": "gift",
+        "value": 50,
+        "weight": 80792,
+        "drop_chance_percent": 8.0792,
+        "name": "Champagne",
+        "image": "standard-gifts/champagne_50.png"
+      },
+      {
+        "id": "gift_25",
+        "type": "gift",
+        "value": 25,
+        "weight": 85305,
+        "drop_chance_percent": 8.5305,
+        "name": "Gift Box",
+        "image": "standard-gifts/gift_25.png"
+      },
+      {
+        "id": "rose_25",
+        "type": "gift",
+        "value": 25,
+        "weight": 85305,
+        "drop_chance_percent": 8.5305,
+        "name": "Red Rose",
+        "image": "standard-gifts/rose_25.png"
+      },
+      {
+        "id": "heart_15",
+        "type": "gift",
+        "value": 15,
+        "weight": 88786,
+        "drop_chance_percent": 8.8786,
+        "name": "Heart",
+        "image": "standard-gifts/heart_15.png"
+      },
+      {
+        "id": "bear_15",
+        "type": "gift",
+        "value": 15,
+        "weight": 88792,
+        "drop_chance_percent": 8.8792,
+        "name": "Teddy Bear",
+        "image": "standard-gifts/bear_15.png"
+      }
+    ],
+    "calculated_ev": 71.1024,
+    "rtp_percent": 90.003,
+    "_achieved": 71.1,
+    "_ok": true,
+    "_vmin": 15,
+    "_alpha": 0.078
+  },
+  {
+    "id": "case_199",
+    "name": "oceancase",
+    "tier": "basic",
+    "price": 149,
+    "image": "image/oceancase.webp",
+    "target_ev": 126.65,
+    "jackpot_multiplier": 0.85,
+    "items": [
+      {
+        "id": "jolly_chimp",
+        "type": "gift",
+        "value": 519,
+        "weight": 115,
+        "drop_chance_percent": 0.0115,
+        "name": "Jolly Chimp",
+        "image": "TelegramGiftsAssests-main/webp/by_name/jolly_chimp.webp"
+      },
+      {
+        "id": "joyful_bundle",
+        "type": "gift",
+        "value": 518,
+        "weight": 118,
+        "drop_chance_percent": 0.0118,
+        "name": "Joyful Bundle",
+        "image": "TelegramGiftsAssests-main/webp/by_name/joyful_bundle.webp"
+      },
+      {
+        "id": "surge_board",
+        "type": "gift",
+        "value": 505,
+        "weight": 167,
+        "drop_chance_percent": 0.0167,
+        "name": "Surge Board",
+        "image": "TelegramGiftsAssests-main/webp/by_name/surge_board.webp"
+      },
+      {
+        "id": "sleigh_bell",
+        "type": "gift",
+        "value": 474,
+        "weight": 383,
+        "drop_chance_percent": 0.0383,
+        "name": "Sleigh Bell",
+        "image": "TelegramGiftsAssests-main/webp/by_name/sleigh_bell.webp"
+      },
+      {
+        "id": "light_sword",
+        "type": "gift",
+        "value": 440,
+        "weight": 955,
+        "drop_chance_percent": 0.0955,
+        "name": "Light Sword",
+        "image": "TelegramGiftsAssests-main/webp/by_name/light_sword.webp"
+      },
+      {
+        "id": "moon_pendant",
+        "type": "gift",
+        "value": 428,
+        "weight": 1318,
+        "drop_chance_percent": 0.1318,
+        "name": "Moon Pendant",
+        "image": "TelegramGiftsAssests-main/webp/by_name/moon_pendant.webp"
+      },
+      {
+        "id": "lush_bouquet",
+        "type": "gift",
+        "value": 423,
+        "weight": 1507,
+        "drop_chance_percent": 0.1507,
+        "name": "Lush Bouquet",
+        "image": "TelegramGiftsAssests-main/webp/by_name/lush_bouquet.webp"
+      },
+      {
+        "id": "swag_bag",
+        "type": "gift",
+        "value": 398,
+        "weight": 2948,
+        "drop_chance_percent": 0.2948,
+        "name": "Swag Bag",
+        "image": "TelegramGiftsAssests-main/webp/by_name/swag_bag.webp"
+      },
+      {
+        "id": "input_key",
+        "type": "gift",
+        "value": 397,
+        "weight": 3029,
+        "drop_chance_percent": 0.3029,
+        "name": "Input Key",
+        "image": "TelegramGiftsAssests-main/webp/by_name/input_key.webp"
+      },
+      {
+        "id": "eternal_candle",
+        "type": "gift",
+        "value": 395,
+        "weight": 3196,
+        "drop_chance_percent": 0.3196,
+        "name": "Eternal Candle",
+        "image": "TelegramGiftsAssests-main/webp/by_name/eternal_candle.webp"
+      },
+      {
+        "id": "spring_basket",
+        "type": "gift",
+        "value": 392,
+        "weight": 3464,
+        "drop_chance_percent": 0.3464,
+        "name": "Spring Basket",
+        "image": "TelegramGiftsAssests-main/webp/by_name/spring_basket.webp"
+      },
+      {
+        "id": "snoop_dogg",
+        "type": "gift",
+        "value": 370,
+        "weight": 5884,
+        "drop_chance_percent": 0.5884,
+        "name": "Snoop Dogg",
+        "image": "TelegramGiftsAssests-main/webp/by_name/snoop_dogg.webp"
+      },
+      {
+        "id": "faith_amulet",
+        "type": "gift",
+        "value": 366,
+        "weight": 5945,
+        "drop_chance_percent": 0.5945,
+        "name": "Faith Amulet",
+        "image": "TelegramGiftsAssests-main/webp/by_name/faith_amulet.webp"
+      },
+      {
+        "id": "pretty_posy",
+        "type": "gift",
+        "value": 359,
+        "weight": 6055,
+        "drop_chance_percent": 0.6055,
+        "name": "Pretty Posy",
+        "image": "TelegramGiftsAssests-main/webp/by_name/pretty_posy.webp"
+      },
+      {
+        "id": "homemade_cake",
+        "type": "gift",
+        "value": 355,
+        "weight": 6120,
+        "drop_chance_percent": 0.612,
+        "name": "Homemade Cake",
+        "image": "TelegramGiftsAssests-main/webp/by_name/homemade_cake.webp"
+      },
+      {
+        "id": "mousse_cake",
+        "type": "gift",
+        "value": 353,
+        "weight": 6153,
+        "drop_chance_percent": 0.6153,
+        "name": "Mousse Cake",
+        "image": "TelegramGiftsAssests-main/webp/by_name/mousse_cake.webp"
+      },
+      {
+        "id": "bday_candle",
+        "type": "gift",
+        "value": 352,
+        "weight": 6170,
+        "drop_chance_percent": 0.617,
+        "name": "B-Day Candle",
+        "image": "TelegramGiftsAssests-main/webp/by_name/bday_candle.webp"
+      },
+      {
+        "id": "restless_jar",
+        "type": "gift",
+        "value": 352,
+        "weight": 6170,
+        "drop_chance_percent": 0.617,
+        "name": "Restless Jar",
+        "image": "TelegramGiftsAssests-main/webp/by_name/restless_jar.webp"
+      },
+      {
+        "id": "witch_hat",
+        "type": "gift",
+        "value": 350,
+        "weight": 6204,
+        "drop_chance_percent": 0.6204,
+        "name": "Witch Hat",
+        "image": "TelegramGiftsAssests-main/webp/by_name/witch_hat.webp"
+      },
+      {
+        "id": "bow_tie",
+        "type": "gift",
+        "value": 348,
+        "weight": 6237,
+        "drop_chance_percent": 0.6237,
+        "name": "Bow Tie",
+        "image": "TelegramGiftsAssests-main/webp/by_name/bow_tie.webp"
+      },
+      {
+        "id": "cookie_heart",
+        "type": "gift",
+        "value": 344,
+        "weight": 6306,
+        "drop_chance_percent": 0.6306,
+        "name": "Cookie Heart",
+        "image": "TelegramGiftsAssests-main/webp/by_name/cookie_heart.webp"
+      },
+      {
+        "id": "desk_calendar",
+        "type": "gift",
+        "value": 342,
+        "weight": 6342,
+        "drop_chance_percent": 0.6342,
+        "name": "Desk Calendar",
+        "image": "TelegramGiftsAssests-main/webp/by_name/desk_calendar.webp"
+      },
+      {
+        "id": "spiced_wine",
+        "type": "gift",
+        "value": 336,
+        "weight": 6449,
+        "drop_chance_percent": 0.6449,
+        "name": "Spiced Wine",
+        "image": "TelegramGiftsAssests-main/webp/by_name/spiced_wine.webp"
+      },
+      {
+        "id": "stellar_rocket",
+        "type": "gift",
+        "value": 336,
+        "weight": 6449,
+        "drop_chance_percent": 0.6449,
+        "name": "Stellar Rocket",
+        "image": "TelegramGiftsAssests-main/webp/by_name/stellar_rocket.webp"
+      },
+      {
+        "id": "spy_agaric",
+        "type": "gift",
+        "value": 334,
+        "weight": 6486,
+        "drop_chance_percent": 0.6486,
+        "name": "Spy Agaric",
+        "image": "TelegramGiftsAssests-main/webp/by_name/spy_agaric.webp"
+      },
+      {
+        "id": "clover_pin",
+        "type": "gift",
+        "value": 327,
+        "weight": 6618,
+        "drop_chance_percent": 0.6618,
+        "name": "Clover Pin",
+        "image": "TelegramGiftsAssests-main/webp/by_name/clover_pin.webp"
+      },
+      {
+        "id": "snow_mittens",
+        "type": "gift",
+        "value": 327,
+        "weight": 6618,
+        "drop_chance_percent": 0.6618,
+        "name": "Snow Mittens",
+        "image": "TelegramGiftsAssests-main/webp/by_name/snow_mittens.webp"
+      },
+      {
+        "id": "snow_globe",
+        "type": "gift",
+        "value": 322,
+        "weight": 6716,
+        "drop_chance_percent": 0.6716,
+        "name": "Snow Globe",
+        "image": "TelegramGiftsAssests-main/webp/by_name/snow_globe.webp"
+      },
+      {
+        "id": "money_pot",
+        "type": "gift",
+        "value": 320,
+        "weight": 6756,
+        "drop_chance_percent": 0.6756,
+        "name": "Money Pot",
+        "image": "TelegramGiftsAssests-main/webp/by_name/money_pot.webp"
+      },
+      {
+        "id": "jackinthebox",
+        "type": "gift",
+        "value": 312,
+        "weight": 6921,
+        "drop_chance_percent": 0.6921,
+        "name": "Jack-in-the-Box",
+        "image": "TelegramGiftsAssests-main/webp/by_name/jackinthebox.webp"
+      },
+      {
+        "id": "victory_medal",
+        "type": "gift",
+        "value": 310,
+        "weight": 6963,
+        "drop_chance_percent": 0.6963,
+        "name": "Victory Medal",
+        "image": "TelegramGiftsAssests-main/webp/by_name/victory_medal.webp"
+      },
+      {
+        "id": "happy_brownie",
+        "type": "gift",
+        "value": 306,
+        "weight": 7050,
+        "drop_chance_percent": 0.705,
+        "name": "Happy Brownie",
+        "image": "TelegramGiftsAssests-main/webp/by_name/happy_brownie.webp"
+      },
+      {
+        "id": "mood_pack",
+        "type": "gift",
+        "value": 304,
+        "weight": 7094,
+        "drop_chance_percent": 0.7094,
+        "name": "Mood Pack",
+        "image": "TelegramGiftsAssests-main/webp/by_name/mood_pack.webp"
+      },
+      {
+        "id": "star_notepad",
+        "type": "gift",
+        "value": 301,
+        "weight": 7161,
+        "drop_chance_percent": 0.7161,
+        "name": "Star Notepad",
+        "image": "TelegramGiftsAssests-main/webp/by_name/star_notepad.webp"
+      },
+      {
+        "id": "fresh_socks",
+        "type": "gift",
+        "value": 300,
+        "weight": 7184,
+        "drop_chance_percent": 0.7184,
+        "name": "Fresh Socks",
+        "image": "TelegramGiftsAssests-main/webp/by_name/fresh_socks.webp"
+      },
+      {
+        "id": "hex_pot",
+        "type": "gift",
+        "value": 299,
+        "weight": 7207,
+        "drop_chance_percent": 0.7207,
+        "name": "Hex Pot",
+        "image": "TelegramGiftsAssests-main/webp/by_name/hex_pot.webp"
+      },
+      {
+        "id": "party_sparkler",
+        "type": "gift",
+        "value": 288,
+        "weight": 7468,
+        "drop_chance_percent": 0.7468,
+        "name": "Party Sparkler",
+        "image": "TelegramGiftsAssests-main/webp/by_name/party_sparkler.webp"
+      },
+      {
+        "id": "timeless_book",
+        "type": "gift",
+        "value": 288,
+        "weight": 7468,
+        "drop_chance_percent": 0.7468,
+        "name": "Timeless Book",
+        "image": "TelegramGiftsAssests-main/webp/by_name/timeless_book.webp"
+      },
+      {
+        "id": "liberty_figure",
+        "type": "gift",
+        "value": 282,
+        "weight": 7620,
+        "drop_chance_percent": 0.762,
+        "name": "Liberty Figure",
+        "image": "TelegramGiftsAssests-main/webp/by_name/liberty_figure.webp"
+      },
+      {
+        "id": "ginger_cookie",
+        "type": "gift",
+        "value": 280,
+        "weight": 7671,
+        "drop_chance_percent": 0.7671,
+        "name": "Ginger Cookie",
+        "image": "TelegramGiftsAssests-main/webp/by_name/ginger_cookie.webp"
+      },
+      {
+        "id": "santa_hat",
+        "type": "gift",
+        "value": 280,
+        "weight": 7671,
+        "drop_chance_percent": 0.7671,
+        "name": "Santa Hat",
+        "image": "TelegramGiftsAssests-main/webp/by_name/santa_hat.webp"
+      },
+      {
+        "id": "hypno_lollipop",
+        "type": "gift",
+        "value": 272,
+        "weight": 7886,
+        "drop_chance_percent": 0.7886,
+        "name": "Hypno Lollipop",
+        "image": "TelegramGiftsAssests-main/webp/by_name/hypno_lollipop.webp"
+      },
+      {
+        "id": "jester_hat",
+        "type": "gift",
+        "value": 264,
+        "weight": 8113,
+        "drop_chance_percent": 0.8113,
+        "name": "Jester Hat",
+        "image": "TelegramGiftsAssests-main/webp/by_name/jester_hat.webp"
+      },
+      {
+        "id": "pet_snake",
+        "type": "gift",
+        "value": 264,
+        "weight": 8113,
+        "drop_chance_percent": 0.8113,
+        "name": "Pet Snake",
+        "image": "TelegramGiftsAssests-main/webp/by_name/pet_snake.webp"
+      },
+      {
+        "id": "whip_cupcake",
+        "type": "gift",
+        "value": 264,
+        "weight": 8113,
+        "drop_chance_percent": 0.8113,
+        "name": "Whip Cupcake",
+        "image": "TelegramGiftsAssests-main/webp/by_name/whip_cupcake.webp"
+      },
+      {
+        "id": "holiday_drink",
+        "type": "gift",
+        "value": 258,
+        "weight": 8293,
+        "drop_chance_percent": 0.8293,
+        "name": "Holiday Drink",
+        "image": "TelegramGiftsAssests-main/webp/by_name/holiday_drink.webp"
+      },
+      {
+        "id": "easter_egg",
+        "type": "gift",
+        "value": 257,
+        "weight": 8323,
+        "drop_chance_percent": 0.8323,
+        "name": "Easter Egg",
+        "image": "TelegramGiftsAssests-main/webp/by_name/easter_egg.webp"
+      },
+      {
+        "id": "winter_wreath",
+        "type": "gift",
+        "value": 257,
+        "weight": 8323,
+        "drop_chance_percent": 0.8323,
+        "name": "Winter Wreath",
+        "image": "TelegramGiftsAssests-main/webp/by_name/winter_wreath.webp"
+      },
+      {
+        "id": "ice_cream",
+        "type": "gift",
+        "value": 256,
+        "weight": 8354,
+        "drop_chance_percent": 0.8354,
+        "name": "Ice Cream",
+        "image": "TelegramGiftsAssests-main/webp/by_name/ice_cream.webp"
+      },
+      {
+        "id": "lol_pop",
+        "type": "gift",
+        "value": 254,
+        "weight": 8417,
+        "drop_chance_percent": 0.8417,
+        "name": "Lol Pop",
+        "image": "TelegramGiftsAssests-main/webp/by_name/lol_pop.webp"
+      },
+      {
+        "id": "big_year",
+        "type": "gift",
+        "value": 252,
+        "weight": 8481,
+        "drop_chance_percent": 0.8481,
+        "name": "Big Year",
+        "image": "TelegramGiftsAssests-main/webp/by_name/big_year.webp"
+      },
+      {
+        "id": "tama_gadget",
+        "type": "gift",
+        "value": 252,
+        "weight": 8481,
+        "drop_chance_percent": 0.8481,
+        "name": "Tama Gadget",
+        "image": "TelegramGiftsAssests-main/webp/by_name/tama_gadget.webp"
+      },
+      {
+        "id": "instant_ramen",
+        "type": "gift",
+        "value": 250,
+        "weight": 8545,
+        "drop_chance_percent": 0.8545,
+        "name": "Instant Ramen",
+        "image": "TelegramGiftsAssests-main/webp/by_name/instant_ramen.webp"
+      },
+      {
+        "id": "vice_cream",
+        "type": "gift",
+        "value": 250,
+        "weight": 8545,
+        "drop_chance_percent": 0.8545,
+        "name": "Vice Cream",
+        "image": "TelegramGiftsAssests-main/webp/by_name/vice_cream.webp"
+      },
+      {
+        "id": "snake_box",
+        "type": "gift",
+        "value": 249,
+        "weight": 8578,
+        "drop_chance_percent": 0.8578,
+        "name": "Snake Box",
+        "image": "TelegramGiftsAssests-main/webp/by_name/snake_box.webp"
+      },
+      {
+        "id": "candy_cane",
+        "type": "gift",
+        "value": 248,
+        "weight": 8611,
+        "drop_chance_percent": 0.8611,
+        "name": "Candy Cane",
+        "image": "TelegramGiftsAssests-main/webp/by_name/candy_cane.webp"
+      },
+      {
+        "id": "xmas_stocking",
+        "type": "gift",
+        "value": 247,
+        "weight": 8644,
+        "drop_chance_percent": 0.8644,
+        "name": "Xmas Stocking",
+        "image": "TelegramGiftsAssests-main/webp/by_name/xmas_stocking.webp"
+      },
+      {
+        "id": "pool_float",
+        "type": "gift",
+        "value": 245,
+        "weight": 8711,
+        "drop_chance_percent": 0.8711,
+        "name": "Pool Float",
+        "image": "TelegramGiftsAssests-main/webp/by_name/pool_float.webp"
+      },
+      {
+        "id": "lunar_snake",
+        "type": "gift",
+        "value": 236,
+        "weight": 9027,
+        "drop_chance_percent": 0.9027,
+        "name": "Lunar Snake",
+        "image": "TelegramGiftsAssests-main/webp/by_name/lunar_snake.webp"
+      },
+      {
+        "id": "chill_flame",
+        "type": "gift",
+        "value": 236,
+        "weight": 9027,
+        "drop_chance_percent": 0.9027,
+        "name": "Chill Flame",
+        "image": "TelegramGiftsAssests-main/webp/by_name/chill_flame.webp"
+      },
+      {
+        "id": "trophy_100",
+        "type": "gift",
+        "value": 100,
+        "weight": 20439,
+        "drop_chance_percent": 2.0439,
+        "name": "Trophy",
+        "image": "standard-gifts/trophy_100.png"
+      },
+      {
+        "id": "ring_100",
+        "type": "gift",
+        "value": 100,
+        "weight": 20439,
+        "drop_chance_percent": 2.0439,
+        "name": "Diamond Ring",
+        "image": "standard-gifts/ring_100.png"
+      },
+      {
+        "id": "diamond_100",
+        "type": "gift",
+        "value": 100,
+        "weight": 20439,
+        "drop_chance_percent": 2.0439,
+        "name": "Diamond",
+        "image": "standard-gifts/diamond_100.png"
+      },
+      {
+        "id": "cake_50",
+        "type": "gift",
+        "value": 50,
+        "weight": 39533,
+        "drop_chance_percent": 3.9533,
+        "name": "Birthday Cake",
+        "image": "standard-gifts/cake_50.png"
+      },
+      {
+        "id": "bouquet_50",
+        "type": "gift",
+        "value": 50,
+        "weight": 39533,
+        "drop_chance_percent": 3.9533,
+        "name": "Bouquet",
+        "image": "standard-gifts/bouquet_50.png"
+      },
+      {
+        "id": "rocket_50",
+        "type": "gift",
+        "value": 50,
+        "weight": 39533,
+        "drop_chance_percent": 3.9533,
+        "name": "Rocket",
+        "image": "standard-gifts/rocket_50.png"
+      },
+      {
+        "id": "champagne_50",
+        "type": "gift",
+        "value": 50,
+        "weight": 39533,
+        "drop_chance_percent": 3.9533,
+        "name": "Champagne",
+        "image": "standard-gifts/champagne_50.png"
+      },
+      {
+        "id": "gift_25",
+        "type": "gift",
+        "value": 25,
+        "weight": 76466,
+        "drop_chance_percent": 7.6466,
+        "name": "Gift Box",
+        "image": "standard-gifts/gift_25.png"
+      },
+      {
+        "id": "rose_25",
+        "type": "gift",
+        "value": 25,
+        "weight": 76466,
+        "drop_chance_percent": 7.6466,
+        "name": "Red Rose",
+        "image": "standard-gifts/rose_25.png"
+      },
+      {
+        "id": "heart_15",
+        "type": "gift",
+        "value": 15,
+        "weight": 124338,
+        "drop_chance_percent": 12.4338,
+        "name": "Heart",
+        "image": "standard-gifts/heart_15.png"
+      },
+      {
+        "id": "bear_15",
+        "type": "gift",
+        "value": 15,
+        "weight": 124340,
+        "drop_chance_percent": 12.434,
+        "name": "Teddy Bear",
+        "image": "standard-gifts/bear_15.png"
+      }
+    ],
+    "calculated_ev": 134.1006,
+    "rtp_percent": 90.0004,
+    "_achieved": 134.1,
+    "_ok": true,
+    "_vmin": 15,
+    "_alpha": 0.952
+  },
+  {
+    "id": "case_399",
+    "name": "pashacase",
+    "tier": "medium",
+    "price": 299,
+    "image": "image/pashacase.webp",
+    "target_ev": 254.15,
+    "jackpot_multiplier": 0.85,
+    "items": [
+      {
+        "id": "jolly_chimp",
+        "type": "gift",
+        "value": 519,
+        "weight": 365,
+        "drop_chance_percent": 0.0365,
+        "name": "Jolly Chimp",
+        "image": "TelegramGiftsAssests-main/webp/by_name/jolly_chimp.webp"
+      },
+      {
+        "id": "joyful_bundle",
+        "type": "gift",
+        "value": 518,
+        "weight": 370,
+        "drop_chance_percent": 0.037,
+        "name": "Joyful Bundle",
+        "image": "TelegramGiftsAssests-main/webp/by_name/joyful_bundle.webp"
+      },
+      {
+        "id": "surge_board",
+        "type": "gift",
+        "value": 505,
+        "weight": 435,
+        "drop_chance_percent": 0.0435,
+        "name": "Surge Board",
+        "image": "TelegramGiftsAssests-main/webp/by_name/surge_board.webp"
+      },
+      {
+        "id": "sleigh_bell",
+        "type": "gift",
+        "value": 474,
+        "weight": 654,
+        "drop_chance_percent": 0.0654,
+        "name": "Sleigh Bell",
+        "image": "TelegramGiftsAssests-main/webp/by_name/sleigh_bell.webp"
+      },
+      {
+        "id": "light_sword",
+        "type": "gift",
+        "value": 440,
+        "weight": 1056,
+        "drop_chance_percent": 0.1056,
+        "name": "Light Sword",
+        "image": "TelegramGiftsAssests-main/webp/by_name/light_sword.webp"
+      },
+      {
+        "id": "moon_pendant",
+        "type": "gift",
+        "value": 428,
+        "weight": 1261,
+        "drop_chance_percent": 0.1261,
+        "name": "Moon Pendant",
+        "image": "TelegramGiftsAssests-main/webp/by_name/moon_pendant.webp"
+      },
+      {
+        "id": "lush_bouquet",
+        "type": "gift",
+        "value": 423,
+        "weight": 1360,
+        "drop_chance_percent": 0.136,
+        "name": "Lush Bouquet",
+        "image": "TelegramGiftsAssests-main/webp/by_name/lush_bouquet.webp"
+      },
+      {
+        "id": "swag_bag",
+        "type": "gift",
+        "value": 398,
+        "weight": 2012,
+        "drop_chance_percent": 0.2012,
+        "name": "Swag Bag",
+        "image": "TelegramGiftsAssests-main/webp/by_name/swag_bag.webp"
+      },
+      {
+        "id": "input_key",
+        "type": "gift",
+        "value": 397,
+        "weight": 2045,
+        "drop_chance_percent": 0.2045,
+        "name": "Input Key",
+        "image": "TelegramGiftsAssests-main/webp/by_name/input_key.webp"
+      },
+      {
+        "id": "eternal_candle",
+        "type": "gift",
+        "value": 395,
+        "weight": 2113,
+        "drop_chance_percent": 0.2113,
+        "name": "Eternal Candle",
+        "image": "TelegramGiftsAssests-main/webp/by_name/eternal_candle.webp"
+      },
+      {
+        "id": "spring_basket",
+        "type": "gift",
+        "value": 392,
+        "weight": 2219,
+        "drop_chance_percent": 0.2219,
+        "name": "Spring Basket",
+        "image": "TelegramGiftsAssests-main/webp/by_name/spring_basket.webp"
+      },
+      {
+        "id": "snoop_dogg",
+        "type": "gift",
+        "value": 370,
+        "weight": 3216,
+        "drop_chance_percent": 0.3216,
+        "name": "Snoop Dogg",
+        "image": "TelegramGiftsAssests-main/webp/by_name/snoop_dogg.webp"
+      },
+      {
+        "id": "faith_amulet",
+        "type": "gift",
+        "value": 366,
+        "weight": 3449,
+        "drop_chance_percent": 0.3449,
+        "name": "Faith Amulet",
+        "image": "TelegramGiftsAssests-main/webp/by_name/faith_amulet.webp"
+      },
+      {
+        "id": "pretty_posy",
+        "type": "gift",
+        "value": 359,
+        "weight": 3905,
+        "drop_chance_percent": 0.3905,
+        "name": "Pretty Posy",
+        "image": "TelegramGiftsAssests-main/webp/by_name/pretty_posy.webp"
+      },
+      {
+        "id": "homemade_cake",
+        "type": "gift",
+        "value": 355,
+        "weight": 4197,
+        "drop_chance_percent": 0.4197,
+        "name": "Homemade Cake",
+        "image": "TelegramGiftsAssests-main/webp/by_name/homemade_cake.webp"
+      },
+      {
+        "id": "mousse_cake",
+        "type": "gift",
+        "value": 353,
+        "weight": 4352,
+        "drop_chance_percent": 0.4352,
+        "name": "Mousse Cake",
+        "image": "TelegramGiftsAssests-main/webp/by_name/mousse_cake.webp"
+      },
+      {
+        "id": "bday_candle",
+        "type": "gift",
+        "value": 352,
+        "weight": 4432,
+        "drop_chance_percent": 0.4432,
+        "name": "B-Day Candle",
+        "image": "TelegramGiftsAssests-main/webp/by_name/bday_candle.webp"
+      },
+      {
+        "id": "restless_jar",
+        "type": "gift",
+        "value": 352,
+        "weight": 4432,
+        "drop_chance_percent": 0.4432,
+        "name": "Restless Jar",
+        "image": "TelegramGiftsAssests-main/webp/by_name/restless_jar.webp"
+      },
+      {
+        "id": "witch_hat",
+        "type": "gift",
+        "value": 350,
+        "weight": 4597,
+        "drop_chance_percent": 0.4597,
+        "name": "Witch Hat",
+        "image": "TelegramGiftsAssests-main/webp/by_name/witch_hat.webp"
+      },
+      {
+        "id": "bow_tie",
+        "type": "gift",
+        "value": 348,
+        "weight": 4770,
+        "drop_chance_percent": 0.477,
+        "name": "Bow Tie",
+        "image": "TelegramGiftsAssests-main/webp/by_name/bow_tie.webp"
+      },
+      {
+        "id": "cookie_heart",
+        "type": "gift",
+        "value": 344,
+        "weight": 5138,
+        "drop_chance_percent": 0.5138,
+        "name": "Cookie Heart",
+        "image": "TelegramGiftsAssests-main/webp/by_name/cookie_heart.webp"
+      },
+      {
+        "id": "desk_calendar",
+        "type": "gift",
+        "value": 342,
+        "weight": 5334,
+        "drop_chance_percent": 0.5334,
+        "name": "Desk Calendar",
+        "image": "TelegramGiftsAssests-main/webp/by_name/desk_calendar.webp"
+      },
+      {
+        "id": "spiced_wine",
+        "type": "gift",
+        "value": 336,
+        "weight": 5977,
+        "drop_chance_percent": 0.5977,
+        "name": "Spiced Wine",
+        "image": "TelegramGiftsAssests-main/webp/by_name/spiced_wine.webp"
+      },
+      {
+        "id": "stellar_rocket",
+        "type": "gift",
+        "value": 336,
+        "weight": 5977,
+        "drop_chance_percent": 0.5977,
+        "name": "Stellar Rocket",
+        "image": "TelegramGiftsAssests-main/webp/by_name/stellar_rocket.webp"
+      },
+      {
+        "id": "spy_agaric",
+        "type": "gift",
+        "value": 334,
+        "weight": 6211,
+        "drop_chance_percent": 0.6211,
+        "name": "Spy Agaric",
+        "image": "TelegramGiftsAssests-main/webp/by_name/spy_agaric.webp"
+      },
+      {
+        "id": "clover_pin",
+        "type": "gift",
+        "value": 327,
+        "weight": 7117,
+        "drop_chance_percent": 0.7117,
+        "name": "Clover Pin",
+        "image": "TelegramGiftsAssests-main/webp/by_name/clover_pin.webp"
+      },
+      {
+        "id": "snow_mittens",
+        "type": "gift",
+        "value": 327,
+        "weight": 7117,
+        "drop_chance_percent": 0.7117,
+        "name": "Snow Mittens",
+        "image": "TelegramGiftsAssests-main/webp/by_name/snow_mittens.webp"
+      },
+      {
+        "id": "snow_globe",
+        "type": "gift",
+        "value": 322,
+        "weight": 7858,
+        "drop_chance_percent": 0.7858,
+        "name": "Snow Globe",
+        "image": "TelegramGiftsAssests-main/webp/by_name/snow_globe.webp"
+      },
+      {
+        "id": "money_pot",
+        "type": "gift",
+        "value": 320,
+        "weight": 8179,
+        "drop_chance_percent": 0.8179,
+        "name": "Money Pot",
+        "image": "TelegramGiftsAssests-main/webp/by_name/money_pot.webp"
+      },
+      {
+        "id": "jackinthebox",
+        "type": "gift",
+        "value": 312,
+        "weight": 9625,
+        "drop_chance_percent": 0.9625,
+        "name": "Jack-in-the-Box",
+        "image": "TelegramGiftsAssests-main/webp/by_name/jackinthebox.webp"
+      },
+      {
+        "id": "victory_medal",
+        "type": "gift",
+        "value": 310,
+        "weight": 10031,
+        "drop_chance_percent": 1.0031,
+        "name": "Victory Medal",
+        "image": "TelegramGiftsAssests-main/webp/by_name/victory_medal.webp"
+      },
+      {
+        "id": "happy_brownie",
+        "type": "gift",
+        "value": 306,
+        "weight": 10904,
+        "drop_chance_percent": 1.0904,
+        "name": "Happy Brownie",
+        "image": "TelegramGiftsAssests-main/webp/by_name/happy_brownie.webp"
+      },
+      {
+        "id": "mood_pack",
+        "type": "gift",
+        "value": 304,
+        "weight": 11374,
+        "drop_chance_percent": 1.1374,
+        "name": "Mood Pack",
+        "image": "TelegramGiftsAssests-main/webp/by_name/mood_pack.webp"
+      },
+      {
+        "id": "star_notepad",
+        "type": "gift",
+        "value": 301,
+        "weight": 12123,
+        "drop_chance_percent": 1.2123,
+        "name": "Star Notepad",
+        "image": "TelegramGiftsAssests-main/webp/by_name/star_notepad.webp"
+      },
+      {
+        "id": "fresh_socks",
+        "type": "gift",
+        "value": 300,
+        "weight": 12385,
+        "drop_chance_percent": 1.2385,
+        "name": "Fresh Socks",
+        "image": "TelegramGiftsAssests-main/webp/by_name/fresh_socks.webp"
+      },
+      {
+        "id": "hex_pot",
+        "type": "gift",
+        "value": 299,
+        "weight": 12654,
+        "drop_chance_percent": 1.2654,
+        "name": "Hex Pot",
+        "image": "TelegramGiftsAssests-main/webp/by_name/hex_pot.webp"
+      },
+      {
+        "id": "party_sparkler",
+        "type": "gift",
+        "value": 288,
+        "weight": 16102,
+        "drop_chance_percent": 1.6102,
+        "name": "Party Sparkler",
+        "image": "TelegramGiftsAssests-main/webp/by_name/party_sparkler.webp"
+      },
+      {
+        "id": "timeless_book",
+        "type": "gift",
+        "value": 288,
+        "weight": 16102,
+        "drop_chance_percent": 1.6102,
+        "name": "Timeless Book",
+        "image": "TelegramGiftsAssests-main/webp/by_name/timeless_book.webp"
+      },
+      {
+        "id": "liberty_figure",
+        "type": "gift",
+        "value": 282,
+        "weight": 18435,
+        "drop_chance_percent": 1.8435,
+        "name": "Liberty Figure",
+        "image": "TelegramGiftsAssests-main/webp/by_name/liberty_figure.webp"
+      },
+      {
+        "id": "ginger_cookie",
+        "type": "gift",
+        "value": 280,
+        "weight": 19298,
+        "drop_chance_percent": 1.9298,
+        "name": "Ginger Cookie",
+        "image": "TelegramGiftsAssests-main/webp/by_name/ginger_cookie.webp"
+      },
+      {
+        "id": "santa_hat",
+        "type": "gift",
+        "value": 280,
+        "weight": 19298,
+        "drop_chance_percent": 1.9298,
+        "name": "Santa Hat",
+        "image": "TelegramGiftsAssests-main/webp/by_name/santa_hat.webp"
+      },
+      {
+        "id": "hypno_lollipop",
+        "type": "gift",
+        "value": 272,
+        "weight": 23252,
+        "drop_chance_percent": 2.3252,
+        "name": "Hypno Lollipop",
+        "image": "TelegramGiftsAssests-main/webp/by_name/hypno_lollipop.webp"
+      },
+      {
+        "id": "jester_hat",
+        "type": "gift",
+        "value": 264,
+        "weight": 28171,
+        "drop_chance_percent": 2.8171,
+        "name": "Jester Hat",
+        "image": "TelegramGiftsAssests-main/webp/by_name/jester_hat.webp"
+      },
+      {
+        "id": "pet_snake",
+        "type": "gift",
+        "value": 264,
+        "weight": 28171,
+        "drop_chance_percent": 2.8171,
+        "name": "Pet Snake",
+        "image": "TelegramGiftsAssests-main/webp/by_name/pet_snake.webp"
+      },
+      {
+        "id": "whip_cupcake",
+        "type": "gift",
+        "value": 264,
+        "weight": 28171,
+        "drop_chance_percent": 2.8171,
+        "name": "Whip Cupcake",
+        "image": "TelegramGiftsAssests-main/webp/by_name/whip_cupcake.webp"
+      },
+      {
+        "id": "holiday_drink",
+        "type": "gift",
+        "value": 258,
+        "weight": 32658,
+        "drop_chance_percent": 3.2658,
+        "name": "Holiday Drink",
+        "image": "TelegramGiftsAssests-main/webp/by_name/holiday_drink.webp"
+      },
+      {
+        "id": "easter_egg",
+        "type": "gift",
+        "value": 257,
+        "weight": 33484,
+        "drop_chance_percent": 3.3484,
+        "name": "Easter Egg",
+        "image": "TelegramGiftsAssests-main/webp/by_name/easter_egg.webp"
+      },
+      {
+        "id": "winter_wreath",
+        "type": "gift",
+        "value": 257,
+        "weight": 33484,
+        "drop_chance_percent": 3.3484,
+        "name": "Winter Wreath",
+        "image": "TelegramGiftsAssests-main/webp/by_name/winter_wreath.webp"
+      },
+      {
+        "id": "ice_cream",
+        "type": "gift",
+        "value": 256,
+        "weight": 34333,
+        "drop_chance_percent": 3.4333,
+        "name": "Ice Cream",
+        "image": "TelegramGiftsAssests-main/webp/by_name/ice_cream.webp"
+      },
+      {
+        "id": "lol_pop",
+        "type": "gift",
+        "value": 254,
+        "weight": 36109,
+        "drop_chance_percent": 3.6109,
+        "name": "Lol Pop",
+        "image": "TelegramGiftsAssests-main/webp/by_name/lol_pop.webp"
+      },
+      {
+        "id": "big_year",
+        "type": "gift",
+        "value": 252,
+        "weight": 37991,
+        "drop_chance_percent": 3.7991,
+        "name": "Big Year",
+        "image": "TelegramGiftsAssests-main/webp/by_name/big_year.webp"
+      },
+      {
+        "id": "tama_gadget",
+        "type": "gift",
+        "value": 252,
+        "weight": 37991,
+        "drop_chance_percent": 3.7991,
+        "name": "Tama Gadget",
+        "image": "TelegramGiftsAssests-main/webp/by_name/tama_gadget.webp"
+      },
+      {
+        "id": "instant_ramen",
+        "type": "gift",
+        "value": 250,
+        "weight": 39988,
+        "drop_chance_percent": 3.9988,
+        "name": "Instant Ramen",
+        "image": "TelegramGiftsAssests-main/webp/by_name/instant_ramen.webp"
+      },
+      {
+        "id": "vice_cream",
+        "type": "gift",
+        "value": 250,
+        "weight": 39988,
+        "drop_chance_percent": 3.9988,
+        "name": "Vice Cream",
+        "image": "TelegramGiftsAssests-main/webp/by_name/vice_cream.webp"
+      },
+      {
+        "id": "snake_box",
+        "type": "gift",
+        "value": 249,
+        "weight": 41032,
+        "drop_chance_percent": 4.1032,
+        "name": "Snake Box",
+        "image": "TelegramGiftsAssests-main/webp/by_name/snake_box.webp"
+      },
+      {
+        "id": "candy_cane",
+        "type": "gift",
+        "value": 248,
+        "weight": 42107,
+        "drop_chance_percent": 4.2107,
+        "name": "Candy Cane",
+        "image": "TelegramGiftsAssests-main/webp/by_name/candy_cane.webp"
+      },
+      {
+        "id": "xmas_stocking",
+        "type": "gift",
+        "value": 247,
+        "weight": 43216,
+        "drop_chance_percent": 4.3216,
+        "name": "Xmas Stocking",
+        "image": "TelegramGiftsAssests-main/webp/by_name/xmas_stocking.webp"
+      },
+      {
+        "id": "pool_float",
+        "type": "gift",
+        "value": 245,
+        "weight": 45534,
+        "drop_chance_percent": 4.5534,
+        "name": "Pool Float",
+        "image": "TelegramGiftsAssests-main/webp/by_name/pool_float.webp"
+      },
+      {
+        "id": "lunar_snake",
+        "type": "gift",
+        "value": 236,
+        "weight": 57920,
+        "drop_chance_percent": 5.792,
+        "name": "Lunar Snake",
+        "image": "TelegramGiftsAssests-main/webp/by_name/lunar_snake.webp"
+      },
+      {
+        "id": "chill_flame",
+        "type": "gift",
+        "value": 236,
+        "weight": 57921,
+        "drop_chance_percent": 5.7921,
+        "name": "Chill Flame",
+        "image": "TelegramGiftsAssests-main/webp/by_name/chill_flame.webp"
+      }
+    ],
+    "calculated_ev": 269.1001,
+    "rtp_percent": 90.0,
+    "_achieved": 269.1,
+    "_ok": true,
+    "_vmin": 236,
+    "_alpha": 6.429
+  },
+  {
+    "id": "case_799",
+    "name": "daycase",
+    "tier": "medium",
+    "price": 399,
+    "image": "image/daycase.webp",
+    "target_ev": 339.15,
+    "jackpot_multiplier": 0.85,
+    "items": [
+      {
+        "id": "jolly_chimp",
+        "type": "gift",
+        "value": 519,
+        "weight": 144543,
+        "drop_chance_percent": 14.4543,
+        "name": "Jolly Chimp",
+        "image": "TelegramGiftsAssests-main/webp/by_name/jolly_chimp.webp"
+      },
+      {
+        "id": "joyful_bundle",
+        "type": "gift",
+        "value": 518,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Joyful Bundle",
+        "image": "TelegramGiftsAssests-main/webp/by_name/joyful_bundle.webp"
+      },
+      {
+        "id": "surge_board",
+        "type": "gift",
+        "value": 505,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Surge Board",
+        "image": "TelegramGiftsAssests-main/webp/by_name/surge_board.webp"
+      },
+      {
+        "id": "sleigh_bell",
+        "type": "gift",
+        "value": 474,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Sleigh Bell",
+        "image": "TelegramGiftsAssests-main/webp/by_name/sleigh_bell.webp"
+      },
+      {
+        "id": "light_sword",
+        "type": "gift",
+        "value": 440,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Light Sword",
+        "image": "TelegramGiftsAssests-main/webp/by_name/light_sword.webp"
+      },
+      {
+        "id": "moon_pendant",
+        "type": "gift",
+        "value": 428,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Moon Pendant",
+        "image": "TelegramGiftsAssests-main/webp/by_name/moon_pendant.webp"
+      },
+      {
+        "id": "lush_bouquet",
+        "type": "gift",
+        "value": 423,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Lush Bouquet",
+        "image": "TelegramGiftsAssests-main/webp/by_name/lush_bouquet.webp"
+      },
+      {
+        "id": "swag_bag",
+        "type": "gift",
+        "value": 398,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Swag Bag",
+        "image": "TelegramGiftsAssests-main/webp/by_name/swag_bag.webp"
+      },
+      {
+        "id": "input_key",
+        "type": "gift",
+        "value": 397,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Input Key",
+        "image": "TelegramGiftsAssests-main/webp/by_name/input_key.webp"
+      },
+      {
+        "id": "eternal_candle",
+        "type": "gift",
+        "value": 395,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Eternal Candle",
+        "image": "TelegramGiftsAssests-main/webp/by_name/eternal_candle.webp"
+      },
+      {
+        "id": "spring_basket",
+        "type": "gift",
+        "value": 392,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Spring Basket",
+        "image": "TelegramGiftsAssests-main/webp/by_name/spring_basket.webp"
+      },
+      {
+        "id": "snoop_dogg",
+        "type": "gift",
+        "value": 370,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Snoop Dogg",
+        "image": "TelegramGiftsAssests-main/webp/by_name/snoop_dogg.webp"
+      },
+      {
+        "id": "faith_amulet",
+        "type": "gift",
+        "value": 366,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Faith Amulet",
+        "image": "TelegramGiftsAssests-main/webp/by_name/faith_amulet.webp"
+      },
+      {
+        "id": "pretty_posy",
+        "type": "gift",
+        "value": 359,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Pretty Posy",
+        "image": "TelegramGiftsAssests-main/webp/by_name/pretty_posy.webp"
+      },
+      {
+        "id": "homemade_cake",
+        "type": "gift",
+        "value": 355,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Homemade Cake",
+        "image": "TelegramGiftsAssests-main/webp/by_name/homemade_cake.webp"
+      },
+      {
+        "id": "mousse_cake",
+        "type": "gift",
+        "value": 353,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Mousse Cake",
+        "image": "TelegramGiftsAssests-main/webp/by_name/mousse_cake.webp"
+      },
+      {
+        "id": "bday_candle",
+        "type": "gift",
+        "value": 352,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "B-Day Candle",
+        "image": "TelegramGiftsAssests-main/webp/by_name/bday_candle.webp"
+      },
+      {
+        "id": "restless_jar",
+        "type": "gift",
+        "value": 352,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Restless Jar",
+        "image": "TelegramGiftsAssests-main/webp/by_name/restless_jar.webp"
+      },
+      {
+        "id": "witch_hat",
+        "type": "gift",
+        "value": 350,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Witch Hat",
+        "image": "TelegramGiftsAssests-main/webp/by_name/witch_hat.webp"
+      },
+      {
+        "id": "bow_tie",
+        "type": "gift",
+        "value": 348,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Bow Tie",
+        "image": "TelegramGiftsAssests-main/webp/by_name/bow_tie.webp"
+      },
+      {
+        "id": "cookie_heart",
+        "type": "gift",
+        "value": 344,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Cookie Heart",
+        "image": "TelegramGiftsAssests-main/webp/by_name/cookie_heart.webp"
+      },
+      {
+        "id": "desk_calendar",
+        "type": "gift",
+        "value": 342,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Desk Calendar",
+        "image": "TelegramGiftsAssests-main/webp/by_name/desk_calendar.webp"
+      },
+      {
+        "id": "spiced_wine",
+        "type": "gift",
+        "value": 336,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Spiced Wine",
+        "image": "TelegramGiftsAssests-main/webp/by_name/spiced_wine.webp"
+      },
+      {
+        "id": "stellar_rocket",
+        "type": "gift",
+        "value": 336,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Stellar Rocket",
+        "image": "TelegramGiftsAssests-main/webp/by_name/stellar_rocket.webp"
+      },
+      {
+        "id": "spy_agaric",
+        "type": "gift",
+        "value": 334,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Spy Agaric",
+        "image": "TelegramGiftsAssests-main/webp/by_name/spy_agaric.webp"
+      },
+      {
+        "id": "clover_pin",
+        "type": "gift",
+        "value": 327,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Clover Pin",
+        "image": "TelegramGiftsAssests-main/webp/by_name/clover_pin.webp"
+      },
+      {
+        "id": "snow_mittens",
+        "type": "gift",
+        "value": 327,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Snow Mittens",
+        "image": "TelegramGiftsAssests-main/webp/by_name/snow_mittens.webp"
+      },
+      {
+        "id": "snow_globe",
+        "type": "gift",
+        "value": 322,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Snow Globe",
+        "image": "TelegramGiftsAssests-main/webp/by_name/snow_globe.webp"
+      },
+      {
+        "id": "money_pot",
+        "type": "gift",
+        "value": 320,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Money Pot",
+        "image": "TelegramGiftsAssests-main/webp/by_name/money_pot.webp"
+      },
+      {
+        "id": "jackinthebox",
+        "type": "gift",
+        "value": 312,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Jack-in-the-Box",
+        "image": "TelegramGiftsAssests-main/webp/by_name/jackinthebox.webp"
+      },
+      {
+        "id": "victory_medal",
+        "type": "gift",
+        "value": 310,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Victory Medal",
+        "image": "TelegramGiftsAssests-main/webp/by_name/victory_medal.webp"
+      },
+      {
+        "id": "happy_brownie",
+        "type": "gift",
+        "value": 306,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Happy Brownie",
+        "image": "TelegramGiftsAssests-main/webp/by_name/happy_brownie.webp"
+      },
+      {
+        "id": "mood_pack",
+        "type": "gift",
+        "value": 304,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Mood Pack",
+        "image": "TelegramGiftsAssests-main/webp/by_name/mood_pack.webp"
+      },
+      {
+        "id": "star_notepad",
+        "type": "gift",
+        "value": 301,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Star Notepad",
+        "image": "TelegramGiftsAssests-main/webp/by_name/star_notepad.webp"
+      },
+      {
+        "id": "fresh_socks",
+        "type": "gift",
+        "value": 300,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Fresh Socks",
+        "image": "TelegramGiftsAssests-main/webp/by_name/fresh_socks.webp"
+      },
+      {
+        "id": "hex_pot",
+        "type": "gift",
+        "value": 299,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Hex Pot",
+        "image": "TelegramGiftsAssests-main/webp/by_name/hex_pot.webp"
+      },
+      {
+        "id": "party_sparkler",
+        "type": "gift",
+        "value": 288,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Party Sparkler",
+        "image": "TelegramGiftsAssests-main/webp/by_name/party_sparkler.webp"
+      },
+      {
+        "id": "timeless_book",
+        "type": "gift",
+        "value": 288,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Timeless Book",
+        "image": "TelegramGiftsAssests-main/webp/by_name/timeless_book.webp"
+      },
+      {
+        "id": "liberty_figure",
+        "type": "gift",
+        "value": 282,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Liberty Figure",
+        "image": "TelegramGiftsAssests-main/webp/by_name/liberty_figure.webp"
+      },
+      {
+        "id": "ginger_cookie",
+        "type": "gift",
+        "value": 280,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Ginger Cookie",
+        "image": "TelegramGiftsAssests-main/webp/by_name/ginger_cookie.webp"
+      },
+      {
+        "id": "santa_hat",
+        "type": "gift",
+        "value": 280,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Santa Hat",
+        "image": "TelegramGiftsAssests-main/webp/by_name/santa_hat.webp"
+      },
+      {
+        "id": "hypno_lollipop",
+        "type": "gift",
+        "value": 272,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Hypno Lollipop",
+        "image": "TelegramGiftsAssests-main/webp/by_name/hypno_lollipop.webp"
+      },
+      {
+        "id": "jester_hat",
+        "type": "gift",
+        "value": 264,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Jester Hat",
+        "image": "TelegramGiftsAssests-main/webp/by_name/jester_hat.webp"
+      },
+      {
+        "id": "pet_snake",
+        "type": "gift",
+        "value": 264,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Pet Snake",
+        "image": "TelegramGiftsAssests-main/webp/by_name/pet_snake.webp"
+      },
+      {
+        "id": "whip_cupcake",
+        "type": "gift",
+        "value": 264,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Whip Cupcake",
+        "image": "TelegramGiftsAssests-main/webp/by_name/whip_cupcake.webp"
+      },
+      {
+        "id": "holiday_drink",
+        "type": "gift",
+        "value": 258,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Holiday Drink",
+        "image": "TelegramGiftsAssests-main/webp/by_name/holiday_drink.webp"
+      },
+      {
+        "id": "easter_egg",
+        "type": "gift",
+        "value": 257,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Easter Egg",
+        "image": "TelegramGiftsAssests-main/webp/by_name/easter_egg.webp"
+      },
+      {
+        "id": "winter_wreath",
+        "type": "gift",
+        "value": 257,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Winter Wreath",
+        "image": "TelegramGiftsAssests-main/webp/by_name/winter_wreath.webp"
+      },
+      {
+        "id": "ice_cream",
+        "type": "gift",
+        "value": 256,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Ice Cream",
+        "image": "TelegramGiftsAssests-main/webp/by_name/ice_cream.webp"
+      },
+      {
+        "id": "lol_pop",
+        "type": "gift",
+        "value": 254,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Lol Pop",
+        "image": "TelegramGiftsAssests-main/webp/by_name/lol_pop.webp"
+      },
+      {
+        "id": "big_year",
+        "type": "gift",
+        "value": 252,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Big Year",
+        "image": "TelegramGiftsAssests-main/webp/by_name/big_year.webp"
+      },
+      {
+        "id": "tama_gadget",
+        "type": "gift",
+        "value": 252,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Tama Gadget",
+        "image": "TelegramGiftsAssests-main/webp/by_name/tama_gadget.webp"
+      },
+      {
+        "id": "instant_ramen",
+        "type": "gift",
+        "value": 250,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Instant Ramen",
+        "image": "TelegramGiftsAssests-main/webp/by_name/instant_ramen.webp"
+      },
+      {
+        "id": "vice_cream",
+        "type": "gift",
+        "value": 250,
+        "weight": 5433,
+        "drop_chance_percent": 0.5433,
+        "name": "Vice Cream",
+        "image": "TelegramGiftsAssests-main/webp/by_name/vice_cream.webp"
+      },
+      {
+        "id": "snake_box",
+        "type": "gift",
+        "value": 249,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Snake Box",
+        "image": "TelegramGiftsAssests-main/webp/by_name/snake_box.webp"
+      },
+      {
+        "id": "candy_cane",
+        "type": "gift",
+        "value": 248,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Candy Cane",
+        "image": "TelegramGiftsAssests-main/webp/by_name/candy_cane.webp"
+      },
+      {
+        "id": "xmas_stocking",
+        "type": "gift",
+        "value": 247,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Xmas Stocking",
+        "image": "TelegramGiftsAssests-main/webp/by_name/xmas_stocking.webp"
+      },
+      {
+        "id": "pool_float",
+        "type": "gift",
+        "value": 245,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Pool Float",
+        "image": "TelegramGiftsAssests-main/webp/by_name/pool_float.webp"
+      },
+      {
+        "id": "lunar_snake",
+        "type": "gift",
+        "value": 236,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Lunar Snake",
+        "image": "TelegramGiftsAssests-main/webp/by_name/lunar_snake.webp"
+      },
+      {
+        "id": "chill_flame",
+        "type": "gift",
+        "value": 236,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Chill Flame",
+        "image": "TelegramGiftsAssests-main/webp/by_name/chill_flame.webp"
+      }
+    ],
+    "calculated_ev": 359.1001,
+    "rtp_percent": 90.0,
+    "_achieved": 359.1,
+    "_ok": true,
+    "_vmin": 236,
+    "_alpha": 0.0
+  },
+  {
+    "id": "case_1249",
+    "name": "halouincase",
+    "tier": "medium",
+    "price": 499,
+    "image": "image/halouincase.webp",
+    "target_ev": 424.15,
+    "jackpot_multiplier": 0.85,
+    "items": [
+      {
+        "id": "berry_box",
+        "type": "gift",
+        "value": 576,
+        "weight": 320997,
+        "drop_chance_percent": 32.0997,
+        "name": "Berry Box",
+        "image": "TelegramGiftsAssests-main/webp/by_name/berry_box.webp"
+      },
+      {
+        "id": "love_candle",
+        "type": "gift",
+        "value": 560,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Love Candle",
+        "image": "TelegramGiftsAssests-main/webp/by_name/love_candle.webp"
+      },
+      {
+        "id": "bunny_muffin",
+        "type": "gift",
+        "value": 552,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Bunny Muffin",
+        "image": "TelegramGiftsAssests-main/webp/by_name/bunny_muffin.webp"
+      },
+      {
+        "id": "jelly_bunny",
+        "type": "gift",
+        "value": 550,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Jelly Bunny",
+        "image": "TelegramGiftsAssests-main/webp/by_name/jelly_bunny.webp"
+      },
+      {
+        "id": "jingle_bells",
+        "type": "gift",
+        "value": 528,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Jingle Bells",
+        "image": "TelegramGiftsAssests-main/webp/by_name/jingle_bells.webp"
+      },
+      {
+        "id": "evil_eye",
+        "type": "gift",
+        "value": 526,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Evil Eye",
+        "image": "TelegramGiftsAssests-main/webp/by_name/evil_eye.webp"
+      },
+      {
+        "id": "jolly_chimp",
+        "type": "gift",
+        "value": 519,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Jolly Chimp",
+        "image": "TelegramGiftsAssests-main/webp/by_name/jolly_chimp.webp"
+      },
+      {
+        "id": "joyful_bundle",
+        "type": "gift",
+        "value": 518,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Joyful Bundle",
+        "image": "TelegramGiftsAssests-main/webp/by_name/joyful_bundle.webp"
+      },
+      {
+        "id": "surge_board",
+        "type": "gift",
+        "value": 505,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Surge Board",
+        "image": "TelegramGiftsAssests-main/webp/by_name/surge_board.webp"
+      },
+      {
+        "id": "sleigh_bell",
+        "type": "gift",
+        "value": 474,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Sleigh Bell",
+        "image": "TelegramGiftsAssests-main/webp/by_name/sleigh_bell.webp"
+      },
+      {
+        "id": "light_sword",
+        "type": "gift",
+        "value": 440,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Light Sword",
+        "image": "TelegramGiftsAssests-main/webp/by_name/light_sword.webp"
+      },
+      {
+        "id": "moon_pendant",
+        "type": "gift",
+        "value": 428,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Moon Pendant",
+        "image": "TelegramGiftsAssests-main/webp/by_name/moon_pendant.webp"
+      },
+      {
+        "id": "lush_bouquet",
+        "type": "gift",
+        "value": 423,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Lush Bouquet",
+        "image": "TelegramGiftsAssests-main/webp/by_name/lush_bouquet.webp"
+      },
+      {
+        "id": "swag_bag",
+        "type": "gift",
+        "value": 398,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Swag Bag",
+        "image": "TelegramGiftsAssests-main/webp/by_name/swag_bag.webp"
+      },
+      {
+        "id": "input_key",
+        "type": "gift",
+        "value": 397,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Input Key",
+        "image": "TelegramGiftsAssests-main/webp/by_name/input_key.webp"
+      },
+      {
+        "id": "eternal_candle",
+        "type": "gift",
+        "value": 395,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Eternal Candle",
+        "image": "TelegramGiftsAssests-main/webp/by_name/eternal_candle.webp"
+      },
+      {
+        "id": "spring_basket",
+        "type": "gift",
+        "value": 392,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Spring Basket",
+        "image": "TelegramGiftsAssests-main/webp/by_name/spring_basket.webp"
+      },
+      {
+        "id": "snoop_dogg",
+        "type": "gift",
+        "value": 370,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Snoop Dogg",
+        "image": "TelegramGiftsAssests-main/webp/by_name/snoop_dogg.webp"
+      },
+      {
+        "id": "faith_amulet",
+        "type": "gift",
+        "value": 366,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Faith Amulet",
+        "image": "TelegramGiftsAssests-main/webp/by_name/faith_amulet.webp"
+      },
+      {
+        "id": "pretty_posy",
+        "type": "gift",
+        "value": 359,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Pretty Posy",
+        "image": "TelegramGiftsAssests-main/webp/by_name/pretty_posy.webp"
+      },
+      {
+        "id": "homemade_cake",
+        "type": "gift",
+        "value": 355,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Homemade Cake",
+        "image": "TelegramGiftsAssests-main/webp/by_name/homemade_cake.webp"
+      },
+      {
+        "id": "mousse_cake",
+        "type": "gift",
+        "value": 353,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Mousse Cake",
+        "image": "TelegramGiftsAssests-main/webp/by_name/mousse_cake.webp"
+      },
+      {
+        "id": "bday_candle",
+        "type": "gift",
+        "value": 352,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "B-Day Candle",
+        "image": "TelegramGiftsAssests-main/webp/by_name/bday_candle.webp"
+      },
+      {
+        "id": "restless_jar",
+        "type": "gift",
+        "value": 352,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Restless Jar",
+        "image": "TelegramGiftsAssests-main/webp/by_name/restless_jar.webp"
+      },
+      {
+        "id": "witch_hat",
+        "type": "gift",
+        "value": 350,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Witch Hat",
+        "image": "TelegramGiftsAssests-main/webp/by_name/witch_hat.webp"
+      },
+      {
+        "id": "bow_tie",
+        "type": "gift",
+        "value": 348,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Bow Tie",
+        "image": "TelegramGiftsAssests-main/webp/by_name/bow_tie.webp"
+      },
+      {
+        "id": "cookie_heart",
+        "type": "gift",
+        "value": 344,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Cookie Heart",
+        "image": "TelegramGiftsAssests-main/webp/by_name/cookie_heart.webp"
+      },
+      {
+        "id": "desk_calendar",
+        "type": "gift",
+        "value": 342,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Desk Calendar",
+        "image": "TelegramGiftsAssests-main/webp/by_name/desk_calendar.webp"
+      },
+      {
+        "id": "spiced_wine",
+        "type": "gift",
+        "value": 336,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Spiced Wine",
+        "image": "TelegramGiftsAssests-main/webp/by_name/spiced_wine.webp"
+      },
+      {
+        "id": "stellar_rocket",
+        "type": "gift",
+        "value": 336,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Stellar Rocket",
+        "image": "TelegramGiftsAssests-main/webp/by_name/stellar_rocket.webp"
+      },
+      {
+        "id": "spy_agaric",
+        "type": "gift",
+        "value": 334,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Spy Agaric",
+        "image": "TelegramGiftsAssests-main/webp/by_name/spy_agaric.webp"
+      },
+      {
+        "id": "clover_pin",
+        "type": "gift",
+        "value": 327,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Clover Pin",
+        "image": "TelegramGiftsAssests-main/webp/by_name/clover_pin.webp"
+      },
+      {
+        "id": "snow_mittens",
+        "type": "gift",
+        "value": 327,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Snow Mittens",
+        "image": "TelegramGiftsAssests-main/webp/by_name/snow_mittens.webp"
+      },
+      {
+        "id": "snow_globe",
+        "type": "gift",
+        "value": 322,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Snow Globe",
+        "image": "TelegramGiftsAssests-main/webp/by_name/snow_globe.webp"
+      },
+      {
+        "id": "money_pot",
+        "type": "gift",
+        "value": 320,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Money Pot",
+        "image": "TelegramGiftsAssests-main/webp/by_name/money_pot.webp"
+      },
+      {
+        "id": "jackinthebox",
+        "type": "gift",
+        "value": 312,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Jack-in-the-Box",
+        "image": "TelegramGiftsAssests-main/webp/by_name/jackinthebox.webp"
+      },
+      {
+        "id": "victory_medal",
+        "type": "gift",
+        "value": 310,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Victory Medal",
+        "image": "TelegramGiftsAssests-main/webp/by_name/victory_medal.webp"
+      },
+      {
+        "id": "happy_brownie",
+        "type": "gift",
+        "value": 306,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Happy Brownie",
+        "image": "TelegramGiftsAssests-main/webp/by_name/happy_brownie.webp"
+      },
+      {
+        "id": "mood_pack",
+        "type": "gift",
+        "value": 304,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Mood Pack",
+        "image": "TelegramGiftsAssests-main/webp/by_name/mood_pack.webp"
+      },
+      {
+        "id": "star_notepad",
+        "type": "gift",
+        "value": 301,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Star Notepad",
+        "image": "TelegramGiftsAssests-main/webp/by_name/star_notepad.webp"
+      },
+      {
+        "id": "fresh_socks",
+        "type": "gift",
+        "value": 300,
+        "weight": 16667,
+        "drop_chance_percent": 1.6667,
+        "name": "Fresh Socks",
+        "image": "TelegramGiftsAssests-main/webp/by_name/fresh_socks.webp"
+      },
+      {
+        "id": "hex_pot",
+        "type": "gift",
+        "value": 299,
+        "weight": 12305,
+        "drop_chance_percent": 1.2305,
+        "name": "Hex Pot",
+        "image": "TelegramGiftsAssests-main/webp/by_name/hex_pot.webp"
+      },
+      {
+        "id": "party_sparkler",
+        "type": "gift",
+        "value": 288,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Party Sparkler",
+        "image": "TelegramGiftsAssests-main/webp/by_name/party_sparkler.webp"
+      },
+      {
+        "id": "timeless_book",
+        "type": "gift",
+        "value": 288,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Timeless Book",
+        "image": "TelegramGiftsAssests-main/webp/by_name/timeless_book.webp"
+      },
+      {
+        "id": "liberty_figure",
+        "type": "gift",
+        "value": 282,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Liberty Figure",
+        "image": "TelegramGiftsAssests-main/webp/by_name/liberty_figure.webp"
+      },
+      {
+        "id": "ginger_cookie",
+        "type": "gift",
+        "value": 280,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Ginger Cookie",
+        "image": "TelegramGiftsAssests-main/webp/by_name/ginger_cookie.webp"
+      },
+      {
+        "id": "santa_hat",
+        "type": "gift",
+        "value": 280,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Santa Hat",
+        "image": "TelegramGiftsAssests-main/webp/by_name/santa_hat.webp"
+      },
+      {
+        "id": "hypno_lollipop",
+        "type": "gift",
+        "value": 272,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Hypno Lollipop",
+        "image": "TelegramGiftsAssests-main/webp/by_name/hypno_lollipop.webp"
+      },
+      {
+        "id": "jester_hat",
+        "type": "gift",
+        "value": 264,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Jester Hat",
+        "image": "TelegramGiftsAssests-main/webp/by_name/jester_hat.webp"
+      },
+      {
+        "id": "pet_snake",
+        "type": "gift",
+        "value": 264,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Pet Snake",
+        "image": "TelegramGiftsAssests-main/webp/by_name/pet_snake.webp"
+      },
+      {
+        "id": "whip_cupcake",
+        "type": "gift",
+        "value": 264,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Whip Cupcake",
+        "image": "TelegramGiftsAssests-main/webp/by_name/whip_cupcake.webp"
+      },
+      {
+        "id": "holiday_drink",
+        "type": "gift",
+        "value": 258,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Holiday Drink",
+        "image": "TelegramGiftsAssests-main/webp/by_name/holiday_drink.webp"
+      },
+      {
+        "id": "easter_egg",
+        "type": "gift",
+        "value": 257,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Easter Egg",
+        "image": "TelegramGiftsAssests-main/webp/by_name/easter_egg.webp"
+      },
+      {
+        "id": "winter_wreath",
+        "type": "gift",
+        "value": 257,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Winter Wreath",
+        "image": "TelegramGiftsAssests-main/webp/by_name/winter_wreath.webp"
+      },
+      {
+        "id": "ice_cream",
+        "type": "gift",
+        "value": 256,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Ice Cream",
+        "image": "TelegramGiftsAssests-main/webp/by_name/ice_cream.webp"
+      },
+      {
+        "id": "lol_pop",
+        "type": "gift",
+        "value": 254,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Lol Pop",
+        "image": "TelegramGiftsAssests-main/webp/by_name/lol_pop.webp"
+      },
+      {
+        "id": "big_year",
+        "type": "gift",
+        "value": 252,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Big Year",
+        "image": "TelegramGiftsAssests-main/webp/by_name/big_year.webp"
+      },
+      {
+        "id": "tama_gadget",
+        "type": "gift",
+        "value": 252,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Tama Gadget",
+        "image": "TelegramGiftsAssests-main/webp/by_name/tama_gadget.webp"
+      },
+      {
+        "id": "instant_ramen",
+        "type": "gift",
+        "value": 250,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Instant Ramen",
+        "image": "TelegramGiftsAssests-main/webp/by_name/instant_ramen.webp"
+      },
+      {
+        "id": "vice_cream",
+        "type": "gift",
+        "value": 250,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Vice Cream",
+        "image": "TelegramGiftsAssests-main/webp/by_name/vice_cream.webp"
+      }
+    ],
+    "calculated_ev": 449.1001,
+    "rtp_percent": 90.0,
+    "_achieved": 449.1,
+    "_ok": true,
+    "_vmin": 250,
+    "_alpha": 0.0
+  },
+  {
+    "id": "case_1999",
+    "name": "lovecase",
+    "tier": "medium",
+    "price": 599,
+    "image": "image/lovecase.webp",
+    "target_ev": 509.15,
+    "jackpot_multiplier": 0.85,
+    "items": [
+      {
+        "id": "bling_binky",
+        "type": "gift",
+        "value": 1814,
+        "weight": 1956,
+        "drop_chance_percent": 0.1956,
+        "name": "Bling Binky",
+        "image": "TelegramGiftsAssests-main/webp/by_name/bling_binky.webp"
+      },
+      {
+        "id": "rare_bird",
+        "type": "gift",
+        "value": 1782,
+        "weight": 2422,
+        "drop_chance_percent": 0.2422,
+        "name": "Rare Bird",
+        "image": "TelegramGiftsAssests-main/webp/by_name/rare_bird.webp"
+      },
+      {
+        "id": "khabibs_papakha",
+        "type": "gift",
+        "value": 1760,
+        "weight": 2805,
+        "drop_chance_percent": 0.2805,
+        "name": "Khabib’s Papakha",
+        "image": "TelegramGiftsAssests-main/webp/by_name/khabibs_papakha.webp"
+      },
+      {
+        "id": "cupid_charm",
+        "type": "gift",
+        "value": 1599,
+        "weight": 8220,
+        "drop_chance_percent": 0.822,
+        "name": "Cupid Charm",
+        "image": "TelegramGiftsAssests-main/webp/by_name/cupid_charm.webp"
+      },
+      {
+        "id": "sky_stilettos",
+        "type": "gift",
+        "value": 1352,
+        "weight": 16310,
+        "drop_chance_percent": 1.631,
+        "name": "Sky Stilettos",
+        "image": "TelegramGiftsAssests-main/webp/by_name/sky_stilettos.webp"
+      },
+      {
+        "id": "ionic_dryer",
+        "type": "gift",
+        "value": 1118,
+        "weight": 16536,
+        "drop_chance_percent": 1.6536,
+        "name": "Ionic Dryer",
+        "image": "TelegramGiftsAssests-main/webp/by_name/ionic_dryer.webp"
+      },
+      {
+        "id": "ufc_strike",
+        "type": "gift",
+        "value": 1061,
+        "weight": 16598,
+        "drop_chance_percent": 1.6598,
+        "name": "UFC Strike",
+        "image": "TelegramGiftsAssests-main/webp/by_name/ufc_strike.webp"
+      },
+      {
+        "id": "love_potion",
+        "type": "gift",
+        "value": 1039,
+        "weight": 16623,
+        "drop_chance_percent": 1.6623,
+        "name": "Love Potion",
+        "image": "TelegramGiftsAssests-main/webp/by_name/love_potion.webp"
+      },
+      {
+        "id": "trapped_heart",
+        "type": "gift",
+        "value": 1030,
+        "weight": 16634,
+        "drop_chance_percent": 1.6634,
+        "name": "Trapped Heart",
+        "image": "TelegramGiftsAssests-main/webp/by_name/trapped_heart.webp"
+      },
+      {
+        "id": "snoop_cigar",
+        "type": "gift",
+        "value": 993,
+        "weight": 16678,
+        "drop_chance_percent": 1.6678,
+        "name": "Snoop Cigar",
+        "image": "TelegramGiftsAssests-main/webp/by_name/snoop_cigar.webp"
+      },
+      {
+        "id": "record_player",
+        "type": "gift",
+        "value": 889,
+        "weight": 16812,
+        "drop_chance_percent": 1.6812,
+        "name": "Record Player",
+        "image": "TelegramGiftsAssests-main/webp/by_name/record_player.webp"
+      },
+      {
+        "id": "crystal_ball",
+        "type": "gift",
+        "value": 872,
+        "weight": 16835,
+        "drop_chance_percent": 1.6835,
+        "name": "Crystal Ball",
+        "image": "TelegramGiftsAssests-main/webp/by_name/crystal_ball.webp"
+      },
+      {
+        "id": "flying_broom",
+        "type": "gift",
+        "value": 796,
+        "weight": 16946,
+        "drop_chance_percent": 1.6946,
+        "name": "Flying Broom",
+        "image": "TelegramGiftsAssests-main/webp/by_name/flying_broom.webp"
+      },
+      {
+        "id": "valentine_box",
+        "type": "gift",
+        "value": 773,
+        "weight": 16982,
+        "drop_chance_percent": 1.6982,
+        "name": "Valentine Box",
+        "image": "TelegramGiftsAssests-main/webp/by_name/valentine_box.webp"
+      },
+      {
+        "id": "mad_pumpkin",
+        "type": "gift",
+        "value": 760,
+        "weight": 17003,
+        "drop_chance_percent": 1.7003,
+        "name": "Mad Pumpkin",
+        "image": "TelegramGiftsAssests-main/webp/by_name/mad_pumpkin.webp"
+      },
+      {
+        "id": "top_hat",
+        "type": "gift",
+        "value": 740,
+        "weight": 17036,
+        "drop_chance_percent": 1.7036,
+        "name": "Top Hat",
+        "image": "TelegramGiftsAssests-main/webp/by_name/top_hat.webp"
+      },
+      {
+        "id": "skull_flower",
+        "type": "gift",
+        "value": 719,
+        "weight": 17071,
+        "drop_chance_percent": 1.7071,
+        "name": "Skull Flower",
+        "image": "TelegramGiftsAssests-main/webp/by_name/skull_flower.webp"
+      },
+      {
+        "id": "sakura_flower",
+        "type": "gift",
+        "value": 640,
+        "weight": 17216,
+        "drop_chance_percent": 1.7216,
+        "name": "Sakura Flower",
+        "image": "TelegramGiftsAssests-main/webp/by_name/sakura_flower.webp"
+      },
+      {
+        "id": "hanging_star",
+        "type": "gift",
+        "value": 608,
+        "weight": 17279,
+        "drop_chance_percent": 1.7279,
+        "name": "Hanging Star",
+        "image": "TelegramGiftsAssests-main/webp/by_name/hanging_star.webp"
+      },
+      {
+        "id": "berry_box",
+        "type": "gift",
+        "value": 576,
+        "weight": 17347,
+        "drop_chance_percent": 1.7347,
+        "name": "Berry Box",
+        "image": "TelegramGiftsAssests-main/webp/by_name/berry_box.webp"
+      },
+      {
+        "id": "love_candle",
+        "type": "gift",
+        "value": 560,
+        "weight": 17382,
+        "drop_chance_percent": 1.7382,
+        "name": "Love Candle",
+        "image": "TelegramGiftsAssests-main/webp/by_name/love_candle.webp"
+      },
+      {
+        "id": "bunny_muffin",
+        "type": "gift",
+        "value": 552,
+        "weight": 17400,
+        "drop_chance_percent": 1.74,
+        "name": "Bunny Muffin",
+        "image": "TelegramGiftsAssests-main/webp/by_name/bunny_muffin.webp"
+      },
+      {
+        "id": "jelly_bunny",
+        "type": "gift",
+        "value": 550,
+        "weight": 17405,
+        "drop_chance_percent": 1.7405,
+        "name": "Jelly Bunny",
+        "image": "TelegramGiftsAssests-main/webp/by_name/jelly_bunny.webp"
+      },
+      {
+        "id": "jingle_bells",
+        "type": "gift",
+        "value": 528,
+        "weight": 17456,
+        "drop_chance_percent": 1.7456,
+        "name": "Jingle Bells",
+        "image": "TelegramGiftsAssests-main/webp/by_name/jingle_bells.webp"
+      },
+      {
+        "id": "evil_eye",
+        "type": "gift",
+        "value": 526,
+        "weight": 17461,
+        "drop_chance_percent": 1.7461,
+        "name": "Evil Eye",
+        "image": "TelegramGiftsAssests-main/webp/by_name/evil_eye.webp"
+      },
+      {
+        "id": "jolly_chimp",
+        "type": "gift",
+        "value": 519,
+        "weight": 17478,
+        "drop_chance_percent": 1.7478,
+        "name": "Jolly Chimp",
+        "image": "TelegramGiftsAssests-main/webp/by_name/jolly_chimp.webp"
+      },
+      {
+        "id": "joyful_bundle",
+        "type": "gift",
+        "value": 518,
+        "weight": 17481,
+        "drop_chance_percent": 1.7481,
+        "name": "Joyful Bundle",
+        "image": "TelegramGiftsAssests-main/webp/by_name/joyful_bundle.webp"
+      },
+      {
+        "id": "surge_board",
+        "type": "gift",
+        "value": 505,
+        "weight": 17513,
+        "drop_chance_percent": 1.7513,
+        "name": "Surge Board",
+        "image": "TelegramGiftsAssests-main/webp/by_name/surge_board.webp"
+      },
+      {
+        "id": "sleigh_bell",
+        "type": "gift",
+        "value": 474,
+        "weight": 17593,
+        "drop_chance_percent": 1.7593,
+        "name": "Sleigh Bell",
+        "image": "TelegramGiftsAssests-main/webp/by_name/sleigh_bell.webp"
+      },
+      {
+        "id": "light_sword",
+        "type": "gift",
+        "value": 440,
+        "weight": 17688,
+        "drop_chance_percent": 1.7688,
+        "name": "Light Sword",
+        "image": "TelegramGiftsAssests-main/webp/by_name/light_sword.webp"
+      },
+      {
+        "id": "moon_pendant",
+        "type": "gift",
+        "value": 428,
+        "weight": 17723,
+        "drop_chance_percent": 1.7723,
+        "name": "Moon Pendant",
+        "image": "TelegramGiftsAssests-main/webp/by_name/moon_pendant.webp"
+      },
+      {
+        "id": "lush_bouquet",
+        "type": "gift",
+        "value": 423,
+        "weight": 17738,
+        "drop_chance_percent": 1.7738,
+        "name": "Lush Bouquet",
+        "image": "TelegramGiftsAssests-main/webp/by_name/lush_bouquet.webp"
+      },
+      {
+        "id": "swag_bag",
+        "type": "gift",
+        "value": 398,
+        "weight": 17816,
+        "drop_chance_percent": 1.7816,
+        "name": "Swag Bag",
+        "image": "TelegramGiftsAssests-main/webp/by_name/swag_bag.webp"
+      },
+      {
+        "id": "input_key",
+        "type": "gift",
+        "value": 397,
+        "weight": 17820,
+        "drop_chance_percent": 1.782,
+        "name": "Input Key",
+        "image": "TelegramGiftsAssests-main/webp/by_name/input_key.webp"
+      },
+      {
+        "id": "eternal_candle",
+        "type": "gift",
+        "value": 395,
+        "weight": 17826,
+        "drop_chance_percent": 1.7826,
+        "name": "Eternal Candle",
+        "image": "TelegramGiftsAssests-main/webp/by_name/eternal_candle.webp"
+      },
+      {
+        "id": "spring_basket",
+        "type": "gift",
+        "value": 392,
+        "weight": 17836,
+        "drop_chance_percent": 1.7836,
+        "name": "Spring Basket",
+        "image": "TelegramGiftsAssests-main/webp/by_name/spring_basket.webp"
+      },
+      {
+        "id": "snoop_dogg",
+        "type": "gift",
+        "value": 370,
+        "weight": 17911,
+        "drop_chance_percent": 1.7911,
+        "name": "Snoop Dogg",
+        "image": "TelegramGiftsAssests-main/webp/by_name/snoop_dogg.webp"
+      },
+      {
+        "id": "faith_amulet",
+        "type": "gift",
+        "value": 366,
+        "weight": 17925,
+        "drop_chance_percent": 1.7925,
+        "name": "Faith Amulet",
+        "image": "TelegramGiftsAssests-main/webp/by_name/faith_amulet.webp"
+      },
+      {
+        "id": "pretty_posy",
+        "type": "gift",
+        "value": 359,
+        "weight": 17950,
+        "drop_chance_percent": 1.795,
+        "name": "Pretty Posy",
+        "image": "TelegramGiftsAssests-main/webp/by_name/pretty_posy.webp"
+      },
+      {
+        "id": "homemade_cake",
+        "type": "gift",
+        "value": 355,
+        "weight": 17964,
+        "drop_chance_percent": 1.7964,
+        "name": "Homemade Cake",
+        "image": "TelegramGiftsAssests-main/webp/by_name/homemade_cake.webp"
+      },
+      {
+        "id": "mousse_cake",
+        "type": "gift",
+        "value": 353,
+        "weight": 17972,
+        "drop_chance_percent": 1.7972,
+        "name": "Mousse Cake",
+        "image": "TelegramGiftsAssests-main/webp/by_name/mousse_cake.webp"
+      },
+      {
+        "id": "bday_candle",
+        "type": "gift",
+        "value": 352,
+        "weight": 17975,
+        "drop_chance_percent": 1.7975,
+        "name": "B-Day Candle",
+        "image": "TelegramGiftsAssests-main/webp/by_name/bday_candle.webp"
+      },
+      {
+        "id": "restless_jar",
+        "type": "gift",
+        "value": 352,
+        "weight": 17975,
+        "drop_chance_percent": 1.7975,
+        "name": "Restless Jar",
+        "image": "TelegramGiftsAssests-main/webp/by_name/restless_jar.webp"
+      },
+      {
+        "id": "witch_hat",
+        "type": "gift",
+        "value": 350,
+        "weight": 17983,
+        "drop_chance_percent": 1.7983,
+        "name": "Witch Hat",
+        "image": "TelegramGiftsAssests-main/webp/by_name/witch_hat.webp"
+      },
+      {
+        "id": "bow_tie",
+        "type": "gift",
+        "value": 348,
+        "weight": 17990,
+        "drop_chance_percent": 1.799,
+        "name": "Bow Tie",
+        "image": "TelegramGiftsAssests-main/webp/by_name/bow_tie.webp"
+      },
+      {
+        "id": "cookie_heart",
+        "type": "gift",
+        "value": 344,
+        "weight": 18005,
+        "drop_chance_percent": 1.8005,
+        "name": "Cookie Heart",
+        "image": "TelegramGiftsAssests-main/webp/by_name/cookie_heart.webp"
+      },
+      {
+        "id": "desk_calendar",
+        "type": "gift",
+        "value": 342,
+        "weight": 18013,
+        "drop_chance_percent": 1.8013,
+        "name": "Desk Calendar",
+        "image": "TelegramGiftsAssests-main/webp/by_name/desk_calendar.webp"
+      },
+      {
+        "id": "spiced_wine",
+        "type": "gift",
+        "value": 336,
+        "weight": 18036,
+        "drop_chance_percent": 1.8036,
+        "name": "Spiced Wine",
+        "image": "TelegramGiftsAssests-main/webp/by_name/spiced_wine.webp"
+      },
+      {
+        "id": "stellar_rocket",
+        "type": "gift",
+        "value": 336,
+        "weight": 18036,
+        "drop_chance_percent": 1.8036,
+        "name": "Stellar Rocket",
+        "image": "TelegramGiftsAssests-main/webp/by_name/stellar_rocket.webp"
+      },
+      {
+        "id": "spy_agaric",
+        "type": "gift",
+        "value": 334,
+        "weight": 18044,
+        "drop_chance_percent": 1.8044,
+        "name": "Spy Agaric",
+        "image": "TelegramGiftsAssests-main/webp/by_name/spy_agaric.webp"
+      },
+      {
+        "id": "clover_pin",
+        "type": "gift",
+        "value": 327,
+        "weight": 18071,
+        "drop_chance_percent": 1.8071,
+        "name": "Clover Pin",
+        "image": "TelegramGiftsAssests-main/webp/by_name/clover_pin.webp"
+      },
+      {
+        "id": "snow_mittens",
+        "type": "gift",
+        "value": 327,
+        "weight": 18071,
+        "drop_chance_percent": 1.8071,
+        "name": "Snow Mittens",
+        "image": "TelegramGiftsAssests-main/webp/by_name/snow_mittens.webp"
+      },
+      {
+        "id": "snow_globe",
+        "type": "gift",
+        "value": 322,
+        "weight": 18091,
+        "drop_chance_percent": 1.8091,
+        "name": "Snow Globe",
+        "image": "TelegramGiftsAssests-main/webp/by_name/snow_globe.webp"
+      },
+      {
+        "id": "money_pot",
+        "type": "gift",
+        "value": 320,
+        "weight": 18099,
+        "drop_chance_percent": 1.8099,
+        "name": "Money Pot",
+        "image": "TelegramGiftsAssests-main/webp/by_name/money_pot.webp"
+      },
+      {
+        "id": "jackinthebox",
+        "type": "gift",
+        "value": 312,
+        "weight": 18133,
+        "drop_chance_percent": 1.8133,
+        "name": "Jack-in-the-Box",
+        "image": "TelegramGiftsAssests-main/webp/by_name/jackinthebox.webp"
+      },
+      {
+        "id": "victory_medal",
+        "type": "gift",
+        "value": 310,
+        "weight": 18141,
+        "drop_chance_percent": 1.8141,
+        "name": "Victory Medal",
+        "image": "TelegramGiftsAssests-main/webp/by_name/victory_medal.webp"
+      },
+      {
+        "id": "happy_brownie",
+        "type": "gift",
+        "value": 306,
+        "weight": 18158,
+        "drop_chance_percent": 1.8158,
+        "name": "Happy Brownie",
+        "image": "TelegramGiftsAssests-main/webp/by_name/happy_brownie.webp"
+      },
+      {
+        "id": "mood_pack",
+        "type": "gift",
+        "value": 304,
+        "weight": 18167,
+        "drop_chance_percent": 1.8167,
+        "name": "Mood Pack",
+        "image": "TelegramGiftsAssests-main/webp/by_name/mood_pack.webp"
+      },
+      {
+        "id": "star_notepad",
+        "type": "gift",
+        "value": 301,
+        "weight": 18180,
+        "drop_chance_percent": 1.818,
+        "name": "Star Notepad",
+        "image": "TelegramGiftsAssests-main/webp/by_name/star_notepad.webp"
+      },
+      {
+        "id": "fresh_socks",
+        "type": "gift",
+        "value": 300,
+        "weight": 18185,
+        "drop_chance_percent": 1.8185,
+        "name": "Fresh Socks",
+        "image": "TelegramGiftsAssests-main/webp/by_name/fresh_socks.webp"
+      }
+    ],
+    "calculated_ev": 539.0982,
+    "rtp_percent": 89.9997,
+    "_achieved": 539.1,
+    "_ok": true,
+    "_vmin": 300,
+    "_alpha": 0.072
+  },
+  {
+    "id": "case_2999",
+    "name": "gemcase",
+    "tier": "elite",
+    "price": 999,
+    "image": "image/gemcase.webp",
+    "target_ev": 849.15,
+    "jackpot_multiplier": 0.85,
+    "items": [
+      {
+        "id": "durovs_cap",
+        "type": "gift",
+        "value": 33600,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Durov’s Cap",
+        "image": "TelegramGiftsAssests-main/webp/by_name/durovs_cap.webp"
+      },
+      {
+        "id": "precious_peach",
+        "type": "gift",
+        "value": 21590,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Precious Peach",
+        "image": "TelegramGiftsAssests-main/webp/by_name/precious_peach.webp"
+      },
+      {
+        "id": "heroic_helmet",
+        "type": "gift",
+        "value": 14521,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Heroic Helmet",
+        "image": "TelegramGiftsAssests-main/webp/by_name/heroic_helmet.webp"
+      },
+      {
+        "id": "scared_cat",
+        "type": "gift",
+        "value": 14088,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Scared Cat",
+        "image": "TelegramGiftsAssests-main/webp/by_name/scared_cat.webp"
+      },
+      {
+        "id": "durovs_glasses",
+        "type": "gift",
+        "value": 10667,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Durov’s Glasses",
+        "image": "TelegramGiftsAssests-main/webp/by_name/durovs_glasses.webp"
+      },
+      {
+        "id": "astral_shard",
+        "type": "gift",
+        "value": 9600,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Astral Shard",
+        "image": "TelegramGiftsAssests-main/webp/by_name/astral_shard.webp"
+      },
+      {
+        "id": "mighty_arm",
+        "type": "gift",
+        "value": 9090,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Mighty Arm",
+        "image": "TelegramGiftsAssests-main/webp/by_name/mighty_arm.webp"
+      },
+      {
+        "id": "loot_bag",
+        "type": "gift",
+        "value": 9078,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Loot Bag",
+        "image": "TelegramGiftsAssests-main/webp/by_name/loot_bag.webp"
+      },
+      {
+        "id": "nail_bracelet",
+        "type": "gift",
+        "value": 8000,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Nail Bracelet",
+        "image": "TelegramGiftsAssests-main/webp/by_name/nail_bracelet.webp"
+      },
+      {
+        "id": "westside_sign",
+        "type": "gift",
+        "value": 6800,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Westside Sign",
+        "image": "TelegramGiftsAssests-main/webp/by_name/westside_sign.webp"
+      },
+      {
+        "id": "mini_oscar",
+        "type": "gift",
+        "value": 5427,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Mini Oscar",
+        "image": "TelegramGiftsAssests-main/webp/by_name/mini_oscar.webp"
+      },
+      {
+        "id": "ion_gem",
+        "type": "gift",
+        "value": 5121,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Ion Gem",
+        "image": "TelegramGiftsAssests-main/webp/by_name/ion_gem.webp"
+      },
+      {
+        "id": "perfume_bottle",
+        "type": "gift",
+        "value": 4987,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Perfume Bottle",
+        "image": "TelegramGiftsAssests-main/webp/by_name/perfume_bottle.webp"
+      },
+      {
+        "id": "gem_signet",
+        "type": "gift",
+        "value": 4626,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Gem Signet",
+        "image": "TelegramGiftsAssests-main/webp/by_name/gem_signet.webp"
+      },
+      {
+        "id": "artisan_brick",
+        "type": "gift",
+        "value": 4370,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Artisan Brick",
+        "image": "TelegramGiftsAssests-main/webp/by_name/artisan_brick.webp"
+      },
+      {
+        "id": "magic_potion",
+        "type": "gift",
+        "value": 3920,
+        "weight": 3,
+        "drop_chance_percent": 0.0003,
+        "name": "Magic Potion",
+        "image": "TelegramGiftsAssests-main/webp/by_name/magic_potion.webp"
+      },
+      {
+        "id": "low_rider",
+        "type": "gift",
+        "value": 3842,
+        "weight": 51,
+        "drop_chance_percent": 0.0051,
+        "name": "Low Rider",
+        "image": "TelegramGiftsAssests-main/webp/by_name/low_rider.webp"
+      },
+      {
+        "id": "swiss_watch",
+        "type": "gift",
+        "value": 3440,
+        "weight": 254,
+        "drop_chance_percent": 0.0254,
+        "name": "Swiss Watch",
+        "image": "TelegramGiftsAssests-main/webp/by_name/swiss_watch.webp"
+      },
+      {
+        "id": "kissed_frog",
+        "type": "gift",
+        "value": 3166,
+        "weight": 762,
+        "drop_chance_percent": 0.0762,
+        "name": "Kissed Frog",
+        "image": "TelegramGiftsAssests-main/webp/by_name/kissed_frog.webp"
+      },
+      {
+        "id": "sharp_tongue",
+        "type": "gift",
+        "value": 3118,
+        "weight": 923,
+        "drop_chance_percent": 0.0923,
+        "name": "Sharp Tongue",
+        "image": "TelegramGiftsAssests-main/webp/by_name/sharp_tongue.webp"
+      },
+      {
+        "id": "bonded_ring",
+        "type": "gift",
+        "value": 2950,
+        "weight": 1809,
+        "drop_chance_percent": 0.1809,
+        "name": "Bonded Ring",
+        "image": "TelegramGiftsAssests-main/webp/by_name/bonded_ring.webp"
+      },
+      {
+        "id": "vintage_cigar",
+        "type": "gift",
+        "value": 2826,
+        "weight": 2972,
+        "drop_chance_percent": 0.2972,
+        "name": "Vintage Cigar",
+        "image": "TelegramGiftsAssests-main/webp/by_name/vintage_cigar.webp"
+      },
+      {
+        "id": "toy_bear",
+        "type": "gift",
+        "value": 2799,
+        "weight": 3312,
+        "drop_chance_percent": 0.3312,
+        "name": "Toy Bear",
+        "image": "TelegramGiftsAssests-main/webp/by_name/toy_bear.webp"
+      },
+      {
+        "id": "voodoo_doll",
+        "type": "gift",
+        "value": 2711,
+        "weight": 4711,
+        "drop_chance_percent": 0.4711,
+        "name": "Voodoo Doll",
+        "image": "TelegramGiftsAssests-main/webp/by_name/voodoo_doll.webp"
+      },
+      {
+        "id": "neko_helmet",
+        "type": "gift",
+        "value": 2656,
+        "weight": 5871,
+        "drop_chance_percent": 0.5871,
+        "name": "Neko Helmet",
+        "image": "TelegramGiftsAssests-main/webp/by_name/neko_helmet.webp"
+      },
+      {
+        "id": "genie_lamp",
+        "type": "gift",
+        "value": 2518,
+        "weight": 10202,
+        "drop_chance_percent": 1.0202,
+        "name": "Genie Lamp",
+        "image": "TelegramGiftsAssests-main/webp/by_name/genie_lamp.webp"
+      },
+      {
+        "id": "signet_ring",
+        "type": "gift",
+        "value": 2518,
+        "weight": 10202,
+        "drop_chance_percent": 1.0202,
+        "name": "Signet Ring",
+        "image": "TelegramGiftsAssests-main/webp/by_name/signet_ring.webp"
+      },
+      {
+        "id": "diamond_ring",
+        "type": "gift",
+        "value": 2194,
+        "weight": 12476,
+        "drop_chance_percent": 1.2476,
+        "name": "Diamond Ring",
+        "image": "TelegramGiftsAssests-main/webp/by_name/diamond_ring.webp"
+      },
+      {
+        "id": "eternal_rose",
+        "type": "gift",
+        "value": 1913,
+        "weight": 14150,
+        "drop_chance_percent": 1.415,
+        "name": "Eternal Rose",
+        "image": "TelegramGiftsAssests-main/webp/by_name/eternal_rose.webp"
+      },
+      {
+        "id": "electric_skull",
+        "type": "gift",
+        "value": 1825,
+        "weight": 14776,
+        "drop_chance_percent": 1.4776,
+        "name": "Electric Skull",
+        "image": "TelegramGiftsAssests-main/webp/by_name/electric_skull.webp"
+      },
+      {
+        "id": "bling_binky",
+        "type": "gift",
+        "value": 1814,
+        "weight": 14859,
+        "drop_chance_percent": 1.4859,
+        "name": "Bling Binky",
+        "image": "TelegramGiftsAssests-main/webp/by_name/bling_binky.webp"
+      },
+      {
+        "id": "rare_bird",
+        "type": "gift",
+        "value": 1782,
+        "weight": 15104,
+        "drop_chance_percent": 1.5104,
+        "name": "Rare Bird",
+        "image": "TelegramGiftsAssests-main/webp/by_name/rare_bird.webp"
+      },
+      {
+        "id": "khabibs_papakha",
+        "type": "gift",
+        "value": 1760,
+        "weight": 15277,
+        "drop_chance_percent": 1.5277,
+        "name": "Khabib’s Papakha",
+        "image": "TelegramGiftsAssests-main/webp/by_name/khabibs_papakha.webp"
+      },
+      {
+        "id": "cupid_charm",
+        "type": "gift",
+        "value": 1599,
+        "weight": 16686,
+        "drop_chance_percent": 1.6686,
+        "name": "Cupid Charm",
+        "image": "TelegramGiftsAssests-main/webp/by_name/cupid_charm.webp"
+      },
+      {
+        "id": "sky_stilettos",
+        "type": "gift",
+        "value": 1352,
+        "weight": 19468,
+        "drop_chance_percent": 1.9468,
+        "name": "Sky Stilettos",
+        "image": "TelegramGiftsAssests-main/webp/by_name/sky_stilettos.webp"
+      },
+      {
+        "id": "ionic_dryer",
+        "type": "gift",
+        "value": 1118,
+        "weight": 23184,
+        "drop_chance_percent": 2.3184,
+        "name": "Ionic Dryer",
+        "image": "TelegramGiftsAssests-main/webp/by_name/ionic_dryer.webp"
+      },
+      {
+        "id": "ufc_strike",
+        "type": "gift",
+        "value": 1061,
+        "weight": 24326,
+        "drop_chance_percent": 2.4326,
+        "name": "UFC Strike",
+        "image": "TelegramGiftsAssests-main/webp/by_name/ufc_strike.webp"
+      },
+      {
+        "id": "love_potion",
+        "type": "gift",
+        "value": 1039,
+        "weight": 24799,
+        "drop_chance_percent": 2.4799,
+        "name": "Love Potion",
+        "image": "TelegramGiftsAssests-main/webp/by_name/love_potion.webp"
+      },
+      {
+        "id": "trapped_heart",
+        "type": "gift",
+        "value": 1030,
+        "weight": 24998,
+        "drop_chance_percent": 2.4998,
+        "name": "Trapped Heart",
+        "image": "TelegramGiftsAssests-main/webp/by_name/trapped_heart.webp"
+      },
+      {
+        "id": "snoop_cigar",
+        "type": "gift",
+        "value": 993,
+        "weight": 25853,
+        "drop_chance_percent": 2.5853,
+        "name": "Snoop Cigar",
+        "image": "TelegramGiftsAssests-main/webp/by_name/snoop_cigar.webp"
+      },
+      {
+        "id": "record_player",
+        "type": "gift",
+        "value": 889,
+        "weight": 28621,
+        "drop_chance_percent": 2.8621,
+        "name": "Record Player",
+        "image": "TelegramGiftsAssests-main/webp/by_name/record_player.webp"
+      },
+      {
+        "id": "crystal_ball",
+        "type": "gift",
+        "value": 872,
+        "weight": 29133,
+        "drop_chance_percent": 2.9133,
+        "name": "Crystal Ball",
+        "image": "TelegramGiftsAssests-main/webp/by_name/crystal_ball.webp"
+      },
+      {
+        "id": "flying_broom",
+        "type": "gift",
+        "value": 796,
+        "weight": 31680,
+        "drop_chance_percent": 3.168,
+        "name": "Flying Broom",
+        "image": "TelegramGiftsAssests-main/webp/by_name/flying_broom.webp"
+      },
+      {
+        "id": "valentine_box",
+        "type": "gift",
+        "value": 773,
+        "weight": 32546,
+        "drop_chance_percent": 3.2546,
+        "name": "Valentine Box",
+        "image": "TelegramGiftsAssests-main/webp/by_name/valentine_box.webp"
+      },
+      {
+        "id": "mad_pumpkin",
+        "type": "gift",
+        "value": 760,
+        "weight": 33057,
+        "drop_chance_percent": 3.3057,
+        "name": "Mad Pumpkin",
+        "image": "TelegramGiftsAssests-main/webp/by_name/mad_pumpkin.webp"
+      },
+      {
+        "id": "top_hat",
+        "type": "gift",
+        "value": 740,
+        "weight": 33878,
+        "drop_chance_percent": 3.3878,
+        "name": "Top Hat",
+        "image": "TelegramGiftsAssests-main/webp/by_name/top_hat.webp"
+      },
+      {
+        "id": "skull_flower",
+        "type": "gift",
+        "value": 719,
+        "weight": 34786,
+        "drop_chance_percent": 3.4786,
+        "name": "Skull Flower",
+        "image": "TelegramGiftsAssests-main/webp/by_name/skull_flower.webp"
+      },
+      {
+        "id": "sakura_flower",
+        "type": "gift",
+        "value": 640,
+        "weight": 38714,
+        "drop_chance_percent": 3.8714,
+        "name": "Sakura Flower",
+        "image": "TelegramGiftsAssests-main/webp/by_name/sakura_flower.webp"
+      },
+      {
+        "id": "hanging_star",
+        "type": "gift",
+        "value": 608,
+        "weight": 40583,
+        "drop_chance_percent": 4.0583,
+        "name": "Hanging Star",
+        "image": "TelegramGiftsAssests-main/webp/by_name/hanging_star.webp"
+      },
+      {
+        "id": "berry_box",
+        "type": "gift",
+        "value": 576,
+        "weight": 42651,
+        "drop_chance_percent": 4.2651,
+        "name": "Berry Box",
+        "image": "TelegramGiftsAssests-main/webp/by_name/berry_box.webp"
+      },
+      {
+        "id": "love_candle",
+        "type": "gift",
+        "value": 560,
+        "weight": 43769,
+        "drop_chance_percent": 4.3769,
+        "name": "Love Candle",
+        "image": "TelegramGiftsAssests-main/webp/by_name/love_candle.webp"
+      },
+      {
+        "id": "bunny_muffin",
+        "type": "gift",
+        "value": 552,
+        "weight": 44352,
+        "drop_chance_percent": 4.4352,
+        "name": "Bunny Muffin",
+        "image": "TelegramGiftsAssests-main/webp/by_name/bunny_muffin.webp"
+      },
+      {
+        "id": "jelly_bunny",
+        "type": "gift",
+        "value": 550,
+        "weight": 44500,
+        "drop_chance_percent": 4.45,
+        "name": "Jelly Bunny",
+        "image": "TelegramGiftsAssests-main/webp/by_name/jelly_bunny.webp"
+      },
+      {
+        "id": "jingle_bells",
+        "type": "gift",
+        "value": 528,
+        "weight": 46202,
+        "drop_chance_percent": 4.6202,
+        "name": "Jingle Bells",
+        "image": "TelegramGiftsAssests-main/webp/by_name/jingle_bells.webp"
+      },
+      {
+        "id": "evil_eye",
+        "type": "gift",
+        "value": 526,
+        "weight": 46363,
+        "drop_chance_percent": 4.6363,
+        "name": "Evil Eye",
+        "image": "TelegramGiftsAssests-main/webp/by_name/evil_eye.webp"
+      },
+      {
+        "id": "jolly_chimp",
+        "type": "gift",
+        "value": 519,
+        "weight": 46938,
+        "drop_chance_percent": 4.6938,
+        "name": "Jolly Chimp",
+        "image": "TelegramGiftsAssests-main/webp/by_name/jolly_chimp.webp"
+      },
+      {
+        "id": "joyful_bundle",
+        "type": "gift",
+        "value": 518,
+        "weight": 47021,
+        "drop_chance_percent": 4.7021,
+        "name": "Joyful Bundle",
+        "image": "TelegramGiftsAssests-main/webp/by_name/joyful_bundle.webp"
+      },
+      {
+        "id": "surge_board",
+        "type": "gift",
+        "value": 505,
+        "weight": 48163,
+        "drop_chance_percent": 4.8163,
+        "name": "Surge Board",
+        "image": "TelegramGiftsAssests-main/webp/by_name/surge_board.webp"
+      }
+    ],
+    "calculated_ev": 899.0988,
+    "rtp_percent": 89.9999,
+    "_achieved": 899.1,
+    "_ok": true,
+    "_vmin": 505,
+    "_alpha": 0.919
+  },
+  {
+    "id": "case_4999",
+    "name": "forestcase",
+    "tier": "elite",
+    "price": 1499,
+    "image": "image/forestcase.webp",
+    "target_ev": 1274.15,
+    "jackpot_multiplier": 0.85,
+    "items": [
+      {
+        "id": "durovs_cap",
+        "type": "gift",
+        "value": 33600,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Durov’s Cap",
+        "image": "TelegramGiftsAssests-main/webp/by_name/durovs_cap.webp"
+      },
+      {
+        "id": "precious_peach",
+        "type": "gift",
+        "value": 21590,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Precious Peach",
+        "image": "TelegramGiftsAssests-main/webp/by_name/precious_peach.webp"
+      },
+      {
+        "id": "heroic_helmet",
+        "type": "gift",
+        "value": 14521,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Heroic Helmet",
+        "image": "TelegramGiftsAssests-main/webp/by_name/heroic_helmet.webp"
+      },
+      {
+        "id": "scared_cat",
+        "type": "gift",
+        "value": 14088,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Scared Cat",
+        "image": "TelegramGiftsAssests-main/webp/by_name/scared_cat.webp"
+      },
+      {
+        "id": "durovs_glasses",
+        "type": "gift",
+        "value": 10667,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Durov’s Glasses",
+        "image": "TelegramGiftsAssests-main/webp/by_name/durovs_glasses.webp"
+      },
+      {
+        "id": "astral_shard",
+        "type": "gift",
+        "value": 9600,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Astral Shard",
+        "image": "TelegramGiftsAssests-main/webp/by_name/astral_shard.webp"
+      },
+      {
+        "id": "mighty_arm",
+        "type": "gift",
+        "value": 9090,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Mighty Arm",
+        "image": "TelegramGiftsAssests-main/webp/by_name/mighty_arm.webp"
+      },
+      {
+        "id": "loot_bag",
+        "type": "gift",
+        "value": 9078,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Loot Bag",
+        "image": "TelegramGiftsAssests-main/webp/by_name/loot_bag.webp"
+      },
+      {
+        "id": "nail_bracelet",
+        "type": "gift",
+        "value": 8000,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Nail Bracelet",
+        "image": "TelegramGiftsAssests-main/webp/by_name/nail_bracelet.webp"
+      },
+      {
+        "id": "westside_sign",
+        "type": "gift",
+        "value": 6800,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Westside Sign",
+        "image": "TelegramGiftsAssests-main/webp/by_name/westside_sign.webp"
+      },
+      {
+        "id": "mini_oscar",
+        "type": "gift",
+        "value": 5427,
+        "weight": 65,
+        "drop_chance_percent": 0.0065,
+        "name": "Mini Oscar",
+        "image": "TelegramGiftsAssests-main/webp/by_name/mini_oscar.webp"
+      },
+      {
+        "id": "ion_gem",
+        "type": "gift",
+        "value": 5121,
+        "weight": 203,
+        "drop_chance_percent": 0.0203,
+        "name": "Ion Gem",
+        "image": "TelegramGiftsAssests-main/webp/by_name/ion_gem.webp"
+      },
+      {
+        "id": "perfume_bottle",
+        "type": "gift",
+        "value": 4987,
+        "weight": 290,
+        "drop_chance_percent": 0.029,
+        "name": "Perfume Bottle",
+        "image": "TelegramGiftsAssests-main/webp/by_name/perfume_bottle.webp"
+      },
+      {
+        "id": "gem_signet",
+        "type": "gift",
+        "value": 4626,
+        "weight": 761,
+        "drop_chance_percent": 0.0761,
+        "name": "Gem Signet",
+        "image": "TelegramGiftsAssests-main/webp/by_name/gem_signet.webp"
+      },
+      {
+        "id": "artisan_brick",
+        "type": "gift",
+        "value": 4370,
+        "weight": 1506,
+        "drop_chance_percent": 0.1506,
+        "name": "Artisan Brick",
+        "image": "TelegramGiftsAssests-main/webp/by_name/artisan_brick.webp"
+      },
+      {
+        "id": "magic_potion",
+        "type": "gift",
+        "value": 3920,
+        "weight": 5005,
+        "drop_chance_percent": 0.5005,
+        "name": "Magic Potion",
+        "image": "TelegramGiftsAssests-main/webp/by_name/magic_potion.webp"
+      },
+      {
+        "id": "low_rider",
+        "type": "gift",
+        "value": 3842,
+        "weight": 6163,
+        "drop_chance_percent": 0.6163,
+        "name": "Low Rider",
+        "image": "TelegramGiftsAssests-main/webp/by_name/low_rider.webp"
+      },
+      {
+        "id": "swiss_watch",
+        "type": "gift",
+        "value": 3440,
+        "weight": 9020,
+        "drop_chance_percent": 0.902,
+        "name": "Swiss Watch",
+        "image": "TelegramGiftsAssests-main/webp/by_name/swiss_watch.webp"
+      },
+      {
+        "id": "kissed_frog",
+        "type": "gift",
+        "value": 3166,
+        "weight": 10220,
+        "drop_chance_percent": 1.022,
+        "name": "Kissed Frog",
+        "image": "TelegramGiftsAssests-main/webp/by_name/kissed_frog.webp"
+      },
+      {
+        "id": "sharp_tongue",
+        "type": "gift",
+        "value": 3118,
+        "weight": 10458,
+        "drop_chance_percent": 1.0458,
+        "name": "Sharp Tongue",
+        "image": "TelegramGiftsAssests-main/webp/by_name/sharp_tongue.webp"
+      },
+      {
+        "id": "bonded_ring",
+        "type": "gift",
+        "value": 2950,
+        "weight": 11366,
+        "drop_chance_percent": 1.1366,
+        "name": "Bonded Ring",
+        "image": "TelegramGiftsAssests-main/webp/by_name/bonded_ring.webp"
+      },
+      {
+        "id": "vintage_cigar",
+        "type": "gift",
+        "value": 2826,
+        "weight": 12125,
+        "drop_chance_percent": 1.2125,
+        "name": "Vintage Cigar",
+        "image": "TelegramGiftsAssests-main/webp/by_name/vintage_cigar.webp"
+      },
+      {
+        "id": "toy_bear",
+        "type": "gift",
+        "value": 2799,
+        "weight": 12301,
+        "drop_chance_percent": 1.2301,
+        "name": "Toy Bear",
+        "image": "TelegramGiftsAssests-main/webp/by_name/toy_bear.webp"
+      },
+      {
+        "id": "voodoo_doll",
+        "type": "gift",
+        "value": 2711,
+        "weight": 12906,
+        "drop_chance_percent": 1.2906,
+        "name": "Voodoo Doll",
+        "image": "TelegramGiftsAssests-main/webp/by_name/voodoo_doll.webp"
+      },
+      {
+        "id": "neko_helmet",
+        "type": "gift",
+        "value": 2656,
+        "weight": 13311,
+        "drop_chance_percent": 1.3311,
+        "name": "Neko Helmet",
+        "image": "TelegramGiftsAssests-main/webp/by_name/neko_helmet.webp"
+      },
+      {
+        "id": "genie_lamp",
+        "type": "gift",
+        "value": 2518,
+        "weight": 14423,
+        "drop_chance_percent": 1.4423,
+        "name": "Genie Lamp",
+        "image": "TelegramGiftsAssests-main/webp/by_name/genie_lamp.webp"
+      },
+      {
+        "id": "signet_ring",
+        "type": "gift",
+        "value": 2518,
+        "weight": 14423,
+        "drop_chance_percent": 1.4423,
+        "name": "Signet Ring",
+        "image": "TelegramGiftsAssests-main/webp/by_name/signet_ring.webp"
+      },
+      {
+        "id": "diamond_ring",
+        "type": "gift",
+        "value": 2194,
+        "weight": 17743,
+        "drop_chance_percent": 1.7743,
+        "name": "Diamond Ring",
+        "image": "TelegramGiftsAssests-main/webp/by_name/diamond_ring.webp"
+      },
+      {
+        "id": "eternal_rose",
+        "type": "gift",
+        "value": 1913,
+        "weight": 21805,
+        "drop_chance_percent": 2.1805,
+        "name": "Eternal Rose",
+        "image": "TelegramGiftsAssests-main/webp/by_name/eternal_rose.webp"
+      },
+      {
+        "id": "electric_skull",
+        "type": "gift",
+        "value": 1825,
+        "weight": 23406,
+        "drop_chance_percent": 2.3406,
+        "name": "Electric Skull",
+        "image": "TelegramGiftsAssests-main/webp/by_name/electric_skull.webp"
+      },
+      {
+        "id": "bling_binky",
+        "type": "gift",
+        "value": 1814,
+        "weight": 23620,
+        "drop_chance_percent": 2.362,
+        "name": "Bling Binky",
+        "image": "TelegramGiftsAssests-main/webp/by_name/bling_binky.webp"
+      },
+      {
+        "id": "rare_bird",
+        "type": "gift",
+        "value": 1782,
+        "weight": 24261,
+        "drop_chance_percent": 2.4261,
+        "name": "Rare Bird",
+        "image": "TelegramGiftsAssests-main/webp/by_name/rare_bird.webp"
+      },
+      {
+        "id": "khabibs_papakha",
+        "type": "gift",
+        "value": 1760,
+        "weight": 24718,
+        "drop_chance_percent": 2.4718,
+        "name": "Khabib’s Papakha",
+        "image": "TelegramGiftsAssests-main/webp/by_name/khabibs_papakha.webp"
+      },
+      {
+        "id": "cupid_charm",
+        "type": "gift",
+        "value": 1599,
+        "weight": 28555,
+        "drop_chance_percent": 2.8555,
+        "name": "Cupid Charm",
+        "image": "TelegramGiftsAssests-main/webp/by_name/cupid_charm.webp"
+      },
+      {
+        "id": "sky_stilettos",
+        "type": "gift",
+        "value": 1352,
+        "weight": 36754,
+        "drop_chance_percent": 3.6754,
+        "name": "Sky Stilettos",
+        "image": "TelegramGiftsAssests-main/webp/by_name/sky_stilettos.webp"
+      },
+      {
+        "id": "ionic_dryer",
+        "type": "gift",
+        "value": 1118,
+        "weight": 48916,
+        "drop_chance_percent": 4.8916,
+        "name": "Ionic Dryer",
+        "image": "TelegramGiftsAssests-main/webp/by_name/ionic_dryer.webp"
+      },
+      {
+        "id": "ufc_strike",
+        "type": "gift",
+        "value": 1061,
+        "weight": 52922,
+        "drop_chance_percent": 5.2922,
+        "name": "UFC Strike",
+        "image": "TelegramGiftsAssests-main/webp/by_name/ufc_strike.webp"
+      },
+      {
+        "id": "love_potion",
+        "type": "gift",
+        "value": 1039,
+        "weight": 54616,
+        "drop_chance_percent": 5.4616,
+        "name": "Love Potion",
+        "image": "TelegramGiftsAssests-main/webp/by_name/love_potion.webp"
+      },
+      {
+        "id": "trapped_heart",
+        "type": "gift",
+        "value": 1030,
+        "weight": 55336,
+        "drop_chance_percent": 5.5336,
+        "name": "Trapped Heart",
+        "image": "TelegramGiftsAssests-main/webp/by_name/trapped_heart.webp"
+      },
+      {
+        "id": "snoop_cigar",
+        "type": "gift",
+        "value": 993,
+        "weight": 58466,
+        "drop_chance_percent": 5.8466,
+        "name": "Snoop Cigar",
+        "image": "TelegramGiftsAssests-main/webp/by_name/snoop_cigar.webp"
+      },
+      {
+        "id": "record_player",
+        "type": "gift",
+        "value": 889,
+        "weight": 69052,
+        "drop_chance_percent": 6.9052,
+        "name": "Record Player",
+        "image": "TelegramGiftsAssests-main/webp/by_name/record_player.webp"
+      },
+      {
+        "id": "crystal_ball",
+        "type": "gift",
+        "value": 872,
+        "weight": 71087,
+        "drop_chance_percent": 7.1087,
+        "name": "Crystal Ball",
+        "image": "TelegramGiftsAssests-main/webp/by_name/crystal_ball.webp"
+      },
+      {
+        "id": "flying_broom",
+        "type": "gift",
+        "value": 796,
+        "weight": 81538,
+        "drop_chance_percent": 8.1538,
+        "name": "Flying Broom",
+        "image": "TelegramGiftsAssests-main/webp/by_name/flying_broom.webp"
+      },
+      {
+        "id": "valentine_box",
+        "type": "gift",
+        "value": 773,
+        "weight": 85215,
+        "drop_chance_percent": 8.5215,
+        "name": "Valentine Box",
+        "image": "TelegramGiftsAssests-main/webp/by_name/valentine_box.webp"
+      },
+      {
+        "id": "mad_pumpkin",
+        "type": "gift",
+        "value": 760,
+        "weight": 87434,
+        "drop_chance_percent": 8.7434,
+        "name": "Mad Pumpkin",
+        "image": "TelegramGiftsAssests-main/webp/by_name/mad_pumpkin.webp"
+      }
+    ],
+    "calculated_ev": 1349.0992,
+    "rtp_percent": 89.9999,
+    "_achieved": 1349.1,
+    "_ok": true,
+    "_vmin": 760,
+    "_alpha": 1.504
+  },
+  {
+    "id": "case_9999",
+    "name": "hellcase",
+    "tier": "elite",
+    "price": 2999,
+    "image": "image/hellcase.webp",
+    "target_ev": 2549.15,
+    "jackpot_multiplier": 0.85,
+    "items": [
+      {
+        "id": "heart_locket",
+        "type": "gift",
+        "value": 80539,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Heart Locket",
+        "image": "TelegramGiftsAssests-main/webp/by_name/heart_locket.webp"
+      },
+      {
+        "id": "durovs_cap",
+        "type": "gift",
+        "value": 33600,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Durov’s Cap",
+        "image": "TelegramGiftsAssests-main/webp/by_name/durovs_cap.webp"
+      },
+      {
+        "id": "precious_peach",
+        "type": "gift",
+        "value": 21590,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Precious Peach",
+        "image": "TelegramGiftsAssests-main/webp/by_name/precious_peach.webp"
+      },
+      {
+        "id": "heroic_helmet",
+        "type": "gift",
+        "value": 14521,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Heroic Helmet",
+        "image": "TelegramGiftsAssests-main/webp/by_name/heroic_helmet.webp"
+      },
+      {
+        "id": "scared_cat",
+        "type": "gift",
+        "value": 14088,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Scared Cat",
+        "image": "TelegramGiftsAssests-main/webp/by_name/scared_cat.webp"
+      },
+      {
+        "id": "durovs_glasses",
+        "type": "gift",
+        "value": 10667,
+        "weight": 140,
+        "drop_chance_percent": 0.014,
+        "name": "Durov’s Glasses",
+        "image": "TelegramGiftsAssests-main/webp/by_name/durovs_glasses.webp"
+      },
+      {
+        "id": "astral_shard",
+        "type": "gift",
+        "value": 9600,
+        "weight": 634,
+        "drop_chance_percent": 0.0634,
+        "name": "Astral Shard",
+        "image": "TelegramGiftsAssests-main/webp/by_name/astral_shard.webp"
+      },
+      {
+        "id": "mighty_arm",
+        "type": "gift",
+        "value": 9090,
+        "weight": 1252,
+        "drop_chance_percent": 0.1252,
+        "name": "Mighty Arm",
+        "image": "TelegramGiftsAssests-main/webp/by_name/mighty_arm.webp"
+      },
+      {
+        "id": "loot_bag",
+        "type": "gift",
+        "value": 9078,
+        "weight": 1273,
+        "drop_chance_percent": 0.1273,
+        "name": "Loot Bag",
+        "image": "TelegramGiftsAssests-main/webp/by_name/loot_bag.webp"
+      },
+      {
+        "id": "nail_bracelet",
+        "type": "gift",
+        "value": 8000,
+        "weight": 5360,
+        "drop_chance_percent": 0.536,
+        "name": "Nail Bracelet",
+        "image": "TelegramGiftsAssests-main/webp/by_name/nail_bracelet.webp"
+      },
+      {
+        "id": "westside_sign",
+        "type": "gift",
+        "value": 6800,
+        "weight": 11902,
+        "drop_chance_percent": 1.1902,
+        "name": "Westside Sign",
+        "image": "TelegramGiftsAssests-main/webp/by_name/westside_sign.webp"
+      },
+      {
+        "id": "mini_oscar",
+        "type": "gift",
+        "value": 5427,
+        "weight": 15983,
+        "drop_chance_percent": 1.5983,
+        "name": "Mini Oscar",
+        "image": "TelegramGiftsAssests-main/webp/by_name/mini_oscar.webp"
+      },
+      {
+        "id": "ion_gem",
+        "type": "gift",
+        "value": 5121,
+        "weight": 17243,
+        "drop_chance_percent": 1.7243,
+        "name": "Ion Gem",
+        "image": "TelegramGiftsAssests-main/webp/by_name/ion_gem.webp"
+      },
+      {
+        "id": "perfume_bottle",
+        "type": "gift",
+        "value": 4987,
+        "weight": 17851,
+        "drop_chance_percent": 1.7851,
+        "name": "Perfume Bottle",
+        "image": "TelegramGiftsAssests-main/webp/by_name/perfume_bottle.webp"
+      },
+      {
+        "id": "gem_signet",
+        "type": "gift",
+        "value": 4626,
+        "weight": 19693,
+        "drop_chance_percent": 1.9693,
+        "name": "Gem Signet",
+        "image": "TelegramGiftsAssests-main/webp/by_name/gem_signet.webp"
+      },
+      {
+        "id": "artisan_brick",
+        "type": "gift",
+        "value": 4370,
+        "weight": 21214,
+        "drop_chance_percent": 2.1214,
+        "name": "Artisan Brick",
+        "image": "TelegramGiftsAssests-main/webp/by_name/artisan_brick.webp"
+      },
+      {
+        "id": "magic_potion",
+        "type": "gift",
+        "value": 3920,
+        "weight": 24452,
+        "drop_chance_percent": 2.4452,
+        "name": "Magic Potion",
+        "image": "TelegramGiftsAssests-main/webp/by_name/magic_potion.webp"
+      },
+      {
+        "id": "low_rider",
+        "type": "gift",
+        "value": 3842,
+        "weight": 25103,
+        "drop_chance_percent": 2.5103,
+        "name": "Low Rider",
+        "image": "TelegramGiftsAssests-main/webp/by_name/low_rider.webp"
+      },
+      {
+        "id": "swiss_watch",
+        "type": "gift",
+        "value": 3440,
+        "weight": 29004,
+        "drop_chance_percent": 2.9004,
+        "name": "Swiss Watch",
+        "image": "TelegramGiftsAssests-main/webp/by_name/swiss_watch.webp"
+      },
+      {
+        "id": "kissed_frog",
+        "type": "gift",
+        "value": 3166,
+        "weight": 32328,
+        "drop_chance_percent": 3.2328,
+        "name": "Kissed Frog",
+        "image": "TelegramGiftsAssests-main/webp/by_name/kissed_frog.webp"
+      },
+      {
+        "id": "sharp_tongue",
+        "type": "gift",
+        "value": 3118,
+        "weight": 32980,
+        "drop_chance_percent": 3.298,
+        "name": "Sharp Tongue",
+        "image": "TelegramGiftsAssests-main/webp/by_name/sharp_tongue.webp"
+      },
+      {
+        "id": "bonded_ring",
+        "type": "gift",
+        "value": 2950,
+        "weight": 35456,
+        "drop_chance_percent": 3.5456,
+        "name": "Bonded Ring",
+        "image": "TelegramGiftsAssests-main/webp/by_name/bonded_ring.webp"
+      },
+      {
+        "id": "vintage_cigar",
+        "type": "gift",
+        "value": 2826,
+        "weight": 37503,
+        "drop_chance_percent": 3.7503,
+        "name": "Vintage Cigar",
+        "image": "TelegramGiftsAssests-main/webp/by_name/vintage_cigar.webp"
+      },
+      {
+        "id": "toy_bear",
+        "type": "gift",
+        "value": 2799,
+        "weight": 37977,
+        "drop_chance_percent": 3.7977,
+        "name": "Toy Bear",
+        "image": "TelegramGiftsAssests-main/webp/by_name/toy_bear.webp"
+      },
+      {
+        "id": "voodoo_doll",
+        "type": "gift",
+        "value": 2711,
+        "weight": 39596,
+        "drop_chance_percent": 3.9596,
+        "name": "Voodoo Doll",
+        "image": "TelegramGiftsAssests-main/webp/by_name/voodoo_doll.webp"
+      },
+      {
+        "id": "neko_helmet",
+        "type": "gift",
+        "value": 2656,
+        "weight": 40671,
+        "drop_chance_percent": 4.0671,
+        "name": "Neko Helmet",
+        "image": "TelegramGiftsAssests-main/webp/by_name/neko_helmet.webp"
+      },
+      {
+        "id": "genie_lamp",
+        "type": "gift",
+        "value": 2518,
+        "weight": 43609,
+        "drop_chance_percent": 4.3609,
+        "name": "Genie Lamp",
+        "image": "TelegramGiftsAssests-main/webp/by_name/genie_lamp.webp"
+      },
+      {
+        "id": "signet_ring",
+        "type": "gift",
+        "value": 2518,
+        "weight": 43609,
+        "drop_chance_percent": 4.3609,
+        "name": "Signet Ring",
+        "image": "TelegramGiftsAssests-main/webp/by_name/signet_ring.webp"
+      },
+      {
+        "id": "diamond_ring",
+        "type": "gift",
+        "value": 2194,
+        "weight": 52212,
+        "drop_chance_percent": 5.2212,
+        "name": "Diamond Ring",
+        "image": "TelegramGiftsAssests-main/webp/by_name/diamond_ring.webp"
+      },
+      {
+        "id": "eternal_rose",
+        "type": "gift",
+        "value": 1913,
+        "weight": 62455,
+        "drop_chance_percent": 6.2455,
+        "name": "Eternal Rose",
+        "image": "TelegramGiftsAssests-main/webp/by_name/eternal_rose.webp"
+      },
+      {
+        "id": "electric_skull",
+        "type": "gift",
+        "value": 1825,
+        "weight": 66420,
+        "drop_chance_percent": 6.642,
+        "name": "Electric Skull",
+        "image": "TelegramGiftsAssests-main/webp/by_name/electric_skull.webp"
+      },
+      {
+        "id": "bling_binky",
+        "type": "gift",
+        "value": 1814,
+        "weight": 66947,
+        "drop_chance_percent": 6.6947,
+        "name": "Bling Binky",
+        "image": "TelegramGiftsAssests-main/webp/by_name/bling_binky.webp"
+      },
+      {
+        "id": "rare_bird",
+        "type": "gift",
+        "value": 1782,
+        "weight": 68523,
+        "drop_chance_percent": 6.8523,
+        "name": "Rare Bird",
+        "image": "TelegramGiftsAssests-main/webp/by_name/rare_bird.webp"
+      },
+      {
+        "id": "khabibs_papakha",
+        "type": "gift",
+        "value": 1760,
+        "weight": 69644,
+        "drop_chance_percent": 6.9644,
+        "name": "Khabib’s Papakha",
+        "image": "TelegramGiftsAssests-main/webp/by_name/khabibs_papakha.webp"
+      },
+      {
+        "id": "cupid_charm",
+        "type": "gift",
+        "value": 1599,
+        "weight": 78961,
+        "drop_chance_percent": 7.8961,
+        "name": "Cupid Charm",
+        "image": "TelegramGiftsAssests-main/webp/by_name/cupid_charm.webp"
+      }
+    ],
+    "calculated_ev": 2699.1033,
+    "rtp_percent": 90.0001,
+    "_achieved": 2699.1,
+    "_ok": true,
+    "_vmin": 1599,
+    "_alpha": 1.307
+  },
+  {
+    "id": "case_19999",
+    "name": "pokercase",
+    "tier": "elite",
+    "price": 3999,
+    "image": "image/pokercase.webp",
+    "target_ev": 3399.15,
+    "jackpot_multiplier": 0.85,
+    "items": [
+      {
+        "id": "plush_pepe",
+        "type": "gift",
+        "value": 423840,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Plush Pepe",
+        "image": "TelegramGiftsAssests-main/webp/by_name/plush_pepe.webp"
+      },
+      {
+        "id": "heart_locket",
+        "type": "gift",
+        "value": 80539,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Heart Locket",
+        "image": "TelegramGiftsAssests-main/webp/by_name/heart_locket.webp"
+      },
+      {
+        "id": "durovs_cap",
+        "type": "gift",
+        "value": 33600,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Durov’s Cap",
+        "image": "TelegramGiftsAssests-main/webp/by_name/durovs_cap.webp"
+      },
+      {
+        "id": "precious_peach",
+        "type": "gift",
+        "value": 21590,
+        "weight": 1,
+        "drop_chance_percent": 0.0001,
+        "name": "Precious Peach",
+        "image": "TelegramGiftsAssests-main/webp/by_name/precious_peach.webp"
+      },
+      {
+        "id": "heroic_helmet",
+        "type": "gift",
+        "value": 14521,
+        "weight": 76,
+        "drop_chance_percent": 0.0076,
+        "name": "Heroic Helmet",
+        "image": "TelegramGiftsAssests-main/webp/by_name/heroic_helmet.webp"
+      },
+      {
+        "id": "scared_cat",
+        "type": "gift",
+        "value": 14088,
+        "weight": 186,
+        "drop_chance_percent": 0.0186,
+        "name": "Scared Cat",
+        "image": "TelegramGiftsAssests-main/webp/by_name/scared_cat.webp"
+      },
+      {
+        "id": "durovs_glasses",
+        "type": "gift",
+        "value": 10667,
+        "weight": 5694,
+        "drop_chance_percent": 0.5694,
+        "name": "Durov’s Glasses",
+        "image": "TelegramGiftsAssests-main/webp/by_name/durovs_glasses.webp"
+      },
+      {
+        "id": "astral_shard",
+        "type": "gift",
+        "value": 9600,
+        "weight": 11751,
+        "drop_chance_percent": 1.1751,
+        "name": "Astral Shard",
+        "image": "TelegramGiftsAssests-main/webp/by_name/astral_shard.webp"
+      },
+      {
+        "id": "mighty_arm",
+        "type": "gift",
+        "value": 9090,
+        "weight": 12651,
+        "drop_chance_percent": 1.2651,
+        "name": "Mighty Arm",
+        "image": "TelegramGiftsAssests-main/webp/by_name/mighty_arm.webp"
+      },
+      {
+        "id": "loot_bag",
+        "type": "gift",
+        "value": 9078,
+        "weight": 12673,
+        "drop_chance_percent": 1.2673,
+        "name": "Loot Bag",
+        "image": "TelegramGiftsAssests-main/webp/by_name/loot_bag.webp"
+      },
+      {
+        "id": "nail_bracelet",
+        "type": "gift",
+        "value": 8000,
+        "weight": 15035,
+        "drop_chance_percent": 1.5035,
+        "name": "Nail Bracelet",
+        "image": "TelegramGiftsAssests-main/webp/by_name/nail_bracelet.webp"
+      },
+      {
+        "id": "westside_sign",
+        "type": "gift",
+        "value": 6800,
+        "weight": 18728,
+        "drop_chance_percent": 1.8728,
+        "name": "Westside Sign",
+        "image": "TelegramGiftsAssests-main/webp/by_name/westside_sign.webp"
+      },
+      {
+        "id": "mini_oscar",
+        "type": "gift",
+        "value": 5427,
+        "weight": 25403,
+        "drop_chance_percent": 2.5403,
+        "name": "Mini Oscar",
+        "image": "TelegramGiftsAssests-main/webp/by_name/mini_oscar.webp"
+      },
+      {
+        "id": "ion_gem",
+        "type": "gift",
+        "value": 5121,
+        "weight": 27476,
+        "drop_chance_percent": 2.7476,
+        "name": "Ion Gem",
+        "image": "TelegramGiftsAssests-main/webp/by_name/ion_gem.webp"
+      },
+      {
+        "id": "perfume_bottle",
+        "type": "gift",
+        "value": 4987,
+        "weight": 28478,
+        "drop_chance_percent": 2.8478,
+        "name": "Perfume Bottle",
+        "image": "TelegramGiftsAssests-main/webp/by_name/perfume_bottle.webp"
+      },
+      {
+        "id": "gem_signet",
+        "type": "gift",
+        "value": 4626,
+        "weight": 31522,
+        "drop_chance_percent": 3.1522,
+        "name": "Gem Signet",
+        "image": "TelegramGiftsAssests-main/webp/by_name/gem_signet.webp"
+      },
+      {
+        "id": "artisan_brick",
+        "type": "gift",
+        "value": 4370,
+        "weight": 34043,
+        "drop_chance_percent": 3.4043,
+        "name": "Artisan Brick",
+        "image": "TelegramGiftsAssests-main/webp/by_name/artisan_brick.webp"
+      },
+      {
+        "id": "magic_potion",
+        "type": "gift",
+        "value": 3920,
+        "weight": 39430,
+        "drop_chance_percent": 3.943,
+        "name": "Magic Potion",
+        "image": "TelegramGiftsAssests-main/webp/by_name/magic_potion.webp"
+      },
+      {
+        "id": "low_rider",
+        "type": "gift",
+        "value": 3842,
+        "weight": 40515,
+        "drop_chance_percent": 4.0515,
+        "name": "Low Rider",
+        "image": "TelegramGiftsAssests-main/webp/by_name/low_rider.webp"
+      },
+      {
+        "id": "swiss_watch",
+        "type": "gift",
+        "value": 3440,
+        "weight": 47043,
+        "drop_chance_percent": 4.7043,
+        "name": "Swiss Watch",
+        "image": "TelegramGiftsAssests-main/webp/by_name/swiss_watch.webp"
+      },
+      {
+        "id": "kissed_frog",
+        "type": "gift",
+        "value": 3166,
+        "weight": 52628,
+        "drop_chance_percent": 5.2628,
+        "name": "Kissed Frog",
+        "image": "TelegramGiftsAssests-main/webp/by_name/kissed_frog.webp"
+      },
+      {
+        "id": "sharp_tongue",
+        "type": "gift",
+        "value": 3118,
+        "weight": 53726,
+        "drop_chance_percent": 5.3726,
+        "name": "Sharp Tongue",
+        "image": "TelegramGiftsAssests-main/webp/by_name/sharp_tongue.webp"
+      },
+      {
+        "id": "bonded_ring",
+        "type": "gift",
+        "value": 2950,
+        "weight": 57902,
+        "drop_chance_percent": 5.7902,
+        "name": "Bonded Ring",
+        "image": "TelegramGiftsAssests-main/webp/by_name/bonded_ring.webp"
+      },
+      {
+        "id": "vintage_cigar",
+        "type": "gift",
+        "value": 2826,
+        "weight": 61362,
+        "drop_chance_percent": 6.1362,
+        "name": "Vintage Cigar",
+        "image": "TelegramGiftsAssests-main/webp/by_name/vintage_cigar.webp"
+      },
+      {
+        "id": "toy_bear",
+        "type": "gift",
+        "value": 2799,
+        "weight": 62164,
+        "drop_chance_percent": 6.2164,
+        "name": "Toy Bear",
+        "image": "TelegramGiftsAssests-main/webp/by_name/toy_bear.webp"
+      },
+      {
+        "id": "voodoo_doll",
+        "type": "gift",
+        "value": 2711,
+        "weight": 64906,
+        "drop_chance_percent": 6.4906,
+        "name": "Voodoo Doll",
+        "image": "TelegramGiftsAssests-main/webp/by_name/voodoo_doll.webp"
+      },
+      {
+        "id": "neko_helmet",
+        "type": "gift",
+        "value": 2656,
+        "weight": 66730,
+        "drop_chance_percent": 6.673,
+        "name": "Neko Helmet",
+        "image": "TelegramGiftsAssests-main/webp/by_name/neko_helmet.webp"
+      },
+      {
+        "id": "genie_lamp",
+        "type": "gift",
+        "value": 2518,
+        "weight": 71720,
+        "drop_chance_percent": 7.172,
+        "name": "Genie Lamp",
+        "image": "TelegramGiftsAssests-main/webp/by_name/genie_lamp.webp"
+      },
+      {
+        "id": "signet_ring",
+        "type": "gift",
+        "value": 2518,
+        "weight": 71720,
+        "drop_chance_percent": 7.172,
+        "name": "Signet Ring",
+        "image": "TelegramGiftsAssests-main/webp/by_name/signet_ring.webp"
+      },
+      {
+        "id": "diamond_ring",
+        "type": "gift",
+        "value": 2194,
+        "weight": 86434,
+        "drop_chance_percent": 8.6434,
+        "name": "Diamond Ring",
+        "image": "TelegramGiftsAssests-main/webp/by_name/diamond_ring.webp"
+      }
+    ],
+    "calculated_ev": 3599.0998,
+    "rtp_percent": 90.0,
+    "_achieved": 3599.1,
+    "_ok": true,
+    "_vmin": 2194,
+    "_alpha": 1.352
+  }
+];
+
+export default cases;

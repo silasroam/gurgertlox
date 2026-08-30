@@ -190,7 +190,7 @@
     // Цена предмета в Telegram Stars (XTR) — для предметов из casesConfig (цена в Stars).
     function priceStarsHTML(value) {
         const stars = (Number(value) || 0).toLocaleString('ru-RU', { maximumFractionDigits: 0 });
-        return `<span class="cur-price cur-price-stars">${stars} ★</span>`;
+        return `<span class="cur-price cur-price-stars">${stars} ⭐</span>`;
     }
 
     // ВТОРИЧНАЯ подпись в другой валюте.
@@ -847,7 +847,7 @@
 
         const TOTAL_CARDS = 80;        // ровно 80 карточек
         const targetIndex = 59;        // индекс 59 = позиция 60 (выигрышный)
-        const CARD_W = 80;             // ширина карточки px
+        const CARD_W = 60;             // ширина карточки px
         const CARD_GAP = 10;           // gap между карточками px
 
         // Выбираем выигрышный предмет
@@ -1325,7 +1325,7 @@
     const SPIN_EASING = 'cubic-bezier(0.15, 0.9, 0.2, 1)'; // плавный старт + мягкое замедление в конце
     const QUICK_SPIN_DURATION_MS = 2000; // «Быстрое открытие»: ровно 2 секунды
     const QUICK_SPIN_EASING = 'cubic-bezier(0.1, 0.9, 0.2, 1)'; // резкий крутёж → эффектное торможение
-    const CARD_WIDTH_PX = 120;         // px — ширина карточки (.roulette-item) — синхронизировано с CSS 120px
+    const CARD_WIDTH_PX = 60;         // px — ширина карточки (.roulette-item) — синхронизировано с CSS 60px
     const SEAM_SAFETY_MARGIN_PX = 8;   // px — отступ от шва (gap + margin карточек): стрелка не встаёт в стык
     const WIN_REVEAL_DELAY_MS = 400;   // пауза после остановки ленты до появления экрана выигрыша
     // Позиция остановки последнего спина — с неё возобновляется AFK-прокрутка (без «телепорта» в начало)

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%"
+     role="img" aria-label="Editable layered upgrader wheel">
+  <defs>
+    
+    <linearGradient id="outerBorderGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#D48817" />
+      <stop offset="50%" stop-color="#B86606" />
+      <stop offset="100%" stop-color="#803D00" />
+    </linearGradient>
+    <linearGradient id="rimGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFE57F" />
+      <stop offset="30%" stop-color="#FFB300" />
+      <stop offset="70%" stop-color="#E67E00" />
+      <stop offset="100%" stop-color="#994C00" />
+    </linearGradient>
+    <radialGradient id="innerGlow" cx="50%" cy="45%" r="55%" fx="50%" fy="45%">
+      <stop offset="0%" stop-color="#FFE066" />
+      <stop offset="35%" stop-color="#FF9800" />
+      <stop offset="75%" stop-color="#E65100" />
+      <stop offset="100%" stop-color="#BF3600" />
+    </radialGradient>
+    <linearGradient id="highlightGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.6" />
+      <stop offset="100%" stop-color="#FFD54F" stop-opacity="0.0" />
+    </linearGradient>
+  
+    <style>
+      /* Every layer is independent: transform/animation/color can be overridden per ID. */
+      .layer { transform-box: fill-box; transform-origin: center; }
+      #layer-outer-border { --fill: url(#outerBorderGrad); --stroke:#592800; }
+      #layer-rim { --fill: url(#rimGrad); --stroke:#FFD54F; }
+      #layer-inner-border { --fill:#8C3A00; --stroke:#5C2600; }
+      #layer-inner-fill { --fill:url(#innerGlow); }
+      #layer-inner-outline { --stroke:#FFA726; }
+      #layer-center-line { --stroke:#FFF59D; }
+      #layer-highlight { --fill:url(#highlightGrad); }
+      #layer-marker { --stroke:#FFE082; }
+
+      /* Example controls: uncomment/use from JS/CSS as needed. */
+      /* #layer-rim { transform:rotate(20deg); } */
+      /* #layer-marker { stroke:#00ff88 !important; } */
+      /* #layer-outer-border { animation:spin 4s linear infinite; } */
+      @keyframes spin { to { transform:rotate(360deg); } }
+    </style>
+  </defs>
+
+  <g id="upgrader-wheel">
+    <g id="layer-outer-border" class="layer" data-layer="outer-border">
+      <polygon points="250,40 430,420 250,335 70,420"
+               fill="var(--fill)" stroke="var(--stroke)" stroke-width="3" stroke-linejoin="round"/>
+    </g>
+
+    <g id="layer-rim" class="layer" data-layer="rim">
+      <polygon points="250,65 408,400 250,323 92,400"
+               fill="var(--fill)" stroke="var(--stroke)" stroke-width="1.5" stroke-linejoin="round"/>
+    </g>
+
+    <g id="layer-inner-border" class="layer" data-layer="inner-border">
+      <polygon points="250,95 385,380 250,310 115,380"
+               fill="var(--fill)" stroke="var(--stroke)" stroke-width="1" stroke-linejoin="round"/>
+    </g>
+
+    <g id="layer-inner-fill" class="layer" data-layer="inner-fill">
+      <polygon points="250,110 375,370 250,302 125,370" fill="var(--fill)"/>
+    </g>
+
+    <g id="layer-inner-outline" class="layer" data-layer="inner-outline">
+      <polygon points="250,110 250,302 125,370"
+               fill="none" stroke="var(--stroke)" stroke-width="1.5" opacity="0.4"/>
+    </g>
+
+    <g id="layer-center-line" class="layer" data-layer="center-line">
+      <line x1="250" y1="65" x2="250" y2="323"
+            stroke="var(--stroke)" stroke-width="2" opacity="0.6"/>
+    </g>
+
+    <g id="layer-highlight" class="layer" data-layer="highlight">
+      <path d="M 250,40 L 70,420 L 92,400 L 250,65 Z"
+            fill="var(--fill)" opacity="0.5"/>
+    </g>
+
+    <g id="layer-marker" class="layer" data-layer="marker">
+      <line x1="250" y1="130" x2="250" y2="170"
+            stroke="var(--stroke)" stroke-width="3" stroke-linecap="round" opacity="0.8"/>
+    </g>
+  </g>
+</svg>

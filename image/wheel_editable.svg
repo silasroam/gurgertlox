@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024" fill="none">
+<style>
+.sector{stroke:#F5C542;stroke-width:6;stroke-linejoin:round;transform-box:fill-box;transform-origin:center;cursor:pointer}
+.sector:hover{filter:brightness(1.15)}
+.rim{cursor:pointer}
+</style>
+<g id="wheel">
+<g id="sector-1" class="sector" data-sector="1"><path d="M512 512 L351.27 123.97 A420 420 0 0 1 672.73 123.97 Z" fill="#FFD21C"/></g>
+<g id="sector-2" class="sector" data-sector="2"><path d="M512 512 L672.73 123.97 A420 420 0 0 1 900.03 351.27 Z" fill="#7B18E8"/></g>
+<g id="sector-3" class="sector" data-sector="3"><path d="M512 512 L900.03 351.27 A420 420 0 0 1 900.03 672.73 Z" fill="#F01424"/></g>
+<g id="sector-4" class="sector" data-sector="4"><path d="M512 512 L900.03 672.73 A420 420 0 0 1 672.73 900.03 Z" fill="#18B6D1"/></g>
+<g id="sector-5" class="sector" data-sector="5"><path d="M512 512 L672.73 900.03 A420 420 0 0 1 351.27 900.03 Z" fill="#FF6A00"/></g>
+<g id="sector-6" class="sector" data-sector="6"><path d="M512 512 L351.27 900.03 A420 420 0 0 1 123.97 672.73 Z" fill="#0DBA36"/></g>
+<g id="sector-7" class="sector" data-sector="7"><path d="M512 512 L123.97 672.73 A420 420 0 0 1 123.97 351.27 Z" fill="#145BE8"/></g>
+<g id="sector-8" class="sector" data-sector="8"><path d="M512 512 L123.97 351.27 A420 420 0 0 1 351.27 123.97 Z" fill="#F20D78"/></g>
+<g id="outer-rim" class="rim">
+<circle cx="512" cy="512" r="475" fill="#F5C542"/>
+<circle cx="512" cy="512" r="455" fill="#20242B"/>
+<circle cx="512" cy="512" r="430" fill="#F5C542"/>
+<circle cx="512" cy="512" r="424" fill="#15181E"/>
+</g>
+<circle id="inner-border" cx="512" cy="512" r="421" fill="none" stroke="#F5C542" stroke-width="6"/>
+<g id="center-hub">
+<circle id="hub-outer" cx="512" cy="512" r="82" fill="#F5C542"/>
+<circle id="hub-inner" cx="512" cy="512" r="66" fill="#20242B"/>
+<circle id="hub-core" cx="512" cy="512" r="55" fill="#15181E"/>
+</g>
+<g id="dividers" stroke="#F5C542" stroke-width="6">
+<line id="divider-1" x1="512" y1="512" x2="351.27" y2="123.97"/>
+<line id="divider-2" x1="512" y1="512" x2="672.73" y2="123.97"/>
+<line id="divider-3" x1="512" y1="512" x2="900.03" y2="351.27"/>
+<line id="divider-4" x1="512" y1="512" x2="900.03" y2="672.73"/>
+<line id="divider-5" x1="512" y1="512" x2="672.73" y2="900.03"/>
+<line id="divider-6" x1="512" y1="512" x2="351.27" y2="900.03"/>
+<line id="divider-7" x1="512" y1="512" x2="123.97" y2="672.73"/>
+<line id="divider-8" x1="512" y1="512" x2="123.97" y2="351.27"/>
+</g>
+</g>
+</svg>

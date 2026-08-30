@@ -1,0 +1,4835 @@
+[
+  {
+    "case_id": 1,
+    "price": 6,
+    "nft_count": 46,
+    "rtp": 0.90092790335,
+    "ev": 5.4055674201,
+    "hit_25": 1.0,
+    "hit_50": 0.989169,
+    "hit_75": 0.733649,
+    "hit_100": 0.348231,
+    "hit_150": 0.052056,
+    "hit_200": 0.011771,
+    "hit_500": 0.000932,
+    "hit_1000": 0.000932,
+    "top_nft_chance": 0.000466,
+    "top_nft": {
+      "name": "Mini Oscar",
+      "short_name": "mini_oscar",
+      "price": 67.9728,
+      "image_path": "TelegramGiftsAssests-main/models/mini_oscar/action_film.webp"
+    },
+    "nfts": [
+      {
+        "name": "Xmas Stocking",
+        "short_name": "xmas_stocking",
+        "price": 2.9555,
+        "image_path": "TelegramGiftsAssests-main/models/xmas_stocking/abandoned.webp",
+        "probability": 0.010831,
+        "weight": 10831,
+        "category": "B"
+      },
+      {
+        "name": "Winter Wreath",
+        "short_name": "winter_wreath",
+        "price": 3.0175,
+        "image_path": "TelegramGiftsAssests-main/models/winter_wreath/aquamarine.webp",
+        "probability": 0.025552,
+        "weight": 25552,
+        "category": "C"
+      },
+      {
+        "name": "Candy Cane",
+        "short_name": "candy_cane",
+        "price": 3.0192,
+        "image_path": "TelegramGiftsAssests-main/models/candy_cane/amber_glitter.webp",
+        "probability": 0.025552,
+        "weight": 25552,
+        "category": "C"
+      },
+      {
+        "name": "Lunar Snake",
+        "short_name": "lunar_snake",
+        "price": 3.0192,
+        "image_path": "TelegramGiftsAssests-main/models/lunar_snake/adhesive.webp",
+        "probability": 0.025552,
+        "weight": 25552,
+        "category": "C"
+      },
+      {
+        "name": "Snake Box",
+        "short_name": "snake_box",
+        "price": 3.0192,
+        "image_path": "TelegramGiftsAssests-main/models/snake_box/aquarium.webp",
+        "probability": 0.025552,
+        "weight": 25552,
+        "category": "C"
+      },
+      {
+        "name": "Vice Cream",
+        "short_name": "vice_cream",
+        "price": 3.0294,
+        "image_path": "TelegramGiftsAssests-main/models/vice_cream/bamboo_ice.webp",
+        "probability": 0.025552,
+        "weight": 25552,
+        "category": "C"
+      },
+      {
+        "name": "Chill Flame",
+        "short_name": "chill_flame",
+        "price": 3.0396,
+        "image_path": "TelegramGiftsAssests-main/models/chill_flame/baba_yaga.webp",
+        "probability": 0.025552,
+        "weight": 25552,
+        "category": "C"
+      },
+      {
+        "name": "Holiday Drink",
+        "short_name": "holiday_drink",
+        "price": 3.06,
+        "image_path": "TelegramGiftsAssests-main/models/holiday_drink/apple_mousse.webp",
+        "probability": 0.025552,
+        "weight": 25552,
+        "category": "C"
+      },
+      {
+        "name": "Ice Cream",
+        "short_name": "ice_cream",
+        "price": 3.06,
+        "image_path": "TelegramGiftsAssests-main/models/ice_cream/apple_dip.webp",
+        "probability": 0.025552,
+        "weight": 25552,
+        "category": "C"
+      },
+      {
+        "name": "Instant Ramen",
+        "short_name": "instant_ramen",
+        "price": 3.06,
+        "image_path": "TelegramGiftsAssests-main/models/instant_ramen/abduction.webp",
+        "probability": 0.025552,
+        "weight": 25552,
+        "category": "C"
+      },
+      {
+        "name": "Big Year",
+        "short_name": "big_year",
+        "price": 3.0906,
+        "image_path": "TelegramGiftsAssests-main/models/big_year/2048.webp",
+        "probability": 0.025552,
+        "weight": 25552,
+        "category": "C"
+      },
+      {
+        "name": "Pretty Posy",
+        "short_name": "pretty_posy",
+        "price": 4.5492,
+        "image_path": "TelegramGiftsAssests-main/models/pretty_posy/art_therapy.webp",
+        "probability": 0.039107,
+        "weight": 39107,
+        "category": "D"
+      },
+      {
+        "name": "Snoop Dogg",
+        "short_name": "snoop_dogg",
+        "price": 4.692,
+        "image_path": "TelegramGiftsAssests-main/models/snoop_dogg/afro_disco.webp",
+        "probability": 0.038479,
+        "weight": 38479,
+        "category": "D"
+      },
+      {
+        "name": "Eternal Candle",
+        "short_name": "eternal_candle",
+        "price": 4.7532,
+        "image_path": "TelegramGiftsAssests-main/models/eternal_candle/baphomet.webp",
+        "probability": 0.038479,
+        "weight": 38479,
+        "category": "D"
+      },
+      {
+        "name": "Swag Bag",
+        "short_name": "swag_bag",
+        "price": 4.8144,
+        "image_path": "TelegramGiftsAssests-main/models/swag_bag/april_20th.webp",
+        "probability": 0.038479,
+        "weight": 38479,
+        "category": "D"
+      },
+      {
+        "name": "Input Key",
+        "short_name": "input_key",
+        "price": 4.9925,
+        "image_path": "TelegramGiftsAssests-main/models/input_key/angel.webp",
+        "probability": 0.038479,
+        "weight": 38479,
+        "category": "D"
+      },
+      {
+        "name": "Spring Basket",
+        "short_name": "spring_basket",
+        "price": 5.0286,
+        "image_path": "TelegramGiftsAssests-main/models/spring_basket/baby_dragon.webp",
+        "probability": 0.038479,
+        "weight": 38479,
+        "category": "D"
+      },
+      {
+        "name": "Lush Bouquet",
+        "short_name": "lush_bouquet",
+        "price": 5.1,
+        "image_path": "TelegramGiftsAssests-main/models/lush_bouquet/artichoke.webp",
+        "probability": 0.038479,
+        "weight": 38479,
+        "category": "D"
+      },
+      {
+        "name": "Moon Pendant",
+        "short_name": "moon_pendant",
+        "price": 5.253,
+        "image_path": "TelegramGiftsAssests-main/models/moon_pendant/amethyst.webp",
+        "probability": 0.038479,
+        "weight": 38479,
+        "category": "D"
+      },
+      {
+        "name": "Light Sword",
+        "short_name": "light_sword",
+        "price": 5.5716,
+        "image_path": "TelegramGiftsAssests-main/models/light_sword/absinthe.webp",
+        "probability": 0.038479,
+        "weight": 38479,
+        "category": "D"
+      },
+      {
+        "name": "Sleigh Bell",
+        "short_name": "sleigh_bell",
+        "price": 5.8446,
+        "image_path": "TelegramGiftsAssests-main/models/sleigh_bell/arctic_igloo.webp",
+        "probability": 0.038479,
+        "weight": 38479,
+        "category": "D"
+      },
+      {
+        "name": "Surge Board",
+        "short_name": "surge_board",
+        "price": 6.0078,
+        "image_path": "TelegramGiftsAssests-main/models/surge_board/planet_express.webp",
+        "probability": 0.026925,
+        "weight": 26925,
+        "category": "E"
+      },
+      {
+        "name": "Jolly Chimp",
+        "short_name": "jolly_chimp",
+        "price": 6.12,
+        "image_path": "TelegramGiftsAssests-main/models/jolly_chimp/abubu.webp",
+        "probability": 0.026925,
+        "weight": 26925,
+        "category": "E"
+      },
+      {
+        "name": "Joyful Bundle",
+        "short_name": "joyful_bundle",
+        "price": 6.1873,
+        "image_path": "TelegramGiftsAssests-main/models/joyful_bundle/antarctica.webp",
+        "probability": 0.026925,
+        "weight": 26925,
+        "category": "E"
+      },
+      {
+        "name": "Jingle Bells",
+        "short_name": "jingle_bells",
+        "price": 6.222,
+        "image_path": "TelegramGiftsAssests-main/models/jingle_bells/antique.webp",
+        "probability": 0.026925,
+        "weight": 26925,
+        "category": "E"
+      },
+      {
+        "name": "Evil Eye",
+        "short_name": "evil_eye",
+        "price": 6.2628,
+        "image_path": "TelegramGiftsAssests-main/models/evil_eye/8_ball.webp",
+        "probability": 0.026925,
+        "weight": 26925,
+        "category": "E"
+      },
+      {
+        "name": "Jelly Bunny",
+        "short_name": "jelly_bunny",
+        "price": 6.63,
+        "image_path": "TelegramGiftsAssests-main/models/jelly_bunny/artificial.webp",
+        "probability": 0.026925,
+        "weight": 26925,
+        "category": "E"
+      },
+      {
+        "name": "Bunny Muffin",
+        "short_name": "bunny_muffin",
+        "price": 6.9054,
+        "image_path": "TelegramGiftsAssests-main/models/bunny_muffin/airy_souffle.webp",
+        "probability": 0.026925,
+        "weight": 26925,
+        "category": "E"
+      },
+      {
+        "name": "Berry Box",
+        "short_name": "berry_box",
+        "price": 7.1094,
+        "image_path": "TelegramGiftsAssests-main/models/berry_box/alpha.webp",
+        "probability": 0.026925,
+        "weight": 26925,
+        "category": "E"
+      },
+      {
+        "name": "Hanging Star",
+        "short_name": "hanging_star",
+        "price": 7.5084,
+        "image_path": "TelegramGiftsAssests-main/models/hanging_star/advice_dog.webp",
+        "probability": 0.026925,
+        "weight": 26925,
+        "category": "E"
+      },
+      {
+        "name": "Love Candle",
+        "short_name": "love_candle",
+        "price": 7.5582,
+        "image_path": "TelegramGiftsAssests-main/models/love_candle/afterglow.webp",
+        "probability": 0.026925,
+        "weight": 26925,
+        "category": "E"
+      },
+      {
+        "name": "Sakura Flower",
+        "short_name": "sakura_flower",
+        "price": 8.0682,
+        "image_path": "TelegramGiftsAssests-main/models/sakura_flower/aetheris.webp",
+        "probability": 0.026925,
+        "weight": 26925,
+        "category": "E"
+      },
+      {
+        "name": "Top Hat",
+        "short_name": "top_hat",
+        "price": 9.1596,
+        "image_path": "TelegramGiftsAssests-main/models/top_hat/abracadabra.webp",
+        "probability": 0.005755,
+        "weight": 5755,
+        "category": "F"
+      },
+      {
+        "name": "Skull Flower",
+        "short_name": "skull_flower",
+        "price": 9.4554,
+        "image_path": "TelegramGiftsAssests-main/models/skull_flower/azalea.webp",
+        "probability": 0.005755,
+        "weight": 5755,
+        "category": "F"
+      },
+      {
+        "name": "Valentine Box",
+        "short_name": "valentine_box",
+        "price": 9.69,
+        "image_path": "TelegramGiftsAssests-main/models/valentine_box/art_deco.webp",
+        "probability": 0.005755,
+        "weight": 5755,
+        "category": "F"
+      },
+      {
+        "name": "Mad Pumpkin",
+        "short_name": "mad_pumpkin",
+        "price": 9.843,
+        "image_path": "TelegramGiftsAssests-main/models/mad_pumpkin/bee_movie.webp",
+        "probability": 0.005755,
+        "weight": 5755,
+        "category": "F"
+      },
+      {
+        "name": "Flying Broom",
+        "short_name": "flying_broom",
+        "price": 10.2,
+        "image_path": "TelegramGiftsAssests-main/models/flying_broom/berry_blaster.webp",
+        "probability": 0.005755,
+        "weight": 5755,
+        "category": "F"
+      },
+      {
+        "name": "Crystal Ball",
+        "short_name": "crystal_ball",
+        "price": 10.6182,
+        "image_path": "TelegramGiftsAssests-main/models/crystal_ball/amanita.webp",
+        "probability": 0.005755,
+        "weight": 5755,
+        "category": "F"
+      },
+      {
+        "name": "Record Player",
+        "short_name": "record_player",
+        "price": 10.71,
+        "image_path": "TelegramGiftsAssests-main/models/record_player/acid_jazz.webp",
+        "probability": 0.005755,
+        "weight": 5755,
+        "category": "F"
+      },
+      {
+        "name": "Trapped Heart",
+        "short_name": "trapped_heart",
+        "price": 12.1992,
+        "image_path": "TelegramGiftsAssests-main/models/trapped_heart/abyss_heart.webp",
+        "probability": 0.005755,
+        "weight": 5755,
+        "category": "F"
+      },
+      {
+        "name": "Cupid Charm",
+        "short_name": "cupid_charm",
+        "price": 20.6244,
+        "image_path": "TelegramGiftsAssests-main/models/cupid_charm/antique.webp",
+        "probability": 0.001271,
+        "weight": 1271,
+        "category": "G"
+      },
+      {
+        "name": "Bling Binky",
+        "short_name": "bling_binky",
+        "price": 20.9042,
+        "image_path": "TelegramGiftsAssests-main/models/bling_binky/abyss_binky.webp",
+        "probability": 0.001271,
+        "weight": 1271,
+        "category": "G"
+      },
+      {
+        "name": "Rare Bird",
+        "short_name": "rare_bird",
+        "price": 21.012,
+        "image_path": "TelegramGiftsAssests-main/models/rare_bird/amber_toucan.webp",
+        "probability": 0.001271,
+        "weight": 1271,
+        "category": "G"
+      },
+      {
+        "name": "Electric Skull",
+        "short_name": "electric_skull",
+        "price": 21.7872,
+        "image_path": "TelegramGiftsAssests-main/models/electric_skull/bad_fortune.webp",
+        "probability": 0.001271,
+        "weight": 1271,
+        "category": "G"
+      },
+      {
+        "name": "Ion Gem",
+        "short_name": "ion_gem",
+        "price": 61.0266,
+        "image_path": "TelegramGiftsAssests-main/models/ion_gem/amethyst.webp",
+        "probability": 0.000466,
+        "weight": 466,
+        "category": "H"
+      },
+      {
+        "name": "Mini Oscar",
+        "short_name": "mini_oscar",
+        "price": 67.9728,
+        "image_path": "TelegramGiftsAssests-main/models/mini_oscar/action_film.webp",
+        "probability": 0.000466,
+        "weight": 466,
+        "category": "H"
+      }
+    ]
+  },
+  {
+    "case_id": 2,
+    "price": 8,
+    "nft_count": 48,
+    "rtp": 0.9006705550999999,
+    "ev": 7.2053644407999995,
+    "hit_25": 1.0,
+    "hit_50": 0.9397179999999999,
+    "hit_75": 0.687958,
+    "hit_100": 0.284562,
+    "hit_150": 0.05897,
+    "hit_200": 0.026885,
+    "hit_500": 0.00119,
+    "hit_1000": 0.00119,
+    "top_nft_chance": 0.000595,
+    "top_nft": {
+      "name": "Nail Bracelet",
+      "short_name": "nail_bracelet",
+      "price": 104.448,
+      "image_path": "TelegramGiftsAssests-main/models/nail_bracelet/aqua_ring.webp"
+    },
+    "nfts": [
+      {
+        "name": "Xmas Stocking",
+        "short_name": "xmas_stocking",
+        "price": 2.9555,
+        "image_path": "TelegramGiftsAssests-main/models/xmas_stocking/abandoned.webp",
+        "probability": 0.010047,
+        "weight": 10047,
+        "category": "B"
+      },
+      {
+        "name": "Winter Wreath",
+        "short_name": "winter_wreath",
+        "price": 3.0175,
+        "image_path": "TelegramGiftsAssests-main/models/winter_wreath/aquamarine.webp",
+        "probability": 0.010047,
+        "weight": 10047,
+        "category": "B"
+      },
+      {
+        "name": "Candy Cane",
+        "short_name": "candy_cane",
+        "price": 3.0192,
+        "image_path": "TelegramGiftsAssests-main/models/candy_cane/amber_glitter.webp",
+        "probability": 0.010047,
+        "weight": 10047,
+        "category": "B"
+      },
+      {
+        "name": "Lunar Snake",
+        "short_name": "lunar_snake",
+        "price": 3.0192,
+        "image_path": "TelegramGiftsAssests-main/models/lunar_snake/adhesive.webp",
+        "probability": 0.010047,
+        "weight": 10047,
+        "category": "B"
+      },
+      {
+        "name": "Snake Box",
+        "short_name": "snake_box",
+        "price": 3.0192,
+        "image_path": "TelegramGiftsAssests-main/models/snake_box/aquarium.webp",
+        "probability": 0.010047,
+        "weight": 10047,
+        "category": "B"
+      },
+      {
+        "name": "Vice Cream",
+        "short_name": "vice_cream",
+        "price": 3.0294,
+        "image_path": "TelegramGiftsAssests-main/models/vice_cream/bamboo_ice.webp",
+        "probability": 0.010047,
+        "weight": 10047,
+        "category": "B"
+      },
+      {
+        "name": "Desk Calendar",
+        "short_name": "desk_calendar",
+        "price": 4.131,
+        "image_path": "TelegramGiftsAssests-main/models/desk_calendar/adult_tasks.webp",
+        "probability": 0.025176,
+        "weight": 25176,
+        "category": "C"
+      },
+      {
+        "name": "Cookie Heart",
+        "short_name": "cookie_heart",
+        "price": 4.1377,
+        "image_path": "TelegramGiftsAssests-main/models/cookie_heart/affection.webp",
+        "probability": 0.025176,
+        "weight": 25176,
+        "category": "C"
+      },
+      {
+        "name": "Victory Medal",
+        "short_name": "victory_medal",
+        "price": 4.1412,
+        "image_path": "TelegramGiftsAssests-main/models/victory_medal/aegis.webp",
+        "probability": 0.025176,
+        "weight": 25176,
+        "category": "C"
+      },
+      {
+        "name": "Bow Tie",
+        "short_name": "bow_tie",
+        "price": 4.182,
+        "image_path": "TelegramGiftsAssests-main/models/bow_tie/baby_yoda.webp",
+        "probability": 0.025176,
+        "weight": 25176,
+        "category": "C"
+      },
+      {
+        "name": "Homemade Cake",
+        "short_name": "homemade_cake",
+        "price": 4.1907,
+        "image_path": "TelegramGiftsAssests-main/models/homemade_cake/angel_cake.webp",
+        "probability": 0.025176,
+        "weight": 25176,
+        "category": "C"
+      },
+      {
+        "name": "Mousse Cake",
+        "short_name": "mousse_cake",
+        "price": 4.1922,
+        "image_path": "TelegramGiftsAssests-main/models/mousse_cake/angel_cake.webp",
+        "probability": 0.025176,
+        "weight": 25176,
+        "category": "C"
+      },
+      {
+        "name": "Spy Agaric",
+        "short_name": "spy_agaric",
+        "price": 4.2228,
+        "image_path": "TelegramGiftsAssests-main/models/spy_agaric/acidic.webp",
+        "probability": 0.025176,
+        "weight": 25176,
+        "category": "C"
+      },
+      {
+        "name": "Clover Pin",
+        "short_name": "clover_pin",
+        "price": 4.233,
+        "image_path": "TelegramGiftsAssests-main/models/clover_pin/balloon.webp",
+        "probability": 0.025176,
+        "weight": 25176,
+        "category": "C"
+      },
+      {
+        "name": "Stellar Rocket",
+        "short_name": "stellar_rocket",
+        "price": 4.3044,
+        "image_path": "TelegramGiftsAssests-main/models/stellar_rocket/alien_pizza.webp",
+        "probability": 0.025176,
+        "weight": 25176,
+        "category": "C"
+      },
+      {
+        "name": "Witch Hat",
+        "short_name": "witch_hat",
+        "price": 4.3146,
+        "image_path": "TelegramGiftsAssests-main/models/witch_hat/aeromancy.webp",
+        "probability": 0.025176,
+        "weight": 25176,
+        "category": "C"
+      },
+      {
+        "name": "Surge Board",
+        "short_name": "surge_board",
+        "price": 6.0078,
+        "image_path": "TelegramGiftsAssests-main/models/surge_board/planet_express.webp",
+        "probability": 0.040804,
+        "weight": 40804,
+        "category": "D"
+      },
+      {
+        "name": "Jolly Chimp",
+        "short_name": "jolly_chimp",
+        "price": 6.12,
+        "image_path": "TelegramGiftsAssests-main/models/jolly_chimp/abubu.webp",
+        "probability": 0.040288,
+        "weight": 40288,
+        "category": "D"
+      },
+      {
+        "name": "Joyful Bundle",
+        "short_name": "joyful_bundle",
+        "price": 6.1873,
+        "image_path": "TelegramGiftsAssests-main/models/joyful_bundle/antarctica.webp",
+        "probability": 0.040288,
+        "weight": 40288,
+        "category": "D"
+      },
+      {
+        "name": "Jingle Bells",
+        "short_name": "jingle_bells",
+        "price": 6.222,
+        "image_path": "TelegramGiftsAssests-main/models/jingle_bells/antique.webp",
+        "probability": 0.040288,
+        "weight": 40288,
+        "category": "D"
+      },
+      {
+        "name": "Evil Eye",
+        "short_name": "evil_eye",
+        "price": 6.2628,
+        "image_path": "TelegramGiftsAssests-main/models/evil_eye/8_ball.webp",
+        "probability": 0.040288,
+        "weight": 40288,
+        "category": "D"
+      },
+      {
+        "name": "Jelly Bunny",
+        "short_name": "jelly_bunny",
+        "price": 6.63,
+        "image_path": "TelegramGiftsAssests-main/models/jelly_bunny/artificial.webp",
+        "probability": 0.040288,
+        "weight": 40288,
+        "category": "D"
+      },
+      {
+        "name": "Bunny Muffin",
+        "short_name": "bunny_muffin",
+        "price": 6.9054,
+        "image_path": "TelegramGiftsAssests-main/models/bunny_muffin/airy_souffle.webp",
+        "probability": 0.040288,
+        "weight": 40288,
+        "category": "D"
+      },
+      {
+        "name": "Berry Box",
+        "short_name": "berry_box",
+        "price": 7.1094,
+        "image_path": "TelegramGiftsAssests-main/models/berry_box/alpha.webp",
+        "probability": 0.040288,
+        "weight": 40288,
+        "category": "D"
+      },
+      {
+        "name": "Hanging Star",
+        "short_name": "hanging_star",
+        "price": 7.5084,
+        "image_path": "TelegramGiftsAssests-main/models/hanging_star/advice_dog.webp",
+        "probability": 0.040288,
+        "weight": 40288,
+        "category": "D"
+      },
+      {
+        "name": "Love Candle",
+        "short_name": "love_candle",
+        "price": 7.5582,
+        "image_path": "TelegramGiftsAssests-main/models/love_candle/afterglow.webp",
+        "probability": 0.040288,
+        "weight": 40288,
+        "category": "D"
+      },
+      {
+        "name": "Sakura Flower",
+        "short_name": "sakura_flower",
+        "price": 8.0682,
+        "image_path": "TelegramGiftsAssests-main/models/sakura_flower/aetheris.webp",
+        "probability": 0.028199,
+        "weight": 28199,
+        "category": "E"
+      },
+      {
+        "name": "Top Hat",
+        "short_name": "top_hat",
+        "price": 9.1596,
+        "image_path": "TelegramGiftsAssests-main/models/top_hat/abracadabra.webp",
+        "probability": 0.028199,
+        "weight": 28199,
+        "category": "E"
+      },
+      {
+        "name": "Skull Flower",
+        "short_name": "skull_flower",
+        "price": 9.4554,
+        "image_path": "TelegramGiftsAssests-main/models/skull_flower/azalea.webp",
+        "probability": 0.028199,
+        "weight": 28199,
+        "category": "E"
+      },
+      {
+        "name": "Valentine Box",
+        "short_name": "valentine_box",
+        "price": 9.69,
+        "image_path": "TelegramGiftsAssests-main/models/valentine_box/art_deco.webp",
+        "probability": 0.028199,
+        "weight": 28199,
+        "category": "E"
+      },
+      {
+        "name": "Mad Pumpkin",
+        "short_name": "mad_pumpkin",
+        "price": 9.843,
+        "image_path": "TelegramGiftsAssests-main/models/mad_pumpkin/bee_movie.webp",
+        "probability": 0.028199,
+        "weight": 28199,
+        "category": "E"
+      },
+      {
+        "name": "Flying Broom",
+        "short_name": "flying_broom",
+        "price": 10.2,
+        "image_path": "TelegramGiftsAssests-main/models/flying_broom/berry_blaster.webp",
+        "probability": 0.028199,
+        "weight": 28199,
+        "category": "E"
+      },
+      {
+        "name": "Crystal Ball",
+        "short_name": "crystal_ball",
+        "price": 10.6182,
+        "image_path": "TelegramGiftsAssests-main/models/crystal_ball/amanita.webp",
+        "probability": 0.028199,
+        "weight": 28199,
+        "category": "E"
+      },
+      {
+        "name": "Record Player",
+        "short_name": "record_player",
+        "price": 10.71,
+        "image_path": "TelegramGiftsAssests-main/models/record_player/acid_jazz.webp",
+        "probability": 0.028199,
+        "weight": 28199,
+        "category": "E"
+      },
+      {
+        "name": "Trapped Heart",
+        "short_name": "trapped_heart",
+        "price": 12.1992,
+        "image_path": "TelegramGiftsAssests-main/models/trapped_heart/abyss_heart.webp",
+        "probability": 0.006417,
+        "weight": 6417,
+        "category": "F"
+      },
+      {
+        "name": "Love Potion",
+        "short_name": "love_potion",
+        "price": 12.24,
+        "image_path": "TelegramGiftsAssests-main/models/love_potion/aerogel.webp",
+        "probability": 0.006417,
+        "weight": 6417,
+        "category": "F"
+      },
+      {
+        "name": "Snoop Cigar",
+        "short_name": "snoop_cigar",
+        "price": 12.6378,
+        "image_path": "TelegramGiftsAssests-main/models/snoop_cigar/america.webp",
+        "probability": 0.006417,
+        "weight": 6417,
+        "category": "F"
+      },
+      {
+        "name": "Ionic Dryer",
+        "short_name": "ionic_dryer",
+        "price": 13.3518,
+        "image_path": "TelegramGiftsAssests-main/models/ionic_dryer/ace_machine.webp",
+        "probability": 0.006417,
+        "weight": 6417,
+        "category": "F"
+      },
+      {
+        "name": "UFC Strike",
+        "short_name": "ufc_strike",
+        "price": 14.4534,
+        "image_path": "TelegramGiftsAssests-main/models/ufc_strike/a._pantoja.webp",
+        "probability": 0.006417,
+        "weight": 6417,
+        "category": "F"
+      },
+      {
+        "name": "Sky Stilettos",
+        "short_name": "sky_stilettos",
+        "price": 16.575,
+        "image_path": "TelegramGiftsAssests-main/models/sky_stilettos/april.webp",
+        "probability": 0.006417,
+        "weight": 6417,
+        "category": "F"
+      },
+      {
+        "name": "Cupid Charm",
+        "short_name": "cupid_charm",
+        "price": 20.6244,
+        "image_path": "TelegramGiftsAssests-main/models/cupid_charm/antique.webp",
+        "probability": 0.006417,
+        "weight": 6417,
+        "category": "F"
+      },
+      {
+        "name": "Bling Binky",
+        "short_name": "bling_binky",
+        "price": 20.9042,
+        "image_path": "TelegramGiftsAssests-main/models/bling_binky/abyss_binky.webp",
+        "probability": 0.006417,
+        "weight": 6417,
+        "category": "F"
+      },
+      {
+        "name": "Diamond Ring",
+        "short_name": "diamond_ring",
+        "price": 25.5,
+        "image_path": "TelegramGiftsAssests-main/models/diamond_ring/acid_green.webp",
+        "probability": 0.001611,
+        "weight": 1611,
+        "category": "G"
+      },
+      {
+        "name": "Genie Lamp",
+        "short_name": "genie_lamp",
+        "price": 29.9574,
+        "image_path": "TelegramGiftsAssests-main/models/genie_lamp/arabian_night.webp",
+        "probability": 0.001611,
+        "weight": 1611,
+        "category": "G"
+      },
+      {
+        "name": "Signet Ring",
+        "short_name": "signet_ring",
+        "price": 29.9778,
+        "image_path": "TelegramGiftsAssests-main/models/signet_ring/black_noir.webp",
+        "probability": 0.001611,
+        "weight": 1611,
+        "category": "G"
+      },
+      {
+        "name": "Voodoo Doll",
+        "short_name": "voodoo_doll",
+        "price": 32.3136,
+        "image_path": "TelegramGiftsAssests-main/models/voodoo_doll/aqua_gem.webp",
+        "probability": 0.001611,
+        "weight": 1611,
+        "category": "G"
+      },
+      {
+        "name": "Westside Sign",
+        "short_name": "westside_sign",
+        "price": 82.7118,
+        "image_path": "TelegramGiftsAssests-main/models/westside_sign/all_in.webp",
+        "probability": 0.000595,
+        "weight": 595,
+        "category": "H"
+      },
+      {
+        "name": "Nail Bracelet",
+        "short_name": "nail_bracelet",
+        "price": 104.448,
+        "image_path": "TelegramGiftsAssests-main/models/nail_bracelet/aqua_ring.webp",
+        "probability": 0.000595,
+        "weight": 595,
+        "category": "H"
+      }
+    ]
+  },
+  {
+    "case_id": 3,
+    "price": 10,
+    "nft_count": 45,
+    "rtp": 0.89915393528,
+    "ev": 8.9915393528,
+    "hit_25": 1.0,
+    "hit_50": 0.916522,
+    "hit_75": 0.607422,
+    "hit_100": 0.300082,
+    "hit_150": 0.054905999999999996,
+    "hit_200": 0.048750999999999996,
+    "hit_500": 0.00087,
+    "hit_1000": 0.00087,
+    "top_nft_chance": 0.000435,
+    "top_nft": {
+      "name": "Loot Bag",
+      "short_name": "loot_bag",
+      "price": 108.1098,
+      "image_path": "TelegramGiftsAssests-main/models/loot_bag/academic.webp"
+    },
+    "nfts": [
+      {
+        "name": "Xmas Stocking",
+        "short_name": "xmas_stocking",
+        "price": 2.9555,
+        "image_path": "TelegramGiftsAssests-main/models/xmas_stocking/abandoned.webp",
+        "probability": 0.013913,
+        "weight": 13913,
+        "category": "B"
+      },
+      {
+        "name": "Winter Wreath",
+        "short_name": "winter_wreath",
+        "price": 3.0175,
+        "image_path": "TelegramGiftsAssests-main/models/winter_wreath/aquamarine.webp",
+        "probability": 0.013913,
+        "weight": 13913,
+        "category": "B"
+      },
+      {
+        "name": "Candy Cane",
+        "short_name": "candy_cane",
+        "price": 3.0192,
+        "image_path": "TelegramGiftsAssests-main/models/candy_cane/amber_glitter.webp",
+        "probability": 0.013913,
+        "weight": 13913,
+        "category": "B"
+      },
+      {
+        "name": "Lunar Snake",
+        "short_name": "lunar_snake",
+        "price": 3.0192,
+        "image_path": "TelegramGiftsAssests-main/models/lunar_snake/adhesive.webp",
+        "probability": 0.013913,
+        "weight": 13913,
+        "category": "B"
+      },
+      {
+        "name": "Snake Box",
+        "short_name": "snake_box",
+        "price": 3.0192,
+        "image_path": "TelegramGiftsAssests-main/models/snake_box/aquarium.webp",
+        "probability": 0.013913,
+        "weight": 13913,
+        "category": "B"
+      },
+      {
+        "name": "Vice Cream",
+        "short_name": "vice_cream",
+        "price": 3.0294,
+        "image_path": "TelegramGiftsAssests-main/models/vice_cream/bamboo_ice.webp",
+        "probability": 0.013913,
+        "weight": 13913,
+        "category": "B"
+      },
+      {
+        "name": "Spring Basket",
+        "short_name": "spring_basket",
+        "price": 5.0286,
+        "image_path": "TelegramGiftsAssests-main/models/spring_basket/baby_dragon.webp",
+        "probability": 0.03091,
+        "weight": 30910,
+        "category": "C"
+      },
+      {
+        "name": "Lush Bouquet",
+        "short_name": "lush_bouquet",
+        "price": 5.1,
+        "image_path": "TelegramGiftsAssests-main/models/lush_bouquet/artichoke.webp",
+        "probability": 0.03091,
+        "weight": 30910,
+        "category": "C"
+      },
+      {
+        "name": "Moon Pendant",
+        "short_name": "moon_pendant",
+        "price": 5.253,
+        "image_path": "TelegramGiftsAssests-main/models/moon_pendant/amethyst.webp",
+        "probability": 0.03091,
+        "weight": 30910,
+        "category": "C"
+      },
+      {
+        "name": "Light Sword",
+        "short_name": "light_sword",
+        "price": 5.5716,
+        "image_path": "TelegramGiftsAssests-main/models/light_sword/absinthe.webp",
+        "probability": 0.03091,
+        "weight": 30910,
+        "category": "C"
+      },
+      {
+        "name": "Sleigh Bell",
+        "short_name": "sleigh_bell",
+        "price": 5.8446,
+        "image_path": "TelegramGiftsAssests-main/models/sleigh_bell/arctic_igloo.webp",
+        "probability": 0.03091,
+        "weight": 30910,
+        "category": "C"
+      },
+      {
+        "name": "Surge Board",
+        "short_name": "surge_board",
+        "price": 6.0078,
+        "image_path": "TelegramGiftsAssests-main/models/surge_board/planet_express.webp",
+        "probability": 0.03091,
+        "weight": 30910,
+        "category": "C"
+      },
+      {
+        "name": "Jolly Chimp",
+        "short_name": "jolly_chimp",
+        "price": 6.12,
+        "image_path": "TelegramGiftsAssests-main/models/jolly_chimp/abubu.webp",
+        "probability": 0.03091,
+        "weight": 30910,
+        "category": "C"
+      },
+      {
+        "name": "Joyful Bundle",
+        "short_name": "joyful_bundle",
+        "price": 6.1873,
+        "image_path": "TelegramGiftsAssests-main/models/joyful_bundle/antarctica.webp",
+        "probability": 0.03091,
+        "weight": 30910,
+        "category": "C"
+      },
+      {
+        "name": "Jingle Bells",
+        "short_name": "jingle_bells",
+        "price": 6.222,
+        "image_path": "TelegramGiftsAssests-main/models/jingle_bells/antique.webp",
+        "probability": 0.03091,
+        "weight": 30910,
+        "category": "C"
+      },
+      {
+        "name": "Evil Eye",
+        "short_name": "evil_eye",
+        "price": 6.2628,
+        "image_path": "TelegramGiftsAssests-main/models/evil_eye/8_ball.webp",
+        "probability": 0.03091,
+        "weight": 30910,
+        "category": "C"
+      },
+      {
+        "name": "Hanging Star",
+        "short_name": "hanging_star",
+        "price": 7.5084,
+        "image_path": "TelegramGiftsAssests-main/models/hanging_star/advice_dog.webp",
+        "probability": 0.044552,
+        "weight": 44552,
+        "category": "D"
+      },
+      {
+        "name": "Love Candle",
+        "short_name": "love_candle",
+        "price": 7.5582,
+        "image_path": "TelegramGiftsAssests-main/models/love_candle/afterglow.webp",
+        "probability": 0.043798,
+        "weight": 43798,
+        "category": "D"
+      },
+      {
+        "name": "Sakura Flower",
+        "short_name": "sakura_flower",
+        "price": 8.0682,
+        "image_path": "TelegramGiftsAssests-main/models/sakura_flower/aetheris.webp",
+        "probability": 0.043798,
+        "weight": 43798,
+        "category": "D"
+      },
+      {
+        "name": "Top Hat",
+        "short_name": "top_hat",
+        "price": 9.1596,
+        "image_path": "TelegramGiftsAssests-main/models/top_hat/abracadabra.webp",
+        "probability": 0.043798,
+        "weight": 43798,
+        "category": "D"
+      },
+      {
+        "name": "Skull Flower",
+        "short_name": "skull_flower",
+        "price": 9.4554,
+        "image_path": "TelegramGiftsAssests-main/models/skull_flower/azalea.webp",
+        "probability": 0.043798,
+        "weight": 43798,
+        "category": "D"
+      },
+      {
+        "name": "Valentine Box",
+        "short_name": "valentine_box",
+        "price": 9.69,
+        "image_path": "TelegramGiftsAssests-main/models/valentine_box/art_deco.webp",
+        "probability": 0.043798,
+        "weight": 43798,
+        "category": "D"
+      },
+      {
+        "name": "Mad Pumpkin",
+        "short_name": "mad_pumpkin",
+        "price": 9.843,
+        "image_path": "TelegramGiftsAssests-main/models/mad_pumpkin/bee_movie.webp",
+        "probability": 0.043798,
+        "weight": 43798,
+        "category": "D"
+      },
+      {
+        "name": "Flying Broom",
+        "short_name": "flying_broom",
+        "price": 10.2,
+        "image_path": "TelegramGiftsAssests-main/models/flying_broom/berry_blaster.webp",
+        "probability": 0.030647,
+        "weight": 30647,
+        "category": "E"
+      },
+      {
+        "name": "Crystal Ball",
+        "short_name": "crystal_ball",
+        "price": 10.6182,
+        "image_path": "TelegramGiftsAssests-main/models/crystal_ball/amanita.webp",
+        "probability": 0.030647,
+        "weight": 30647,
+        "category": "E"
+      },
+      {
+        "name": "Record Player",
+        "short_name": "record_player",
+        "price": 10.71,
+        "image_path": "TelegramGiftsAssests-main/models/record_player/acid_jazz.webp",
+        "probability": 0.030647,
+        "weight": 30647,
+        "category": "E"
+      },
+      {
+        "name": "Trapped Heart",
+        "short_name": "trapped_heart",
+        "price": 12.1992,
+        "image_path": "TelegramGiftsAssests-main/models/trapped_heart/abyss_heart.webp",
+        "probability": 0.030647,
+        "weight": 30647,
+        "category": "E"
+      },
+      {
+        "name": "Love Potion",
+        "short_name": "love_potion",
+        "price": 12.24,
+        "image_path": "TelegramGiftsAssests-main/models/love_potion/aerogel.webp",
+        "probability": 0.030647,
+        "weight": 30647,
+        "category": "E"
+      },
+      {
+        "name": "Snoop Cigar",
+        "short_name": "snoop_cigar",
+        "price": 12.6378,
+        "image_path": "TelegramGiftsAssests-main/models/snoop_cigar/america.webp",
+        "probability": 0.030647,
+        "weight": 30647,
+        "category": "E"
+      },
+      {
+        "name": "Ionic Dryer",
+        "short_name": "ionic_dryer",
+        "price": 13.3518,
+        "image_path": "TelegramGiftsAssests-main/models/ionic_dryer/ace_machine.webp",
+        "probability": 0.030647,
+        "weight": 30647,
+        "category": "E"
+      },
+      {
+        "name": "UFC Strike",
+        "short_name": "ufc_strike",
+        "price": 14.4534,
+        "image_path": "TelegramGiftsAssests-main/models/ufc_strike/a._pantoja.webp",
+        "probability": 0.030647,
+        "weight": 30647,
+        "category": "E"
+      },
+      {
+        "name": "Sky Stilettos",
+        "short_name": "sky_stilettos",
+        "price": 16.575,
+        "image_path": "TelegramGiftsAssests-main/models/sky_stilettos/april.webp",
+        "probability": 0.006155,
+        "weight": 6155,
+        "category": "F"
+      },
+      {
+        "name": "Cupid Charm",
+        "short_name": "cupid_charm",
+        "price": 20.6244,
+        "image_path": "TelegramGiftsAssests-main/models/cupid_charm/antique.webp",
+        "probability": 0.006155,
+        "weight": 6155,
+        "category": "F"
+      },
+      {
+        "name": "Bling Binky",
+        "short_name": "bling_binky",
+        "price": 20.9042,
+        "image_path": "TelegramGiftsAssests-main/models/bling_binky/abyss_binky.webp",
+        "probability": 0.006155,
+        "weight": 6155,
+        "category": "F"
+      },
+      {
+        "name": "Rare Bird",
+        "short_name": "rare_bird",
+        "price": 21.012,
+        "image_path": "TelegramGiftsAssests-main/models/rare_bird/amber_toucan.webp",
+        "probability": 0.006155,
+        "weight": 6155,
+        "category": "F"
+      },
+      {
+        "name": "Electric Skull",
+        "short_name": "electric_skull",
+        "price": 21.7872,
+        "image_path": "TelegramGiftsAssests-main/models/electric_skull/bad_fortune.webp",
+        "probability": 0.006155,
+        "weight": 6155,
+        "category": "F"
+      },
+      {
+        "name": "Eternal Rose",
+        "short_name": "eternal_rose",
+        "price": 23.205,
+        "image_path": "TelegramGiftsAssests-main/models/eternal_rose/3d_glow.webp",
+        "probability": 0.006155,
+        "weight": 6155,
+        "category": "F"
+      },
+      {
+        "name": "Khabib’s Papakha",
+        "short_name": "khabibs_papakha",
+        "price": 23.3988,
+        "image_path": "TelegramGiftsAssests-main/models/khabibs_papakha/29-0_record.webp",
+        "probability": 0.006155,
+        "weight": 6155,
+        "category": "F"
+      },
+      {
+        "name": "Diamond Ring",
+        "short_name": "diamond_ring",
+        "price": 25.5,
+        "image_path": "TelegramGiftsAssests-main/models/diamond_ring/acid_green.webp",
+        "probability": 0.006155,
+        "weight": 6155,
+        "category": "F"
+      },
+      {
+        "name": "Voodoo Doll",
+        "short_name": "voodoo_doll",
+        "price": 32.3136,
+        "image_path": "TelegramGiftsAssests-main/models/voodoo_doll/aqua_gem.webp",
+        "probability": 0.001199,
+        "weight": 1199,
+        "category": "G"
+      },
+      {
+        "name": "Neko Helmet",
+        "short_name": "neko_helmet",
+        "price": 32.64,
+        "image_path": "TelegramGiftsAssests-main/models/neko_helmet/acid_punch.webp",
+        "probability": 0.001199,
+        "weight": 1199,
+        "category": "G"
+      },
+      {
+        "name": "Toy Bear",
+        "short_name": "toy_bear",
+        "price": 33.3234,
+        "image_path": "TelegramGiftsAssests-main/models/toy_bear/alter_ego.webp",
+        "probability": 0.001199,
+        "weight": 1199,
+        "category": "G"
+      },
+      {
+        "name": "Vintage Cigar",
+        "short_name": "vintage_cigar",
+        "price": 33.66,
+        "image_path": "TelegramGiftsAssests-main/models/vintage_cigar/aquaviolet.webp",
+        "probability": 0.001199,
+        "weight": 1199,
+        "category": "G"
+      },
+      {
+        "name": "Nail Bracelet",
+        "short_name": "nail_bracelet",
+        "price": 104.448,
+        "image_path": "TelegramGiftsAssests-main/models/nail_bracelet/aqua_ring.webp",
+        "probability": 0.000435,
+        "weight": 435,
+        "category": "H"
+      },
+      {
+        "name": "Loot Bag",
+        "short_name": "loot_bag",
+        "price": 108.1098,
+        "image_path": "TelegramGiftsAssests-main/models/loot_bag/academic.webp",
+        "probability": 0.000435,
+        "weight": 435,
+        "category": "H"
+      }
+    ]
+  },
+  {
+    "case_id": 4,
+    "price": 15,
+    "nft_count": 43,
+    "rtp": 0.90087017906,
+    "ev": 13.5130526859,
+    "hit_25": 0.982921,
+    "hit_50": 0.891691,
+    "hit_75": 0.532931,
+    "hit_100": 0.26221500000000003,
+    "hit_150": 0.0732,
+    "hit_200": 0.032755,
+    "hit_500": 0.001316,
+    "hit_1000": 0.001316,
+    "top_nft_chance": 0.000658,
+    "top_nft": {
+      "name": "Scared Cat",
+      "short_name": "scared_cat",
+      "price": 173.4,
+      "image_path": "TelegramGiftsAssests-main/models/scared_cat/azuki_siam.webp"
+    },
+    "nfts": [
+      {
+        "name": "Xmas Stocking",
+        "short_name": "xmas_stocking",
+        "price": 2.9555,
+        "image_path": "TelegramGiftsAssests-main/models/xmas_stocking/abandoned.webp",
+        "probability": 0.005693,
+        "weight": 5693,
+        "category": "A"
+      },
+      {
+        "name": "Winter Wreath",
+        "short_name": "winter_wreath",
+        "price": 3.0175,
+        "image_path": "TelegramGiftsAssests-main/models/winter_wreath/aquamarine.webp",
+        "probability": 0.005693,
+        "weight": 5693,
+        "category": "A"
+      },
+      {
+        "name": "Candy Cane",
+        "short_name": "candy_cane",
+        "price": 3.0192,
+        "image_path": "TelegramGiftsAssests-main/models/candy_cane/amber_glitter.webp",
+        "probability": 0.005693,
+        "weight": 5693,
+        "category": "A"
+      },
+      {
+        "name": "Snow Globe",
+        "short_name": "snow_globe",
+        "price": 3.774,
+        "image_path": "TelegramGiftsAssests-main/models/snow_globe/amethyst.webp",
+        "probability": 0.015205,
+        "weight": 15205,
+        "category": "B"
+      },
+      {
+        "name": "Spiced Wine",
+        "short_name": "spiced_wine",
+        "price": 3.8658,
+        "image_path": "TelegramGiftsAssests-main/models/spiced_wine/absinthe.webp",
+        "probability": 0.015205,
+        "weight": 15205,
+        "category": "B"
+      },
+      {
+        "name": "Star Notepad",
+        "short_name": "star_notepad",
+        "price": 3.8658,
+        "image_path": "TelegramGiftsAssests-main/models/star_notepad/alien_script.webp",
+        "probability": 0.015205,
+        "weight": 15205,
+        "category": "B"
+      },
+      {
+        "name": "Snow Mittens",
+        "short_name": "snow_mittens",
+        "price": 3.9141,
+        "image_path": "TelegramGiftsAssests-main/models/snow_mittens/alpine_fern.webp",
+        "probability": 0.015205,
+        "weight": 15205,
+        "category": "B"
+      },
+      {
+        "name": "Money Pot",
+        "short_name": "money_pot",
+        "price": 3.978,
+        "image_path": "TelegramGiftsAssests-main/models/money_pot/ammunition.webp",
+        "probability": 0.015205,
+        "weight": 15205,
+        "category": "B"
+      },
+      {
+        "name": "Desk Calendar",
+        "short_name": "desk_calendar",
+        "price": 4.131,
+        "image_path": "TelegramGiftsAssests-main/models/desk_calendar/adult_tasks.webp",
+        "probability": 0.015205,
+        "weight": 15205,
+        "category": "B"
+      },
+      {
+        "name": "Hanging Star",
+        "short_name": "hanging_star",
+        "price": 7.5084,
+        "image_path": "TelegramGiftsAssests-main/models/hanging_star/advice_dog.webp",
+        "probability": 0.035876,
+        "weight": 35876,
+        "category": "C"
+      },
+      {
+        "name": "Love Candle",
+        "short_name": "love_candle",
+        "price": 7.5582,
+        "image_path": "TelegramGiftsAssests-main/models/love_candle/afterglow.webp",
+        "probability": 0.035876,
+        "weight": 35876,
+        "category": "C"
+      },
+      {
+        "name": "Sakura Flower",
+        "short_name": "sakura_flower",
+        "price": 8.0682,
+        "image_path": "TelegramGiftsAssests-main/models/sakura_flower/aetheris.webp",
+        "probability": 0.035876,
+        "weight": 35876,
+        "category": "C"
+      },
+      {
+        "name": "Top Hat",
+        "short_name": "top_hat",
+        "price": 9.1596,
+        "image_path": "TelegramGiftsAssests-main/models/top_hat/abracadabra.webp",
+        "probability": 0.035876,
+        "weight": 35876,
+        "category": "C"
+      },
+      {
+        "name": "Skull Flower",
+        "short_name": "skull_flower",
+        "price": 9.4554,
+        "image_path": "TelegramGiftsAssests-main/models/skull_flower/azalea.webp",
+        "probability": 0.035876,
+        "weight": 35876,
+        "category": "C"
+      },
+      {
+        "name": "Valentine Box",
+        "short_name": "valentine_box",
+        "price": 9.69,
+        "image_path": "TelegramGiftsAssests-main/models/valentine_box/art_deco.webp",
+        "probability": 0.035876,
+        "weight": 35876,
+        "category": "C"
+      },
+      {
+        "name": "Mad Pumpkin",
+        "short_name": "mad_pumpkin",
+        "price": 9.843,
+        "image_path": "TelegramGiftsAssests-main/models/mad_pumpkin/bee_movie.webp",
+        "probability": 0.035876,
+        "weight": 35876,
+        "category": "C"
+      },
+      {
+        "name": "Flying Broom",
+        "short_name": "flying_broom",
+        "price": 10.2,
+        "image_path": "TelegramGiftsAssests-main/models/flying_broom/berry_blaster.webp",
+        "probability": 0.035876,
+        "weight": 35876,
+        "category": "C"
+      },
+      {
+        "name": "Crystal Ball",
+        "short_name": "crystal_ball",
+        "price": 10.6182,
+        "image_path": "TelegramGiftsAssests-main/models/crystal_ball/amanita.webp",
+        "probability": 0.035876,
+        "weight": 35876,
+        "category": "C"
+      },
+      {
+        "name": "Record Player",
+        "short_name": "record_player",
+        "price": 10.71,
+        "image_path": "TelegramGiftsAssests-main/models/record_player/acid_jazz.webp",
+        "probability": 0.035876,
+        "weight": 35876,
+        "category": "C"
+      },
+      {
+        "name": "Trapped Heart",
+        "short_name": "trapped_heart",
+        "price": 12.1992,
+        "image_path": "TelegramGiftsAssests-main/models/trapped_heart/abyss_heart.webp",
+        "probability": 0.054624,
+        "weight": 54624,
+        "category": "D"
+      },
+      {
+        "name": "Love Potion",
+        "short_name": "love_potion",
+        "price": 12.24,
+        "image_path": "TelegramGiftsAssests-main/models/love_potion/aerogel.webp",
+        "probability": 0.054023,
+        "weight": 54023,
+        "category": "D"
+      },
+      {
+        "name": "Snoop Cigar",
+        "short_name": "snoop_cigar",
+        "price": 12.6378,
+        "image_path": "TelegramGiftsAssests-main/models/snoop_cigar/america.webp",
+        "probability": 0.054023,
+        "weight": 54023,
+        "category": "D"
+      },
+      {
+        "name": "Ionic Dryer",
+        "short_name": "ionic_dryer",
+        "price": 13.3518,
+        "image_path": "TelegramGiftsAssests-main/models/ionic_dryer/ace_machine.webp",
+        "probability": 0.054023,
+        "weight": 54023,
+        "category": "D"
+      },
+      {
+        "name": "UFC Strike",
+        "short_name": "ufc_strike",
+        "price": 14.4534,
+        "image_path": "TelegramGiftsAssests-main/models/ufc_strike/a._pantoja.webp",
+        "probability": 0.054023,
+        "weight": 54023,
+        "category": "D"
+      },
+      {
+        "name": "Sky Stilettos",
+        "short_name": "sky_stilettos",
+        "price": 16.575,
+        "image_path": "TelegramGiftsAssests-main/models/sky_stilettos/april.webp",
+        "probability": 0.037803,
+        "weight": 37803,
+        "category": "E"
+      },
+      {
+        "name": "Cupid Charm",
+        "short_name": "cupid_charm",
+        "price": 20.6244,
+        "image_path": "TelegramGiftsAssests-main/models/cupid_charm/antique.webp",
+        "probability": 0.037803,
+        "weight": 37803,
+        "category": "E"
+      },
+      {
+        "name": "Bling Binky",
+        "short_name": "bling_binky",
+        "price": 20.9042,
+        "image_path": "TelegramGiftsAssests-main/models/bling_binky/abyss_binky.webp",
+        "probability": 0.037803,
+        "weight": 37803,
+        "category": "E"
+      },
+      {
+        "name": "Rare Bird",
+        "short_name": "rare_bird",
+        "price": 21.012,
+        "image_path": "TelegramGiftsAssests-main/models/rare_bird/amber_toucan.webp",
+        "probability": 0.037803,
+        "weight": 37803,
+        "category": "E"
+      },
+      {
+        "name": "Electric Skull",
+        "short_name": "electric_skull",
+        "price": 21.7872,
+        "image_path": "TelegramGiftsAssests-main/models/electric_skull/bad_fortune.webp",
+        "probability": 0.037803,
+        "weight": 37803,
+        "category": "E"
+      },
+      {
+        "name": "Eternal Rose",
+        "short_name": "eternal_rose",
+        "price": 23.205,
+        "image_path": "TelegramGiftsAssests-main/models/eternal_rose/3d_glow.webp",
+        "probability": 0.008089,
+        "weight": 8089,
+        "category": "F"
+      },
+      {
+        "name": "Khabib’s Papakha",
+        "short_name": "khabibs_papakha",
+        "price": 23.3988,
+        "image_path": "TelegramGiftsAssests-main/models/khabibs_papakha/29-0_record.webp",
+        "probability": 0.008089,
+        "weight": 8089,
+        "category": "F"
+      },
+      {
+        "name": "Diamond Ring",
+        "short_name": "diamond_ring",
+        "price": 25.5,
+        "image_path": "TelegramGiftsAssests-main/models/diamond_ring/acid_green.webp",
+        "probability": 0.008089,
+        "weight": 8089,
+        "category": "F"
+      },
+      {
+        "name": "Genie Lamp",
+        "short_name": "genie_lamp",
+        "price": 29.9574,
+        "image_path": "TelegramGiftsAssests-main/models/genie_lamp/arabian_night.webp",
+        "probability": 0.008089,
+        "weight": 8089,
+        "category": "F"
+      },
+      {
+        "name": "Signet Ring",
+        "short_name": "signet_ring",
+        "price": 29.9778,
+        "image_path": "TelegramGiftsAssests-main/models/signet_ring/black_noir.webp",
+        "probability": 0.008089,
+        "weight": 8089,
+        "category": "F"
+      },
+      {
+        "name": "Voodoo Doll",
+        "short_name": "voodoo_doll",
+        "price": 32.3136,
+        "image_path": "TelegramGiftsAssests-main/models/voodoo_doll/aqua_gem.webp",
+        "probability": 0.008089,
+        "weight": 8089,
+        "category": "F"
+      },
+      {
+        "name": "Neko Helmet",
+        "short_name": "neko_helmet",
+        "price": 32.64,
+        "image_path": "TelegramGiftsAssests-main/models/neko_helmet/acid_punch.webp",
+        "probability": 0.008089,
+        "weight": 8089,
+        "category": "F"
+      },
+      {
+        "name": "Toy Bear",
+        "short_name": "toy_bear",
+        "price": 33.3234,
+        "image_path": "TelegramGiftsAssests-main/models/toy_bear/alter_ego.webp",
+        "probability": 0.008089,
+        "weight": 8089,
+        "category": "F"
+      },
+      {
+        "name": "Low Rider",
+        "short_name": "low_rider",
+        "price": 45.1146,
+        "image_path": "TelegramGiftsAssests-main/models/low_rider/alpine_gold.webp",
+        "probability": 0.001793,
+        "weight": 1793,
+        "category": "G"
+      },
+      {
+        "name": "Magic Potion",
+        "short_name": "magic_potion",
+        "price": 48.9498,
+        "image_path": "TelegramGiftsAssests-main/models/magic_potion/agent_orange.webp",
+        "probability": 0.001793,
+        "weight": 1793,
+        "category": "G"
+      },
+      {
+        "name": "Artisan Brick",
+        "short_name": "artisan_brick",
+        "price": 51.51,
+        "image_path": "TelegramGiftsAssests-main/models/artisan_brick/art_nouveau.webp",
+        "probability": 0.001793,
+        "weight": 1793,
+        "category": "G"
+      },
+      {
+        "name": "Gem Signet",
+        "short_name": "gem_signet",
+        "price": 53.244,
+        "image_path": "TelegramGiftsAssests-main/models/gem_signet/amethyst.webp",
+        "probability": 0.001793,
+        "weight": 1793,
+        "category": "G"
+      },
+      {
+        "name": "Heroic Helmet",
+        "short_name": "heroic_helmet",
+        "price": 173.1348,
+        "image_path": "TelegramGiftsAssests-main/models/heroic_helmet/aegean_sea.webp",
+        "probability": 0.000658,
+        "weight": 658,
+        "category": "H"
+      },
+      {
+        "name": "Scared Cat",
+        "short_name": "scared_cat",
+        "price": 173.4,
+        "image_path": "TelegramGiftsAssests-main/models/scared_cat/azuki_siam.webp",
+        "probability": 0.000658,
+        "weight": 658,
+        "category": "H"
+      }
+    ]
+  },
+  {
+    "case_id": 5,
+    "price": 20,
+    "nft_count": 41,
+    "rtp": 0.8990616062899999,
+    "ev": 17.9812321258,
+    "hit_25": 0.976744,
+    "hit_50": 0.85234,
+    "hit_75": 0.505524,
+    "hit_100": 0.445196,
+    "hit_150": 0.070796,
+    "hit_200": 0.014285,
+    "hit_500": 0.002321,
+    "hit_1000": 0.001024,
+    "top_nft_chance": 0.000512,
+    "top_nft": {
+      "name": "Durov’s Cap",
+      "short_name": "durovs_cap",
+      "price": 397.8,
+      "image_path": "TelegramGiftsAssests-main/models/durovs_cap/apple_slice.webp"
+    },
+    "nfts": [
+      {
+        "name": "Xmas Stocking",
+        "short_name": "xmas_stocking",
+        "price": 2.9555,
+        "image_path": "TelegramGiftsAssests-main/models/xmas_stocking/abandoned.webp",
+        "probability": 0.007752,
+        "weight": 7752,
+        "category": "A"
+      },
+      {
+        "name": "Winter Wreath",
+        "short_name": "winter_wreath",
+        "price": 3.0175,
+        "image_path": "TelegramGiftsAssests-main/models/winter_wreath/aquamarine.webp",
+        "probability": 0.007752,
+        "weight": 7752,
+        "category": "A"
+      },
+      {
+        "name": "Candy Cane",
+        "short_name": "candy_cane",
+        "price": 3.0192,
+        "image_path": "TelegramGiftsAssests-main/models/candy_cane/amber_glitter.webp",
+        "probability": 0.007752,
+        "weight": 7752,
+        "category": "A"
+      },
+      {
+        "name": "Spring Basket",
+        "short_name": "spring_basket",
+        "price": 5.0286,
+        "image_path": "TelegramGiftsAssests-main/models/spring_basket/baby_dragon.webp",
+        "probability": 0.020734,
+        "weight": 20734,
+        "category": "B"
+      },
+      {
+        "name": "Lush Bouquet",
+        "short_name": "lush_bouquet",
+        "price": 5.1,
+        "image_path": "TelegramGiftsAssests-main/models/lush_bouquet/artichoke.webp",
+        "probability": 0.020734,
+        "weight": 20734,
+        "category": "B"
+      },
+      {
+        "name": "Moon Pendant",
+        "short_name": "moon_pendant",
+        "price": 5.253,
+        "image_path": "TelegramGiftsAssests-main/models/moon_pendant/amethyst.webp",
+        "probability": 0.020734,
+        "weight": 20734,
+        "category": "B"
+      },
+      {
+        "name": "Light Sword",
+        "short_name": "light_sword",
+        "price": 5.5716,
+        "image_path": "TelegramGiftsAssests-main/models/light_sword/absinthe.webp",
+        "probability": 0.020734,
+        "weight": 20734,
+        "category": "B"
+      },
+      {
+        "name": "Sleigh Bell",
+        "short_name": "sleigh_bell",
+        "price": 5.8446,
+        "image_path": "TelegramGiftsAssests-main/models/sleigh_bell/arctic_igloo.webp",
+        "probability": 0.020734,
+        "weight": 20734,
+        "category": "B"
+      },
+      {
+        "name": "Surge Board",
+        "short_name": "surge_board",
+        "price": 6.0078,
+        "image_path": "TelegramGiftsAssests-main/models/surge_board/planet_express.webp",
+        "probability": 0.020734,
+        "weight": 20734,
+        "category": "B"
+      },
+      {
+        "name": "Flying Broom",
+        "short_name": "flying_broom",
+        "price": 10.2,
+        "image_path": "TelegramGiftsAssests-main/models/flying_broom/berry_blaster.webp",
+        "probability": 0.043352,
+        "weight": 43352,
+        "category": "C"
+      },
+      {
+        "name": "Crystal Ball",
+        "short_name": "crystal_ball",
+        "price": 10.6182,
+        "image_path": "TelegramGiftsAssests-main/models/crystal_ball/amanita.webp",
+        "probability": 0.043352,
+        "weight": 43352,
+        "category": "C"
+      },
+      {
+        "name": "Record Player",
+        "short_name": "record_player",
+        "price": 10.71,
+        "image_path": "TelegramGiftsAssests-main/models/record_player/acid_jazz.webp",
+        "probability": 0.043352,
+        "weight": 43352,
+        "category": "C"
+      },
+      {
+        "name": "Trapped Heart",
+        "short_name": "trapped_heart",
+        "price": 12.1992,
+        "image_path": "TelegramGiftsAssests-main/models/trapped_heart/abyss_heart.webp",
+        "probability": 0.043352,
+        "weight": 43352,
+        "category": "C"
+      },
+      {
+        "name": "Love Potion",
+        "short_name": "love_potion",
+        "price": 12.24,
+        "image_path": "TelegramGiftsAssests-main/models/love_potion/aerogel.webp",
+        "probability": 0.043352,
+        "weight": 43352,
+        "category": "C"
+      },
+      {
+        "name": "Snoop Cigar",
+        "short_name": "snoop_cigar",
+        "price": 12.6378,
+        "image_path": "TelegramGiftsAssests-main/models/snoop_cigar/america.webp",
+        "probability": 0.043352,
+        "weight": 43352,
+        "category": "C"
+      },
+      {
+        "name": "Ionic Dryer",
+        "short_name": "ionic_dryer",
+        "price": 13.3518,
+        "image_path": "TelegramGiftsAssests-main/models/ionic_dryer/ace_machine.webp",
+        "probability": 0.043352,
+        "weight": 43352,
+        "category": "C"
+      },
+      {
+        "name": "UFC Strike",
+        "short_name": "ufc_strike",
+        "price": 14.4534,
+        "image_path": "TelegramGiftsAssests-main/models/ufc_strike/a._pantoja.webp",
+        "probability": 0.043352,
+        "weight": 43352,
+        "category": "C"
+      },
+      {
+        "name": "Sky Stilettos",
+        "short_name": "sky_stilettos",
+        "price": 16.575,
+        "image_path": "TelegramGiftsAssests-main/models/sky_stilettos/april.webp",
+        "probability": 0.060328,
+        "weight": 60328,
+        "category": "D"
+      },
+      {
+        "name": "Cupid Charm",
+        "short_name": "cupid_charm",
+        "price": 20.6244,
+        "image_path": "TelegramGiftsAssests-main/models/cupid_charm/antique.webp",
+        "probability": 0.0416,
+        "weight": 41600,
+        "category": "E"
+      },
+      {
+        "name": "Bling Binky",
+        "short_name": "bling_binky",
+        "price": 20.9042,
+        "image_path": "TelegramGiftsAssests-main/models/bling_binky/abyss_binky.webp",
+        "probability": 0.0416,
+        "weight": 41600,
+        "category": "E"
+      },
+      {
+        "name": "Rare Bird",
+        "short_name": "rare_bird",
+        "price": 21.012,
+        "image_path": "TelegramGiftsAssests-main/models/rare_bird/amber_toucan.webp",
+        "probability": 0.0416,
+        "weight": 41600,
+        "category": "E"
+      },
+      {
+        "name": "Electric Skull",
+        "short_name": "electric_skull",
+        "price": 21.7872,
+        "image_path": "TelegramGiftsAssests-main/models/electric_skull/bad_fortune.webp",
+        "probability": 0.0416,
+        "weight": 41600,
+        "category": "E"
+      },
+      {
+        "name": "Eternal Rose",
+        "short_name": "eternal_rose",
+        "price": 23.205,
+        "image_path": "TelegramGiftsAssests-main/models/eternal_rose/3d_glow.webp",
+        "probability": 0.0416,
+        "weight": 41600,
+        "category": "E"
+      },
+      {
+        "name": "Khabib’s Papakha",
+        "short_name": "khabibs_papakha",
+        "price": 23.3988,
+        "image_path": "TelegramGiftsAssests-main/models/khabibs_papakha/29-0_record.webp",
+        "probability": 0.0416,
+        "weight": 41600,
+        "category": "E"
+      },
+      {
+        "name": "Diamond Ring",
+        "short_name": "diamond_ring",
+        "price": 25.5,
+        "image_path": "TelegramGiftsAssests-main/models/diamond_ring/acid_green.webp",
+        "probability": 0.0416,
+        "weight": 41600,
+        "category": "E"
+      },
+      {
+        "name": "Genie Lamp",
+        "short_name": "genie_lamp",
+        "price": 29.9574,
+        "image_path": "TelegramGiftsAssests-main/models/genie_lamp/arabian_night.webp",
+        "probability": 0.0416,
+        "weight": 41600,
+        "category": "E"
+      },
+      {
+        "name": "Signet Ring",
+        "short_name": "signet_ring",
+        "price": 29.9778,
+        "image_path": "TelegramGiftsAssests-main/models/signet_ring/black_noir.webp",
+        "probability": 0.0416,
+        "weight": 41600,
+        "category": "E"
+      },
+      {
+        "name": "Voodoo Doll",
+        "short_name": "voodoo_doll",
+        "price": 32.3136,
+        "image_path": "TelegramGiftsAssests-main/models/voodoo_doll/aqua_gem.webp",
+        "probability": 0.008073,
+        "weight": 8073,
+        "category": "F"
+      },
+      {
+        "name": "Neko Helmet",
+        "short_name": "neko_helmet",
+        "price": 32.64,
+        "image_path": "TelegramGiftsAssests-main/models/neko_helmet/acid_punch.webp",
+        "probability": 0.008073,
+        "weight": 8073,
+        "category": "F"
+      },
+      {
+        "name": "Toy Bear",
+        "short_name": "toy_bear",
+        "price": 33.3234,
+        "image_path": "TelegramGiftsAssests-main/models/toy_bear/alter_ego.webp",
+        "probability": 0.008073,
+        "weight": 8073,
+        "category": "F"
+      },
+      {
+        "name": "Vintage Cigar",
+        "short_name": "vintage_cigar",
+        "price": 33.66,
+        "image_path": "TelegramGiftsAssests-main/models/vintage_cigar/aquaviolet.webp",
+        "probability": 0.008073,
+        "weight": 8073,
+        "category": "F"
+      },
+      {
+        "name": "Bonded Ring",
+        "short_name": "bonded_ring",
+        "price": 35.8428,
+        "image_path": "TelegramGiftsAssests-main/models/bonded_ring/anaconda.webp",
+        "probability": 0.008073,
+        "weight": 8073,
+        "category": "F"
+      },
+      {
+        "name": "Sharp Tongue",
+        "short_name": "sharp_tongue",
+        "price": 37.1178,
+        "image_path": "TelegramGiftsAssests-main/models/sharp_tongue/acid_witch.webp",
+        "probability": 0.008073,
+        "weight": 8073,
+        "category": "F"
+      },
+      {
+        "name": "Kissed Frog",
+        "short_name": "kissed_frog",
+        "price": 37.6788,
+        "image_path": "TelegramGiftsAssests-main/models/kissed_frog/banana_pox.webp",
+        "probability": 0.008073,
+        "weight": 8073,
+        "category": "F"
+      },
+      {
+        "name": "Swiss Watch",
+        "short_name": "swiss_watch",
+        "price": 42.891,
+        "image_path": "TelegramGiftsAssests-main/models/swiss_watch/amazon.webp",
+        "probability": 0.008073,
+        "weight": 8073,
+        "category": "F"
+      },
+      {
+        "name": "Ion Gem",
+        "short_name": "ion_gem",
+        "price": 61.0266,
+        "image_path": "TelegramGiftsAssests-main/models/ion_gem/amethyst.webp",
+        "probability": 0.001297,
+        "weight": 1297,
+        "category": "G"
+      },
+      {
+        "name": "Mini Oscar",
+        "short_name": "mini_oscar",
+        "price": 67.9728,
+        "image_path": "TelegramGiftsAssests-main/models/mini_oscar/action_film.webp",
+        "probability": 0.001297,
+        "weight": 1297,
+        "category": "G"
+      },
+      {
+        "name": "Westside Sign",
+        "short_name": "westside_sign",
+        "price": 82.7118,
+        "image_path": "TelegramGiftsAssests-main/models/westside_sign/all_in.webp",
+        "probability": 0.001297,
+        "weight": 1297,
+        "category": "G"
+      },
+      {
+        "name": "Nail Bracelet",
+        "short_name": "nail_bracelet",
+        "price": 104.448,
+        "image_path": "TelegramGiftsAssests-main/models/nail_bracelet/aqua_ring.webp",
+        "probability": 0.001297,
+        "weight": 1297,
+        "category": "G"
+      },
+      {
+        "name": "Precious Peach",
+        "short_name": "precious_peach",
+        "price": 259.0698,
+        "image_path": "TelegramGiftsAssests-main/models/precious_peach/airy_bright.webp",
+        "probability": 0.000512,
+        "weight": 512,
+        "category": "H"
+      },
+      {
+        "name": "Durov’s Cap",
+        "short_name": "durovs_cap",
+        "price": 397.8,
+        "image_path": "TelegramGiftsAssests-main/models/durovs_cap/apple_slice.webp",
+        "probability": 0.000512,
+        "weight": 512,
+        "category": "H"
+      }
+    ]
+  },
+  {
+    "case_id": 6,
+    "price": 30,
+    "nft_count": 41,
+    "rtp": 0.90057248868,
+    "ev": 27.0171746604,
+    "hit_25": 0.973987,
+    "hit_50": 0.834793,
+    "hit_75": 0.615448,
+    "hit_100": 0.35027200000000003,
+    "hit_150": 0.054472000000000007,
+    "hit_200": 0.022992000000000002,
+    "hit_500": 0.00062,
+    "hit_1000": 0.00062,
+    "top_nft_chance": 0.00031,
+    "top_nft": {
+      "name": "Heart Locket",
+      "short_name": "heart_locket",
+      "price": 966.96,
+      "image_path": "TelegramGiftsAssests-main/models/heart_locket/acorn_hunter.webp"
+    },
+    "nfts": [
+      {
+        "name": "Xmas Stocking",
+        "short_name": "xmas_stocking",
+        "price": 2.9555,
+        "image_path": "TelegramGiftsAssests-main/models/xmas_stocking/abandoned.webp",
+        "probability": 0.008671,
+        "weight": 8671,
+        "category": "A"
+      },
+      {
+        "name": "Winter Wreath",
+        "short_name": "winter_wreath",
+        "price": 3.0175,
+        "image_path": "TelegramGiftsAssests-main/models/winter_wreath/aquamarine.webp",
+        "probability": 0.008671,
+        "weight": 8671,
+        "category": "A"
+      },
+      {
+        "name": "Candy Cane",
+        "short_name": "candy_cane",
+        "price": 3.0192,
+        "image_path": "TelegramGiftsAssests-main/models/candy_cane/amber_glitter.webp",
+        "probability": 0.008671,
+        "weight": 8671,
+        "category": "A"
+      },
+      {
+        "name": "Hanging Star",
+        "short_name": "hanging_star",
+        "price": 7.5084,
+        "image_path": "TelegramGiftsAssests-main/models/hanging_star/advice_dog.webp",
+        "probability": 0.023199,
+        "weight": 23199,
+        "category": "B"
+      },
+      {
+        "name": "Love Candle",
+        "short_name": "love_candle",
+        "price": 7.5582,
+        "image_path": "TelegramGiftsAssests-main/models/love_candle/afterglow.webp",
+        "probability": 0.023199,
+        "weight": 23199,
+        "category": "B"
+      },
+      {
+        "name": "Sakura Flower",
+        "short_name": "sakura_flower",
+        "price": 8.0682,
+        "image_path": "TelegramGiftsAssests-main/models/sakura_flower/aetheris.webp",
+        "probability": 0.023199,
+        "weight": 23199,
+        "category": "B"
+      },
+      {
+        "name": "Top Hat",
+        "short_name": "top_hat",
+        "price": 9.1596,
+        "image_path": "TelegramGiftsAssests-main/models/top_hat/abracadabra.webp",
+        "probability": 0.023199,
+        "weight": 23199,
+        "category": "B"
+      },
+      {
+        "name": "Skull Flower",
+        "short_name": "skull_flower",
+        "price": 9.4554,
+        "image_path": "TelegramGiftsAssests-main/models/skull_flower/azalea.webp",
+        "probability": 0.023199,
+        "weight": 23199,
+        "category": "B"
+      },
+      {
+        "name": "Valentine Box",
+        "short_name": "valentine_box",
+        "price": 9.69,
+        "image_path": "TelegramGiftsAssests-main/models/valentine_box/art_deco.webp",
+        "probability": 0.023199,
+        "weight": 23199,
+        "category": "B"
+      },
+      {
+        "name": "Sky Stilettos",
+        "short_name": "sky_stilettos",
+        "price": 16.575,
+        "image_path": "TelegramGiftsAssests-main/models/sky_stilettos/april.webp",
+        "probability": 0.043869,
+        "weight": 43869,
+        "category": "C"
+      },
+      {
+        "name": "Cupid Charm",
+        "short_name": "cupid_charm",
+        "price": 20.6244,
+        "image_path": "TelegramGiftsAssests-main/models/cupid_charm/antique.webp",
+        "probability": 0.043869,
+        "weight": 43869,
+        "category": "C"
+      },
+      {
+        "name": "Bling Binky",
+        "short_name": "bling_binky",
+        "price": 20.9042,
+        "image_path": "TelegramGiftsAssests-main/models/bling_binky/abyss_binky.webp",
+        "probability": 0.043869,
+        "weight": 43869,
+        "category": "C"
+      },
+      {
+        "name": "Rare Bird",
+        "short_name": "rare_bird",
+        "price": 21.012,
+        "image_path": "TelegramGiftsAssests-main/models/rare_bird/amber_toucan.webp",
+        "probability": 0.043869,
+        "weight": 43869,
+        "category": "C"
+      },
+      {
+        "name": "Electric Skull",
+        "short_name": "electric_skull",
+        "price": 21.7872,
+        "image_path": "TelegramGiftsAssests-main/models/electric_skull/bad_fortune.webp",
+        "probability": 0.043869,
+        "weight": 43869,
+        "category": "C"
+      },
+      {
+        "name": "Eternal Rose",
+        "short_name": "eternal_rose",
+        "price": 23.205,
+        "image_path": "TelegramGiftsAssests-main/models/eternal_rose/3d_glow.webp",
+        "probability": 0.05382,
+        "weight": 53820,
+        "category": "D"
+      },
+      {
+        "name": "Khabib’s Papakha",
+        "short_name": "khabibs_papakha",
+        "price": 23.3988,
+        "image_path": "TelegramGiftsAssests-main/models/khabibs_papakha/29-0_record.webp",
+        "probability": 0.052839,
+        "weight": 52839,
+        "category": "D"
+      },
+      {
+        "name": "Diamond Ring",
+        "short_name": "diamond_ring",
+        "price": 25.5,
+        "image_path": "TelegramGiftsAssests-main/models/diamond_ring/acid_green.webp",
+        "probability": 0.052839,
+        "weight": 52839,
+        "category": "D"
+      },
+      {
+        "name": "Genie Lamp",
+        "short_name": "genie_lamp",
+        "price": 29.9574,
+        "image_path": "TelegramGiftsAssests-main/models/genie_lamp/arabian_night.webp",
+        "probability": 0.052839,
+        "weight": 52839,
+        "category": "D"
+      },
+      {
+        "name": "Signet Ring",
+        "short_name": "signet_ring",
+        "price": 29.9778,
+        "image_path": "TelegramGiftsAssests-main/models/signet_ring/black_noir.webp",
+        "probability": 0.052839,
+        "weight": 52839,
+        "category": "D"
+      },
+      {
+        "name": "Voodoo Doll",
+        "short_name": "voodoo_doll",
+        "price": 32.3136,
+        "image_path": "TelegramGiftsAssests-main/models/voodoo_doll/aqua_gem.webp",
+        "probability": 0.036975,
+        "weight": 36975,
+        "category": "E"
+      },
+      {
+        "name": "Neko Helmet",
+        "short_name": "neko_helmet",
+        "price": 32.64,
+        "image_path": "TelegramGiftsAssests-main/models/neko_helmet/acid_punch.webp",
+        "probability": 0.036975,
+        "weight": 36975,
+        "category": "E"
+      },
+      {
+        "name": "Toy Bear",
+        "short_name": "toy_bear",
+        "price": 33.3234,
+        "image_path": "TelegramGiftsAssests-main/models/toy_bear/alter_ego.webp",
+        "probability": 0.036975,
+        "weight": 36975,
+        "category": "E"
+      },
+      {
+        "name": "Vintage Cigar",
+        "short_name": "vintage_cigar",
+        "price": 33.66,
+        "image_path": "TelegramGiftsAssests-main/models/vintage_cigar/aquaviolet.webp",
+        "probability": 0.036975,
+        "weight": 36975,
+        "category": "E"
+      },
+      {
+        "name": "Bonded Ring",
+        "short_name": "bonded_ring",
+        "price": 35.8428,
+        "image_path": "TelegramGiftsAssests-main/models/bonded_ring/anaconda.webp",
+        "probability": 0.036975,
+        "weight": 36975,
+        "category": "E"
+      },
+      {
+        "name": "Sharp Tongue",
+        "short_name": "sharp_tongue",
+        "price": 37.1178,
+        "image_path": "TelegramGiftsAssests-main/models/sharp_tongue/acid_witch.webp",
+        "probability": 0.036975,
+        "weight": 36975,
+        "category": "E"
+      },
+      {
+        "name": "Kissed Frog",
+        "short_name": "kissed_frog",
+        "price": 37.6788,
+        "image_path": "TelegramGiftsAssests-main/models/kissed_frog/banana_pox.webp",
+        "probability": 0.036975,
+        "weight": 36975,
+        "category": "E"
+      },
+      {
+        "name": "Swiss Watch",
+        "short_name": "swiss_watch",
+        "price": 42.891,
+        "image_path": "TelegramGiftsAssests-main/models/swiss_watch/amazon.webp",
+        "probability": 0.036975,
+        "weight": 36975,
+        "category": "E"
+      },
+      {
+        "name": "Low Rider",
+        "short_name": "low_rider",
+        "price": 45.1146,
+        "image_path": "TelegramGiftsAssests-main/models/low_rider/alpine_gold.webp",
+        "probability": 0.006296,
+        "weight": 6296,
+        "category": "F"
+      },
+      {
+        "name": "Magic Potion",
+        "short_name": "magic_potion",
+        "price": 48.9498,
+        "image_path": "TelegramGiftsAssests-main/models/magic_potion/agent_orange.webp",
+        "probability": 0.006296,
+        "weight": 6296,
+        "category": "F"
+      },
+      {
+        "name": "Artisan Brick",
+        "short_name": "artisan_brick",
+        "price": 51.51,
+        "image_path": "TelegramGiftsAssests-main/models/artisan_brick/art_nouveau.webp",
+        "probability": 0.006296,
+        "weight": 6296,
+        "category": "F"
+      },
+      {
+        "name": "Gem Signet",
+        "short_name": "gem_signet",
+        "price": 53.244,
+        "image_path": "TelegramGiftsAssests-main/models/gem_signet/amethyst.webp",
+        "probability": 0.006296,
+        "weight": 6296,
+        "category": "F"
+      },
+      {
+        "name": "Perfume Bottle",
+        "short_name": "perfume_bottle",
+        "price": 59.0274,
+        "image_path": "TelegramGiftsAssests-main/models/perfume_bottle/aurora_joy.webp",
+        "probability": 0.006296,
+        "weight": 6296,
+        "category": "F"
+      },
+      {
+        "name": "Ion Gem",
+        "short_name": "ion_gem",
+        "price": 61.0266,
+        "image_path": "TelegramGiftsAssests-main/models/ion_gem/amethyst.webp",
+        "probability": 0.006296,
+        "weight": 6296,
+        "category": "F"
+      },
+      {
+        "name": "Mini Oscar",
+        "short_name": "mini_oscar",
+        "price": 67.9728,
+        "image_path": "TelegramGiftsAssests-main/models/mini_oscar/action_film.webp",
+        "probability": 0.006296,
+        "weight": 6296,
+        "category": "F"
+      },
+      {
+        "name": "Westside Sign",
+        "short_name": "westside_sign",
+        "price": 82.7118,
+        "image_path": "TelegramGiftsAssests-main/models/westside_sign/all_in.webp",
+        "probability": 0.006296,
+        "weight": 6296,
+        "category": "F"
+      },
+      {
+        "name": "Nail Bracelet",
+        "short_name": "nail_bracelet",
+        "price": 104.448,
+        "image_path": "TelegramGiftsAssests-main/models/nail_bracelet/aqua_ring.webp",
+        "probability": 0.000871,
+        "weight": 871,
+        "category": "G"
+      },
+      {
+        "name": "Loot Bag",
+        "short_name": "loot_bag",
+        "price": 108.1098,
+        "image_path": "TelegramGiftsAssests-main/models/loot_bag/academic.webp",
+        "probability": 0.000871,
+        "weight": 871,
+        "category": "G"
+      },
+      {
+        "name": "Mighty Arm",
+        "short_name": "mighty_arm",
+        "price": 108.4872,
+        "image_path": "TelegramGiftsAssests-main/models/mighty_arm/best_muscles.webp",
+        "probability": 0.000871,
+        "weight": 871,
+        "category": "G"
+      },
+      {
+        "name": "Astral Shard",
+        "short_name": "astral_shard",
+        "price": 121.2168,
+        "image_path": "TelegramGiftsAssests-main/models/astral_shard/amethyst.webp",
+        "probability": 0.000871,
+        "weight": 871,
+        "category": "G"
+      },
+      {
+        "name": "Durov’s Cap",
+        "short_name": "durovs_cap",
+        "price": 397.8,
+        "image_path": "TelegramGiftsAssests-main/models/durovs_cap/apple_slice.webp",
+        "probability": 0.00031,
+        "weight": 310,
+        "category": "H"
+      },
+      {
+        "name": "Heart Locket",
+        "short_name": "heart_locket",
+        "price": 966.96,
+        "image_path": "TelegramGiftsAssests-main/models/heart_locket/acorn_hunter.webp",
+        "probability": 0.00031,
+        "weight": 310,
+        "category": "H"
+      }
+    ]
+  },
+  {
+    "case_id": 7,
+    "price": 45,
+    "nft_count": 41,
+    "rtp": 0.9000234718133332,
+    "ev": 40.501056231599996,
+    "hit_25": 0.9764919999999999,
+    "hit_50": 0.850792,
+    "hit_75": 0.479524,
+    "hit_100": 0.269668,
+    "hit_150": 0.050374,
+    "hit_200": 0.037286,
+    "hit_500": 0.002638,
+    "hit_1000": 0.00071,
+    "top_nft_chance": 0.000355,
+    "top_nft": {
+      "name": "Plush Pepe",
+      "short_name": "plush_pepe",
+      "price": 5916.0,
+      "image_path": "TelegramGiftsAssests-main/models/plush_pepe/amalgam.webp"
+    },
+    "nfts": [
+      {
+        "name": "Xmas Stocking",
+        "short_name": "xmas_stocking",
+        "price": 2.9555,
+        "image_path": "TelegramGiftsAssests-main/models/xmas_stocking/abandoned.webp",
+        "probability": 0.007836,
+        "weight": 7836,
+        "category": "A"
+      },
+      {
+        "name": "Winter Wreath",
+        "short_name": "winter_wreath",
+        "price": 3.0175,
+        "image_path": "TelegramGiftsAssests-main/models/winter_wreath/aquamarine.webp",
+        "probability": 0.007836,
+        "weight": 7836,
+        "category": "A"
+      },
+      {
+        "name": "Candy Cane",
+        "short_name": "candy_cane",
+        "price": 3.0192,
+        "image_path": "TelegramGiftsAssests-main/models/candy_cane/amber_glitter.webp",
+        "probability": 0.007836,
+        "weight": 7836,
+        "category": "A"
+      },
+      {
+        "name": "Trapped Heart",
+        "short_name": "trapped_heart",
+        "price": 12.1992,
+        "image_path": "TelegramGiftsAssests-main/models/trapped_heart/abyss_heart.webp",
+        "probability": 0.02095,
+        "weight": 20950,
+        "category": "B"
+      },
+      {
+        "name": "Love Potion",
+        "short_name": "love_potion",
+        "price": 12.24,
+        "image_path": "TelegramGiftsAssests-main/models/love_potion/aerogel.webp",
+        "probability": 0.02095,
+        "weight": 20950,
+        "category": "B"
+      },
+      {
+        "name": "Snoop Cigar",
+        "short_name": "snoop_cigar",
+        "price": 12.6378,
+        "image_path": "TelegramGiftsAssests-main/models/snoop_cigar/america.webp",
+        "probability": 0.02095,
+        "weight": 20950,
+        "category": "B"
+      },
+      {
+        "name": "Ionic Dryer",
+        "short_name": "ionic_dryer",
+        "price": 13.3518,
+        "image_path": "TelegramGiftsAssests-main/models/ionic_dryer/ace_machine.webp",
+        "probability": 0.02095,
+        "weight": 20950,
+        "category": "B"
+      },
+      {
+        "name": "UFC Strike",
+        "short_name": "ufc_strike",
+        "price": 14.4534,
+        "image_path": "TelegramGiftsAssests-main/models/ufc_strike/a._pantoja.webp",
+        "probability": 0.02095,
+        "weight": 20950,
+        "category": "B"
+      },
+      {
+        "name": "Sky Stilettos",
+        "short_name": "sky_stilettos",
+        "price": 16.575,
+        "image_path": "TelegramGiftsAssests-main/models/sky_stilettos/april.webp",
+        "probability": 0.02095,
+        "weight": 20950,
+        "category": "B"
+      },
+      {
+        "name": "Eternal Rose",
+        "short_name": "eternal_rose",
+        "price": 23.205,
+        "image_path": "TelegramGiftsAssests-main/models/eternal_rose/3d_glow.webp",
+        "probability": 0.041252,
+        "weight": 41252,
+        "category": "C"
+      },
+      {
+        "name": "Khabib’s Papakha",
+        "short_name": "khabibs_papakha",
+        "price": 23.3988,
+        "image_path": "TelegramGiftsAssests-main/models/khabibs_papakha/29-0_record.webp",
+        "probability": 0.041252,
+        "weight": 41252,
+        "category": "C"
+      },
+      {
+        "name": "Diamond Ring",
+        "short_name": "diamond_ring",
+        "price": 25.5,
+        "image_path": "TelegramGiftsAssests-main/models/diamond_ring/acid_green.webp",
+        "probability": 0.041252,
+        "weight": 41252,
+        "category": "C"
+      },
+      {
+        "name": "Genie Lamp",
+        "short_name": "genie_lamp",
+        "price": 29.9574,
+        "image_path": "TelegramGiftsAssests-main/models/genie_lamp/arabian_night.webp",
+        "probability": 0.041252,
+        "weight": 41252,
+        "category": "C"
+      },
+      {
+        "name": "Signet Ring",
+        "short_name": "signet_ring",
+        "price": 29.9778,
+        "image_path": "TelegramGiftsAssests-main/models/signet_ring/black_noir.webp",
+        "probability": 0.041252,
+        "weight": 41252,
+        "category": "C"
+      },
+      {
+        "name": "Voodoo Doll",
+        "short_name": "voodoo_doll",
+        "price": 32.3136,
+        "image_path": "TelegramGiftsAssests-main/models/voodoo_doll/aqua_gem.webp",
+        "probability": 0.041252,
+        "weight": 41252,
+        "category": "C"
+      },
+      {
+        "name": "Neko Helmet",
+        "short_name": "neko_helmet",
+        "price": 32.64,
+        "image_path": "TelegramGiftsAssests-main/models/neko_helmet/acid_punch.webp",
+        "probability": 0.041252,
+        "weight": 41252,
+        "category": "C"
+      },
+      {
+        "name": "Toy Bear",
+        "short_name": "toy_bear",
+        "price": 33.3234,
+        "image_path": "TelegramGiftsAssests-main/models/toy_bear/alter_ego.webp",
+        "probability": 0.041252,
+        "weight": 41252,
+        "category": "C"
+      },
+      {
+        "name": "Vintage Cigar",
+        "short_name": "vintage_cigar",
+        "price": 33.66,
+        "image_path": "TelegramGiftsAssests-main/models/vintage_cigar/aquaviolet.webp",
+        "probability": 0.041252,
+        "weight": 41252,
+        "category": "C"
+      },
+      {
+        "name": "Bonded Ring",
+        "short_name": "bonded_ring",
+        "price": 35.8428,
+        "image_path": "TelegramGiftsAssests-main/models/bonded_ring/anaconda.webp",
+        "probability": 0.053142,
+        "weight": 53142,
+        "category": "D"
+      },
+      {
+        "name": "Sharp Tongue",
+        "short_name": "sharp_tongue",
+        "price": 37.1178,
+        "image_path": "TelegramGiftsAssests-main/models/sharp_tongue/acid_witch.webp",
+        "probability": 0.052238,
+        "weight": 52238,
+        "category": "D"
+      },
+      {
+        "name": "Kissed Frog",
+        "short_name": "kissed_frog",
+        "price": 37.6788,
+        "image_path": "TelegramGiftsAssests-main/models/kissed_frog/banana_pox.webp",
+        "probability": 0.052238,
+        "weight": 52238,
+        "category": "D"
+      },
+      {
+        "name": "Swiss Watch",
+        "short_name": "swiss_watch",
+        "price": 42.891,
+        "image_path": "TelegramGiftsAssests-main/models/swiss_watch/amazon.webp",
+        "probability": 0.052238,
+        "weight": 52238,
+        "category": "D"
+      },
+      {
+        "name": "Low Rider",
+        "short_name": "low_rider",
+        "price": 45.1146,
+        "image_path": "TelegramGiftsAssests-main/models/low_rider/alpine_gold.webp",
+        "probability": 0.036549,
+        "weight": 36549,
+        "category": "E"
+      },
+      {
+        "name": "Magic Potion",
+        "short_name": "magic_potion",
+        "price": 48.9498,
+        "image_path": "TelegramGiftsAssests-main/models/magic_potion/agent_orange.webp",
+        "probability": 0.036549,
+        "weight": 36549,
+        "category": "E"
+      },
+      {
+        "name": "Artisan Brick",
+        "short_name": "artisan_brick",
+        "price": 51.51,
+        "image_path": "TelegramGiftsAssests-main/models/artisan_brick/art_nouveau.webp",
+        "probability": 0.036549,
+        "weight": 36549,
+        "category": "E"
+      },
+      {
+        "name": "Gem Signet",
+        "short_name": "gem_signet",
+        "price": 53.244,
+        "image_path": "TelegramGiftsAssests-main/models/gem_signet/amethyst.webp",
+        "probability": 0.036549,
+        "weight": 36549,
+        "category": "E"
+      },
+      {
+        "name": "Perfume Bottle",
+        "short_name": "perfume_bottle",
+        "price": 59.0274,
+        "image_path": "TelegramGiftsAssests-main/models/perfume_bottle/aurora_joy.webp",
+        "probability": 0.036549,
+        "weight": 36549,
+        "category": "E"
+      },
+      {
+        "name": "Ion Gem",
+        "short_name": "ion_gem",
+        "price": 61.0266,
+        "image_path": "TelegramGiftsAssests-main/models/ion_gem/amethyst.webp",
+        "probability": 0.036549,
+        "weight": 36549,
+        "category": "E"
+      },
+      {
+        "name": "Mini Oscar",
+        "short_name": "mini_oscar",
+        "price": 67.9728,
+        "image_path": "TelegramGiftsAssests-main/models/mini_oscar/action_film.webp",
+        "probability": 0.006544,
+        "weight": 6544,
+        "category": "F"
+      },
+      {
+        "name": "Westside Sign",
+        "short_name": "westside_sign",
+        "price": 82.7118,
+        "image_path": "TelegramGiftsAssests-main/models/westside_sign/all_in.webp",
+        "probability": 0.006544,
+        "weight": 6544,
+        "category": "F"
+      },
+      {
+        "name": "Nail Bracelet",
+        "short_name": "nail_bracelet",
+        "price": 104.448,
+        "image_path": "TelegramGiftsAssests-main/models/nail_bracelet/aqua_ring.webp",
+        "probability": 0.006544,
+        "weight": 6544,
+        "category": "F"
+      },
+      {
+        "name": "Loot Bag",
+        "short_name": "loot_bag",
+        "price": 108.1098,
+        "image_path": "TelegramGiftsAssests-main/models/loot_bag/academic.webp",
+        "probability": 0.006544,
+        "weight": 6544,
+        "category": "F"
+      },
+      {
+        "name": "Mighty Arm",
+        "short_name": "mighty_arm",
+        "price": 108.4872,
+        "image_path": "TelegramGiftsAssests-main/models/mighty_arm/best_muscles.webp",
+        "probability": 0.006544,
+        "weight": 6544,
+        "category": "F"
+      },
+      {
+        "name": "Astral Shard",
+        "short_name": "astral_shard",
+        "price": 121.2168,
+        "image_path": "TelegramGiftsAssests-main/models/astral_shard/amethyst.webp",
+        "probability": 0.006544,
+        "weight": 6544,
+        "category": "F"
+      },
+      {
+        "name": "Durov’s Glasses",
+        "short_name": "durovs_glasses",
+        "price": 127.8366,
+        "image_path": "TelegramGiftsAssests-main/models/durovs_glasses/cat_core.webp",
+        "probability": 0.006544,
+        "weight": 6544,
+        "category": "F"
+      },
+      {
+        "name": "Heroic Helmet",
+        "short_name": "heroic_helmet",
+        "price": 173.1348,
+        "image_path": "TelegramGiftsAssests-main/models/heroic_helmet/aegean_sea.webp",
+        "probability": 0.000964,
+        "weight": 964,
+        "category": "G"
+      },
+      {
+        "name": "Scared Cat",
+        "short_name": "scared_cat",
+        "price": 173.4,
+        "image_path": "TelegramGiftsAssests-main/models/scared_cat/azuki_siam.webp",
+        "probability": 0.000964,
+        "weight": 964,
+        "category": "G"
+      },
+      {
+        "name": "Precious Peach",
+        "short_name": "precious_peach",
+        "price": 259.0698,
+        "image_path": "TelegramGiftsAssests-main/models/precious_peach/airy_bright.webp",
+        "probability": 0.000964,
+        "weight": 964,
+        "category": "G"
+      },
+      {
+        "name": "Durov’s Cap",
+        "short_name": "durovs_cap",
+        "price": 397.8,
+        "image_path": "TelegramGiftsAssests-main/models/durovs_cap/apple_slice.webp",
+        "probability": 0.000964,
+        "weight": 964,
+        "category": "G"
+      },
+      {
+        "name": "Heart Locket",
+        "short_name": "heart_locket",
+        "price": 966.96,
+        "image_path": "TelegramGiftsAssests-main/models/heart_locket/acorn_hunter.webp",
+        "probability": 0.000355,
+        "weight": 355,
+        "category": "H"
+      },
+      {
+        "name": "Plush Pepe",
+        "short_name": "plush_pepe",
+        "price": 5916.0,
+        "image_path": "TelegramGiftsAssests-main/models/plush_pepe/amalgam.webp",
+        "probability": 0.000355,
+        "weight": 355,
+        "category": "H"
+      }
+    ]
+  },
+  {
+    "case_id": 8,
+    "price": 60,
+    "nft_count": 40,
+    "rtp": 0.89968745008,
+    "ev": 53.9812470048,
+    "hit_25": 0.952498,
+    "hit_50": 0.843724,
+    "hit_75": 0.508364,
+    "hit_100": 0.198618,
+    "hit_150": 0.068784,
+    "hit_200": 0.041568,
+    "hit_500": 0.003353,
+    "hit_1000": 0.001426,
+    "top_nft_chance": 0.000713,
+    "top_nft": {
+      "name": "Plush Pepe",
+      "short_name": "plush_pepe",
+      "price": 5916.0,
+      "image_path": "TelegramGiftsAssests-main/models/plush_pepe/amalgam.webp"
+    },
+    "nfts": [
+      {
+        "name": "Xmas Stocking",
+        "short_name": "xmas_stocking",
+        "price": 2.9555,
+        "image_path": "TelegramGiftsAssests-main/models/xmas_stocking/abandoned.webp",
+        "probability": 0.006786,
+        "weight": 6786,
+        "category": "A"
+      },
+      {
+        "name": "Winter Wreath",
+        "short_name": "winter_wreath",
+        "price": 3.0175,
+        "image_path": "TelegramGiftsAssests-main/models/winter_wreath/aquamarine.webp",
+        "probability": 0.006786,
+        "weight": 6786,
+        "category": "A"
+      },
+      {
+        "name": "Candy Cane",
+        "short_name": "candy_cane",
+        "price": 3.0192,
+        "image_path": "TelegramGiftsAssests-main/models/candy_cane/amber_glitter.webp",
+        "probability": 0.006786,
+        "weight": 6786,
+        "category": "A"
+      },
+      {
+        "name": "Lunar Snake",
+        "short_name": "lunar_snake",
+        "price": 3.0192,
+        "image_path": "TelegramGiftsAssests-main/models/lunar_snake/adhesive.webp",
+        "probability": 0.006786,
+        "weight": 6786,
+        "category": "A"
+      },
+      {
+        "name": "Snake Box",
+        "short_name": "snake_box",
+        "price": 3.0192,
+        "image_path": "TelegramGiftsAssests-main/models/snake_box/aquarium.webp",
+        "probability": 0.006786,
+        "weight": 6786,
+        "category": "A"
+      },
+      {
+        "name": "Vice Cream",
+        "short_name": "vice_cream",
+        "price": 3.0294,
+        "image_path": "TelegramGiftsAssests-main/models/vice_cream/bamboo_ice.webp",
+        "probability": 0.006786,
+        "weight": 6786,
+        "category": "A"
+      },
+      {
+        "name": "Chill Flame",
+        "short_name": "chill_flame",
+        "price": 3.0396,
+        "image_path": "TelegramGiftsAssests-main/models/chill_flame/baba_yaga.webp",
+        "probability": 0.006786,
+        "weight": 6786,
+        "category": "A"
+      },
+      {
+        "name": "Sky Stilettos",
+        "short_name": "sky_stilettos",
+        "price": 16.575,
+        "image_path": "TelegramGiftsAssests-main/models/sky_stilettos/april.webp",
+        "probability": 0.018129,
+        "weight": 18129,
+        "category": "B"
+      },
+      {
+        "name": "Cupid Charm",
+        "short_name": "cupid_charm",
+        "price": 20.6244,
+        "image_path": "TelegramGiftsAssests-main/models/cupid_charm/antique.webp",
+        "probability": 0.018129,
+        "weight": 18129,
+        "category": "B"
+      },
+      {
+        "name": "Bling Binky",
+        "short_name": "bling_binky",
+        "price": 20.9042,
+        "image_path": "TelegramGiftsAssests-main/models/bling_binky/abyss_binky.webp",
+        "probability": 0.018129,
+        "weight": 18129,
+        "category": "B"
+      },
+      {
+        "name": "Rare Bird",
+        "short_name": "rare_bird",
+        "price": 21.012,
+        "image_path": "TelegramGiftsAssests-main/models/rare_bird/amber_toucan.webp",
+        "probability": 0.018129,
+        "weight": 18129,
+        "category": "B"
+      },
+      {
+        "name": "Electric Skull",
+        "short_name": "electric_skull",
+        "price": 21.7872,
+        "image_path": "TelegramGiftsAssests-main/models/electric_skull/bad_fortune.webp",
+        "probability": 0.018129,
+        "weight": 18129,
+        "category": "B"
+      },
+      {
+        "name": "Eternal Rose",
+        "short_name": "eternal_rose",
+        "price": 23.205,
+        "image_path": "TelegramGiftsAssests-main/models/eternal_rose/3d_glow.webp",
+        "probability": 0.018129,
+        "weight": 18129,
+        "category": "B"
+      },
+      {
+        "name": "Voodoo Doll",
+        "short_name": "voodoo_doll",
+        "price": 32.3136,
+        "image_path": "TelegramGiftsAssests-main/models/voodoo_doll/aqua_gem.webp",
+        "probability": 0.04192,
+        "weight": 41920,
+        "category": "C"
+      },
+      {
+        "name": "Neko Helmet",
+        "short_name": "neko_helmet",
+        "price": 32.64,
+        "image_path": "TelegramGiftsAssests-main/models/neko_helmet/acid_punch.webp",
+        "probability": 0.04192,
+        "weight": 41920,
+        "category": "C"
+      },
+      {
+        "name": "Toy Bear",
+        "short_name": "toy_bear",
+        "price": 33.3234,
+        "image_path": "TelegramGiftsAssests-main/models/toy_bear/alter_ego.webp",
+        "probability": 0.04192,
+        "weight": 41920,
+        "category": "C"
+      },
+      {
+        "name": "Vintage Cigar",
+        "short_name": "vintage_cigar",
+        "price": 33.66,
+        "image_path": "TelegramGiftsAssests-main/models/vintage_cigar/aquaviolet.webp",
+        "probability": 0.04192,
+        "weight": 41920,
+        "category": "C"
+      },
+      {
+        "name": "Bonded Ring",
+        "short_name": "bonded_ring",
+        "price": 35.8428,
+        "image_path": "TelegramGiftsAssests-main/models/bonded_ring/anaconda.webp",
+        "probability": 0.04192,
+        "weight": 41920,
+        "category": "C"
+      },
+      {
+        "name": "Sharp Tongue",
+        "short_name": "sharp_tongue",
+        "price": 37.1178,
+        "image_path": "TelegramGiftsAssests-main/models/sharp_tongue/acid_witch.webp",
+        "probability": 0.04192,
+        "weight": 41920,
+        "category": "C"
+      },
+      {
+        "name": "Kissed Frog",
+        "short_name": "kissed_frog",
+        "price": 37.6788,
+        "image_path": "TelegramGiftsAssests-main/models/kissed_frog/banana_pox.webp",
+        "probability": 0.04192,
+        "weight": 41920,
+        "category": "C"
+      },
+      {
+        "name": "Swiss Watch",
+        "short_name": "swiss_watch",
+        "price": 42.891,
+        "image_path": "TelegramGiftsAssests-main/models/swiss_watch/amazon.webp",
+        "probability": 0.04192,
+        "weight": 41920,
+        "category": "C"
+      },
+      {
+        "name": "Low Rider",
+        "short_name": "low_rider",
+        "price": 45.1146,
+        "image_path": "TelegramGiftsAssests-main/models/low_rider/alpine_gold.webp",
+        "probability": 0.062382,
+        "weight": 62382,
+        "category": "D"
+      },
+      {
+        "name": "Magic Potion",
+        "short_name": "magic_potion",
+        "price": 48.9498,
+        "image_path": "TelegramGiftsAssests-main/models/magic_potion/agent_orange.webp",
+        "probability": 0.061841,
+        "weight": 61841,
+        "category": "D"
+      },
+      {
+        "name": "Artisan Brick",
+        "short_name": "artisan_brick",
+        "price": 51.51,
+        "image_path": "TelegramGiftsAssests-main/models/artisan_brick/art_nouveau.webp",
+        "probability": 0.061841,
+        "weight": 61841,
+        "category": "D"
+      },
+      {
+        "name": "Gem Signet",
+        "short_name": "gem_signet",
+        "price": 53.244,
+        "image_path": "TelegramGiftsAssests-main/models/gem_signet/amethyst.webp",
+        "probability": 0.061841,
+        "weight": 61841,
+        "category": "D"
+      },
+      {
+        "name": "Perfume Bottle",
+        "short_name": "perfume_bottle",
+        "price": 59.0274,
+        "image_path": "TelegramGiftsAssests-main/models/perfume_bottle/aurora_joy.webp",
+        "probability": 0.061841,
+        "weight": 61841,
+        "category": "D"
+      },
+      {
+        "name": "Ion Gem",
+        "short_name": "ion_gem",
+        "price": 61.0266,
+        "image_path": "TelegramGiftsAssests-main/models/ion_gem/amethyst.webp",
+        "probability": 0.043278,
+        "weight": 43278,
+        "category": "E"
+      },
+      {
+        "name": "Mini Oscar",
+        "short_name": "mini_oscar",
+        "price": 67.9728,
+        "image_path": "TelegramGiftsAssests-main/models/mini_oscar/action_film.webp",
+        "probability": 0.043278,
+        "weight": 43278,
+        "category": "E"
+      },
+      {
+        "name": "Westside Sign",
+        "short_name": "westside_sign",
+        "price": 82.7118,
+        "image_path": "TelegramGiftsAssests-main/models/westside_sign/all_in.webp",
+        "probability": 0.043278,
+        "weight": 43278,
+        "category": "E"
+      },
+      {
+        "name": "Nail Bracelet",
+        "short_name": "nail_bracelet",
+        "price": 104.448,
+        "image_path": "TelegramGiftsAssests-main/models/nail_bracelet/aqua_ring.webp",
+        "probability": 0.009072,
+        "weight": 9072,
+        "category": "F"
+      },
+      {
+        "name": "Loot Bag",
+        "short_name": "loot_bag",
+        "price": 108.1098,
+        "image_path": "TelegramGiftsAssests-main/models/loot_bag/academic.webp",
+        "probability": 0.009072,
+        "weight": 9072,
+        "category": "F"
+      },
+      {
+        "name": "Mighty Arm",
+        "short_name": "mighty_arm",
+        "price": 108.4872,
+        "image_path": "TelegramGiftsAssests-main/models/mighty_arm/best_muscles.webp",
+        "probability": 0.009072,
+        "weight": 9072,
+        "category": "F"
+      },
+      {
+        "name": "Astral Shard",
+        "short_name": "astral_shard",
+        "price": 121.2168,
+        "image_path": "TelegramGiftsAssests-main/models/astral_shard/amethyst.webp",
+        "probability": 0.009072,
+        "weight": 9072,
+        "category": "F"
+      },
+      {
+        "name": "Durov’s Glasses",
+        "short_name": "durovs_glasses",
+        "price": 127.8366,
+        "image_path": "TelegramGiftsAssests-main/models/durovs_glasses/cat_core.webp",
+        "probability": 0.009072,
+        "weight": 9072,
+        "category": "F"
+      },
+      {
+        "name": "Heroic Helmet",
+        "short_name": "heroic_helmet",
+        "price": 173.1348,
+        "image_path": "TelegramGiftsAssests-main/models/heroic_helmet/aegean_sea.webp",
+        "probability": 0.009072,
+        "weight": 9072,
+        "category": "F"
+      },
+      {
+        "name": "Scared Cat",
+        "short_name": "scared_cat",
+        "price": 173.4,
+        "image_path": "TelegramGiftsAssests-main/models/scared_cat/azuki_siam.webp",
+        "probability": 0.009072,
+        "weight": 9072,
+        "category": "F"
+      },
+      {
+        "name": "Precious Peach",
+        "short_name": "precious_peach",
+        "price": 259.0698,
+        "image_path": "TelegramGiftsAssests-main/models/precious_peach/airy_bright.webp",
+        "probability": 0.001927,
+        "weight": 1927,
+        "category": "G"
+      },
+      {
+        "name": "Durov’s Cap",
+        "short_name": "durovs_cap",
+        "price": 397.8,
+        "image_path": "TelegramGiftsAssests-main/models/durovs_cap/apple_slice.webp",
+        "probability": 0.001927,
+        "weight": 1927,
+        "category": "G"
+      },
+      {
+        "name": "Heart Locket",
+        "short_name": "heart_locket",
+        "price": 966.96,
+        "image_path": "TelegramGiftsAssests-main/models/heart_locket/acorn_hunter.webp",
+        "probability": 0.000713,
+        "weight": 713,
+        "category": "H"
+      },
+      {
+        "name": "Plush Pepe",
+        "short_name": "plush_pepe",
+        "price": 5916.0,
+        "image_path": "TelegramGiftsAssests-main/models/plush_pepe/amalgam.webp",
+        "probability": 0.000713,
+        "weight": 713,
+        "category": "H"
+      }
+    ]
+  },
+  {
+    "case_id": 9,
+    "price": 80,
+    "nft_count": 40,
+    "rtp": 0.90065183132,
+    "ev": 72.0521465056,
+    "hit_25": 0.893166,
+    "hit_50": 0.770862,
+    "hit_75": 0.467634,
+    "hit_100": 0.299108,
+    "hit_150": 0.06414399999999999,
+    "hit_200": 0.036454,
+    "hit_500": 0.002618,
+    "hit_1000": 0.002618,
+    "top_nft_chance": 0.001309,
+    "top_nft": {
+      "name": "Plush Pepe",
+      "short_name": "plush_pepe",
+      "price": 5916.0,
+      "image_path": "TelegramGiftsAssests-main/models/plush_pepe/amalgam.webp"
+    },
+    "nfts": [
+      {
+        "name": "Xmas Stocking",
+        "short_name": "xmas_stocking",
+        "price": 2.9555,
+        "image_path": "TelegramGiftsAssests-main/models/xmas_stocking/abandoned.webp",
+        "probability": 0.007631,
+        "weight": 7631,
+        "category": "A"
+      },
+      {
+        "name": "Winter Wreath",
+        "short_name": "winter_wreath",
+        "price": 3.0175,
+        "image_path": "TelegramGiftsAssests-main/models/winter_wreath/aquamarine.webp",
+        "probability": 0.007631,
+        "weight": 7631,
+        "category": "A"
+      },
+      {
+        "name": "Candy Cane",
+        "short_name": "candy_cane",
+        "price": 3.0192,
+        "image_path": "TelegramGiftsAssests-main/models/candy_cane/amber_glitter.webp",
+        "probability": 0.007631,
+        "weight": 7631,
+        "category": "A"
+      },
+      {
+        "name": "Lunar Snake",
+        "short_name": "lunar_snake",
+        "price": 3.0192,
+        "image_path": "TelegramGiftsAssests-main/models/lunar_snake/adhesive.webp",
+        "probability": 0.007631,
+        "weight": 7631,
+        "category": "A"
+      },
+      {
+        "name": "Snake Box",
+        "short_name": "snake_box",
+        "price": 3.0192,
+        "image_path": "TelegramGiftsAssests-main/models/snake_box/aquarium.webp",
+        "probability": 0.007631,
+        "weight": 7631,
+        "category": "A"
+      },
+      {
+        "name": "Vice Cream",
+        "short_name": "vice_cream",
+        "price": 3.0294,
+        "image_path": "TelegramGiftsAssests-main/models/vice_cream/bamboo_ice.webp",
+        "probability": 0.007631,
+        "weight": 7631,
+        "category": "A"
+      },
+      {
+        "name": "Chill Flame",
+        "short_name": "chill_flame",
+        "price": 3.0396,
+        "image_path": "TelegramGiftsAssests-main/models/chill_flame/baba_yaga.webp",
+        "probability": 0.007631,
+        "weight": 7631,
+        "category": "A"
+      },
+      {
+        "name": "Holiday Drink",
+        "short_name": "holiday_drink",
+        "price": 3.06,
+        "image_path": "TelegramGiftsAssests-main/models/holiday_drink/apple_mousse.webp",
+        "probability": 0.007631,
+        "weight": 7631,
+        "category": "A"
+      },
+      {
+        "name": "Ice Cream",
+        "short_name": "ice_cream",
+        "price": 3.06,
+        "image_path": "TelegramGiftsAssests-main/models/ice_cream/apple_dip.webp",
+        "probability": 0.007631,
+        "weight": 7631,
+        "category": "A"
+      },
+      {
+        "name": "Instant Ramen",
+        "short_name": "instant_ramen",
+        "price": 3.06,
+        "image_path": "TelegramGiftsAssests-main/models/instant_ramen/abduction.webp",
+        "probability": 0.007631,
+        "weight": 7631,
+        "category": "A"
+      },
+      {
+        "name": "Big Year",
+        "short_name": "big_year",
+        "price": 3.0906,
+        "image_path": "TelegramGiftsAssests-main/models/big_year/2048.webp",
+        "probability": 0.007631,
+        "weight": 7631,
+        "category": "A"
+      },
+      {
+        "name": "Lol Pop",
+        "short_name": "lol_pop",
+        "price": 3.0906,
+        "image_path": "TelegramGiftsAssests-main/models/lol_pop/andromeda.webp",
+        "probability": 0.007631,
+        "weight": 7631,
+        "category": "A"
+      },
+      {
+        "name": "Easter Egg",
+        "short_name": "easter_egg",
+        "price": 3.111,
+        "image_path": "TelegramGiftsAssests-main/models/easter_egg/3d_render.webp",
+        "probability": 0.007631,
+        "weight": 7631,
+        "category": "A"
+      },
+      {
+        "name": "Pet Snake",
+        "short_name": "pet_snake",
+        "price": 3.111,
+        "image_path": "TelegramGiftsAssests-main/models/pet_snake/albino.webp",
+        "probability": 0.007631,
+        "weight": 7631,
+        "category": "A"
+      },
+      {
+        "name": "Cupid Charm",
+        "short_name": "cupid_charm",
+        "price": 20.6244,
+        "image_path": "TelegramGiftsAssests-main/models/cupid_charm/antique.webp",
+        "probability": 0.020384,
+        "weight": 20384,
+        "category": "B"
+      },
+      {
+        "name": "Bling Binky",
+        "short_name": "bling_binky",
+        "price": 20.9042,
+        "image_path": "TelegramGiftsAssests-main/models/bling_binky/abyss_binky.webp",
+        "probability": 0.020384,
+        "weight": 20384,
+        "category": "B"
+      },
+      {
+        "name": "Rare Bird",
+        "short_name": "rare_bird",
+        "price": 21.012,
+        "image_path": "TelegramGiftsAssests-main/models/rare_bird/amber_toucan.webp",
+        "probability": 0.020384,
+        "weight": 20384,
+        "category": "B"
+      },
+      {
+        "name": "Electric Skull",
+        "short_name": "electric_skull",
+        "price": 21.7872,
+        "image_path": "TelegramGiftsAssests-main/models/electric_skull/bad_fortune.webp",
+        "probability": 0.020384,
+        "weight": 20384,
+        "category": "B"
+      },
+      {
+        "name": "Eternal Rose",
+        "short_name": "eternal_rose",
+        "price": 23.205,
+        "image_path": "TelegramGiftsAssests-main/models/eternal_rose/3d_glow.webp",
+        "probability": 0.020384,
+        "weight": 20384,
+        "category": "B"
+      },
+      {
+        "name": "Khabib’s Papakha",
+        "short_name": "khabibs_papakha",
+        "price": 23.3988,
+        "image_path": "TelegramGiftsAssests-main/models/khabibs_papakha/29-0_record.webp",
+        "probability": 0.020384,
+        "weight": 20384,
+        "category": "B"
+      },
+      {
+        "name": "Swiss Watch",
+        "short_name": "swiss_watch",
+        "price": 42.891,
+        "image_path": "TelegramGiftsAssests-main/models/swiss_watch/amazon.webp",
+        "probability": 0.050538,
+        "weight": 50538,
+        "category": "C"
+      },
+      {
+        "name": "Low Rider",
+        "short_name": "low_rider",
+        "price": 45.1146,
+        "image_path": "TelegramGiftsAssests-main/models/low_rider/alpine_gold.webp",
+        "probability": 0.050538,
+        "weight": 50538,
+        "category": "C"
+      },
+      {
+        "name": "Magic Potion",
+        "short_name": "magic_potion",
+        "price": 48.9498,
+        "image_path": "TelegramGiftsAssests-main/models/magic_potion/agent_orange.webp",
+        "probability": 0.050538,
+        "weight": 50538,
+        "category": "C"
+      },
+      {
+        "name": "Artisan Brick",
+        "short_name": "artisan_brick",
+        "price": 51.51,
+        "image_path": "TelegramGiftsAssests-main/models/artisan_brick/art_nouveau.webp",
+        "probability": 0.050538,
+        "weight": 50538,
+        "category": "C"
+      },
+      {
+        "name": "Gem Signet",
+        "short_name": "gem_signet",
+        "price": 53.244,
+        "image_path": "TelegramGiftsAssests-main/models/gem_signet/amethyst.webp",
+        "probability": 0.050538,
+        "weight": 50538,
+        "category": "C"
+      },
+      {
+        "name": "Perfume Bottle",
+        "short_name": "perfume_bottle",
+        "price": 59.0274,
+        "image_path": "TelegramGiftsAssests-main/models/perfume_bottle/aurora_joy.webp",
+        "probability": 0.050538,
+        "weight": 50538,
+        "category": "C"
+      },
+      {
+        "name": "Ion Gem",
+        "short_name": "ion_gem",
+        "price": 61.0266,
+        "image_path": "TelegramGiftsAssests-main/models/ion_gem/amethyst.webp",
+        "probability": 0.0846,
+        "weight": 84600,
+        "category": "D"
+      },
+      {
+        "name": "Mini Oscar",
+        "short_name": "mini_oscar",
+        "price": 67.9728,
+        "image_path": "TelegramGiftsAssests-main/models/mini_oscar/action_film.webp",
+        "probability": 0.083926,
+        "weight": 83926,
+        "category": "D"
+      },
+      {
+        "name": "Westside Sign",
+        "short_name": "westside_sign",
+        "price": 82.7118,
+        "image_path": "TelegramGiftsAssests-main/models/westside_sign/all_in.webp",
+        "probability": 0.058741,
+        "weight": 58741,
+        "category": "E"
+      },
+      {
+        "name": "Nail Bracelet",
+        "short_name": "nail_bracelet",
+        "price": 104.448,
+        "image_path": "TelegramGiftsAssests-main/models/nail_bracelet/aqua_ring.webp",
+        "probability": 0.058741,
+        "weight": 58741,
+        "category": "E"
+      },
+      {
+        "name": "Loot Bag",
+        "short_name": "loot_bag",
+        "price": 108.1098,
+        "image_path": "TelegramGiftsAssests-main/models/loot_bag/academic.webp",
+        "probability": 0.058741,
+        "weight": 58741,
+        "category": "E"
+      },
+      {
+        "name": "Mighty Arm",
+        "short_name": "mighty_arm",
+        "price": 108.4872,
+        "image_path": "TelegramGiftsAssests-main/models/mighty_arm/best_muscles.webp",
+        "probability": 0.058741,
+        "weight": 58741,
+        "category": "E"
+      },
+      {
+        "name": "Astral Shard",
+        "short_name": "astral_shard",
+        "price": 121.2168,
+        "image_path": "TelegramGiftsAssests-main/models/astral_shard/amethyst.webp",
+        "probability": 0.013845,
+        "weight": 13845,
+        "category": "F"
+      },
+      {
+        "name": "Durov’s Glasses",
+        "short_name": "durovs_glasses",
+        "price": 127.8366,
+        "image_path": "TelegramGiftsAssests-main/models/durovs_glasses/cat_core.webp",
+        "probability": 0.013845,
+        "weight": 13845,
+        "category": "F"
+      },
+      {
+        "name": "Heroic Helmet",
+        "short_name": "heroic_helmet",
+        "price": 173.1348,
+        "image_path": "TelegramGiftsAssests-main/models/heroic_helmet/aegean_sea.webp",
+        "probability": 0.013845,
+        "weight": 13845,
+        "category": "F"
+      },
+      {
+        "name": "Scared Cat",
+        "short_name": "scared_cat",
+        "price": 173.4,
+        "image_path": "TelegramGiftsAssests-main/models/scared_cat/azuki_siam.webp",
+        "probability": 0.013845,
+        "weight": 13845,
+        "category": "F"
+      },
+      {
+        "name": "Precious Peach",
+        "short_name": "precious_peach",
+        "price": 259.0698,
+        "image_path": "TelegramGiftsAssests-main/models/precious_peach/airy_bright.webp",
+        "probability": 0.003073,
+        "weight": 3073,
+        "category": "G"
+      },
+      {
+        "name": "Durov’s Cap",
+        "short_name": "durovs_cap",
+        "price": 397.8,
+        "image_path": "TelegramGiftsAssests-main/models/durovs_cap/apple_slice.webp",
+        "probability": 0.003073,
+        "weight": 3073,
+        "category": "G"
+      },
+      {
+        "name": "Heart Locket",
+        "short_name": "heart_locket",
+        "price": 966.96,
+        "image_path": "TelegramGiftsAssests-main/models/heart_locket/acorn_hunter.webp",
+        "probability": 0.001309,
+        "weight": 1309,
+        "category": "H"
+      },
+      {
+        "name": "Plush Pepe",
+        "short_name": "plush_pepe",
+        "price": 5916.0,
+        "image_path": "TelegramGiftsAssests-main/models/plush_pepe/amalgam.webp",
+        "probability": 0.001309,
+        "weight": 1309,
+        "category": "H"
+      }
+    ]
+  },
+  {
+    "case_id": 10,
+    "price": 110,
+    "nft_count": 40,
+    "rtp": 0.8991289416354546,
+    "ev": 98.9041835799,
+    "hit_25": 0.860863,
+    "hit_50": 0.743611,
+    "hit_75": 0.581215,
+    "hit_100": 0.19754000000000002,
+    "hit_150": 0.063348,
+    "hit_200": 0.02946,
+    "hit_500": 0.0072429999999999994,
+    "hit_1000": 0.00197,
+    "top_nft_chance": 0.00197,
+    "top_nft": {
+      "name": "Plush Pepe",
+      "short_name": "plush_pepe",
+      "price": 5916.0,
+      "image_path": "TelegramGiftsAssests-main/models/plush_pepe/amalgam.webp"
+    },
+    "nfts": [
+      {
+        "name": "Xmas Stocking",
+        "short_name": "xmas_stocking",
+        "price": 2.9555,
+        "image_path": "TelegramGiftsAssests-main/models/xmas_stocking/abandoned.webp",
+        "probability": 0.007323,
+        "weight": 7323,
+        "category": "A"
+      },
+      {
+        "name": "Winter Wreath",
+        "short_name": "winter_wreath",
+        "price": 3.0175,
+        "image_path": "TelegramGiftsAssests-main/models/winter_wreath/aquamarine.webp",
+        "probability": 0.007323,
+        "weight": 7323,
+        "category": "A"
+      },
+      {
+        "name": "Candy Cane",
+        "short_name": "candy_cane",
+        "price": 3.0192,
+        "image_path": "TelegramGiftsAssests-main/models/candy_cane/amber_glitter.webp",
+        "probability": 0.007323,
+        "weight": 7323,
+        "category": "A"
+      },
+      {
+        "name": "Lunar Snake",
+        "short_name": "lunar_snake",
+        "price": 3.0192,
+        "image_path": "TelegramGiftsAssests-main/models/lunar_snake/adhesive.webp",
+        "probability": 0.007323,
+        "weight": 7323,
+        "category": "A"
+      },
+      {
+        "name": "Snake Box",
+        "short_name": "snake_box",
+        "price": 3.0192,
+        "image_path": "TelegramGiftsAssests-main/models/snake_box/aquarium.webp",
+        "probability": 0.007323,
+        "weight": 7323,
+        "category": "A"
+      },
+      {
+        "name": "Vice Cream",
+        "short_name": "vice_cream",
+        "price": 3.0294,
+        "image_path": "TelegramGiftsAssests-main/models/vice_cream/bamboo_ice.webp",
+        "probability": 0.007323,
+        "weight": 7323,
+        "category": "A"
+      },
+      {
+        "name": "Chill Flame",
+        "short_name": "chill_flame",
+        "price": 3.0396,
+        "image_path": "TelegramGiftsAssests-main/models/chill_flame/baba_yaga.webp",
+        "probability": 0.007323,
+        "weight": 7323,
+        "category": "A"
+      },
+      {
+        "name": "Holiday Drink",
+        "short_name": "holiday_drink",
+        "price": 3.06,
+        "image_path": "TelegramGiftsAssests-main/models/holiday_drink/apple_mousse.webp",
+        "probability": 0.007323,
+        "weight": 7323,
+        "category": "A"
+      },
+      {
+        "name": "Ice Cream",
+        "short_name": "ice_cream",
+        "price": 3.06,
+        "image_path": "TelegramGiftsAssests-main/models/ice_cream/apple_dip.webp",
+        "probability": 0.007323,
+        "weight": 7323,
+        "category": "A"
+      },
+      {
+        "name": "Instant Ramen",
+        "short_name": "instant_ramen",
+        "price": 3.06,
+        "image_path": "TelegramGiftsAssests-main/models/instant_ramen/abduction.webp",
+        "probability": 0.007323,
+        "weight": 7323,
+        "category": "A"
+      },
+      {
+        "name": "Big Year",
+        "short_name": "big_year",
+        "price": 3.0906,
+        "image_path": "TelegramGiftsAssests-main/models/big_year/2048.webp",
+        "probability": 0.007323,
+        "weight": 7323,
+        "category": "A"
+      },
+      {
+        "name": "Lol Pop",
+        "short_name": "lol_pop",
+        "price": 3.0906,
+        "image_path": "TelegramGiftsAssests-main/models/lol_pop/andromeda.webp",
+        "probability": 0.007323,
+        "weight": 7323,
+        "category": "A"
+      },
+      {
+        "name": "Easter Egg",
+        "short_name": "easter_egg",
+        "price": 3.111,
+        "image_path": "TelegramGiftsAssests-main/models/easter_egg/3d_render.webp",
+        "probability": 0.007323,
+        "weight": 7323,
+        "category": "A"
+      },
+      {
+        "name": "Pet Snake",
+        "short_name": "pet_snake",
+        "price": 3.111,
+        "image_path": "TelegramGiftsAssests-main/models/pet_snake/albino.webp",
+        "probability": 0.007323,
+        "weight": 7323,
+        "category": "A"
+      },
+      {
+        "name": "Whip Cupcake",
+        "short_name": "whip_cupcake",
+        "price": 3.162,
+        "image_path": "TelegramGiftsAssests-main/models/whip_cupcake/alien_slime.webp",
+        "probability": 0.007323,
+        "weight": 7323,
+        "category": "A"
+      },
+      {
+        "name": "Pool Float",
+        "short_name": "pool_float",
+        "price": 3.1722,
+        "image_path": "TelegramGiftsAssests-main/models/pool_float/air_bunny.webp",
+        "probability": 0.007323,
+        "weight": 7323,
+        "category": "A"
+      },
+      {
+        "name": "Jester Hat",
+        "short_name": "jester_hat",
+        "price": 3.1926,
+        "image_path": "TelegramGiftsAssests-main/models/jester_hat/aquarium.webp",
+        "probability": 0.007323,
+        "weight": 7323,
+        "category": "A"
+      },
+      {
+        "name": "Tama Gadget",
+        "short_name": "tama_gadget",
+        "price": 3.1991,
+        "image_path": "TelegramGiftsAssests-main/models/tama_gadget/alien_attack.webp",
+        "probability": 0.007323,
+        "weight": 7323,
+        "category": "A"
+      },
+      {
+        "name": "Santa Hat",
+        "short_name": "santa_hat",
+        "price": 3.3252,
+        "image_path": "TelegramGiftsAssests-main/models/santa_hat/80s_tv.webp",
+        "probability": 0.007323,
+        "weight": 7323,
+        "category": "A"
+      },
+      {
+        "name": "Genie Lamp",
+        "short_name": "genie_lamp",
+        "price": 29.9574,
+        "image_path": "TelegramGiftsAssests-main/models/genie_lamp/arabian_night.webp",
+        "probability": 0.019542,
+        "weight": 19542,
+        "category": "B"
+      },
+      {
+        "name": "Signet Ring",
+        "short_name": "signet_ring",
+        "price": 29.9778,
+        "image_path": "TelegramGiftsAssests-main/models/signet_ring/black_noir.webp",
+        "probability": 0.019542,
+        "weight": 19542,
+        "category": "B"
+      },
+      {
+        "name": "Voodoo Doll",
+        "short_name": "voodoo_doll",
+        "price": 32.3136,
+        "image_path": "TelegramGiftsAssests-main/models/voodoo_doll/aqua_gem.webp",
+        "probability": 0.019542,
+        "weight": 19542,
+        "category": "B"
+      },
+      {
+        "name": "Neko Helmet",
+        "short_name": "neko_helmet",
+        "price": 32.64,
+        "image_path": "TelegramGiftsAssests-main/models/neko_helmet/acid_punch.webp",
+        "probability": 0.019542,
+        "weight": 19542,
+        "category": "B"
+      },
+      {
+        "name": "Toy Bear",
+        "short_name": "toy_bear",
+        "price": 33.3234,
+        "image_path": "TelegramGiftsAssests-main/models/toy_bear/alter_ego.webp",
+        "probability": 0.019542,
+        "weight": 19542,
+        "category": "B"
+      },
+      {
+        "name": "Vintage Cigar",
+        "short_name": "vintage_cigar",
+        "price": 33.66,
+        "image_path": "TelegramGiftsAssests-main/models/vintage_cigar/aquaviolet.webp",
+        "probability": 0.019542,
+        "weight": 19542,
+        "category": "B"
+      },
+      {
+        "name": "Perfume Bottle",
+        "short_name": "perfume_bottle",
+        "price": 59.0274,
+        "image_path": "TelegramGiftsAssests-main/models/perfume_bottle/aurora_joy.webp",
+        "probability": 0.054132,
+        "weight": 54132,
+        "category": "C"
+      },
+      {
+        "name": "Ion Gem",
+        "short_name": "ion_gem",
+        "price": 61.0266,
+        "image_path": "TelegramGiftsAssests-main/models/ion_gem/amethyst.webp",
+        "probability": 0.054132,
+        "weight": 54132,
+        "category": "C"
+      },
+      {
+        "name": "Mini Oscar",
+        "short_name": "mini_oscar",
+        "price": 67.9728,
+        "image_path": "TelegramGiftsAssests-main/models/mini_oscar/action_film.webp",
+        "probability": 0.054132,
+        "weight": 54132,
+        "category": "C"
+      },
+      {
+        "name": "Westside Sign",
+        "short_name": "westside_sign",
+        "price": 82.7118,
+        "image_path": "TelegramGiftsAssests-main/models/westside_sign/all_in.webp",
+        "probability": 0.096098,
+        "weight": 96098,
+        "category": "D"
+      },
+      {
+        "name": "Nail Bracelet",
+        "short_name": "nail_bracelet",
+        "price": 104.448,
+        "image_path": "TelegramGiftsAssests-main/models/nail_bracelet/aqua_ring.webp",
+        "probability": 0.095859,
+        "weight": 95859,
+        "category": "D"
+      },
+      {
+        "name": "Loot Bag",
+        "short_name": "loot_bag",
+        "price": 108.1098,
+        "image_path": "TelegramGiftsAssests-main/models/loot_bag/academic.webp",
+        "probability": 0.095859,
+        "weight": 95859,
+        "category": "D"
+      },
+      {
+        "name": "Mighty Arm",
+        "short_name": "mighty_arm",
+        "price": 108.4872,
+        "image_path": "TelegramGiftsAssests-main/models/mighty_arm/best_muscles.webp",
+        "probability": 0.095859,
+        "weight": 95859,
+        "category": "D"
+      },
+      {
+        "name": "Astral Shard",
+        "short_name": "astral_shard",
+        "price": 121.2168,
+        "image_path": "TelegramGiftsAssests-main/models/astral_shard/amethyst.webp",
+        "probability": 0.067096,
+        "weight": 67096,
+        "category": "E"
+      },
+      {
+        "name": "Durov’s Glasses",
+        "short_name": "durovs_glasses",
+        "price": 127.8366,
+        "image_path": "TelegramGiftsAssests-main/models/durovs_glasses/cat_core.webp",
+        "probability": 0.067096,
+        "weight": 67096,
+        "category": "E"
+      },
+      {
+        "name": "Heroic Helmet",
+        "short_name": "heroic_helmet",
+        "price": 173.1348,
+        "image_path": "TelegramGiftsAssests-main/models/heroic_helmet/aegean_sea.webp",
+        "probability": 0.016944,
+        "weight": 16944,
+        "category": "F"
+      },
+      {
+        "name": "Scared Cat",
+        "short_name": "scared_cat",
+        "price": 173.4,
+        "image_path": "TelegramGiftsAssests-main/models/scared_cat/azuki_siam.webp",
+        "probability": 0.016944,
+        "weight": 16944,
+        "category": "F"
+      },
+      {
+        "name": "Precious Peach",
+        "short_name": "precious_peach",
+        "price": 259.0698,
+        "image_path": "TelegramGiftsAssests-main/models/precious_peach/airy_bright.webp",
+        "probability": 0.016944,
+        "weight": 16944,
+        "category": "F"
+      },
+      {
+        "name": "Durov’s Cap",
+        "short_name": "durovs_cap",
+        "price": 397.8,
+        "image_path": "TelegramGiftsAssests-main/models/durovs_cap/apple_slice.webp",
+        "probability": 0.005273,
+        "weight": 5273,
+        "category": "G"
+      },
+      {
+        "name": "Heart Locket",
+        "short_name": "heart_locket",
+        "price": 966.96,
+        "image_path": "TelegramGiftsAssests-main/models/heart_locket/acorn_hunter.webp",
+        "probability": 0.005273,
+        "weight": 5273,
+        "category": "G"
+      },
+      {
+        "name": "Plush Pepe",
+        "short_name": "plush_pepe",
+        "price": 5916.0,
+        "image_path": "TelegramGiftsAssests-main/models/plush_pepe/amalgam.webp",
+        "probability": 0.00197,
+        "weight": 1970,
+        "category": "H"
+      }
+    ]
+  },
+  {
+    "case_id": 11,
+    "price": 125,
+    "nft_count": 40,
+    "rtp": 0.8990803894432,
+    "ev": 112.3850486804,
+    "hit_25": 0.848338,
+    "hit_50": 0.732706,
+    "hit_75": 0.624854,
+    "hit_100": 0.235044,
+    "hit_150": 0.030555,
+    "hit_200": 0.030555,
+    "hit_500": 0.007555,
+    "hit_1000": 0.002098,
+    "top_nft_chance": 0.002098,
+    "top_nft": {
+      "name": "Plush Pepe",
+      "short_name": "plush_pepe",
+      "price": 5916.0,
+      "image_path": "TelegramGiftsAssests-main/models/plush_pepe/amalgam.webp"
+    },
+    "nfts": [
+      {
+        "name": "Xmas Stocking",
+        "short_name": "xmas_stocking",
+        "price": 2.9555,
+        "image_path": "TelegramGiftsAssests-main/models/xmas_stocking/abandoned.webp",
+        "probability": 0.007222,
+        "weight": 7222,
+        "category": "A"
+      },
+      {
+        "name": "Winter Wreath",
+        "short_name": "winter_wreath",
+        "price": 3.0175,
+        "image_path": "TelegramGiftsAssests-main/models/winter_wreath/aquamarine.webp",
+        "probability": 0.007222,
+        "weight": 7222,
+        "category": "A"
+      },
+      {
+        "name": "Candy Cane",
+        "short_name": "candy_cane",
+        "price": 3.0192,
+        "image_path": "TelegramGiftsAssests-main/models/candy_cane/amber_glitter.webp",
+        "probability": 0.007222,
+        "weight": 7222,
+        "category": "A"
+      },
+      {
+        "name": "Lunar Snake",
+        "short_name": "lunar_snake",
+        "price": 3.0192,
+        "image_path": "TelegramGiftsAssests-main/models/lunar_snake/adhesive.webp",
+        "probability": 0.007222,
+        "weight": 7222,
+        "category": "A"
+      },
+      {
+        "name": "Snake Box",
+        "short_name": "snake_box",
+        "price": 3.0192,
+        "image_path": "TelegramGiftsAssests-main/models/snake_box/aquarium.webp",
+        "probability": 0.007222,
+        "weight": 7222,
+        "category": "A"
+      },
+      {
+        "name": "Vice Cream",
+        "short_name": "vice_cream",
+        "price": 3.0294,
+        "image_path": "TelegramGiftsAssests-main/models/vice_cream/bamboo_ice.webp",
+        "probability": 0.007222,
+        "weight": 7222,
+        "category": "A"
+      },
+      {
+        "name": "Chill Flame",
+        "short_name": "chill_flame",
+        "price": 3.0396,
+        "image_path": "TelegramGiftsAssests-main/models/chill_flame/baba_yaga.webp",
+        "probability": 0.007222,
+        "weight": 7222,
+        "category": "A"
+      },
+      {
+        "name": "Holiday Drink",
+        "short_name": "holiday_drink",
+        "price": 3.06,
+        "image_path": "TelegramGiftsAssests-main/models/holiday_drink/apple_mousse.webp",
+        "probability": 0.007222,
+        "weight": 7222,
+        "category": "A"
+      },
+      {
+        "name": "Ice Cream",
+        "short_name": "ice_cream",
+        "price": 3.06,
+        "image_path": "TelegramGiftsAssests-main/models/ice_cream/apple_dip.webp",
+        "probability": 0.007222,
+        "weight": 7222,
+        "category": "A"
+      },
+      {
+        "name": "Instant Ramen",
+        "short_name": "instant_ramen",
+        "price": 3.06,
+        "image_path": "TelegramGiftsAssests-main/models/instant_ramen/abduction.webp",
+        "probability": 0.007222,
+        "weight": 7222,
+        "category": "A"
+      },
+      {
+        "name": "Big Year",
+        "short_name": "big_year",
+        "price": 3.0906,
+        "image_path": "TelegramGiftsAssests-main/models/big_year/2048.webp",
+        "probability": 0.007222,
+        "weight": 7222,
+        "category": "A"
+      },
+      {
+        "name": "Lol Pop",
+        "short_name": "lol_pop",
+        "price": 3.0906,
+        "image_path": "TelegramGiftsAssests-main/models/lol_pop/andromeda.webp",
+        "probability": 0.007222,
+        "weight": 7222,
+        "category": "A"
+      },
+      {
+        "name": "Easter Egg",
+        "short_name": "easter_egg",
+        "price": 3.111,
+        "image_path": "TelegramGiftsAssests-main/models/easter_egg/3d_render.webp",
+        "probability": 0.007222,
+        "weight": 7222,
+        "category": "A"
+      },
+      {
+        "name": "Pet Snake",
+        "short_name": "pet_snake",
+        "price": 3.111,
+        "image_path": "TelegramGiftsAssests-main/models/pet_snake/albino.webp",
+        "probability": 0.007222,
+        "weight": 7222,
+        "category": "A"
+      },
+      {
+        "name": "Whip Cupcake",
+        "short_name": "whip_cupcake",
+        "price": 3.162,
+        "image_path": "TelegramGiftsAssests-main/models/whip_cupcake/alien_slime.webp",
+        "probability": 0.007222,
+        "weight": 7222,
+        "category": "A"
+      },
+      {
+        "name": "Pool Float",
+        "short_name": "pool_float",
+        "price": 3.1722,
+        "image_path": "TelegramGiftsAssests-main/models/pool_float/air_bunny.webp",
+        "probability": 0.007222,
+        "weight": 7222,
+        "category": "A"
+      },
+      {
+        "name": "Jester Hat",
+        "short_name": "jester_hat",
+        "price": 3.1926,
+        "image_path": "TelegramGiftsAssests-main/models/jester_hat/aquarium.webp",
+        "probability": 0.007222,
+        "weight": 7222,
+        "category": "A"
+      },
+      {
+        "name": "Tama Gadget",
+        "short_name": "tama_gadget",
+        "price": 3.1991,
+        "image_path": "TelegramGiftsAssests-main/models/tama_gadget/alien_attack.webp",
+        "probability": 0.007222,
+        "weight": 7222,
+        "category": "A"
+      },
+      {
+        "name": "Santa Hat",
+        "short_name": "santa_hat",
+        "price": 3.3252,
+        "image_path": "TelegramGiftsAssests-main/models/santa_hat/80s_tv.webp",
+        "probability": 0.007222,
+        "weight": 7222,
+        "category": "A"
+      },
+      {
+        "name": "Party Sparkler",
+        "short_name": "party_sparkler",
+        "price": 3.4068,
+        "image_path": "TelegramGiftsAssests-main/models/party_sparkler/4th_of_july.webp",
+        "probability": 0.007222,
+        "weight": 7222,
+        "category": "A"
+      },
+      {
+        "name": "Ginger Cookie",
+        "short_name": "ginger_cookie",
+        "price": 3.4884,
+        "image_path": "TelegramGiftsAssests-main/models/ginger_cookie/adam.webp",
+        "probability": 0.007222,
+        "weight": 7222,
+        "category": "A"
+      },
+      {
+        "name": "Voodoo Doll",
+        "short_name": "voodoo_doll",
+        "price": 32.3136,
+        "image_path": "TelegramGiftsAssests-main/models/voodoo_doll/aqua_gem.webp",
+        "probability": 0.019272,
+        "weight": 19272,
+        "category": "B"
+      },
+      {
+        "name": "Neko Helmet",
+        "short_name": "neko_helmet",
+        "price": 32.64,
+        "image_path": "TelegramGiftsAssests-main/models/neko_helmet/acid_punch.webp",
+        "probability": 0.019272,
+        "weight": 19272,
+        "category": "B"
+      },
+      {
+        "name": "Toy Bear",
+        "short_name": "toy_bear",
+        "price": 33.3234,
+        "image_path": "TelegramGiftsAssests-main/models/toy_bear/alter_ego.webp",
+        "probability": 0.019272,
+        "weight": 19272,
+        "category": "B"
+      },
+      {
+        "name": "Vintage Cigar",
+        "short_name": "vintage_cigar",
+        "price": 33.66,
+        "image_path": "TelegramGiftsAssests-main/models/vintage_cigar/aquaviolet.webp",
+        "probability": 0.019272,
+        "weight": 19272,
+        "category": "B"
+      },
+      {
+        "name": "Bonded Ring",
+        "short_name": "bonded_ring",
+        "price": 35.8428,
+        "image_path": "TelegramGiftsAssests-main/models/bonded_ring/anaconda.webp",
+        "probability": 0.019272,
+        "weight": 19272,
+        "category": "B"
+      },
+      {
+        "name": "Sharp Tongue",
+        "short_name": "sharp_tongue",
+        "price": 37.1178,
+        "image_path": "TelegramGiftsAssests-main/models/sharp_tongue/acid_witch.webp",
+        "probability": 0.019272,
+        "weight": 19272,
+        "category": "B"
+      },
+      {
+        "name": "Mini Oscar",
+        "short_name": "mini_oscar",
+        "price": 67.9728,
+        "image_path": "TelegramGiftsAssests-main/models/mini_oscar/action_film.webp",
+        "probability": 0.053926,
+        "weight": 53926,
+        "category": "C"
+      },
+      {
+        "name": "Westside Sign",
+        "short_name": "westside_sign",
+        "price": 82.7118,
+        "image_path": "TelegramGiftsAssests-main/models/westside_sign/all_in.webp",
+        "probability": 0.053926,
+        "weight": 53926,
+        "category": "C"
+      },
+      {
+        "name": "Nail Bracelet",
+        "short_name": "nail_bracelet",
+        "price": 104.448,
+        "image_path": "TelegramGiftsAssests-main/models/nail_bracelet/aqua_ring.webp",
+        "probability": 0.097667,
+        "weight": 97667,
+        "category": "D"
+      },
+      {
+        "name": "Loot Bag",
+        "short_name": "loot_bag",
+        "price": 108.1098,
+        "image_path": "TelegramGiftsAssests-main/models/loot_bag/academic.webp",
+        "probability": 0.097381,
+        "weight": 97381,
+        "category": "D"
+      },
+      {
+        "name": "Mighty Arm",
+        "short_name": "mighty_arm",
+        "price": 108.4872,
+        "image_path": "TelegramGiftsAssests-main/models/mighty_arm/best_muscles.webp",
+        "probability": 0.097381,
+        "weight": 97381,
+        "category": "D"
+      },
+      {
+        "name": "Astral Shard",
+        "short_name": "astral_shard",
+        "price": 121.2168,
+        "image_path": "TelegramGiftsAssests-main/models/astral_shard/amethyst.webp",
+        "probability": 0.097381,
+        "weight": 97381,
+        "category": "D"
+      },
+      {
+        "name": "Durov’s Glasses",
+        "short_name": "durovs_glasses",
+        "price": 127.8366,
+        "image_path": "TelegramGiftsAssests-main/models/durovs_glasses/cat_core.webp",
+        "probability": 0.068163,
+        "weight": 68163,
+        "category": "E"
+      },
+      {
+        "name": "Heroic Helmet",
+        "short_name": "heroic_helmet",
+        "price": 173.1348,
+        "image_path": "TelegramGiftsAssests-main/models/heroic_helmet/aegean_sea.webp",
+        "probability": 0.068163,
+        "weight": 68163,
+        "category": "E"
+      },
+      {
+        "name": "Scared Cat",
+        "short_name": "scared_cat",
+        "price": 173.4,
+        "image_path": "TelegramGiftsAssests-main/models/scared_cat/azuki_siam.webp",
+        "probability": 0.068163,
+        "weight": 68163,
+        "category": "E"
+      },
+      {
+        "name": "Precious Peach",
+        "short_name": "precious_peach",
+        "price": 259.0698,
+        "image_path": "TelegramGiftsAssests-main/models/precious_peach/airy_bright.webp",
+        "probability": 0.017543,
+        "weight": 17543,
+        "category": "F"
+      },
+      {
+        "name": "Durov’s Cap",
+        "short_name": "durovs_cap",
+        "price": 397.8,
+        "image_path": "TelegramGiftsAssests-main/models/durovs_cap/apple_slice.webp",
+        "probability": 0.005457,
+        "weight": 5457,
+        "category": "G"
+      },
+      {
+        "name": "Heart Locket",
+        "short_name": "heart_locket",
+        "price": 966.96,
+        "image_path": "TelegramGiftsAssests-main/models/heart_locket/acorn_hunter.webp",
+        "probability": 0.005457,
+        "weight": 5457,
+        "category": "G"
+      },
+      {
+        "name": "Plush Pepe",
+        "short_name": "plush_pepe",
+        "price": 5916.0,
+        "image_path": "TelegramGiftsAssests-main/models/plush_pepe/amalgam.webp",
+        "probability": 0.002098,
+        "weight": 2098,
+        "category": "H"
+      }
+    ]
+  },
+  {
+    "case_id": 12,
+    "price": 200,
+    "nft_count": 40,
+    "rtp": 0.899828715641,
+    "ev": 179.9657431282,
+    "hit_25": 0.845808,
+    "hit_50": 0.7384499999999999,
+    "hit_75": 0.43873,
+    "hit_100": 0.152661,
+    "hit_150": 0.052675,
+    "hit_200": 0.01881,
+    "hit_500": 0.006356,
+    "hit_1000": 0.006356,
+    "top_nft_chance": 0.006356,
+    "top_nft": {
+      "name": "Plush Pepe",
+      "short_name": "plush_pepe",
+      "price": 5916.0,
+      "image_path": "TelegramGiftsAssests-main/models/plush_pepe/amalgam.webp"
+    },
+    "nfts": [
+      {
+        "name": "Xmas Stocking",
+        "short_name": "xmas_stocking",
+        "price": 2.9555,
+        "image_path": "TelegramGiftsAssests-main/models/xmas_stocking/abandoned.webp",
+        "probability": 0.006704,
+        "weight": 6704,
+        "category": "A"
+      },
+      {
+        "name": "Winter Wreath",
+        "short_name": "winter_wreath",
+        "price": 3.0175,
+        "image_path": "TelegramGiftsAssests-main/models/winter_wreath/aquamarine.webp",
+        "probability": 0.006704,
+        "weight": 6704,
+        "category": "A"
+      },
+      {
+        "name": "Candy Cane",
+        "short_name": "candy_cane",
+        "price": 3.0192,
+        "image_path": "TelegramGiftsAssests-main/models/candy_cane/amber_glitter.webp",
+        "probability": 0.006704,
+        "weight": 6704,
+        "category": "A"
+      },
+      {
+        "name": "Lunar Snake",
+        "short_name": "lunar_snake",
+        "price": 3.0192,
+        "image_path": "TelegramGiftsAssests-main/models/lunar_snake/adhesive.webp",
+        "probability": 0.006704,
+        "weight": 6704,
+        "category": "A"
+      },
+      {
+        "name": "Snake Box",
+        "short_name": "snake_box",
+        "price": 3.0192,
+        "image_path": "TelegramGiftsAssests-main/models/snake_box/aquarium.webp",
+        "probability": 0.006704,
+        "weight": 6704,
+        "category": "A"
+      },
+      {
+        "name": "Vice Cream",
+        "short_name": "vice_cream",
+        "price": 3.0294,
+        "image_path": "TelegramGiftsAssests-main/models/vice_cream/bamboo_ice.webp",
+        "probability": 0.006704,
+        "weight": 6704,
+        "category": "A"
+      },
+      {
+        "name": "Chill Flame",
+        "short_name": "chill_flame",
+        "price": 3.0396,
+        "image_path": "TelegramGiftsAssests-main/models/chill_flame/baba_yaga.webp",
+        "probability": 0.006704,
+        "weight": 6704,
+        "category": "A"
+      },
+      {
+        "name": "Holiday Drink",
+        "short_name": "holiday_drink",
+        "price": 3.06,
+        "image_path": "TelegramGiftsAssests-main/models/holiday_drink/apple_mousse.webp",
+        "probability": 0.006704,
+        "weight": 6704,
+        "category": "A"
+      },
+      {
+        "name": "Ice Cream",
+        "short_name": "ice_cream",
+        "price": 3.06,
+        "image_path": "TelegramGiftsAssests-main/models/ice_cream/apple_dip.webp",
+        "probability": 0.006704,
+        "weight": 6704,
+        "category": "A"
+      },
+      {
+        "name": "Instant Ramen",
+        "short_name": "instant_ramen",
+        "price": 3.06,
+        "image_path": "TelegramGiftsAssests-main/models/instant_ramen/abduction.webp",
+        "probability": 0.006704,
+        "weight": 6704,
+        "category": "A"
+      },
+      {
+        "name": "Big Year",
+        "short_name": "big_year",
+        "price": 3.0906,
+        "image_path": "TelegramGiftsAssests-main/models/big_year/2048.webp",
+        "probability": 0.006704,
+        "weight": 6704,
+        "category": "A"
+      },
+      {
+        "name": "Lol Pop",
+        "short_name": "lol_pop",
+        "price": 3.0906,
+        "image_path": "TelegramGiftsAssests-main/models/lol_pop/andromeda.webp",
+        "probability": 0.006704,
+        "weight": 6704,
+        "category": "A"
+      },
+      {
+        "name": "Easter Egg",
+        "short_name": "easter_egg",
+        "price": 3.111,
+        "image_path": "TelegramGiftsAssests-main/models/easter_egg/3d_render.webp",
+        "probability": 0.006704,
+        "weight": 6704,
+        "category": "A"
+      },
+      {
+        "name": "Pet Snake",
+        "short_name": "pet_snake",
+        "price": 3.111,
+        "image_path": "TelegramGiftsAssests-main/models/pet_snake/albino.webp",
+        "probability": 0.006704,
+        "weight": 6704,
+        "category": "A"
+      },
+      {
+        "name": "Whip Cupcake",
+        "short_name": "whip_cupcake",
+        "price": 3.162,
+        "image_path": "TelegramGiftsAssests-main/models/whip_cupcake/alien_slime.webp",
+        "probability": 0.006704,
+        "weight": 6704,
+        "category": "A"
+      },
+      {
+        "name": "Pool Float",
+        "short_name": "pool_float",
+        "price": 3.1722,
+        "image_path": "TelegramGiftsAssests-main/models/pool_float/air_bunny.webp",
+        "probability": 0.006704,
+        "weight": 6704,
+        "category": "A"
+      },
+      {
+        "name": "Jester Hat",
+        "short_name": "jester_hat",
+        "price": 3.1926,
+        "image_path": "TelegramGiftsAssests-main/models/jester_hat/aquarium.webp",
+        "probability": 0.006704,
+        "weight": 6704,
+        "category": "A"
+      },
+      {
+        "name": "Tama Gadget",
+        "short_name": "tama_gadget",
+        "price": 3.1991,
+        "image_path": "TelegramGiftsAssests-main/models/tama_gadget/alien_attack.webp",
+        "probability": 0.006704,
+        "weight": 6704,
+        "category": "A"
+      },
+      {
+        "name": "Santa Hat",
+        "short_name": "santa_hat",
+        "price": 3.3252,
+        "image_path": "TelegramGiftsAssests-main/models/santa_hat/80s_tv.webp",
+        "probability": 0.006704,
+        "weight": 6704,
+        "category": "A"
+      },
+      {
+        "name": "Party Sparkler",
+        "short_name": "party_sparkler",
+        "price": 3.4068,
+        "image_path": "TelegramGiftsAssests-main/models/party_sparkler/4th_of_july.webp",
+        "probability": 0.006704,
+        "weight": 6704,
+        "category": "A"
+      },
+      {
+        "name": "Ginger Cookie",
+        "short_name": "ginger_cookie",
+        "price": 3.4884,
+        "image_path": "TelegramGiftsAssests-main/models/ginger_cookie/adam.webp",
+        "probability": 0.006704,
+        "weight": 6704,
+        "category": "A"
+      },
+      {
+        "name": "Hypno Lollipop",
+        "short_name": "hypno_lollipop",
+        "price": 3.519,
+        "image_path": "TelegramGiftsAssests-main/models/hypno_lollipop/amphibian.webp",
+        "probability": 0.006704,
+        "weight": 6704,
+        "category": "A"
+      },
+      {
+        "name": "Fresh Socks",
+        "short_name": "fresh_socks",
+        "price": 3.5292,
+        "image_path": "TelegramGiftsAssests-main/models/fresh_socks/adventure.webp",
+        "probability": 0.006704,
+        "weight": 6704,
+        "category": "A"
+      },
+      {
+        "name": "Artisan Brick",
+        "short_name": "artisan_brick",
+        "price": 51.51,
+        "image_path": "TelegramGiftsAssests-main/models/artisan_brick/art_nouveau.webp",
+        "probability": 0.017893,
+        "weight": 17893,
+        "category": "B"
+      },
+      {
+        "name": "Gem Signet",
+        "short_name": "gem_signet",
+        "price": 53.244,
+        "image_path": "TelegramGiftsAssests-main/models/gem_signet/amethyst.webp",
+        "probability": 0.017893,
+        "weight": 17893,
+        "category": "B"
+      },
+      {
+        "name": "Perfume Bottle",
+        "short_name": "perfume_bottle",
+        "price": 59.0274,
+        "image_path": "TelegramGiftsAssests-main/models/perfume_bottle/aurora_joy.webp",
+        "probability": 0.017893,
+        "weight": 17893,
+        "category": "B"
+      },
+      {
+        "name": "Ion Gem",
+        "short_name": "ion_gem",
+        "price": 61.0266,
+        "image_path": "TelegramGiftsAssests-main/models/ion_gem/amethyst.webp",
+        "probability": 0.017893,
+        "weight": 17893,
+        "category": "B"
+      },
+      {
+        "name": "Mini Oscar",
+        "short_name": "mini_oscar",
+        "price": 67.9728,
+        "image_path": "TelegramGiftsAssests-main/models/mini_oscar/action_film.webp",
+        "probability": 0.017893,
+        "weight": 17893,
+        "category": "B"
+      },
+      {
+        "name": "Westside Sign",
+        "short_name": "westside_sign",
+        "price": 82.7118,
+        "image_path": "TelegramGiftsAssests-main/models/westside_sign/all_in.webp",
+        "probability": 0.017893,
+        "weight": 17893,
+        "category": "B"
+      },
+      {
+        "name": "Nail Bracelet",
+        "short_name": "nail_bracelet",
+        "price": 104.448,
+        "image_path": "TelegramGiftsAssests-main/models/nail_bracelet/aqua_ring.webp",
+        "probability": 0.059944,
+        "weight": 59944,
+        "category": "C"
+      },
+      {
+        "name": "Loot Bag",
+        "short_name": "loot_bag",
+        "price": 108.1098,
+        "image_path": "TelegramGiftsAssests-main/models/loot_bag/academic.webp",
+        "probability": 0.059944,
+        "weight": 59944,
+        "category": "C"
+      },
+      {
+        "name": "Mighty Arm",
+        "short_name": "mighty_arm",
+        "price": 108.4872,
+        "image_path": "TelegramGiftsAssests-main/models/mighty_arm/best_muscles.webp",
+        "probability": 0.059944,
+        "weight": 59944,
+        "category": "C"
+      },
+      {
+        "name": "Astral Shard",
+        "short_name": "astral_shard",
+        "price": 121.2168,
+        "image_path": "TelegramGiftsAssests-main/models/astral_shard/amethyst.webp",
+        "probability": 0.059944,
+        "weight": 59944,
+        "category": "C"
+      },
+      {
+        "name": "Durov’s Glasses",
+        "short_name": "durovs_glasses",
+        "price": 127.8366,
+        "image_path": "TelegramGiftsAssests-main/models/durovs_glasses/cat_core.webp",
+        "probability": 0.059944,
+        "weight": 59944,
+        "category": "C"
+      },
+      {
+        "name": "Heroic Helmet",
+        "short_name": "heroic_helmet",
+        "price": 173.1348,
+        "image_path": "TelegramGiftsAssests-main/models/heroic_helmet/aegean_sea.webp",
+        "probability": 0.143226,
+        "weight": 143226,
+        "category": "D"
+      },
+      {
+        "name": "Scared Cat",
+        "short_name": "scared_cat",
+        "price": 173.4,
+        "image_path": "TelegramGiftsAssests-main/models/scared_cat/azuki_siam.webp",
+        "probability": 0.142843,
+        "weight": 142843,
+        "category": "D"
+      },
+      {
+        "name": "Precious Peach",
+        "short_name": "precious_peach",
+        "price": 259.0698,
+        "image_path": "TelegramGiftsAssests-main/models/precious_peach/airy_bright.webp",
+        "probability": 0.099986,
+        "weight": 99986,
+        "category": "E"
+      },
+      {
+        "name": "Durov’s Cap",
+        "short_name": "durovs_cap",
+        "price": 397.8,
+        "image_path": "TelegramGiftsAssests-main/models/durovs_cap/apple_slice.webp",
+        "probability": 0.033865,
+        "weight": 33865,
+        "category": "F"
+      },
+      {
+        "name": "Heart Locket",
+        "short_name": "heart_locket",
+        "price": 966.96,
+        "image_path": "TelegramGiftsAssests-main/models/heart_locket/acorn_hunter.webp",
+        "probability": 0.012454,
+        "weight": 12454,
+        "category": "G"
+      },
+      {
+        "name": "Plush Pepe",
+        "short_name": "plush_pepe",
+        "price": 5916.0,
+        "image_path": "TelegramGiftsAssests-main/models/plush_pepe/amalgam.webp",
+        "probability": 0.006356,
+        "weight": 6356,
+        "category": "H"
+      }
+    ]
+  }
+]
