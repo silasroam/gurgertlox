@@ -102,8 +102,13 @@
     gap: 6px;
     font-size: 18px;
     font-weight: 800;
-    color: #1683FF;
-    text-shadow: 0 0 12px rgba(22, 131, 255, 0.4);
+    color: #FFFFFF;
+    font-variant-numeric: tabular-nums;
+}
+
+.sell-price-star {
+    font-size: 15px;
+    line-height: 1;
 }
 
 .sell-confirm {

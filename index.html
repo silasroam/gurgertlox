@@ -440,19 +440,49 @@
                 </section>
             </div>
 
-            <!-- SCREEN: FREE REWARD -->
+            <!-- SCREEN: ИНВЕНТАРЬ (бывш. ФРИ НАГРАДА) -->
             <div class="screen hidden" data-screen="free">
-                <section class="free-section">
-                    <div class="free-card">
-                        <div class="free-case-preview">
-                            <div class="case-glow-effect"></div>
-                            <div class="free-case-placeholder"></div>
+                <section class="free-section inventory-screen">
+                    <!-- EMPTY INVENTORY STATE (centre content vert+horiz) -->
+                    <div class="inventory-empty-screen" id="inventoryEmptyState">
+                        <div class="inventory-empty-icon">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <path d="M6 7.5A2.5 2.5 0 0 1 8.5 5h7A2.5 2.5 0 0 1 18 7.5v.75" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M8 7.25v-.5A1.75 1.75 0 0 1 9.75 5h4.5A1.75 1.75 0 0 1 16 6.75v.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                                <rect x="4.5" y="8.25" width="15" height="11.5" rx="3" stroke="currentColor" stroke-width="1.4"/>
+                                <path d="M4.5 11h15" stroke="currentColor" stroke-width="1.4"/>
+                                <path d="M9.25 11v1.75a2.75 2.75 0 0 0 5.5 0V11" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
                         </div>
-
-                        <h2 class="free-title">ЕЖЕДНЕВНЫЙ КЕЙС</h2>
-
-                        <button class="free-cta" id="freeClaimBtn">ОТКРЫТЬ КЕЙС</button>
+                        <h3 class="inventory-empty-title">Ваш инвентарь пуст</h3>
+                        <p class="inventory-empty-subtitle">Откройте кейс, чтобы получить предметы</p>
+                        <button class="support-btn">Поддержка</button>
                     </div>
+
+                    <!-- Голова инвентаря: монолитная стеклянная плашка (скрыта, пока пусто) -->
+                    <div class="inv-glass hidden" id="inventoryHead">
+                        <div class="inv-glass-text">
+                            <span class="inv-glass-title">🎒 Инвентарь</span>
+                            <span class="inv-glass-stats" id="invGlassStats">0 предметов • 0 ⭐</span>
+                        </div>
+                        <button class="inv-glass-sell-btn" id="invSellAllBtn">Продать всё за <span id="invSellAllSum">0 ⭐</span></button>
+                    </div>
+
+                    <!-- Инвентарь пользователя: сетка предметов (скрыта, пока пусто) -->
+                    <div class="inventory-user-grid hidden" id="inventoryUserGrid"></div>
+
+                    <footer class="inv-footer" id="invFooter">
+                        <div class="inv-footer-links">
+                            <a href="#" class="inv-footer-link">Terms of Service</a>
+                            <span class="inv-footer-sep">·</span>
+                            <a href="#" class="inv-footer-link">Privacy Policy</a>
+                        </div>
+                        <div class="inv-footer-address">
+                            AI GAMING SOLUTIONS LTD. LLC. 4829-23<br>
+                            BELIZE CITY, 45 BARRACK ROAD,<br>
+                            SECOND FLOOR, SUITE 2D, BELIZE
+                        </div>
+                    </footer>
                 </section>
             </div>
 
@@ -460,177 +490,39 @@
             <div class="screen hidden" data-screen="profile">
                 <section class="profile-section">
                     <div class="profile-card">
-                        <div class="profile-top">
-                            <div class="tg-avatar profile-avatar">S</div>
-                            <div class="profile-meta">
-                                <span class="profile-username">@silasroam</span>
-                                <span class="profile-tgid">Telegram ID: <b>123456789</b></span>
-                            </div>
-                        </div>
-                        <div class="profile-balance-row">
-                            <span class="profile-balance-label">CASINO BALANCE</span>
-                            <div class="profile-balance-amount">
-                                <span class="tg-star-icon">⭐</span>
-                                <span id="profileBalanceAmount">15 680</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- INVENTORY -->
-                    <div class="inventory-section">
-                        <div class="inventory-head">
-                            <h3 class="inventory-title">ИНВЕНТАРЬ</h3>
-                            <span class="inventory-count">2 предмета</span>
-                        </div>
-
-                        <div class="inventory-grid">
-                            <!-- NFT BEAR -->
-                            <div class="inventory-card">
-                                <div class="inventory-visual">
-                                    <div class="nft-badge">NFT</div>
-                                    <div class="nft-art nft-bear">🐻</div>
-                                </div>
-                                <div class="inventory-info">
-                                    <span class="inventory-name">NFT Bear</span>
-                                    <span class="inventory-price">
-                                        <svg width="12" height="12" viewBox="0 0 11 11" fill="none">
-                                            <path d="M5.5 0.5C8 0.5 10.5 2.5 10.5 5.5C10.5 8.5 8 10.5 5.5 10.5C3 10.5 0.5 8.5 0.5 5.5C0.5 2.5 3 0.5 5.5 0.5Z" stroke="#1683FF" stroke-width="1.2"/>
-                                            <path d="M5.5 2.5V8.5M3.5 4.5H6.5C7.5 4.5 7.5 6.5 6.5 6.5H4.5C3.5 6.5 3.5 8.5 4.5 8.5H7.5" stroke="#1683FF" stroke-width="1.2" stroke-linecap="round"/>
-                                        </svg>
-                                        2 500
-                                    </span>
-                                </div>
-                                <div class="inventory-actions">
-                                    <button class="inv-btn inv-sell">Sell</button>
-                                    <button class="inv-btn inv-withdraw">Withdraw</button>
-                                </div>
-                            </div>
-
-                            <!-- NFT CAKE -->
-                            <div class="inventory-card">
-                                <div class="inventory-visual">
-                                    <div class="nft-badge">NFT</div>
-                                    <div class="nft-art nft-cake">🎂</div>
-                                </div>
-                                <div class="inventory-info">
-                                    <span class="inventory-name">NFT Cake</span>
-                                    <span class="inventory-price">
-                                        <svg width="12" height="12" viewBox="0 0 11 11" fill="none">
-                                            <path d="M5.5 0.5C8 0.5 10.5 2.5 10.5 5.5C10.5 8.5 8 10.5 5.5 10.5C3 10.5 0.5 8.5 0.5 5.5C0.5 2.5 3 0.5 5.5 0.5Z" stroke="#1683FF" stroke-width="1.2"/>
-                                            <path d="M5.5 2.5V8.5M3.5 4.5H6.5C7.5 4.5 7.5 6.5 6.5 6.5H4.5C3.5 6.5 3.5 8.5 4.5 8.5H7.5" stroke="#1683FF" stroke-width="1.2" stroke-linecap="round"/>
-                                        </svg>
-                                        1 200
-                                    </span>
-                                </div>
-                                <div class="inventory-actions">
-                                    <button class="inv-btn inv-sell">Sell</button>
-                                    <button class="inv-btn inv-withdraw">Withdraw</button>
-                                </div>
+                        <div class="profile-hero">
+                            <div class="tg-avatar profile-avatar has-letter" id="profileAvatar"></div>
+                            <span class="profile-username" id="profileUsername">Пользователь</span>
+                            <div class="profile-id-pill">
+                                <span class="profile-id-label">ID:</span>
+                                <span class="profile-id-value" id="profileIdValue">—</span>
+                                <button class="profile-id-copy" id="profileIdCopy" aria-label="Скопировать ID">
+                                    <svg viewBox="0 0 24 24" fill="none">
+                                        <rect x="9" y="9" width="11" height="11" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+                                        <path d="M5 15H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h7a1 1 0 0 1 1 1v1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                                    </svg>
+                                </button>
                             </div>
                         </div>
                     </div>
 
-                    <!-- HISTORY -->
-                    <div class="history-section">
-                        <div class="history-head">
-                            <h3 class="history-title">ИСТОРИЯ</h3>
+                    <!-- BEST DROP -->
+                    <div class="best-drop-block">
+                        <div class="best-drop-icon">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <path d="M7 4h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                <path d="M8.5 4v1.7c0 1.2.5 2.3 1.4 3a6.5 6.5 0 0 1-3.5 5.8A6.7 6.7 0 0 1 9 8.6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M15.5 4v1.7c0 1.2-.5 2.3-1.4 3a6.5 6.5 0 0 0 3.5 5.8A6.7 6.7 0 0 0 15 8.6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M12 15v0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                <path d="M12 7.8v2.4M10.9 9h2.2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                <path d="M9 17.5h6M10 19.5h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                            </svg>
                         </div>
-
-                        <div class="history-filters">
-                            <button class="history-filter active" data-filter="all">Все</button>
-                            <button class="history-filter" data-filter="case">Кейсы</button>
-                            <button class="history-filter" data-filter="game">Игры</button>
-                            <button class="history-filter" data-filter="sell">Продажи</button>
-                            <button class="history-filter" data-filter="deposit">Депозиты</button>
-                            <button class="history-filter" data-filter="withdraw">Выводы</button>
-                        </div>
-
-                        <div class="history-list">
-                            <div class="history-item" data-type="case">
-                                <div class="history-icon">🎁</div>
-                                <div class="history-info">
-                                    <span class="history-name">Открытие кейса «БОГ»</span>
-                                    <span class="history-date">21.08.2026, 19:12</span>
-                                </div>
-                                <div class="history-status">
-                                    <span class="history-amount">+₴ 500</span>
-                                    <span class="history-badge badge-success">Успех</span>
-                                </div>
-                            </div>
-
-                            <div class="history-item" data-type="game">
-                                <div class="history-icon">🎮</div>
-                                <div class="history-info">
-                                    <span class="history-name">Игра «Double»</span>
-                                    <span class="history-date">21.08.2026, 18:45</span>
-                                </div>
-                                <div class="history-status">
-                                    <span class="history-amount">+₴ 120</span>
-                                    <span class="history-badge badge-success">Выигрыш</span>
-                                </div>
-                            </div>
-
-                            <div class="history-item" data-type="sell">
-                                <div class="history-icon">💰</div>
-                                <div class="history-info">
-                                    <span class="history-name">Продажа NFT Bear</span>
-                                    <span class="history-date">21.08.2026, 17:30</span>
-                                </div>
-                                <div class="history-status">
-                                    <span class="history-amount">+₴ 15</span>
-                                    <span class="history-badge badge-success">Продано</span>
-                                </div>
-                            </div>
-
-                            <div class="history-item" data-type="deposit">
-                                <div class="history-icon">📥</div>
-                                <div class="history-info">
-                                    <span class="history-name">Депозит</span>
-                                    <span class="history-date">20.08.2026, 14:02</span>
-                                </div>
-                                <div class="history-status">
-                                    <span class="history-amount">+₴ 1 000</span>
-                                    <span class="history-badge badge-success">Зачислен</span>
-                                </div>
-                            </div>
-
-                            <div class="history-item" data-type="withdraw">
-                                <div class="history-icon">📤</div>
-                                <div class="history-info">
-                                    <span class="history-name">Вывод средств</span>
-                                    <span class="history-date">19.08.2026, 10:20</span>
-                                </div>
-                                <div class="history-status">
-                                    <span class="history-amount">-₴ 250</span>
-                                    <span class="history-badge badge-pending">В обработке</span>
-                                </div>
-                            </div>
-
-                            <div class="history-item" data-type="case">
-                                <div class="history-icon">🎁</div>
-                                <div class="history-info">
-                                    <span class="history-name">Открытие кейса «КРИПТА»</span>
-                                    <span class="history-date">18.08.2026, 22:05</span>
-                                </div>
-                                <div class="history-status">
-                                    <span class="history-amount">+₴ 40</span>
-                                    <span class="history-badge badge-success">Успех</span>
-                                </div>
-                            </div>
-
-                            <div class="history-item" data-type="game">
-                                <div class="history-icon">🎮</div>
-                                <div class="history-info">
-                                    <span class="history-name">Игра «x50»</span>
-                                    <span class="history-date">18.08.2026, 21:40</span>
-                                </div>
-                                <div class="history-status">
-                                    <span class="history-amount">-₴ 50</span>
-                                    <span class="history-badge badge-fail">Проигрыш</span>
-                                </div>
-                            </div>
-                        </div>
+                        <span class="best-drop-label">Мой лучший дроп</span>
                     </div>
+
+                    <!-- PROFILE ITEMS GRID (2x2) — рендерится из реальной базы -->
+                    <div class="profile-grid" id="profileItemGrid"></div>
                 </section>
             </div>
         </main>
@@ -653,7 +545,7 @@
                     <rect x="3" y="7" width="18" height="14" rx="3" stroke="currentColor" stroke-width="2"/>
                     <path d="M12 7V21M3 12H21M8 7C8 4.5 10 3 12 3C14 3 16 4.5 16 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                 </svg>
-                <span>Фри награда</span>
+                <span>Инвентарь</span>
             </button>
             <button class="nav-item">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
@@ -748,23 +640,105 @@
                 <div class="modal-body">
                     <h3 class="modal-title">ПРОДАЖА</h3>
 
-                    <div class="sell-visual" id="sellVisual">🐻</div>
+                    <div class="sell-visual" id="sellVisual">—</div>
 
-                    <div class="sell-item-name" id="sellItemName">NFT Bear</div>
+                    <div class="sell-item-name" id="sellItemName">Предмет</div>
 
                     <div class="sell-price-row">
                         <span class="sell-price-label">Цена продажи</span>
                         <div class="sell-price-value" id="sellPriceValue">
-                            <svg width="16" height="16" viewBox="0 0 11 11" fill="none">
-                                <path d="M5.5 0.5C8 0.5 10.5 2.5 10.5 5.5C10.5 8.5 8 10.5 5.5 10.5C3 10.5 0.5 8.5 0.5 5.5C0.5 2.5 3 0.5 5.5 0.5Z" stroke="#1683FF" stroke-width="1.2"/>
-                                <path d="M5.5 2.5V8.5M3.5 4.5H6.5C7.5 4.5 7.5 6.5 6.5 6.5H4.5C3.5 6.5 3.5 8.5 4.5 8.5H7.5" stroke="#1683FF" stroke-width="1.2" stroke-linecap="round"/>
-                            </svg>
-                            <span id="sellPriceAmount">15</span>
+                            <span class="sell-price-star">⭐</span>
+                            <span id="sellPriceAmount">0</span>
                         </div>
                     </div>
 
                     <button class="modal-open sell-confirm" id="sellConfirm">ПОДТВЕРДИТЬ ПРОДАЖУ</button>
                 </div>
+            </div>
+        </div>
+
+        <!-- ============================================================
+             FULLSCREEN PAGE: ПРОДАЖА ПРЕДМЕТОВ (Web3)
+             ============================================================ -->
+        <div class="w3-overlay" id="sellPage" hidden>
+            <div class="w3-page">
+                <!-- Шапка страницы: назад + заголовок -->
+                <div class="w3-topbar">
+                    <button class="w3-back" id="sellPageBack" aria-label="Назад">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                            <path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <span class="w3-topbar-title">Продажа предметов</span>
+                    <span class="w3-spacer"></span>
+                </div>
+
+                <h2 class="w3-page-title">Выбор предметов для продажи</h2>
+                <p class="w3-page-sub">Нажимай «—», чтобы убрать предмет из продажи</p>
+
+                <!-- Список предметов для выбора продажи -->
+                <div class="w3-sell-grid" id="sellPageGrid"></div>
+
+                <!-- Фиксированная кнопка подтверждения -->
+                <div class="w3-sticky-bottom">
+                    <button class="w3-btn-accent" id="sellAllConfirm">
+                        Подтвердить продажу на <span id="sellConfirmSum">0 ⭐</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================
+             FULLSCREEN PAGE: ВЫВОД ПРЕДМЕТА (Web3)
+             ============================================================ -->
+        <div class="w3-overlay" id="withdrawPage" hidden>
+            <div class="w3-page">
+                <!-- Шапка страницы: назад + заголовок -->
+                <div class="w3-topbar">
+                    <button class="w3-back" id="withdrawPageBack" aria-label="Назад">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                            <path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <span class="w3-topbar-title">Вывод предмета</span>
+                    <span class="w3-spacer"></span>
+                </div>
+
+                <!-- Акцентный блок с карточкой выводимого предмета -->
+                <div class="w3-item-card" id="withdrawItemCard">
+                    <div class="w3-item-visual" id="withdrawItemVisual"></div>
+                    <div class="w3-item-info">
+                        <span class="w3-item-name" id="withdrawItemName">—</span>
+                        <span class="w3-item-price" id="withdrawItemPrice">0 ⭐</span>
+                    </div>
+                </div>
+
+                <!-- Форма ввода -->
+                <form class="w3-form" id="withdrawForm">
+                    <label class="w3-field-label" for="wdUsername">Твой Telegram Username</label>
+                    <input type="text" class="w3-input" id="wdUsername" placeholder="@username" autocomplete="off" maxlength="33">
+                    <span class="w3-error" id="wdUsernameError" hidden></span>
+
+                    <label class="w3-field-label" for="wdComment">
+                        Дополнительная подпись / комментарий
+                        <span class="w3-optional">необязательно</span>
+                    </label>
+                    <textarea class="w3-input w3-textarea" id="wdComment" placeholder="Комментарий к выводу…" rows="3"></textarea>
+                </form>
+
+                <!-- Инфо-карточки -->
+                <div class="w3-info-list">
+                    <div class="w3-info-row">
+                        <span class="w3-info-icon">⏱️</span>
+                        <span class="w3-info-text">Вывод осуществляется в среднем до 72 часов.</span>
+                    </div>
+                    <div class="w3-info-row">
+                        <span class="w3-info-icon">⚠️</span>
+                        <span class="w3-info-text">Если данный предмет временно недоступен или его рыночная цена сильно изменилась, вам будет отправлен предмет сопоставимой стоимости.</span>
+                    </div>
+                </div>
+
+                <button class="w3-btn-action" id="withdrawSubmit" type="button">Запросить вывод</button>
             </div>
         </div>
 
@@ -902,6 +876,9 @@
                         <div class="roulette-arrow-bottom">▲</div>
                     </div>
 
+                    <!-- Inline win result: разворачивается под рулеткой и сдвигает кнопки вниз -->
+                    <div class="win-result-container" id="winResultContainer" hidden></div>
+
                     <!-- Controls -->
                     <div class="case-controls">
                         <button class="btn-open-main" id="btn-open-main">
@@ -1029,6 +1006,72 @@
             }
 
             console.log('Case cards rendered');
+
+            // ---- Нормировка визуальной ПЛОЩАДИ коробок кейсов ----
+            // Картинки кейсов имеют разный размер/пропорции. Метод — как у Poker-эталона:
+            // площадь зависит от масштаба квадратично, поэтому приводим ВСЕ кейсы к одной
+            // display-площади через scale = √(target_area / current_area).
+            // Поскольку слот (object-fit: contain) скейлит каждую картинку по-своему,
+            // считать площадь нужно от фактически отображаемого размера в браузере, а не от
+            // raw. База — PokerCase (его отображаемая площадь), остальные подгоняются под неё.
+            const CASE_SCALE_DROP = {}; // зарезервировано под ручные правки (см. ниже)
+
+            // Персональные множители визуального размера самих кейсов (не карточек).
+            // Увеличивают только картинку сундука внутри фиксированного слота карточки.
+            // daycase ×1.3; sumercase/newyearcase/toxiccase/oceancase ×1.235 (были ×1.3, −5%);
+            // forestcase/pashacase/halouincase/lovecase ×1.15; gemcase ×1.1.
+            const SCALE_OVERRIDES = {
+                case_799: 1.3,    // daycase    +30%
+                case_399: 1.15,    // pashacase  +15%
+                case_1249: 1.15,   // halouincase+15%
+                case_1999: 1.15,   // lovecase   +15%
+                case_4999: 1.15,   // forestcase +15%
+                case_2999: 1.10,   // gemcase    +10%
+                case_19: 1.235,    // sumercase  +30%→−5% (1.3×0.95)
+                case_49: 1.235,    // newyearcase+30%→−5%
+                case_99: 1.235,     // toxiccase  +30%→−5%
+                case_199: 1.235,    // oceancase  +30%→−5%
+            };
+
+            function applyNormalizedScale(root) {
+                const imgs = Array.from((root || document).querySelectorAll('.main-page-case-img'))
+                    .filter((img) => img.complete && img.naturalWidth);
+                if (!imgs.length) return;
+                // Считаем текущую display-площадь каждой картинки внутри слота (contain)
+                const areas = imgs.map((img) => {
+                    const holder = img.closest('.case-image-holder');
+                    if (!holder) return 0;
+                    const slot = holder.getBoundingClientRect();
+                    if (!slot.width || !slot.height) return 0;
+                    const scaleF = Math.min(slot.width / img.naturalWidth, slot.height / img.naturalHeight);
+                    return (img.naturalWidth * scaleF) * (img.naturalHeight * scaleF);
+                });
+                // Выбираем целевой (эталон — PokerCase, если на странице есть; иначе медиана)
+                let targetIdx = imgs.findIndex((img) => {
+                    const src = (img.getAttribute('src') || '').toLowerCase();
+                    return src.indexOf('pokercase') !== -1;
+                });
+                if (targetIdx < 0) {
+                    const sorted = areas.slice().sort((a, b) => a - b);
+                    targetIdx = areas.indexOf(sorted[Math.floor(sorted.length / 2)]);
+                }
+                const target = areas[targetIdx];
+                if (!target) return;
+                imgs.forEach((img, i) => {
+                    if (!areas[i]) return;
+                    const k = Math.sqrt(target / areas[i]);
+                    // Применяем персональный множитель для конкретных кейсов (напр. daycase ×1.3)
+                    const card = img.closest('.case-card');
+                    const mult = (card && SCALE_OVERRIDES[card.dataset.case]) || 1;
+                    img.style.transform = 'scale(' + (k * mult) + ')';
+                    img.style.transformOrigin = 'center';
+                });
+            }
+            applyNormalizedScale();
+
+            // Пересчёт при изменении размера окна (поворот экрана, ресайз) — после загрузки картинок
+            window.addEventListener('load', () => applyNormalizedScale());
+            window.addEventListener('resize', () => setTimeout(applyNormalizedScale, 60));
         }
 
         window.dispatchEvent(new Event('gifts-ready'));

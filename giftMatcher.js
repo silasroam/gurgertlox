@@ -33,4 +33,6 @@ export function findClosestGiftByPrice(targetStars, opts = {}) {
 if (typeof window !== 'undefined') {
     window.findClosestGiftByPrice = findClosestGiftByPrice;
     window.GIFTS_DB = DB;
+    // Сообщаем классическим скриптам, что база подарков готова.
+    window.dispatchEvent(new Event('gifts-db-ready'));
 }

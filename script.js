@@ -56,6 +56,16 @@
         // Точка зацепа: при каждом переходе между экранами (вход в кейс,
         // возврат «Назад»/«Закрыть», нижняя навигация) — показываем самый верх.
         scrollToTop();
+
+        // Инвентарь: перерисовываем экран (пустой рюкзак или сетка предметов).
+        if (name === 'free') {
+            renderInventory();
+        }
+        // Профиль: всегда перерисовываем реальные данные (юзер и ТОП-6 дропов).
+        if (name === 'profile') {
+            applyProfileUserData();
+            updateBestDrops();
+        }
     }
 
     /* ---------- Header Avatar (Telegram profile) ---------- */
@@ -90,9 +100,45 @@
         };
 
         // Обновляем аватарку в секции профиля
-        const profileAvatar = document.querySelector('.tg-avatar.profile-avatar');
-        if (profileAvatar) {
-            profileAvatar.textContent = firstLetter;
+        applyProfileUserData();
+    }
+
+    /* ---------- Profile: real Telegram user data (no hardcode) ---------- */
+    function applyProfileUserData() {
+        const user = tg?.initDataUnsafe?.user;
+        const avatarEl = document.getElementById('profileAvatar');
+        const nameEl = document.getElementById('profileUsername');
+        const idEl = document.getElementById('profileIdValue');
+
+        // Никнейм / имя: username → first_name → 'Пользователь'
+        if (nameEl) {
+            nameEl.textContent = user?.username
+                ? '@' + user.username
+                : (user?.first_name || 'Пользователь');
+        }
+
+        // Telegram ID — динамически
+        if (idEl) {
+            idEl.textContent = user?.id != null ? String(user.id) : '—';
+        }
+
+        // Аватарка: если есть photo_url — круг с фото, иначе круглая заглушка с буквой
+        if (avatarEl) {
+            const letter = (
+                user?.first_name
+                    ? user.first_name[0]
+                    : (user?.username ? user.username[0] : 'X')
+            ).toUpperCase();
+
+            if (user && user.photo_url) {
+                avatarEl.innerHTML = `<img src="${user.photo_url}" alt="${letter}" onerror="this.onerror=null;this.parentNode.innerHTML='${letter}';this.parentNode.classList.remove('has-photo');">`;
+                avatarEl.classList.add('has-photo');
+                avatarEl.classList.remove('has-letter');
+            } else {
+                avatarEl.textContent = letter;
+                avatarEl.classList.add('has-letter');
+                avatarEl.classList.remove('has-photo');
+            }
         }
     }
 
@@ -107,6 +153,40 @@
     }
 
     setupHeaderAvatar();
+
+    // Первичная отрисовка инвентаря и ТОП-6 дропов на реальных данных.
+    try { applyProfileUserData(); renderInventory(); updateBestDrops(); } catch (e) {}
+
+    // Когда модуль подарков (giftMatcher.js) догрузится асинхронно — перерисовываем.
+    window.addEventListener('gifts-db-ready', () => {
+        try { renderInventory(); updateBestDrops(); } catch (e) {}
+    });
+
+    /* ---------- Profile ID: fill from TG + copy to clipboard ---------- */
+    const profileIdValueEl = document.getElementById('profileIdValue');
+    const profileIdCopyBtn = document.getElementById('profileIdCopy');
+
+    if (profileIdValueEl) {
+        const tgUserId = tg?.initDataUnsafe?.user?.id;
+        if (tgUserId) profileIdValueEl.textContent = String(tgUserId);
+    }
+
+    if (profileIdCopyBtn) {
+        profileIdCopyBtn.addEventListener('click', () => {
+            const txt = profileIdValueEl ? profileIdValueEl.textContent.trim() : '';
+            if (!txt) return;
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(txt);
+            } else {
+                const ta = document.createElement('textarea');
+                ta.value = txt;
+                document.body.appendChild(ta);
+                ta.select();
+                try { document.execCommand('copy'); } catch (e) {}
+                document.body.removeChild(ta);
+            }
+        });
+    }
 
     /* ============ CURRENCY SYSTEM (TON ⇄ Stars, 1 TON = 80 XTR) ============ */
     // БАЗОВАЯ валюта проекта — TON: цены в giftsData.js (напр. 61.90) — это TON.
@@ -230,7 +310,7 @@
             } else {
                 const label = item.querySelector('span').textContent;
                 if (label === 'Главная') showScreen('home');
-                else if (label === 'Фри награда') showScreen('free');
+                else if (label === 'Инвентарь') showScreen('free');
                 else if (label === 'Профиль') showScreen('profile');
             }
         });
@@ -580,55 +660,10 @@
         if (!crashRunning) startCrash();
     });
 
-    /* ============ FREE REWARD TIMER ============ */
-    const FREE_DURATION = 24 * 60 * 60; // 24 часа в секундах
-    const freeClaimBtn = document.getElementById('freeClaimBtn');
-
-    // Сохраняем время последнего получения в localStorage
-    const FREE_KEY = 'casino_free_reward_time';
-    let freeRemaining = 0;
-
-    const lastClaim = parseInt(localStorage.getItem(FREE_KEY) || '0', 10);
-    if (lastClaim) {
-        const elapsed = Math.floor((Date.now() - lastClaim) / 1000);
-        freeRemaining = Math.max(0, FREE_DURATION - elapsed);
-    }
-
-    function pad(n) {
-        return String(n).padStart(2, '0');
-    }
-
-    function updateFreeTimer() {
-        if (freeRemaining <= 0) {
-            // Таймер завершён или не запускался - кнопка активна
-            freeClaimBtn.disabled = false;
-            freeClaimBtn.textContent = 'ОТКРЫТЬ КЕЙС';
-            return;
-        }
-
-        // Таймер идёт - кнопка заблокирована с отображением времени
-        const h = Math.floor(freeRemaining / 3600);
-        const m = Math.floor((freeRemaining % 3600) / 60);
-        const s = freeRemaining % 60;
-
-        freeClaimBtn.disabled = true;
-        freeClaimBtn.textContent = `ДОСТУПНО ЧЕРЕЗ ${pad(h)}:${pad(m)}:${pad(s)}`;
-
-        freeRemaining--;
-    }
-
-    // Забираем Free Case
-    freeClaimBtn.addEventListener('click', () => {
-        if (freeRemaining > 0) return;
-
-        localStorage.setItem(FREE_KEY, String(Date.now()));
-        freeRemaining = FREE_DURATION;
-        freeClaimBtn.disabled = true;
-        updateFreeTimer();
-    });
-
-    updateFreeTimer();
-    setInterval(updateFreeTimer, 1000);
+    /* ============ ИНВЕНТАРЬ (бывш. FREE REWARD TIMER) ============ */
+    // Раздел «Фри награда» удалён по ТЗ (кнопка freeClaimBtn/<free-card>), поэтому
+    // таймер фри-кейса и логика кулдауна убраны. Экран data-screen="free"
+    // теперь именуется «Инвентарь» и рендерится из script.js при необходимости.
 
     /* ============ CASE MODAL ============ */
     const modal = document.getElementById('caseModal');
@@ -1516,122 +1551,427 @@
         renderBalance();
     }
 
-    function addItemToInventory(item) {
-        const grid = document.querySelector('.inventory-grid');
+    /* ============================================================
+       ИНВЕНТАРЬ — данные из реальной базы (window.GIFTS_DB) + персистентность
+       ============================================================ */
+
+    // Ключ хранилища, привязанный к пользователю.
+    const invUserId = (tg?.initDataUnsafe?.user?.id != null)
+        ? String(tg.initDataUnsafe.user.id)
+        : 'anon';
+    const INVENTORY_STORE_KEY = 'casino_owned_gifts_' + invUserId;
+
+    // Читает инвентарь пользователя из localStorage (массив выигранных предметов).
+    function getInventory() {
+        try {
+            const raw = localStorage.getItem(INVENTORY_STORE_KEY);
+            const arr = raw ? JSON.parse(raw) : [];
+            return Array.isArray(arr) ? arr : [];
+        } catch (e) {
+            return [];
+        }
+    }
+
+    // Сохраняет инвентарь пользователя.
+    function saveInventory(list) {
+        try {
+            localStorage.setItem(INVENTORY_STORE_KEY, JSON.stringify(list));
+        } catch (e) { /* ignore */ }
+    }
+
+    /* ============================================================
+       ИСТОРИЯ ЛУЧШИХ ДРОПОВ (All-Time Best Drops) — независимый массив
+       Фиксируется навсегда: продажа/вывод из инвентаря НЕ меняют его.
+       Хранит до 6 самых дорогих выбитых предметов за всё время.
+       ============================================================ */
+    const BEST_DROPS_STORE_KEY = 'casino_best_drops_' + invUserId;
+
+    // Читает историю лучших дропов из localStorage.
+    function getBestDropsHistory() {
+        try {
+            const raw = localStorage.getItem(BEST_DROPS_STORE_KEY);
+            const arr = raw ? JSON.parse(raw) : [];
+            return Array.isArray(arr) ? arr : [];
+        } catch (e) {
+            return [];
+        }
+    }
+
+    // Сохраняет историю лучших дропов.
+    function saveBestDropsHistory(list) {
+        try {
+            localStorage.setItem(BEST_DROPS_STORE_KEY, JSON.stringify(list));
+        } catch (e) { /* ignore */ }
+    }
+
+    /* ============================================================
+       PENDING WITH DRAWS — предметы в процессе вывода (отдельная структура)
+       userInventory ↔ pendingWithdraws ↔ bestDropsHistory независимы.
+       При выводе предмет покидает userInventory и уходит в pendingWithdraws.
+       ============================================================ */
+    const PENDING_STORE_KEY = 'casino_pending_' + invUserId;
+
+    function getPendingWithdraws() {
+        try {
+            const raw = localStorage.getItem(PENDING_STORE_KEY);
+            const arr = raw ? JSON.parse(raw) : [];
+            return Array.isArray(arr) ? arr : [];
+        } catch (e) {
+            return [];
+        }
+    }
+
+    function savePendingWithdraws(list) {
+        try {
+            localStorage.setItem(PENDING_STORE_KEY, JSON.stringify(list));
+        } catch (e) { /* ignore */ }
+    }
+
+    // Переносит «застрявшие» pending-предметы из старой схемы (status внутри
+    // userInventory) в отдельный массив pendingWithdraws — разовая миграция.
+    function migratePendingToStore() {
+        let raw = getInventory();
+        if (!raw.some((g) => g.status === 'pending_withdraw')) return;
+        const pending = [];
+        const rest = [];
+        raw.forEach((g) => {
+            if (g.status === 'pending_withdraw') pending.push(g);
+            else rest.push(g);
+        });
+        saveInventory(rest);
+        const existing = getPendingWithdraws();
+        savePendingWithdraws(existing.concat(pending));
+    }
+
+    // Полный список: текущий инвентарь + предметы на выводе (для рендера).
+    function getAllItems() {
+        return getInventory().concat(getPendingWithdraws());
+    }
+
+    // Единый хелпер получения ID предмета из любого raw-объекта.
+    function itemId(g) {
+        return g && (g.id || g.slug || String(g.name || 'gift').toLowerCase().replace(/\s+/g, '_'));
+    }
+
+    // Обновляет историю: если новый выбитый предмет попадает в ТОП-6 по цене.
+    function checkAndAddBestDrop(newItem) {
+        const it = enrichGift(newItem);
+        if (!it || !it.price) return;
+
+        const history = getBestDropsHistory();
+        let list = history.map(enrichGift);
+
+        // 1. Если меньше 6 — просто добавляем.
+        if (list.length < 6) {
+            list.push(it);
+        } else {
+            // 2. Ищем самый дешёвый из ТОП-6.
+            let minIdx = 0;
+            for (let i = 1; i < list.length; i++) {
+                if ((list[i].price || 0) < (list[minIdx].price || 0)) minIdx = i;
+            }
+            // 3. Если новый строго дороже самого дешёвого — заменяем.
+            if (it.price > (list[minIdx].price || 0)) {
+                list.splice(minIdx, 1);
+                list.push(it);
+            }
+        }
+
+        // 4. Сортировка по убыванию цены и сохранение.
+        list.sort((a, b) => b.price - a.price);
+        saveBestDropsHistory(list);
+        updateBestDrops();
+    }
+
+    // Рарность по цене в Stars (XTR) — как в остальной логике проекта.
+    function rarityForStars(stars) {
+        if (stars < 400) return 'common';
+        if (stars < 1600) return 'rare';
+        if (stars < 4800) return 'epic';
+        if (stars < 12800) return 'legendary';
+        return 'mythic';
+    }
+
+    // Класс-модификатор для карточек (фон по редкости).
+    function rarityClass(rar) {
+        return 'rarity-' + (rar || 'common');
+    }
+
+    // Реальные данные предмета из базы GIFTS_DB (или из уже сохранённого выигрыша).
+    function enrichGift(g) {
+        const priceStars = Number(g.priceInStars != null ? g.priceInStars : (g.price != null ? g.price : g.value)) || 0;
+        const stars = Math.round(priceStars);
+        const rarity = g.rarity || rarityForStars(stars);
+        return {
+            id: g.id || g.slug || (g.name || 'gift').toLowerCase().replace(/\s+/g, '_'),
+            name: g.name || 'Gift',
+            price: stars,
+            image: g.image || g.imagePath || '',
+            rarity,
+            type: g.type || 'gift',
+            wonAt: g.wonAt || Date.now(),
+        };
+    }
+
+    // Формат цены: `⭐ 1 234`.
+    function formatStars(stars) {
+        return (Number(stars) || 0).toLocaleString('ru-RU', { maximumFractionDigits: 0 });
+    }
+
+    // Человеческое название редкости (подтип предмета).
+    function rarityLabel(rar) {
+        return { common: 'Common', rare: 'Rare', epic: 'Epic', legendary: 'Legendary', mythic: 'Mythic' }[rar] || 'Common';
+    }
+
+    // Карточка предмета для сетки профиля («Мой лучший дроп»).
+    function profileItemCard(g) {
+        const it = enrichGift(g);
+        const img = it.image
+            ? `<img src="${safeImgSrc(it.image)}" alt="${it.name}" loading="lazy">`
+            : `<div class="profile-item-monogram">${(it.name || '?').slice(0, 2).toUpperCase()}</div>`;
+        return `
+            <div class="profile-item-card ${rarityClass(it.rarity)}">
+                <div class="profile-item-visual">${img}</div>
+                <span class="profile-item-name">${it.name}</span>
+                <span class="profile-item-subtype">${rarityLabel(it.rarity)}</span>
+                <div class="profile-item-price">
+                    <span class="profile-item-star">⭐</span>
+                    <span class="profile-item-price-value">${formatStars(it.price)}</span>
+                </div>
+            </div>`;
+    }
+
+    // Карточка предмета для экрана «Инвентарь».
+    function inventoryItemCard(g) {
+        const it = enrichGift(g);
+        const visual = it.image
+            ? `<img src="${safeImgSrc(it.image)}" alt="${it.name}" class="inventory-img">`
+            : `<div class="nft-art">${(it.name || '?').slice(0, 2).toUpperCase()}</div>`;
+
+        // Предмет на выводе: бейдж + скрытые кнопки + плашка «В обработке».
+        const isPending = g && g.status === 'pending_withdraw';
+        if (isPending) {
+            return `
+            <div class="inventory-user-card ${rarityClass(it.rarity)} status-pending" data-id="${it.id}" data-price="${it.price}">
+                <span class="inv-pending-badge">⏳ На выводе</span>
+                <div class="inventory-user-visual">${visual}</div>
+                <div class="inventory-user-info">
+                    <span class="inventory-user-name">${it.name}</span>
+                    <span class="inventory-user-sub">${rarityLabel(it.rarity)}</span>
+                </div>
+                <div class="inventory-user-price">⭐ ${formatStars(it.price)}</div>
+                <div class="inv-pending-plate">⏳ В обработке (до 72ч)</div>
+                <span class="inventory-name hidden">${it.name}</span>
+                <span class="inventory-price hidden">${it.price}</span>
+            </div>`;
+        }
+
+        return `
+            <div class="inventory-user-card ${rarityClass(it.rarity)}" data-id="${it.id}" data-price="${it.price}">
+                <div class="inventory-user-visual">${visual}</div>
+                <div class="inventory-user-info">
+                    <span class="inventory-user-name">${it.name}</span>
+                    <span class="inventory-user-sub">${rarityLabel(it.rarity)}</span>
+                </div>
+                <div class="inventory-user-price">⭐ ${formatStars(it.price)}</div>
+                <div class="inventory-user-actions">
+                    <button class="inv-action-btn inv-action-sell inv-sell" type="button">Продать за ${formatStars(it.price)} ⭐</button>
+                    <button class="inv-action-btn inv-action-withdraw inv-withdraw" type="button">Вывести</button>
+                </div>
+                <span class="inventory-name hidden">${it.name}</span>
+                <span class="inventory-price hidden">${it.price}</span>
+            </div>`;
+    }
+
+    /* ============================================================
+       ТОП-6 ЛУЧШИХ ДРОПОВ В ПРОФИЛЕ + ИНВЕНТАРЬ
+       ============================================================ */
+
+    // Обновляет сетку «Мой лучший дроп»: ровно 6 самых дорогих предметов
+    // за всю историю (All-Time), отсортированных по убыванию цены (⭐ Stars).
+    // История независима от текущего инвентаря и не меняется при продаже/выводе.
+    function updateBestDrops() {
+        const grid = document.getElementById('profileItemGrid');
         if (!grid) return;
 
-        const visualContent = item.image
-            ? `<img src="${safeImgSrc(item.image)}" alt="${item.name}" class="inventory-img">`
-            : `<div class="nft-art">${itemMonogram(item)}</div>`;
-
-        const card = document.createElement('div');
-        card.className = 'inventory-card';
-        card.innerHTML = `
-            <div class="inventory-visual">
-                ${visualContent}
-            </div>
-            <div class="inventory-info">
-                <span class="inventory-name">${item.name}</span>
-                <span class="inventory-price">
-                    ${priceHTML(item.price)}
-                </span>
-            </div>`;
-        grid.prepend(card);
-
-        // Пересчёт счётчика «N предмета/предметов»
-        const counter = document.querySelector('.inventory-count');
-        if (counter) {
-            const match = counter.textContent.match(/\d+/);
-            const n = (match ? parseInt(match[0], 10) : 0) + 1;
-            const mod10 = n % 10;
-            const mod100 = n % 100;
-            let word = 'предметов';
-            if (mod10 === 1 && mod100 !== 11) word = 'предмет';
-            else if (mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14)) word = 'предмета';
-            counter.textContent = `${n} ${word}`;
+        // Разовая миграция: если истории ещё нет, а в инвентаре есть предметы —
+        // наполняем ТОП-6 из текущего инвентаря (чтобы старые дропы не потерялись).
+        if (getBestDropsHistory().length === 0 && getInventory().length > 0) {
+            const top = getInventory()
+                .map(enrichGift)
+                .sort((a, b) => b.price - a.price)
+                .slice(0, 6);
+            saveBestDropsHistory(top);
         }
+
+        const items = getBestDropsHistory();
+
+        grid.innerHTML = items.length
+            ? items.map(profileItemCard).join('')
+            : `<div class="profile-grid-empty">Откройте кейс, чтобы собрать дроп</div>`;
+    }
+
+    // Рендер экрана «Инвентарь»: пустой экран (рюкзак) или сетка предметов.
+    function renderInventory() {
+        const emptyEl = document.getElementById('inventoryEmptyState');
+        const grid = document.getElementById('inventoryUserGrid');
+        if (!emptyEl || !grid) return;
+
+        // Разовая миграция pending-предметов из старой схемы в отдельный массив.
+        migratePendingToStore();
+
+        // ТЕКУЩИЙ инвентарь (доступные к продаже) — без предметов на выводе.
+        const raw = getInventory();
+        // Полный список для рендера карточек: текущие + предметы на выводе.
+        const all = getAllItems();
+        const hasItems = all.length > 0;
+
+        // Если предметов нет — показываем пустой экран, иначе сетку.
+        emptyEl.classList.toggle('hidden', hasItems);
+        grid.classList.toggle('hidden', !hasItems);
+        // Карточка сама различает «на выводе» (status_pending) по переданному объекту.
+        grid.innerHTML = hasItems ? all.map(inventoryItemCard).join('') : '';
+
+        // Шапка-статистика: показываем только когда есть предметы (любые).
+        const head = document.getElementById('inventoryHead');
+        if (head) head.classList.toggle('hidden', !hasItems);
+
+        // Счётчики учитывают ТОЛЬКО предметы, доступные к продаже (raw = без pending).
+        const sellableItems = raw.map(enrichGift);
+        const statsEl = document.getElementById('invGlassStats');
+        const sellAllEl = document.getElementById('invSellAllBtn');
+        const sellAllSum = document.getElementById('invSellAllSum');
+        let totalStars = 0;
+        sellableItems.forEach((it) => { totalStars += Number(it.price) || 0; });
+
+        // Если нет ни одного продаваемого предмета — кнопка неактивна, «0 • 0 ⭐».
+        const noun = plural(sellableItems.length, 'предмет', 'предмета', 'предметов');
+        if (statsEl) statsEl.textContent = sellableItems.length + ' ' + noun + ' • ' + formatStars(totalStars) + ' ⭐';
+        if (sellAllEl) sellAllEl.disabled = sellableItems.length === 0;
+        if (sellAllSum) sellAllSum.textContent = formatStars(totalStars) + ' ⭐';
+    }
+
+    // Склонение существительных: 1 предмет, 2 предмета, 5 предметов.
+    function plural(n, one, few, many) {
+        const n10 = n % 10;
+        const n100 = n % 100;
+        if (n10 === 1 && n100 !== 11) return one;
+        if (n10 >= 2 && n10 <= 4 && (n100 < 12 || n100 > 14)) return few;
+        return many;
+    }
+
+    // Сохраняет выигранный предмет в инвентарь и сразу обновляет
+    // экран «Инвентарь» и ТОП-6 дропов в профиле (без перезагрузки).
+    function addItemToInventory(item) {
+        const enriched = enrichGift(item);
+        const list = getInventory();
+        list.unshift({ ...enriched, wonAt: Date.now() });
+        saveInventory(list);
+
+        // Фиксируем новый выбитый предмет в истории лучших дропов (All-Time).
+        checkAndAddBestDrop(item);
+
+        // Мгновенная перерисовка обоих экранов.
+        renderInventory();
+        updateBestDrops();
     }
 
     function showWinOverlay(item) {
         const color = rarityColor(item.rarity);
+        const container = document.getElementById('winResultContainer');
+        const controls = document.querySelector('.case-controls');
 
-        const overlay = document.createElement('div');
-        overlay.style.cssText = `
-            position: fixed;
-            inset: 0;
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            /* Глухой тёмный фон: полностью перекрывает интерфейс за модалкой */
-            background: #0a0a0c;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        `;
-        overlay.innerHTML = `
-            <div style="
-                display: flex; flex-direction: column; align-items: center; text-align: center;
-                padding: 24px; max-width: 320px; width: 88%;
-                transform: scale(0.8); opacity: 0;
-                transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.2), opacity 0.35s ease;
-            ">
-                <div style="font-size: 20px; font-weight: 800; color: #EAF6FF; margin-bottom: 16px;">${item.name}</div>
-                <div style="position: relative; width: 200px; height: 200px; margin-bottom: 26px;">
-                    <div style="position: absolute; inset: -10px; border-radius: 24px;
-                        background: radial-gradient(closest-side, ${color}88 0%, transparent 76%);
-                        filter: blur(16px);"></div>
-                    ${item.image
-                        ? `<img src="${safeImgSrc(item.image)}" alt="${item.name}" draggable="false"
-                            onerror="this.onerror=null;this.src='image/star.png'"
-                            style="position: relative; display: block; width: 100%; height: 100%;
-                                object-fit: contain; padding: 10px; background: #0d1220; border-radius: 16px;
-                                border: 1px solid ${color}55;
-                                box-shadow: 0 0 70px ${color}66, 0 0 24px ${color}44;"/>`
-                        : `<img src="https://placehold.co/200x200/131c30/${color.slice(1)}?text=${encodeURIComponent(item.name)}"
-                            alt="${item.name}" draggable="false"
-                            style="position: relative; display: block; width: 100%; height: 100%;
-                                object-fit: cover; border-radius: 16px;
-                                border: 1px solid ${color}55;
-                                box-shadow: 0 0 70px ${color}66, 0 0 24px ${color}44;"/>`}
-                </div>
-                <div style="display: flex; flex-direction: column; gap: 12px; width: 100%;">
-                    <button data-act="keep" class="btn-open-main" style="
-                        width: 100%; height: 48px; margin-bottom: 0; font-size: 15px;">Забрать</button>
-                    <button data-act="sell" class="btn-open-fast" style="
-                        width: 100%; height: 44px; font-size: 14px;">Продать за ${(Number(item.price)||0).toLocaleString('ru-RU', { maximumFractionDigits: 0 })} ⭐</button>
-                </div>
-            </div>`;
+        if (container) {
+            // Инлайн-блок результата прямо под рулеткой (никаких модалок поверх).
+            container.hidden = false;
+            container.classList.remove('collapse');
+            container.classList.add('is-open');
+            // ФАЗА 1: скрываем блок управления кейсом (Открыть / Быстрое / x1-x5),
+            // на экране остаются ТОЛЬКО кнопки «Забрать» / «Продать».
+            if (controls) controls.classList.add('hide');
 
-        document.body.appendChild(overlay);
+            container.innerHTML = `
+                <div class="win-result-card" style="--rarity-color:${color}">
+                    <div class="win-result-glow"></div>
+                    <div class="win-result-item" style="--rarity-color:${color}">
+                        ${item.image
+                            ? `<img src="${safeImgSrc(item.image)}" alt="${item.name}" draggable="false" onerror="this.onerror=null;this.src='image/star.png'">`
+                            : `<div class="win-result-monogram">${(item.name || '?').slice(0, 2).toUpperCase()}</div>`}
+                    </div>
+                    <div class="win-result-info">
+                        <span class="win-result-name">${item.name}</span>
+                        <span class="win-result-rarity" style="color:${color}">${rarityLabel(item.rarity)}</span>
+                        <span class="win-result-price">⭐ ${formatStars(item.price)}</span>
+                    </div>
+                    <div class="win-result-actions">
+                        <button data-act="keep" class="win-result-btn win-result-btn-primary">Забрать</button>
+                        <button data-act="sell" class="win-result-btn win-result-btn-gold">Продать за ${formatStars(item.price)} ⭐</button>
+                    </div>
+                    <div class="win-result-confetti" aria-hidden="true"></div>
+                </div>`;
 
-        // Плавное появление: подложка fade-in + карточка scale 0.8 → 1.0
-        requestAnimationFrame(() => requestAnimationFrame(() => {
-            overlay.style.opacity = '1';
-            const panel = overlay.firstElementChild;
-            panel.style.transform = 'scale(1)';
-            panel.style.opacity = '1';
-        }));
+            // Последовательное появление: предмет → конфети → инфо → кнопки.
+            requestAnimationFrame(() => requestAnimationFrame(() => {
+                const card = container.querySelector('.win-result-card');
+                card.classList.add('win-result-in');
+                setTimeout(() => launchConfetti(container.querySelector('.win-result-confetti')), 360);
+                setTimeout(() => card.classList.add('win-result-info-on'), 420);
+                setTimeout(() => card.classList.add('win-result-actions-on'), 600);
+                // АВТО-СКРОЛЛ: через 500ms после появления подводим предмет с кнопками
+                // «Забрать»/«Продать» строго к центру экрана.
+                setTimeout(() => {
+                    container.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 500);
+            }));
 
-        const close = () => {
-            overlay.style.opacity = '0';
-            const panel = overlay.firstElementChild;
-            panel.style.transform = 'scale(0.85)';
-            panel.style.opacity = '0';
-            setTimeout(() => {
-                overlay.remove();
-                // После закрытия окна выигрыша лента снова начинает крутиться в idle/AFK режиме
-                resumeIdleScroll();
-            }, 320);
-        };
+            const close = () => {
+                // ФАЗА 2: скрываем блок предмета с кнопками, возвращаем управление кейсом.
+                container.classList.remove('is-open');
+                container.classList.add('collapse');
+                if (controls) controls.classList.remove('hide');
+                setTimeout(() => {
+                    container.hidden = true;
+                    container.innerHTML = '';
+                    resumeIdleScroll();
+                }, 340);
+            };
 
-        overlay.querySelector('[data-act="keep"]').addEventListener('click', () => {
-            addItemToInventory(item);
-            close();
-        });
-        overlay.querySelector('[data-act="sell"]').addEventListener('click', () => {
-            creditBalance(CURR.starsToTon(item.price));  // предмет в Stars -> баланс в TON
-            close();
-        });
+            const keepBtn = container.querySelector('[data-act="keep"]');
+            if (keepBtn) keepBtn.addEventListener('click', () => { addItemToInventory(item); close(); });
+            const sellBtn = container.querySelector('[data-act="sell"]');
+            if (sellBtn) sellBtn.addEventListener('click', () => {
+                creditBalance(CURR.starsToTon(item.price));
+                close();
+            });
+            return;
+        }
+
+        // Резервный путь (контейнер не найден) — тихо ничего не показываем.
+        resumeIdleScroll();
+    }
+
+    // Генерирует праздничные частицы (конфети) внутри контейнера.
+    function launchConfetti(container) {
+        if (!container) return;
+        const colors = ['#22c55e', '#00e599', '#ffd977', '#f6c445', '#ffffff', '#f97316'];
+        for (let i = 0; i < 42; i++) {
+            const p = document.createElement('i');
+            const size = 6 + Math.random() * 8;
+            p.style.cssText = `
+                position:absolute; left:50%; top:50%; width:${size}px; height:${size * (0.5 + Math.random()*0.6)}px;
+                background:${colors[i % colors.length]};
+                border-radius:${Math.random() > 0.5 ? '50%' : '2px'};
+                opacity:0;
+            `;
+            // Разброс по всем направлениям от центра вылета.
+            const angle = Math.random() * Math.PI * 2;
+            const dist = 90 + Math.random() * 190;
+            p.style.setProperty('--cx', Math.cos(angle) * dist + 'px');
+            p.style.setProperty('--cy', Math.sin(angle) * dist + 'px');
+            p.style.setProperty('--rot', (Math.random() * 720 - 360) + 'deg');
+            p.style.animationDelay = (Math.random() * 0.25) + 's';
+            container.appendChild(p);
+        }
     }
 
     // Быстрое открытие (демо)
@@ -1756,27 +2096,36 @@
     const sellPriceAmount = document.getElementById('sellPriceAmount');
     const sellConfirm = document.getElementById('sellConfirm');
 
-    // Данные предметов инвентаря: цена продажи
-    const INVENTORY_ITEMS = {
-        'NFT Bear': { icon: '🐻', sellPrice: 15 },
-        'NFT Cake': { icon: '🎂', sellPrice: 12 },
-    };
-
     let currentSellCard = null;
     let currentSellItem = null;
 
+    // Локальный делегированный обработчик кликов: работает и с динамически
+    // отрисованными карточками инвентаря (после renderInventoryList()).
+    function bindInventorySell() {
+        const grid = document.getElementById('profileInventoryGrid');
+        if (!grid) return;
+        grid.addEventListener('click', (e) => {
+            const btn = e.target.closest('.inv-sell');
+            if (!btn) return;
+            e.stopPropagation();
+            const card = btn.closest('.inventory-card');
+            if (card) openSellModal(card);
+        });
+    }
+
     function openSellModal(card) {
+        const id = card.getAttribute('data-id');
+        const price = Number(card.getAttribute('data-price')) || 0;
         const nameEl = card.querySelector('.inventory-name');
         const name = nameEl ? nameEl.textContent : '';
-        const item = INVENTORY_ITEMS[name];
-        if (!item) return;
 
+        // Продажа по реальной стоимости предмета (из базы / выигрыша).
         currentSellCard = card;
-        currentSellItem = item;
+        currentSellItem = { id, name, sellPrice: price };
 
-        sellVisual.textContent = item.icon;
+        sellVisual.textContent = (name || '?').slice(0, 2).toUpperCase();
         sellItemName.textContent = name;
-        sellPriceAmount.textContent = item.sellPrice;
+        sellPriceAmount.textContent = formatStars(price);
 
         sellModal.hidden = false;
     }
@@ -1787,33 +2136,25 @@
         currentSellItem = null;
     }
 
-    // Клик по кнопке Sell в карточке инвентаря
-    document.querySelectorAll('.inventory-card').forEach((card) => {
-        const sellBtn = card.querySelector('.inv-sell');
-        if (sellBtn) {
-            sellBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                openSellModal(card);
-            });
-        }
-    });
-
-    // Подтверждение продажи
+    // Подтверждение продажи — убирает предмет из персистентного инвентаря.
     sellConfirm.addEventListener('click', () => {
         if (!currentSellCard || !currentSellItem) return;
 
-        // Добавляем стоимость к Casino Balance (шапка и профиль) в активной валюте
-        creditBalance(currentSellItem.sellPrice);
+        // Продажа идёт по реальной стоимости предмета.
+        // Баланс проекта — в TON, цена предмета в Stars → конвертируем.
+        const sellTon = (typeof CURR.starsToTon === 'function')
+            ? CURR.starsToTon(currentSellItem.sellPrice)
+            : (currentSellItem.sellPrice / 80);
+        creditBalance(sellTon);
 
-        // Удаляем карточку из инвентаря
-        currentSellCard.remove();
-
-        // Обновляем счётчик предметов
-        const countEl = document.querySelector('.inventory-count');
-        const remaining = document.querySelectorAll('.inventory-card').length;
-        if (countEl) {
-            const word = remaining === 1 ? 'предмет' : (remaining >= 2 && remaining <= 4 ? 'предмета' : 'предметов');
-            countEl.textContent = remaining + ' ' + word;
+        // Удаляем предмет из сохранённого инвентаря пользователя.
+        if (currentSellItem.id) {
+            const list = getInventory().filter((g) => enrichGift(g).id !== currentSellItem.id);
+            saveInventory(list);
+            renderInventory();
+            updateBestDrops();
+        } else {
+            currentSellCard.remove();
         }
 
         closeSellModal();
@@ -1826,6 +2167,321 @@
             closeSellModal();
         }
     });
+
+    // Вешаем делегированный обработчик на продажу динамических карточек.
+    bindInventorySell();
+
+    /* ============ INVENTORY: действия через полноэкранные страницы ============ */
+    const inventoryGridEl = document.getElementById('inventoryUserGrid');
+    if (inventoryGridEl) {
+        // Кнопки действий внутри карточек (делегирование, работает после перерисовки).
+        inventoryGridEl.addEventListener('click', (e) => {
+            const sellBtn = e.target.closest('.inv-sell');
+            if (sellBtn) {
+                const card = sellBtn.closest('.inventory-user-card');
+                if (card) {
+                    const id = card.getAttribute('data-id');
+                    const item = getInventory().map(enrichGift).find((g) => g.id === id);
+                    // Открываем продажу ТОЛЬКО для этого одного предмета.
+                    if (item) openSellPage([item]);
+                }
+                return;
+            }
+            const wdBtn = e.target.closest('.inv-withdraw');
+            if (wdBtn) {
+                const card = wdBtn.closest('.inventory-user-card');
+                if (card) {
+                    const id = card.getAttribute('data-id');
+                    const item = getInventory().map(enrichGift).find((g) => g.id === id);
+                    if (item) openWithdrawPage(item);
+                }
+                return;
+            }
+        });
+    }
+
+    // «Продать всё за X ⭐» — открывает полноэкранную продажу со всеми предметами.
+    const invSellAllBtn = document.getElementById('invSellAllBtn');
+    if (invSellAllBtn) {
+        invSellAllBtn.addEventListener('click', () => {
+            const sellable = getInventory().filter((g) => g.status !== 'pending_withdraw');
+            if (sellable.length > 0) openSellPage();
+        });
+    }
+
+    /* ============================================================
+       ПОЛНОЭКРАННЫЕ СТРАНИЦЫ: ПРОДАЖА / ВЫВОД (Web3)
+       ============================================================ */
+    const sellPage = document.getElementById('sellPage');
+    const withdrawPage = document.getElementById('withdrawPage');
+    let sellSelectedIds = null; // Set выбранных id для продажи
+
+    // Плавное открытие оверлея.
+    function showPage(page) {
+        if (!page) return;
+        page.hidden = false;
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+            page.classList.add('w3-open');
+        }));
+        document.body.style.overflow = 'hidden';
+    }
+
+    function hidePage(page) {
+        if (!page) return;
+        page.classList.remove('w3-open');
+        setTimeout(() => { page.hidden = true; }, 280);
+        document.body.style.overflow = '';
+    }
+
+    // Отрисовка карточек выбора продажи. Принимает необязательный список
+    // предметов; если не задан — берутся ВСЕ предметы инвентаря.
+    function renderSellGrid(scopeItems) {
+        const grid = document.getElementById('sellPageGrid');
+        if (!grid) return;
+        const base = scopeItems || getInventory();
+        // Предметы на выводе исключаются из продажи.
+        const items = base
+            .filter((g) => g.status !== 'pending_withdraw')
+            .map(enrichGift);
+        sellSelectedIds = new Set(items.map((it) => it.id));
+
+        grid.innerHTML = items.map((it) => `
+            <div class="w3-sell-card" data-id="${it.id}">
+                <button class="w3-sell-remove" type="button" aria-label="Убрать из продажи">&minus;</button>
+                <div class="w3-sell-visual">
+                    ${it.image
+                        ? `<img src="${safeImgSrc(it.image)}" alt="${it.name}" loading="lazy">`
+                        : `<span style="font-size:28px;font-weight:800;color:#6B7380">${(it.name || '?').slice(0, 2).toUpperCase()}</span>`}
+                </div>
+                <span class="w3-sell-name">${it.name}</span>
+                <span class="w3-sell-price">⭐ ${formatStars(it.price)}</span>
+            </div>
+        `).join('') || '<p class="w3-page-sub" style="grid-column:1/-1;text-align:center">Нет предметов для продажи</p>';
+
+        updateSellSum();
+        updateSellGridLayout();
+    }
+
+    // Динамическая сетка продажи: количество колонок зависит от числа карточек.
+    function updateSellGridLayout() {
+        const grid = document.getElementById('sellPageGrid');
+        if (!grid) return;
+        const count = sellSelectedIds ? sellSelectedIds.size : 0;
+        grid.dataset.items = String(count);
+    }
+
+    // Пересчёт итоговой суммы выбранных предметов.
+    function updateSellSum() {
+        const sumEl = document.getElementById('sellConfirmSum');
+        const btn = document.getElementById('sellAllConfirm');
+        if (!sumEl || !sellSelectedIds) return;
+        // Предметы на выводе не учитываются в сумме.
+        const items = getInventory().filter((g) => g.status !== 'pending_withdraw').map(enrichGift);
+        let total = 0;
+        items.forEach((it) => { if (sellSelectedIds.has(it.id)) total += Number(it.price) || 0; });
+        sumEl.textContent = formatStars(total) + ' ⭐';
+        if (btn) btn.disabled = sellSelectedIds.size === 0;
+    }
+
+    // Продажа выбранных предметов: начисление баланса + удаление из инвентаря.
+    function confirmSellSelected() {
+        const btn = document.getElementById('sellAllConfirm');
+        if (!sellSelectedIds || sellSelectedIds.size === 0) return;
+        // Защита от Double-Click / Race Condition.
+        if (btn && btn.dataset.locked === '1') return;
+        if (btn) { btn.dataset.locked = '1'; btn.disabled = true; btn.classList.add('w3-btn-loading'); }
+
+        // Работаем строго с ТЕКУЩИМ инвентарём (без pending — они в pendingWithdraws).
+        // Сумма пересчитывается на клиенте по актуальному массиву, НЕ доверяем входящей.
+        const rawItems = getInventory();
+        const soldIds = new Set(sellSelectedIds);
+        let totalStars = 0;
+        const remaining = rawItems.filter((g) => {
+            const id = itemId(g);
+            // Запрет продажи предметов на выводе (страховка от рассинхрона).
+            if (g.status === 'pending_withdraw') return true;
+            if (soldIds.has(id)) {
+                totalStars += Number(g.price != null ? g.price : (g.priceInStars != null ? g.priceInStars : g.value)) || 0;
+                return false; // удаляем только проданный
+            }
+            return true;      // остальные сохраняем как есть
+        });
+        const totalTon = (typeof CURR.starsToTon === 'function')
+            ? CURR.starsToTon(totalStars)
+            : (totalStars / 80);
+        creditBalance(totalTon);
+        saveInventory(remaining);
+        hidePage(sellPage);
+        renderInventory();
+        updateBestDrops();
+
+        // Снимаем блокировку для следующих операций.
+        setTimeout(() => {
+            if (btn) { btn.dataset.locked = ''; btn.classList.remove('w3-btn-loading'); }
+            if (sellSelectedIds && sellSelectedIds.size > 0) { if (btn) btn.disabled = false; }
+        }, 400);
+    }
+
+    function openSellPage(scopeItems) {
+        renderSellGrid(scopeItems);
+        showPage(sellPage);
+    }
+
+    // Вывод: открыть страницу с карточкой предмета.
+    let currentWithdrawItem = null;
+    function openWithdrawPage(item) {
+        const it = enrichGift(item);
+        currentWithdrawItem = item;
+        const visEl = document.getElementById('withdrawItemVisual');
+        const nameEl = document.getElementById('withdrawItemName');
+        const priceEl = document.getElementById('withdrawItemPrice');
+        const userEl = document.getElementById('wdUsername');
+        const commentEl = document.getElementById('wdComment');
+
+        if (visEl) {
+            visEl.innerHTML = it.image
+                ? `<img src="${safeImgSrc(it.image)}" alt="${it.name}" loading="lazy">`
+                : `<span style="font-size:44px;font-weight:800;color:#6B7380">${(it.name || '?').slice(0, 2).toUpperCase()}</span>`;
+        }
+        if (nameEl) nameEl.textContent = it.name;
+        if (priceEl) priceEl.textContent = formatStars(it.price) + ' ⭐';
+        if (userEl) userEl.value = '';
+        if (commentEl) commentEl.value = '';
+        // Сброс состояния валидации поля username (кнопка блокируется до ввода).
+        if (wdUsernameInput) wdUsernameInput.classList.remove('w3-invalid');
+        if (wdUsernameError) { wdUsernameError.textContent = ''; wdUsernameError.hidden = true; }
+        if (withdrawSubmitRaw) withdrawSubmitRaw.disabled = true;
+        showPage(withdrawPage);
+    }
+
+    // Назад со страницы продажи.
+    const sellPageBack = document.getElementById('sellPageBack');
+    if (sellPageBack) sellPageBack.addEventListener('click', () => hidePage(sellPage));
+
+    // Назад со страницы вывода.
+    const withdrawPageBack = document.getElementById('withdrawPageBack');
+    if (withdrawPageBack) withdrawPageBack.addEventListener('click', () => hidePage(withdrawPage));
+
+    // Подтвердить продажу.
+    const sellAllConfirm = document.getElementById('sellAllConfirm');
+    if (sellAllConfirm) sellAllConfirm.addEventListener('click', confirmSellSelected);
+
+    // Минус «—» на карточке: убирает/возвращает предмет в выборку (один раз).
+    const sellPageGridEl = document.getElementById('sellPageGrid');
+    if (sellPageGridEl) {
+        sellPageGridEl.addEventListener('click', (e) => {
+            const btn = e.target.closest('.w3-sell-remove');
+            if (!btn) return;
+            const card = btn.closest('.w3-sell-card');
+            if (!card || !sellSelectedIds) return;
+            const id = card.getAttribute('data-id');
+            const removed = !card.classList.contains('w3-removed');
+            card.classList.toggle('w3-removed', removed);
+            if (removed) sellSelectedIds.delete(id); else sellSelectedIds.add(id);
+            updateSellSum();
+            updateSellGridLayout();
+        });
+    }
+
+    // Запросить вывод — валидация username.
+    const wdUsernameInput = document.getElementById('wdUsername');
+    const wdUsernameError = document.getElementById('wdUsernameError');
+    const withdrawSubmitRaw = document.getElementById('withdrawSubmit');
+
+    // Запрещённые (зарезервированные) слова.
+    const RESERVED = ['admin', 'telegram', 'support', 'bot', 'tg', 'root', 'system', 'moderator', 'anonymous', 'undefined', 'null'];
+
+    // Проверка: возвращает текст ошибки или ''.
+    function validateUsername(raw) {
+        const value = String(raw || '').trim().replace(/^@/, '');
+        if (value.length < 4 || value.length > 32) return 'Длина от 4 до 32 символов';
+        if (!/^[A-Za-z0-9_]+$/.test(value)) return 'Только латиница, цифры и _';
+        if (/^_/.test(value) || /_$/.test(value)) return 'Символ \'_\' не может быть в начале или конце';
+        if (/__/.test(value)) return 'Нельзя использовать два \'_\' подряд';
+        const lower = value.toLowerCase();
+        if (RESERVED.some((w) => lower.includes(w))) return 'Этот username зарезервирован';
+        return '';
+    }
+
+    // Обновляет UI валидации и блокирует кнопку при ошибке.
+    function runUsernameValidation() {
+        const err = validateUsername(wdUsernameInput ? wdUsernameInput.value : '');
+        if (wdUsernameInput) wdUsernameInput.classList.toggle('w3-invalid', !!err);
+        if (wdUsernameError) {
+            wdUsernameError.textContent = err;
+            wdUsernameError.hidden = !err;
+        }
+        if (withdrawSubmitRaw) withdrawSubmitRaw.disabled = !!err;
+    }
+
+    if (wdUsernameInput) wdUsernameInput.addEventListener('input', () => {
+            // Автоматический trim пробелов и пересчёт валидации.
+            if (wdUsernameInput.value !== wdUsernameInput.value.trim()) {
+                wdUsernameInput.value = wdUsernameInput.value.trim();
+            }
+            runUsernameValidation();
+        });
+
+    if (withdrawSubmitRaw) {
+        withdrawSubmitRaw.addEventListener('click', () => {
+            // Защита от Double-Click / Race Condition.
+            if (withdrawSubmitRaw.disabled) return;
+            withdrawSubmitRaw.disabled = true;
+            withdrawSubmitRaw.classList.add('w3-btn-loading');
+
+            runUsernameValidation();
+            const err = validateUsername(wdUsernameInput ? wdUsernameInput.value : '');
+            if (err) {
+                withdrawSubmitRaw.disabled = false;
+                withdrawSubmitRaw.classList.remove('w3-btn-loading');
+                return; // ошибка — блокируем отправку
+            }
+
+            // Перемещаем предмет из userInventory в pendingWithdraws.
+            if (currentWithdrawItem) {
+                const targetId = itemId(currentWithdrawItem);
+                const movedItem = getInventory().find((g) => itemId(g) === targetId);
+                const rest = getInventory().filter((g) => itemId(g) !== targetId);
+                saveInventory(rest);
+                if (movedItem) {
+                    const list = getPendingWithdraws()
+                        .filter((g) => itemId(g) !== targetId)
+                        .concat({ ...movedItem, status: 'pending_withdraw' });
+                    savePendingWithdraws(list);
+                }
+            }
+            currentWithdrawItem = null;
+
+            // Уведомление о принятии заявки.
+            showToast('Заявка принята! 🚀 Предмет отправлен на вывод, ожидайте обработку до 72 часов.');
+
+            // Плавно закрываем страницу и обновляем инвентарь/профиль.
+            hidePage(withdrawPage);
+            renderInventory();
+            updateBestDrops();
+
+            // Снимаем блокировку кнопки для следующих операций.
+            setTimeout(() => {
+                withdrawSubmitRaw.disabled = false;
+                withdrawSubmitRaw.classList.remove('w3-btn-loading');
+            }, 400);
+        });
+    }
+
+    // Простое Toast-уведомление.
+    function showToast(message) {
+        let toast = document.getElementById('w3Toast');
+        if (!toast) {
+            toast = document.createElement('div');
+            toast.id = 'w3Toast';
+            toast.className = 'w3-toast';
+            document.body.appendChild(toast);
+        }
+        toast.textContent = message;
+        toast.classList.add('w3-toast-show');
+        clearTimeout(toast._timer);
+        toast._timer = setTimeout(() => toast.classList.remove('w3-toast-show'), 3600);
+    }
 
     /* ============ HISTORY FILTERS ============ */
     const historyFilters = document.querySelectorAll('.history-filter');

@@ -33,7 +33,7 @@ cd Casino-criptoporno && node server.js   →  http://localhost:8123
 - **Модалки** (депозит 2 шага, sell, withdraw): `.modal-overlay[hidden]`, классы в modal.css.
 - **Валюта**: базовая — TON. 1 TON = 80 Stars (XTR), курс только в currency.js. Цены giftsData.js — в TON.
 - **Баланс**: `localStorage['casino_balance_ton']` (число TON, старт 100). Форматирование только при выводе.
-- **Фри-награда**: `localStorage['casino_free_reward_time']`, кулдаун 24ч.
+- **Инвентарь**: экран `data-screen="free"` (нав-кнопка «Инвентарь»). Бывший раздел «Фри-награда» удалён по ТЗ, контент очищен.
 - **Кейсы**: 12 шт (tier: basic/medium/elite → классы tier-1/2/3). Каталог строит inline-скрипт в конце index.html: грузит casesData.js, выставляет `window.CASES`/`window.CASES_DEFS`, рендерит карточки. Детали кейса — экран case-detail (script.js, секция CASE DETAIL SCREEN).
 - **Инвентарь/профиль**: рендер из script.js (секции WITHDRAW MODAL, SELL MODAL, HISTORY FILTERS).
 
