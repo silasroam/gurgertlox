@@ -1,0 +1,24 @@
+{
+  "name": "casino-criptoporno",
+  "version": "1.0.0",
+  "description": "Casino Criptoporno — Telegram Mini App (Vercel Serverless + PostgreSQL)",
+  "main": "server.cjs",
+  "type": "module",
+  "scripts": {
+    "start": "node server.cjs",
+    "dev": "node server.cjs",
+    "test": "node tests/auth.test.mjs && node tests/engine.test.mjs && node tests/handlers.test.mjs && node tests/smoke-neon.mjs",
+    "db:init": "node db/init.cjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@neon/config": "^1.1.0",
+    "@neondatabase/serverless": "^1.0.1",
+    "dotenv": "^16.6.1",
+    "express": "^4.19.2",
+    "pg": "^8.23.0",
+    "ws": "^8.18.0"
+  }
+}

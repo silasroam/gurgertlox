@@ -154,8 +154,9 @@
 
     setupHeaderAvatar();
 
-    // Первичная отрисовка инвентаря и ТОП-6 дропов на реальных данных.
+    // Первичная отрисовка + ЗАГРУЗКА РЕАЛЬНЫХ ДАННЫХ ИЗ БД (/api/user/me).
     try { applyProfileUserData(); renderInventory(); updateBestDrops(); } catch (e) {}
+    syncFromServer();
 
     // Когда модуль подарков (giftMatcher.js) догрузится асинхронно — перерисовываем.
     window.addEventListener('gifts-db-ready', () => {
@@ -206,34 +207,85 @@
     function CURR_STR(v) { return (Number(v) || 0).toLocaleString('ru-RU', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' TON'; }
 
     // ── Баланс пользователя ─────────────────────────────────────────────
-    // Единственный источник правды — число rawBalanceTon (в TON).
-    // Никогда НЕ парсим оформленный текст из DOM (там пробелы и запятая —
-    // parseFloat резал бы число и каждое перерисовывание «распухало» баланс).
-    // Значение хранится в localStorage как число и форматируется только при выводе.
-    const BALANCE_KEY = 'casino_balance_ton';
-    const DEFAULT_BALANCE_TON = 100; // 100 TON = 16 000 Stars
-
-    let rawBalanceTon = DEFAULT_BALANCE_TON;
+    // Production: единственный источник правды — БД на сервере.
+    // Баланс приходит из /api/user/me (balance_stars) и обновляется после
+    // каждой серверной операции (open-case/sell). localStorage НЕ используется.
+    let serverBalanceStars = null; // null → ещё не загружен с сервера
+    let rawBalanceTon = 0;
 
     function loadBalance() {
-        try {
-            const stored = localStorage.getItem(BALANCE_KEY);
-            const v = stored === null ? NaN : parseFloat(stored);
-            rawBalanceTon = Number.isFinite(v) && v >= 0 ? v : DEFAULT_BALANCE_TON;
-        } catch (e) {
-            rawBalanceTon = DEFAULT_BALANCE_TON;
-        }
+        // Баланс отражает серверное состояние (0 Stars у нового пользователя).
+        rawBalanceTon = (serverBalanceStars == null) ? 0 : CURR.starsToTon(serverBalanceStars);
     }
 
     function saveBalance() {
-        try {
-            localStorage.setItem(BALANCE_KEY, String(rawBalanceTon));
-        } catch (e) { /* ignore */ }
+        // Запись баланса на клиенте запрещена: меняет его ТОЛЬКО сервер.
     }
 
-    // Читает баланс из хранилища (метод оставлен для обратной совместимости вызовов).
+    // Читает баланс из состояния (метод оставлен для обратной совместимости вызовов).
     function readRawBalance() {
         loadBalance();
+    }
+
+    /* ============================================================
+       API LAYER — всё общение с боевым бэкендом (PostgreSQL).
+       Балансы, цены и результаты дропов фронтенд НЕ вычисляет:
+       только отправляет намерения, всё решает сервер.
+       ============================================================ */
+    function tgAuthHeader() {
+        // Telegram WebApp сам валидируется на сервере через initData HMAC.
+        const initData = (window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.initData) || '';
+        return { 'X-Init-Data': encodeURIComponent(initData), 'Content-Type': 'application/json' };
+    }
+
+    async function apiFetch(path, options) {
+        const opts = Object.assign({ headers: tgAuthHeader() }, options || {});
+        const resp = await fetch(path, opts);
+        let data = {};
+        try { data = await resp.json(); } catch (e) {}
+        if (!resp.ok) {
+            const err = new Error(data.error || ('HTTP ' + resp.status));
+            err.status = resp.status;
+            throw err;
+        }
+        return data;
+    }
+
+    // Серверное состояние (зеркало БД, только для отрисовки).
+    let serverInventory = [];   // user_inventory: текущие + pending_withdraw
+    let serverBestDrops = [];   // best_drops: ТОП-6 за всю историю
+
+    // GET /api/user/me — баланс, инвентарь и лучшие дропы из БД.
+    async function syncFromServer() {
+        try {
+            const data = await apiFetch('/api/user/me');
+            serverBalanceStars = Number(data.user && data.user.balance_stars) || 0;
+            serverInventory = Array.isArray(data.inventory) ? data.inventory : [];
+            serverBestDrops = Array.isArray(data.bestDrops) ? data.bestDrops : [];
+        } catch (e) {
+            // Нет связи/не авторизован — остаёмся с пустым состоянием (0 ⭐).
+            serverBalanceStars = serverBalanceStars == null ? 0 : serverBalanceStars;
+        }
+        rawBalanceTon = CURR.starsToTon(serverBalanceStars || 0);
+        renderBalance();
+        try { renderInventory(); } catch (e) {}
+        try { updateBestDrops(); } catch (e) {}
+    }
+
+    // POST /api/open-case — сервер сам проверяет баланс, списывает Stars и
+    // генерирует дроп по весам. Фронт получает ГОТОВЫЙ предмет для анимации.
+    function apiOpenCase(caseId, mult) {
+        return apiFetch('/api/open-case', { method: 'POST', body: JSON.stringify({ caseId: String(caseId || ''), mult: Number(mult) || 1 }) });
+    }
+
+    // POST /api/sell — сервер пересчитывает сумму из БД и зачисляет Stars.
+    function apiSell(ids) {
+        return apiFetch('/api/sell', { method: 'POST', body: JSON.stringify({ ids: ids.map(Number) }) });
+    }
+
+    // POST /api/withdraw — пометка предмета pending_withdraw на сервере.
+    function apiWithdraw(inventoryId, username, comment) {
+        return apiFetch('/api/withdraw', { method: 'POST', body: JSON.stringify({ inventoryId: Number(inventoryId), username, comment }) });
     }
 
     // Отрисовка баланса (в шапке и профиле). Баланс всегда в Telegram Stars.
@@ -242,9 +294,9 @@
         const profile = document.getElementById('profileBalanceAmount');
         const emoji = document.getElementById('balanceEmoji');
 
-        // Показываем баланс СТРОГО в Stars: stars = ton * 80, целым числом (напр. 7 840 ⭐).
-        const stars = CURR.tonToStars(rawBalanceTon);
-        const displayVal = Math.round(stars).toLocaleString('ru-RU', { maximumFractionDigits: 0 });
+        // Показываем баланс СТРОГО в Stars: сервер хранит balance_stars.
+        const stars = Math.round(serverBalanceStars != null ? serverBalanceStars : CURR.tonToStars(rawBalanceTon));
+        const displayVal = stars.toLocaleString('ru-RU', { maximumFractionDigits: 0 });
 
         if (header) header.textContent = displayVal;
         if (profile) profile.textContent = displayVal;
@@ -1341,14 +1393,20 @@
         });
     });
 
-    // Открыть кейс (демо)
-    caseDetailOpenBtn.addEventListener('click', () => {
-        const costTon = CURR.starsToTon(caseDetailBasePrice * caseDetailMult); // Stars -> TON
-        readRawBalance();
-        if (rawBalanceTon >= costTon) {
-            rawBalanceTon -= costTon;
+    // Открыть кейс: баланс и дроп решает СЕРВЕР (атомарно, race-safe).
+    caseDetailOpenBtn.addEventListener('click', async () => {
+        if (caseDetailOpenBtn.disabled) return;
+        caseDetailOpenBtn.disabled = true;
+        try {
+            // Бэкенд проверяет баланс в БД, списывает Stars и генерирует предмет по весам.
+            const data = await apiOpenCase(currentCaseId, caseDetailMult);
+            serverBalanceStars = Number(data.balance) || 0;
+            loadBalance();
             renderBalance();
-            spinRoulette();
+            spinRoulette(SPIN_DURATION_MS, SPIN_EASING, data.item);
+        } catch (e) {
+            caseDetailOpenBtn.disabled = false;
+            showToast(e.status === 402 ? 'Недостаточно Stars на балансе' : 'Ошибка открытия кейса: ' + e.message);
         }
     });
 
@@ -1455,7 +1513,21 @@
         return draft;
     }
 
-    function spinRoulette(durationMs = SPIN_DURATION_MS, easing = SPIN_EASING) {
+    // Приводит предмет, пришедший с сервера, к виду клиентской модели.
+    // dbId — id строки в user_inventory (нужен для продажи/вывода через API).
+    function normalizeServerDrop(row) {
+        return {
+            dbId: row.id != null ? Number(row.id) : null,
+            id: row.item_id != null ? row.item_id : row.id,
+            name: row.name || 'Gift',
+            image: row.image || '',
+            rarity: row.rarity || 'common',
+            price: Number(row.price_stars) || 0,
+            type: 'gift',
+        };
+    }
+
+    function spinRoulette(durationMs = SPIN_DURATION_MS, easing = SPIN_EASING, fixedItem = null) {
         if (caseDetailOpenBtn.disabled) return;
 
         // Disable button during spin
@@ -1467,12 +1539,10 @@
         strip.style.animation = 'none';
 
         // --- Spin Track Generator: ровно 60 карточек, сплошная лента без пустот ---
-        // Выигрышный предмет выбирается по взвешенному дропу (дорогие — реже),
-        // а затем ПОДСТАВЛЯЕТСЯ в позицию остановки ленты (STOP_INDEX),
-        // чтобы стрелка визуально указывала ровно на выигравший предмет.
+        // РЕАЛЬНЫЙ выигрыш приходит с сервера (/api/open-case) — фиксированный предмет.
+        // Клиентский weightedPick остаётся ТОЛЬКО как визуальный fallback (dev-режим).
         const allItems = getCaseItems();
-        // Реальный выигрыш определяется СТАРОЙ логикой (взвешенный дроп) — НЕ трогаем.
-        const winningItem = weightedPick(allItems);
+        const winningItem = fixedItem ? normalizeServerDrop(fixedItem) : weightedPick(allItems);
         const TOTAL_CARDS = PRE_ROLL_COUNT + POST_ROLL_COUNT + 1; // 45 + 14 + 1 = 60
         // Визуальный конвейер генерируется ОТДЕЛЬНО от реальных шансов (чисто для вида).
         // Реальная частота предметов здесь НЕ совпадает с их настоящими шансами выпадения.
@@ -1545,143 +1615,72 @@
         return item.name.split(/\s+/).map((w) => w[0]).join('').slice(0, 2).toUpperCase();
     }
 
-    function creditBalance(amount) {
+    function creditBalance(amountTon) {
+        // Клиентское начисление запрещено: баланс правит только сервер.
+        // Функция оставлена как no-op для обратной совместимости вызовов.
         readRawBalance();
-        rawBalanceTon += Number(amount) || 0;
-        renderBalance();
     }
 
     /* ============================================================
-       ИНВЕНТАРЬ — данные из реальной базы (window.GIFTS_DB) + персистентность
+       ИНВЕНТАРЬ — данные из БД (serverInventory), персистентность на сервере
+       ============================================================ */
+    void 0; // (localStorage-ключи удалены вместе с локальной схемой)
+
+    /* ============================================================
+       STATE: единый источник истины — СЕРВЕР (PostgreSQL).
+       Локальные localStorage-массивы удалены: клиент только
+       отображает serverInventory / serverBestDrops / balance.
        ============================================================ */
 
-    // Ключ хранилища, привязанный к пользователю.
-    const invUserId = (tg?.initDataUnsafe?.user?.id != null)
-        ? String(tg.initDataUnsafe.user.id)
-        : 'anon';
-    const INVENTORY_STORE_KEY = 'casino_owned_gifts_' + invUserId;
-
-    // Читает инвентарь пользователя из localStorage (массив выигранных предметов).
+    // Текущий инвентарь — только «owned» (продаваемые) предметы.
     function getInventory() {
-        try {
-            const raw = localStorage.getItem(INVENTORY_STORE_KEY);
-            const arr = raw ? JSON.parse(raw) : [];
-            return Array.isArray(arr) ? arr : [];
-        } catch (e) {
-            return [];
-        }
+        return serverInventory.filter((g) => g && g.status !== 'pending_withdraw');
     }
 
-    // Сохраняет инвентарь пользователя.
-    function saveInventory(list) {
-        try {
-            localStorage.setItem(INVENTORY_STORE_KEY, JSON.stringify(list));
-        } catch (e) { /* ignore */ }
-    }
-
-    /* ============================================================
-       ИСТОРИЯ ЛУЧШИХ ДРОПОВ (All-Time Best Drops) — независимый массив
-       Фиксируется навсегда: продажа/вывод из инвентаря НЕ меняют его.
-       Хранит до 6 самых дорогих выбитых предметов за всё время.
-       ============================================================ */
-    const BEST_DROPS_STORE_KEY = 'casino_best_drops_' + invUserId;
-
-    // Читает историю лучших дропов из localStorage.
-    function getBestDropsHistory() {
-        try {
-            const raw = localStorage.getItem(BEST_DROPS_STORE_KEY);
-            const arr = raw ? JSON.parse(raw) : [];
-            return Array.isArray(arr) ? arr : [];
-        } catch (e) {
-            return [];
-        }
-    }
-
-    // Сохраняет историю лучших дропов.
-    function saveBestDropsHistory(list) {
-        try {
-            localStorage.setItem(BEST_DROPS_STORE_KEY, JSON.stringify(list));
-        } catch (e) { /* ignore */ }
-    }
-
-    /* ============================================================
-       PENDING WITH DRAWS — предметы в процессе вывода (отдельная структура)
-       userInventory ↔ pendingWithdraws ↔ bestDropsHistory независимы.
-       При выводе предмет покидает userInventory и уходит в pendingWithdraws.
-       ============================================================ */
-    const PENDING_STORE_KEY = 'casino_pending_' + invUserId;
-
+    // Предметы в процессе вывода (pending_withdraw) — отдельно.
     function getPendingWithdraws() {
-        try {
-            const raw = localStorage.getItem(PENDING_STORE_KEY);
-            const arr = raw ? JSON.parse(raw) : [];
-            return Array.isArray(arr) ? arr : [];
-        } catch (e) {
-            return [];
-        }
+        return serverInventory.filter((g) => g && g.status === 'pending_withdraw');
     }
 
-    function savePendingWithdraws(list) {
-        try {
-            localStorage.setItem(PENDING_STORE_KEY, JSON.stringify(list));
-        } catch (e) { /* ignore */ }
-    }
+    // Запись инвентаря с клиента ЗАПРЕЩЕНА: меняет только сервер.
+    function saveInventory() { /* no-op (server-side) */ }
 
-    // Переносит «застрявшие» pending-предметы из старой схемы (status внутри
-    // userInventory) в отдельный массив pendingWithdraws — разовая миграция.
-    function migratePendingToStore() {
-        let raw = getInventory();
-        if (!raw.some((g) => g.status === 'pending_withdraw')) return;
-        const pending = [];
-        const rest = [];
-        raw.forEach((g) => {
-            if (g.status === 'pending_withdraw') pending.push(g);
-            else rest.push(g);
-        });
-        saveInventory(rest);
-        const existing = getPendingWithdraws();
-        savePendingWithdraws(existing.concat(pending));
-    }
+    function savePendingWithdraws() { /* no-op (server-side) */ }
 
-    // Полный список: текущий инвентарь + предметы на выводе (для рендера).
+    // Разовая миграция старой localStorage-схемы больше не нужна.
+    function migratePendingToStore() { /* no-op (server-side) */ }
+
+    // Полный список для рендера карточек: owned + pending_withdraw.
     function getAllItems() {
-        return getInventory().concat(getPendingWithdraws());
+        return serverInventory.slice();
     }
 
-    // Единый хелпер получения ID предмета из любого raw-объекта.
+    // Единый хелпер получения ID предмета из любого объекта.
     function itemId(g) {
-        return g && (g.id || g.slug || String(g.name || 'gift').toLowerCase().replace(/\s+/g, '_'));
+        return g && (g.id != null ? g.id : (g.item_id || g.slug || String(g.name || 'gift').toLowerCase().replace(/\s+/g, '_')));
     }
 
-    // Обновляет историю: если новый выбитый предмет попадает в ТОП-6 по цене.
-    function checkAndAddBestDrop(newItem) {
-        const it = enrichGift(newItem);
-        if (!it || !it.price) return;
-
-        const history = getBestDropsHistory();
-        let list = history.map(enrichGift);
-
-        // 1. Если меньше 6 — просто добавляем.
-        if (list.length < 6) {
-            list.push(it);
-        } else {
-            // 2. Ищем самый дешёвый из ТОП-6.
-            let minIdx = 0;
-            for (let i = 1; i < list.length; i++) {
-                if ((list[i].price || 0) < (list[minIdx].price || 0)) minIdx = i;
-            }
-            // 3. Если новый строго дороже самого дешёвого — заменяем.
-            if (it.price > (list[minIdx].price || 0)) {
-                list.splice(minIdx, 1);
-                list.push(it);
-            }
-        }
-
-        // 4. Сортировка по убыванию цены и сохранение.
-        list.sort((a, b) => b.price - a.price);
-        saveBestDropsHistory(list);
-        updateBestDrops();
+    // История лучших дропов — с сервера (best_drops, ТОП-6 all-time).
+    function getBestDropsHistory() {
+        return serverBestDrops.slice();
     }
+
+    function saveBestDropsHistory() { /* no-op (server-side) */ }
+
+    /* ============================================================
+       ИСТОРИЯ ЛУЧШИХ ДРОПОВ — приходит с сервера (best_drops, all-time).
+       ============================================================ */
+
+    /* ============================================================
+       PENDING WITHDRAWS — тоже серверное состояние (status='pending_withdraw')
+       в user_inventory. Локальные ключи удалены.
+       ============================================================ */
+    void 0; // (server-side state)
+
+    // best_drops обновляет сервер при открытии кейса — клиент не считает.
+    function checkAndAddBestDrop() { /* no-op (server-side) */ }
+
+    // Обновляет историю: реализовано на сервере (best_drops, all-time ТОП-6).
 
     // Рарность по цене в Stars (XTR) — как в остальной логике проекта.
     function rarityForStars(stars) {
@@ -1697,19 +1696,25 @@
         return 'rarity-' + (rar || 'common');
     }
 
-    // Реальные данные предмета из базы GIFTS_DB (или из уже сохранённого выигрыша).
+    // Реальные данные предмета: из БД (user_inventory / best_drops) или из кейс-конфига.
     function enrichGift(g) {
-        const priceStars = Number(g.priceInStars != null ? g.priceInStars : (g.price != null ? g.price : g.value)) || 0;
+        if (!g) return null;
+        const priceStars = Number(
+            g.price_stars != null ? g.price_stars
+            : (g.priceInStars != null ? g.priceInStars
+            : (g.price != null ? g.price : g.value))
+        ) || 0;
         const stars = Math.round(priceStars);
         const rarity = g.rarity || rarityForStars(stars);
         return {
-            id: g.id || g.slug || (g.name || 'gift').toLowerCase().replace(/\s+/g, '_'),
+            id: (g.id != null ? g.id : (g.item_id || g.slug || (g.name || 'gift').toLowerCase().replace(/\s+/g, '_'))),
             name: g.name || 'Gift',
             price: stars,
             image: g.image || g.imagePath || '',
             rarity,
             type: g.type || 'gift',
-            wonAt: g.wonAt || Date.now(),
+            status: g.status || 'owned',
+            wonAt: g.won_at || g.wonAt || Date.now(),
         };
     }
 
@@ -1788,21 +1793,10 @@
        ============================================================ */
 
     // Обновляет сетку «Мой лучший дроп»: ровно 6 самых дорогих предметов
-    // за всю историю (All-Time), отсортированных по убыванию цены (⭐ Stars).
-    // История независима от текущего инвентаря и не меняется при продаже/выводе.
+    // за всю историю (All-Time) — приходит с сервера (best_drops).
     function updateBestDrops() {
         const grid = document.getElementById('profileItemGrid');
         if (!grid) return;
-
-        // Разовая миграция: если истории ещё нет, а в инвентаре есть предметы —
-        // наполняем ТОП-6 из текущего инвентаря (чтобы старые дропы не потерялись).
-        if (getBestDropsHistory().length === 0 && getInventory().length > 0) {
-            const top = getInventory()
-                .map(enrichGift)
-                .sort((a, b) => b.price - a.price)
-                .slice(0, 6);
-            saveBestDropsHistory(top);
-        }
 
         const items = getBestDropsHistory();
 
@@ -1860,20 +1854,17 @@
         return many;
     }
 
-    // Сохраняет выигранный предмет в инвентарь и сразу обновляет
-    // экран «Инвентарь» и ТОП-6 дропов в профиле (без перезагрузки).
+    // Предмет уже записан в БД на сервере при /api/open-case.
+    // Клиент только обновляет зеркальное состояние и перерисовывает экраны.
     function addItemToInventory(item) {
+        if (!item) return;
         const enriched = enrichGift(item);
-        const list = getInventory();
-        list.unshift({ ...enriched, wonAt: Date.now() });
-        saveInventory(list);
-
-        // Фиксируем новый выбитый предмет в истории лучших дропов (All-Time).
-        checkAndAddBestDrop(item);
-
-        // Мгновенная перерисовка обоих экранов.
-        renderInventory();
-        updateBestDrops();
+        if (enriched) {
+            serverInventory = [Object.assign({}, item, enriched, { status: item.status || 'owned' })]
+                .concat(serverInventory.filter((g) => String(itemId(g)) !== String(itemId(item))));
+        }
+        try { renderInventory(); } catch (e) {}
+        try { updateBestDrops(); } catch (e) {}
     }
 
     function showWinOverlay(item) {
@@ -1936,12 +1927,29 @@
                 }, 340);
             };
 
+            // «Забрать»: предмет УЖЕ в БД (записан при /api/open-case) —
+            // обновляем зеркало состояния и подтягиваем актуальные данные.
             const keepBtn = container.querySelector('[data-act="keep"]');
-            if (keepBtn) keepBtn.addEventListener('click', () => { addItemToInventory(item); close(); });
-            const sellBtn = container.querySelector('[data-act="sell"]');
-            if (sellBtn) sellBtn.addEventListener('click', () => {
-                creditBalance(CURR.starsToTon(item.price));
+            if (keepBtn) keepBtn.addEventListener('click', () => {
+                addItemToInventory(item);
+                syncFromServer();
                 close();
+            });
+
+            // «Продать за X ⭐»: СЕРВЕР списывает предмет из инвентаря и зачисляет Stars.
+            const sellBtn = container.querySelector('[data-act="sell"]');
+            if (sellBtn) sellBtn.addEventListener('click', async () => {
+                sellBtn.disabled = true;
+                try {
+                    if (item.dbId != null) {
+                        await apiSell([item.dbId]);
+                    }
+                    await syncFromServer(); // баланс + инвентарь + best_drops из БД
+                    close();
+                } catch (e) {
+                    showToast('Ошибка продажи: ' + e.message);
+                    sellBtn.disabled = false;
+                }
             });
             return;
         }
@@ -1974,14 +1982,20 @@
         }
     }
 
-    // Быстрое открытие (демо)
-    caseDetailQuickBtn.addEventListener('click', () => {
-        const costTon = CURR.starsToTon(caseDetailBasePrice * caseDetailMult); // Stars -> TON
-        readRawBalance();
-        if (rawBalanceTon >= costTon) {
-            rawBalanceTon -= costTon;
+    // Быстрое открытие: та же серверная логика (атомарный списание+дроп).
+    caseDetailQuickBtn.addEventListener('click', async () => {
+        if (caseDetailQuickBtn.disabled) return;
+        caseDetailQuickBtn.disabled = true;
+        try {
+            const data = await apiOpenCase(currentCaseId, caseDetailMult);
+            serverBalanceStars = Number(data.balance) || 0;
+            loadBalance();
             renderBalance();
-            spinRoulette(QUICK_SPIN_DURATION_MS, QUICK_SPIN_EASING);
+            spinRoulette(QUICK_SPIN_DURATION_MS, QUICK_SPIN_EASING, data.item);
+        } catch (e) {
+            showToast(e.status === 402 ? 'Недостаточно Stars на балансе' : 'Ошибка открытия кейса: ' + e.message);
+        } finally {
+            caseDetailQuickBtn.disabled = false;
         }
     });
 
@@ -2136,28 +2150,27 @@
         currentSellItem = null;
     }
 
-    // Подтверждение продажи — убирает предмет из персистентного инвентаря.
-    sellConfirm.addEventListener('click', () => {
+    // Подтверждение продажи (старая модалка): СЕРВЕР пересчитывает и зачисляет Stars.
+    sellConfirm.addEventListener('click', async () => {
         if (!currentSellCard || !currentSellItem) return;
-
-        // Продажа идёт по реальной стоимости предмета.
-        // Баланс проекта — в TON, цена предмета в Stars → конвертируем.
-        const sellTon = (typeof CURR.starsToTon === 'function')
-            ? CURR.starsToTon(currentSellItem.sellPrice)
-            : (currentSellItem.sellPrice / 80);
-        creditBalance(sellTon);
-
-        // Удаляем предмет из сохранённого инвентаря пользователя.
-        if (currentSellItem.id) {
-            const list = getInventory().filter((g) => enrichGift(g).id !== currentSellItem.id);
-            saveInventory(list);
-            renderInventory();
-            updateBestDrops();
-        } else {
-            currentSellCard.remove();
+        sellConfirm.disabled = true;
+        try {
+            const invId = Number(currentSellItem.id);
+            if (Number.isFinite(invId) && invId > 0) {
+                const data = await apiSell([invId]);
+                serverBalanceStars = Number(data.balance) || 0;
+                loadBalance();
+                renderBalance();
+                await syncFromServer();
+                showToast('Продано! Зачислено ' + formatStars(data.credited) + ' ⭐');
+            }
+        } catch (e) {
+            showToast('Ошибка продажи: ' + e.message);
+            await syncFromServer().catch(() => {});
+        } finally {
+            sellConfirm.disabled = false;
+            closeSellModal();
         }
-
-        closeSellModal();
     });
 
     sellModalClose.addEventListener('click', closeSellModal);
@@ -2181,7 +2194,7 @@
                 const card = sellBtn.closest('.inventory-user-card');
                 if (card) {
                     const id = card.getAttribute('data-id');
-                    const item = getInventory().map(enrichGift).find((g) => g.id === id);
+                    const item = getInventory().map(enrichGift).find((g) => String(g.id) === id);
                     // Открываем продажу ТОЛЬКО для этого одного предмета.
                     if (item) openSellPage([item]);
                 }
@@ -2192,7 +2205,7 @@
                 const card = wdBtn.closest('.inventory-user-card');
                 if (card) {
                     const id = card.getAttribute('data-id');
-                    const item = getInventory().map(enrichGift).find((g) => g.id === id);
+                    const item = getInventory().map(enrichGift).find((g) => String(g.id) === id);
                     if (item) openWithdrawPage(item);
                 }
                 return;
@@ -2243,10 +2256,11 @@
         const items = base
             .filter((g) => g.status !== 'pending_withdraw')
             .map(enrichGift);
-        sellSelectedIds = new Set(items.map((it) => it.id));
+        // ID строк user_inventory из БД (для продажи/вывода через API).
+        sellSelectedIds = new Set(items.map((it) => String(it.id)));
 
         grid.innerHTML = items.map((it) => `
-            <div class="w3-sell-card" data-id="${it.id}">
+            <div class="w3-sell-card" data-id="${String(it.id)}">
                 <button class="w3-sell-remove" type="button" aria-label="Убрать из продажи">&minus;</button>
                 <div class="w3-sell-visual">
                     ${it.image
@@ -2278,48 +2292,39 @@
         // Предметы на выводе не учитываются в сумме.
         const items = getInventory().filter((g) => g.status !== 'pending_withdraw').map(enrichGift);
         let total = 0;
-        items.forEach((it) => { if (sellSelectedIds.has(it.id)) total += Number(it.price) || 0; });
+        items.forEach((it) => { if (sellSelectedIds.has(String(it.id))) total += Number(it.price) || 0; });
         sumEl.textContent = formatStars(total) + ' ⭐';
         if (btn) btn.disabled = sellSelectedIds.size === 0;
     }
 
-    // Продажа выбранных предметов: начисление баланса + удаление из инвентаря.
-    function confirmSellSelected() {
+    // Продажа выбранных предметов: СЕРВЕР пересчитывает сумму из БД,
+    // зачисляет Stars и удаляет предметы. Клиент НЕ передаёт суммы.
+    async function confirmSellSelected() {
         const btn = document.getElementById('sellAllConfirm');
         if (!sellSelectedIds || sellSelectedIds.size === 0) return;
         // Защита от Double-Click / Race Condition.
         if (btn && btn.dataset.locked === '1') return;
         if (btn) { btn.dataset.locked = '1'; btn.disabled = true; btn.classList.add('w3-btn-loading'); }
 
-        // Работаем строго с ТЕКУЩИМ инвентарём (без pending — они в pendingWithdraws).
-        // Сумма пересчитывается на клиенте по актуальному массиву, НЕ доверяем входящей.
-        const rawItems = getInventory();
-        const soldIds = new Set(sellSelectedIds);
-        let totalStars = 0;
-        const remaining = rawItems.filter((g) => {
-            const id = itemId(g);
-            // Запрет продажи предметов на выводе (страховка от рассинхрона).
-            if (g.status === 'pending_withdraw') return true;
-            if (soldIds.has(id)) {
-                totalStars += Number(g.price != null ? g.price : (g.priceInStars != null ? g.priceInStars : g.value)) || 0;
-                return false; // удаляем только проданный
-            }
-            return true;      // остальные сохраняем как есть
-        });
-        const totalTon = (typeof CURR.starsToTon === 'function')
-            ? CURR.starsToTon(totalStars)
-            : (totalStars / 80);
-        creditBalance(totalTon);
-        saveInventory(remaining);
-        hidePage(sellPage);
-        renderInventory();
-        updateBestDrops();
-
-        // Снимаем блокировку для следующих операций.
-        setTimeout(() => {
-            if (btn) { btn.dataset.locked = ''; btn.classList.remove('w3-btn-loading'); }
-            if (sellSelectedIds && sellSelectedIds.size > 0) { if (btn) btn.disabled = false; }
-        }, 400);
+        try {
+            const ids = [...sellSelectedIds].map(Number).filter(Boolean);
+            const data = await apiSell(ids);           // сервер: FOR UPDATE + перерасчёт суммы
+            serverBalanceStars = Number(data.balance) || 0;
+            loadBalance();
+            renderBalance();
+            await syncFromServer();                    // инвентарь/best_drops из БД
+            hidePage(sellPage);
+            showToast('Продано! Зачислено ' + formatStars(data.credited) + ' ⭐');
+        } catch (e) {
+            showToast(e.status === 409 ? 'Уже идёт другая операция, попробуйте ещё раз' : 'Ошибка продажи: ' + e.message);
+            await syncFromServer().catch(() => {});
+        } finally {
+            // Снимаем блокировку для следующих операций.
+            setTimeout(() => {
+                if (btn) { btn.dataset.locked = ''; btn.classList.remove('w3-btn-loading'); }
+                if (sellSelectedIds && sellSelectedIds.size > 0) { if (btn) btn.disabled = false; }
+            }, 400);
+        }
     }
 
     function openSellPage(scopeItems) {
@@ -2423,7 +2428,7 @@
         });
 
     if (withdrawSubmitRaw) {
-        withdrawSubmitRaw.addEventListener('click', () => {
+        withdrawSubmitRaw.addEventListener('click', async () => {
             // Защита от Double-Click / Race Condition.
             if (withdrawSubmitRaw.disabled) return;
             withdrawSubmitRaw.disabled = true;
@@ -2437,34 +2442,32 @@
                 return; // ошибка — блокируем отправку
             }
 
-            // Перемещаем предмет из userInventory в pendingWithdraws.
-            if (currentWithdrawItem) {
-                const targetId = itemId(currentWithdrawItem);
-                const movedItem = getInventory().find((g) => itemId(g) === targetId);
-                const rest = getInventory().filter((g) => itemId(g) !== targetId);
-                saveInventory(rest);
-                if (movedItem) {
-                    const list = getPendingWithdraws()
-                        .filter((g) => itemId(g) !== targetId)
-                        .concat({ ...movedItem, status: 'pending_withdraw' });
-                    savePendingWithdraws(list);
+            try {
+                const invId = currentWithdrawItem ? (Number(itemId(currentWithdrawItem)) || null) : null;
+                if (invId == null) {
+                    showToast('Не выбран предмет для вывода');
+                    withdrawSubmitRaw.disabled = false;
+                    withdrawSubmitRaw.classList.remove('w3-btn-loading');
+                    return;
                 }
+                // СЕРВЕР помечает предмет pending_withdraw и пишет заявку в transactions.
+                await apiWithdraw(invId, wdUsernameInput.value.trim(), '');
+                await syncFromServer(); // обновляем pending-статусы из БД
+                currentWithdrawItem = null;
+
+                // Уведомление о принятии заявки.
+                showToast('Заявка принята! 🚀 Предмет отправлен на вывод, ожидайте обработку до 72 часов.');
+
+                // Плавно закрываем страницу и обновляем экраны.
+                hidePage(withdrawPage);
+            } catch (e) {
+                showToast(e.status === 409 ? 'Уже идёт другая операция, попробуйте ещё раз' : 'Ошибка вывода: ' + e.message);
+            } finally {
+                setTimeout(() => {
+                    withdrawSubmitRaw.disabled = false;
+                    withdrawSubmitRaw.classList.remove('w3-btn-loading');
+                }, 400);
             }
-            currentWithdrawItem = null;
-
-            // Уведомление о принятии заявки.
-            showToast('Заявка принята! 🚀 Предмет отправлен на вывод, ожидайте обработку до 72 часов.');
-
-            // Плавно закрываем страницу и обновляем инвентарь/профиль.
-            hidePage(withdrawPage);
-            renderInventory();
-            updateBestDrops();
-
-            // Снимаем блокировку кнопки для следующих операций.
-            setTimeout(() => {
-                withdrawSubmitRaw.disabled = false;
-                withdrawSubmitRaw.classList.remove('w3-btn-loading');
-            }, 400);
         });
     }
 
@@ -2573,8 +2576,8 @@
                     window.Telegram.WebApp.openInvoice(data.invoiceLink, (status) => {
                         if (status === 'paid') {
                             depositModal.classList.add('hidden');
-                            // Обновить баланс пользователя в активной валюте
-                            creditBalance(Number(amount));
+                            // Баланс подтверждает только сервер: подтягиваем из БД.
+                            syncFromServer();
                         }
                     });
                 }

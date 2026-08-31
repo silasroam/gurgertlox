@@ -1,0 +1,56 @@
+/* ============================================================
+   TELEGRAM initData AUTHENTICATION (Vercel Serverless port).
+   HMAC-SHA256 via bot token -> secret key -> data_check_string.
+   Fixed algorithm: values in data_check_string must stay RAW
+   (url-encoded exactly as received), hash excluded, sorted by key.
+   ============================================================ */
+'use strict';
+import crypto from 'node:crypto';
+
+export function verifyInitData(initData, botToken) {
+    if (!initData || !botToken) return null;
+
+    // Manual split: keeps values RAW (URLSearchParams would decode them).
+    const pairs = String(initData).split('&').map((s) => {
+        const i = s.indexOf('=');
+        return i < 0 ? [s, ''] : [s.slice(0, i), s.slice(i + 1)];
+    });
+
+    const hashPair = pairs.find(([k]) => k === 'hash');
+    if (!hashPair) return null;
+    const hash = hashPair[1];
+
+    // data_check_string: sorted key=value (RAW values) joined by \n, without hash.
+    const dataCheckString = pairs
+        .filter(([k]) => k !== 'hash')
+        .sort((a, b) => (a[0] < b[0] ? -1 : a[0] > b[0] ? 1 : 0))
+        .map(([k, v]) => `${k}=${v}`)
+        .join('\n');
+
+    // secret_key = HMAC_SHA256(key="WebAppData", msg=bot_token)
+    const secretKey = crypto.createHmac('sha256', 'WebAppData').update(botToken).digest();
+    const computed = crypto.createHmac('sha256', secretKey).update(dataCheckString).digest('hex');
+
+    const a = Buffer.from(computed, 'hex');
+    const b = Buffer.from(hash, 'hex');
+    if (a.length !== b.length || !crypto.timingSafeEqual(a, b)) return null;
+
+    // Freshness: auth_date within 24h (anti-replay).
+    const authPair = pairs.find(([k]) => k === 'auth_date');
+    const authDate = Number(authPair ? authPair[1] : 0);
+    if (!authDate || Date.now() / 1000 - authDate > 86400) return null;
+
+    try {
+        const userPair = pairs.find(([k]) => k === 'user');
+        const user = JSON.parse(decodeURIComponent(userPair ? userPair[1] : '{}'));
+        if (!user || user.id == null) return null;
+        return {
+            tg_id: user.id,
+            username: user.username || null,
+            first_name: user.first_name || null,
+            photo_url: user.photo_url || null,
+        };
+    } catch (e) {
+        return null;
+    }
+}
