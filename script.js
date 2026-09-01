@@ -104,6 +104,9 @@
     }
 
     /* ---------- Profile: real Telegram user data (no hardcode) ---------- */
+    // Custom ID из БД (создаётся при регистрации на первом запросе к API).
+    // Объявлен ДО первого вызова applyProfileUserData (см. TDZ для let).
+    let serverCustomId = null;
     function applyProfileUserData() {
         const user = tg?.initDataUnsafe?.user;
         const avatarEl = document.getElementById('profileAvatar');
@@ -117,9 +120,11 @@
                 : (user?.first_name || 'Пользователь');
         }
 
-        // Telegram ID — динамически
+        // ID: приоритет — Custom ID из БД (его видит пользователь),
+        // fallback — Telegram ID, затем '—' (пока сервер не ответил).
         if (idEl) {
-            idEl.textContent = user?.id != null ? String(user.id) : '—';
+            idEl.textContent = serverCustomId
+                || (user?.id != null ? String(user.id) : '—');
         }
 
         // Аватарка: если есть photo_url — круг с фото, иначе круглая заглушка с буквой
@@ -168,8 +173,13 @@
     const profileIdCopyBtn = document.getElementById('profileIdCopy');
 
     if (profileIdValueEl) {
-        const tgUserId = tg?.initDataUnsafe?.user?.id;
-        if (tgUserId) profileIdValueEl.textContent = String(tgUserId);
+        // Сразу при старте: Custom ID из БД, если уже загружен, иначе Telegram ID.
+        if (serverCustomId) {
+            profileIdValueEl.textContent = serverCustomId;
+        } else {
+            const tgUserId = tg?.initDataUnsafe?.user?.id;
+            if (tgUserId) profileIdValueEl.textContent = String(tgUserId);
+        }
     }
 
     if (profileIdCopyBtn) {
@@ -262,6 +272,15 @@
             serverBalanceStars = Number(data.user && data.user.balance_stars) || 0;
             serverInventory = Array.isArray(data.inventory) ? data.inventory : [];
             serverBestDrops = Array.isArray(data.bestDrops) ? data.bestDrops : [];
+            // Custom ID приходит из БД этим же запросом (регистрация при входе):
+            // показываем пользователю сразу, как только он нажал СТАРТ в боте.
+            if (data.user && data.user.custom_id != null && data.user.custom_id !== '') {
+                const next = String(data.user.custom_id);
+                if (next !== serverCustomId) {
+                    serverCustomId = next;
+                    try { applyProfileUserData(); } catch (e) {}
+                }
+            }
         } catch (e) {
             // Нет связи/не авторизован — остаёмся с пустым состоянием (0 ⭐).
             serverBalanceStars = serverBalanceStars == null ? 0 : serverBalanceStars;
