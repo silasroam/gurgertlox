@@ -2565,7 +2565,8 @@
     const selectCryptoCategory = document.getElementById('select-crypto-category');
     const depositBack = document.getElementById('depositBack');
     const starsBack = document.getElementById('starsBack');
-    const promoInput = document.getElementById('promoInput');
+    const customAmountInput = document.getElementById('customAmount');
+    const customPayBtn = document.getElementById('customPay');
 
     // Открыть Шаг 1 по клику на «+» в шапке.
     openDepositBtn?.addEventListener('click', () => {
@@ -2592,12 +2593,26 @@
         showToast('Криптовалюта скоро появится');
     });
 
-    // Промокод: единый инпут без кнопок. Обработка — по Enter (пока заглушка).
-    promoInput?.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') {
-            const code = (promoInput?.value || '').trim();
-            showToast(code ? 'Промокод не найден' : 'Введите промокод');
+    // Своя сумма: валидация (целое >= 1) -> /api/create-invoice -> Invoice.
+    async function payCustomAmount() {
+        const raw = customAmountInput ? customAmountInput.value : '';
+        const amount = parseInt(raw, 10);
+        if (!Number.isInteger(amount) || amount < 1) {
+            showToast('Введите целое число от 1');
+            return;
         }
+        if (customPayBtn) customPayBtn.disabled = true;
+        try {
+            await buyStars(amount);
+            customAmountInput.value = '';
+        } finally {
+            if (customPayBtn) customPayBtn.disabled = false;
+        }
+    }
+
+    customPayBtn?.addEventListener('click', payCustomAmount);
+    customAmountInput?.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') payCustomAmount();
     });
 
     // Вызов инвойса Telegram Stars (клик по карточке суммы).

@@ -1,19 +1,24 @@
 /* ============================================================
    POST /api/create-invoice — Telegram Stars (XTR) invoice link.
-   Фронтенд (депозит-модалка) уже вызывает этот роут.
+   Фронтенд (экран пополнения) вызывает этот роут как с пресетами,
+   так и с произвольной суммой («Своя сумма»).
    ============================================================ */
 'use strict';
 import { json, readJson } from './_lib/http.mjs';
 
-// Пакеты Stars с экрана пополнения (dep-card data-amount) — строго белый список.
-const ALLOWED_AMOUNTS = new Set([5, 20, 50, 100, 500, 1000]);
+// Валидная сумма: целое число Stars, от 1 до 100000 (защита от мусора/абуза).
+function parseAmount(raw) {
+    const n = Math.round(Number(raw));
+    if (!Number.isFinite(n) || !Number.isInteger(n) || n < 1 || n > 100000) return 0;
+    return n;
+}
 
 export default async function handler(req, res) {
     if (req.method !== 'POST') return json(res, 405, { error: 'Method not allowed' });
 
     const body = await readJson(req);
-    const amount = Math.round(Number(body.amount) || 0);
-    if (!ALLOWED_AMOUNTS.has(amount)) return json(res, 400, { error: 'Bad amount' });
+    const amount = parseAmount(body.amount);
+    if (!amount) return json(res, 400, { error: 'Bad amount' });
 
     const token = process.env.TELEGRAM_BOT_TOKEN || '';
     if (!token) return json(res, 500, { error: 'Bot token not configured' });

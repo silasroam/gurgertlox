@@ -744,27 +744,18 @@
 
         <!-- SCREEN: DEPOSIT (шаг 1 — выбор способа оплаты) -->
         <div class="screen hidden" data-screen="deposit">
-            <section class="dep-section">
+            <section class="dep-section dep-fixed">
                 <header class="dep-header">
                     <button class="dep-back" id="depositBack" aria-label="Назад">←</button>
                     <h2 class="dep-title">ПОПОЛНЕНИЕ БАЛАНСА</h2>
                 </header>
 
                 <div class="dep-body">
-                    <!-- Зеленый круглый логотип с золотой звездой (Telegram Stars) -->
+                    <!-- Чистая иконка звезды: без подложки, фонов и подсветки -->
                     <div class="dep-logo">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                            <path d="M12 2l2.9 6.1 6.6.8-4.9 4.5 1.3 6.5L12 16.7 6.1 19.9l1.3-6.5L2.5 8.9l6.6-.8L12 2z" fill="#FFC700" stroke="#0d0e12" stroke-width="0.6"/>
+                        <svg width="44" height="44" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <path d="M12 2l2.9 6.1 6.6.8-4.9 4.5 1.3 6.5L12 16.7 6.1 19.9l1.3-6.5L2.5 8.9l6.6-.8L12 2z" fill="#FFC700"/>
                         </svg>
-                    </div>
-
-                    <!-- Промокод: единый инпут с иконкой тега, без кнопок -->
-                    <div class="dep-promo">
-                        <svg class="dep-promo-tag" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                            <path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z" stroke="#808080" stroke-width="1.8" stroke-linejoin="round"/>
-                            <circle cx="7.5" cy="7.5" r="1.4" fill="#808080"/>
-                        </svg>
-                        <input type="text" id="promoInput" class="dep-promo-input" placeholder="Ввести промокод" maxlength="32" autocomplete="off">
                     </div>
 
                     <!-- Способы оплаты -->
@@ -773,6 +764,7 @@
                         <div class="dep-method is-selected" id="select-stars-category" role="button" tabindex="0">
                             <span class="dep-method-ico">⭐</span>
                             <span class="dep-method-name">Telegram Stars</span>
+                            <span class="dep-method-arrow">&rsaquo;</span>
                         </div>
                         <div class="dep-method is-disabled" id="select-crypto-category" role="button" tabindex="-1">
                             <span class="dep-method-ico">💎</span>
@@ -796,44 +788,28 @@
                     <div class="dep-list" id="starsGrid">
                         <div class="dep-row" data-amount="5">
                             <div class="dep-row-left">
-                                <span class="dep-row-ico">
-                                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                                        <path d="M12 2l2.9 6.1 6.6.8-4.9 4.5 1.3 6.5L12 16.7 6.1 19.9l1.3-6.5L2.5 8.9l6.6-.8L12 2z" fill="#0d0e12"/>
-                                    </svg>
-                                </span>
+                                <span class="dep-row-ico">⭐</span>
                                 <span class="dep-row-text"><b>5</b><small>звёзд</small></span>
                             </div>
                             <span class="dep-row-price">⭐ 5</span>
                         </div>
                         <div class="dep-row" data-amount="20">
                             <div class="dep-row-left">
-                                <span class="dep-row-ico">
-                                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                                        <path d="M12 2l2.9 6.1 6.6.8-4.9 4.5 1.3 6.5L12 16.7 6.1 19.9l1.3-6.5L2.5 8.9l6.6-.8L12 2z" fill="#0d0e12"/>
-                                    </svg>
-                                </span>
+                                <span class="dep-row-ico">⭐</span>
                                 <span class="dep-row-text"><b>20</b><small>звёзд</small></span>
                             </div>
                             <span class="dep-row-price">⭐ 20</span>
                         </div>
                         <div class="dep-row" data-amount="50">
                             <div class="dep-row-left">
-                                <span class="dep-row-ico">
-                                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                                        <path d="M12 2l2.9 6.1 6.6.8-4.9 4.5 1.3 6.5L12 16.7 6.1 19.9l1.3-6.5L2.5 8.9l6.6-.8L12 2z" fill="#0d0e12"/>
-                                    </svg>
-                                </span>
+                                <span class="dep-row-ico">⭐</span>
                                 <span class="dep-row-text"><b>50</b><small>звёзд</small></span>
                             </div>
                             <span class="dep-row-price">⭐ 50</span>
                         </div>
                         <div class="dep-row" data-amount="100">
                             <div class="dep-row-left">
-                                <span class="dep-row-ico">
-                                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                                        <path d="M12 2l2.9 6.1 6.6.8-4.9 4.5 1.3 6.5L12 16.7 6.1 19.9l1.3-6.5L2.5 8.9l6.6-.8L12 2z" fill="#0d0e12"/>
-                                    </svg>
-                                </span>
+                                <span class="dep-row-ico">⭐</span>
                                 <span class="dep-row-text"><b>100</b><small>звёзд</small></span>
                             </div>
                             <span class="dep-row-price">⭐ 100</span>
@@ -841,26 +817,31 @@
                         <div class="dep-row is-popular" data-amount="500">
                             <span class="dep-popular">ПОПУЛЯРНО</span>
                             <div class="dep-row-left">
-                                <span class="dep-row-ico">
-                                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                                        <path d="M12 2l2.9 6.1 6.6.8-4.9 4.5 1.3 6.5L12 16.7 6.1 19.9l1.3-6.5L2.5 8.9l6.6-.8L12 2z" fill="#0d0e12"/>
-                                    </svg>
-                                </span>
+                                <span class="dep-row-ico">⭐</span>
                                 <span class="dep-row-text"><b>500</b><small>звёзд</small></span>
                             </div>
                             <span class="dep-row-price">⭐ 500</span>
                         </div>
                         <div class="dep-row" data-amount="1000">
                             <div class="dep-row-left">
-                                <span class="dep-row-ico">
-                                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                                        <path d="M12 2l2.9 6.1 6.6.8-4.9 4.5 1.3 6.5L12 16.7 6.1 19.9l1.3-6.5L2.5 8.9l6.6-.8L12 2z" fill="#0d0e12"/>
-                                    </svg>
-                                </span>
+                                <span class="dep-row-ico">⭐</span>
                                 <span class="dep-row-text"><b>1000</b><small>звёзд</small></span>
                             </div>
                             <span class="dep-row-price">⭐ 1 000</span>
                         </div>
+                        <div class="dep-row" data-amount="5000">
+                            <div class="dep-row-left">
+                                <span class="dep-row-ico">⭐</span>
+                                <span class="dep-row-text"><b>5000</b><small>звёзд</small></span>
+                            </div>
+                            <span class="dep-row-price">⭐ 5 000</span>
+                        </div>
+                    </div>
+
+                    <!-- Своя сумма: матовый инпут + кнопка Оплатить -->
+                    <div class="dep-custom">
+                        <input type="number" id="customAmount" class="dep-custom-input" placeholder="Введите сумму..." min="1" max="100000" step="1" inputmode="numeric" autocomplete="off">
+                        <button class="dep-custom-pay" id="customPay" type="button">Оплатить</button>
                     </div>
                 </div>
             </section>
