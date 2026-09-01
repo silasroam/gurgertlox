@@ -27,7 +27,8 @@ const hash = crypto.createHmac('sha256', secret).update(dcs).digest('hex');
 const initData = encoded + '&hash=' + hash;
 
 const ok = verifyInitData(initData, token);
-console.log('valid:', !!(ok && ok.tg_id === 777 && ok.username === 'tester'));
+// tg_id теперь нормализуется в СТРОКУ (BIGINT-безопасно, 10+ знаков TG ID).
+console.log('valid:', !!(ok && String(ok.tg_id) === '777' && ok.username === 'tester'));
 
 // Подделка: меняем значение после подписи.
 const tampered = initData.replace('query_id=AAF', 'query_id=HACK');

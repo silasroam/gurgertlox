@@ -16,14 +16,14 @@ const dcs = pairs.map(([k, v]) => `${k}=${encodeURIComponent(v)}`).sort().join('
 const hash = crypto.createHmac('sha256', secret).update(dcs).digest('hex');
 const initData = [...pairs.map(([k, v]) => `${k}=${encodeURIComponent(v)}`), `hash=${hash}`].join('&');
 const r1 = verifyInitData(initData, token);
-console.log('RAW-вариант принят:', !!(r1 && r1.tg_id === 555 && r1.username === 'dec_user'));
+console.log('RAW-вариант принят:', !!(r1 && String(r1.tg_id) === '555' && r1.username === 'dec_user'));
 
 // 2. DECODED-вариант (значения декодированы, подпись над декодированными парами).
 const dcs2 = pairs.map(([k, v]) => `${k}=${v}`).sort().join('\n');
 const hash2 = crypto.createHmac('sha256', secret).update(dcs2).digest('hex');
 const decData = [...pairs.map(([k, v]) => `${k}=${v}`), `hash=${hash2}`].join('&');
 const r2 = verifyInitData(decData, token);
-console.log('DECODED-вариант принят (фолбэк):', !!(r2 && r2.tg_id === 555));
+console.log('DECODED-вариант принят (фолбэк):', !!(r2 && String(r2.tg_id) === '555'));
 
 // 3. Подделка по-прежнему отбрасывается.
 const bad = initData.replace('query_id=AAF', 'query_id=HACK');
