@@ -742,69 +742,86 @@
             </div>
         </div>
 
-        <!-- DEPOSIT MODAL -->
-        <div id="deposit-modal" class="modal-overlay hidden">
-            <div class="modal-card">
-                <!-- Шапка модалки: левый слот (кнопка Назад или пустота) / центр (заголовок) / правый слот (крестик) -->
-                <div class="modal-header">
-                    <div class="header-slot header-left"><button id="back-btn" class="back-btn hidden">←</button></div>
-                    <h3 id="modal-title"></h3>
-                    <div class="header-slot header-right"><button id="close-modal-btn" class="close-btn">&times;</button></div>
-                </div>
+        <!-- SCREEN: DEPOSIT (шаг 1 — выбор способа оплаты) -->
+        <div class="screen hidden" data-screen="deposit">
+            <section class="dep-section">
+                <header class="dep-header">
+                    <button class="back-btn" id="depositBack" aria-label="Назад">←</button>
+                    <h2 class="dep-title">ПОПОЛНЕНИЕ БАЛАНСА</h2>
+                    <span class="dep-header-slot"></span>
+                </header>
 
-                <!-- ЭКРАН 1: Выбор категории (виден по умолчанию) -->
-                <div id="deposit-categories">
-                    <div class="method-card" id="select-stars-category">
-                        <span>⭐️ Telegram Stars</span>
-                        <span>&rsaquo;</span>
+                <div class="dep-body">
+                    <!-- Промокод -->
+                    <div class="dep-promo">
+                        <input type="text" id="promoInput" class="dep-promo-input" placeholder="Ввести промокод" maxlength="32" autocomplete="off">
+                        <button class="dep-promo-apply" id="promoApply" type="button">ОК</button>
                     </div>
-                    <div class="method-card disabled">
-                        <span>💎 Криптовалюта</span>
-                        <span class="badge">СКОРО</span>
-                    </div>
-                </div>
 
-                <!-- ЭКРАН 2: Список звёзд (скрыт по умолчанию!) -->
-                <div id="deposit-stars-packages" class="hidden">
-                    <div class="stars-packages">
-                        <!-- Пакет 50 -->
-                        <div class="star-card" data-amount="50">
-                            <div class="star-info"><span class="star-icon">⭐</span> <span class="star-amount">50</span></div>
-                            <div class="star-ton-sub">≈ 0.31 TON</div>
-                            <button class="buy-btn">50 ⭐️</button>
+                    <!-- Способы оплаты -->
+                    <div class="dep-label">Выберите способ оплаты</div>
+                    <div class="dep-methods">
+                        <div class="dep-method active" id="select-stars-category" role="button" tabindex="0">
+                            <span class="dep-method-ico">⭐</span>
+                            <span class="dep-method-name">Telegram Stars</span>
+                            <span class="dep-method-arrow">&rsaquo;</span>
                         </div>
-
-                        <!-- Пакет 100 -->
-                        <div class="star-card" data-amount="100">
-                            <div class="star-info"><span class="star-icon">⭐</span> <span class="star-amount">100</span></div>
-                            <div class="star-ton-sub">≈ 0.63 TON</div>
-                            <button class="buy-btn">100 ⭐️</button>
-                        </div>
-
-                        <!-- Пакет 250 (Featured) -->
-                        <div class="star-card featured" data-amount="250">
-                            <span class="featured-badge">POPULAR</span>
-                            <div class="star-info"><span class="star-icon">⭐</span> <span class="star-amount">250</span></div>
-                            <div class="star-ton-sub">≈ 1.56 TON</div>
-                            <button class="buy-btn">250 ⭐️</button>
-                        </div>
-
-                        <!-- Пакет 500 -->
-                        <div class="star-card" data-amount="500">
-                            <div class="star-info"><span class="star-icon">⭐</span> <span class="star-amount">500</span></div>
-                            <div class="star-ton-sub">≈ 3.13 TON</div>
-                            <button class="buy-btn">500 ⭐️</button>
-                        </div>
-
-                        <!-- Пакет 1000 (Full width) -->
-                        <div class="star-card full-width" data-amount="1000">
-                            <div class="star-info"><span class="star-icon">⭐</span> <span class="star-amount">1000</span></div>
-                            <div class="star-ton-sub">≈ 6.25 TON</div>
-                            <button class="buy-btn">1 000 ⭐️</button>
+                        <div class="dep-method disabled" id="select-crypto-category" role="button" tabindex="-1">
+                            <span class="dep-method-ico">💎</span>
+                            <span class="dep-method-name">Криптовалюта</span>
+                            <span class="dep-badge">СКОРО</span>
                         </div>
                     </div>
                 </div>
-            </div>
+            </section>
+        </div>
+
+        <!-- SCREEN: STARS AMOUNT (шаг 2 — выбор суммы) -->
+        <div class="screen hidden" data-screen="stars-amount">
+            <section class="dep-section">
+                <header class="dep-header">
+                    <button class="back-btn" id="starsBack" aria-label="Назад">←</button>
+                    <h2 class="dep-title">ВЫБЕРИТЕ СУММУ</h2>
+                    <span class="dep-header-slot"></span>
+                </header>
+
+                <div class="dep-body">
+                    <div class="dep-rate">1 Star = 1 Баланс</div>
+                    <div class="dep-grid" id="starsGrid">
+                        <div class="dep-card" data-amount="5">
+                            <div class="dep-card-icon">⭐</div>
+                            <div class="dep-card-amount">5</div>
+                            <button class="dep-buy" type="button">⭐ 5</button>
+                        </div>
+                        <div class="dep-card" data-amount="20">
+                            <div class="dep-card-icon">⭐</div>
+                            <div class="dep-card-amount">20</div>
+                            <button class="dep-buy" type="button">⭐ 20</button>
+                        </div>
+                        <div class="dep-card" data-amount="50">
+                            <div class="dep-card-icon">⭐</div>
+                            <div class="dep-card-amount">50</div>
+                            <button class="dep-buy" type="button">⭐ 50</button>
+                        </div>
+                        <div class="dep-card" data-amount="100">
+                            <div class="dep-card-icon">⭐</div>
+                            <div class="dep-card-amount">100</div>
+                            <button class="dep-buy" type="button">⭐ 100</button>
+                        </div>
+                        <div class="dep-card is-popular" data-amount="500">
+                            <span class="dep-popular">ПОПУЛЯРНО</span>
+                            <div class="dep-card-icon">⭐</div>
+                            <div class="dep-card-amount">500</div>
+                            <button class="dep-buy" type="button">⭐ 500</button>
+                        </div>
+                        <div class="dep-card dep-card-wide" data-amount="1000">
+                            <div class="dep-card-icon">⭐</div>
+                            <div class="dep-card-amount">1000</div>
+                            <button class="dep-buy" type="button">⭐ 1 000</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
 
             <!-- SCREEN: CASE VIEW -->

@@ -2557,87 +2557,74 @@
         });
     });
 
-    /* ============ DEPOSIT MODAL (two-step) ============ */
-    const depositModal = document.getElementById('deposit-modal');
+    /* ============ DEPOSIT SCREENS (полноэкранные, как SKINOZ) ============ */
+    // Шаг 1: data-screen="deposit" (способ оплаты), Шаг 2: data-screen="stars-amount".
+    // Навигация через showScreen() — сохраняет каркас .screen/.hidden и нижнюю навигацию.
     const openDepositBtn = document.getElementById('open-deposit-btn');
-    const closeDepositBtn = document.getElementById('close-modal-btn');
-    const categoriesView = document.getElementById('deposit-categories');
-    const starsView = document.getElementById('deposit-stars-packages');
     const selectStarsCategory = document.getElementById('select-stars-category');
-    const backBtn = document.getElementById('back-btn');
-    const depositModalTitle = document.getElementById('modal-title');
+    const selectCryptoCategory = document.getElementById('select-crypto-category');
+    const depositBack = document.getElementById('depositBack');
+    const starsBack = document.getElementById('starsBack');
+    const promoInput = document.getElementById('promoInput');
+    const promoApply = document.getElementById('promoApply');
 
-    // Переход к звёздам
-    selectStarsCategory?.addEventListener('click', () => {
-        categoriesView.classList.add('hidden');
-        starsView.classList.remove('hidden');
-        backBtn.classList.remove('hidden');
-        depositModalTitle.textContent = 'Купить звёзды';
-    });
-
-    // Возврат к категориям
-    backBtn?.addEventListener('click', () => {
-        starsView.classList.add('hidden');
-        categoriesView.classList.remove('hidden');
-        backBtn.classList.add('hidden');
-        depositModalTitle.textContent = 'Пополнение баланса';
-    });
-
-    // Сброс на первый экран при закрытии модалки
-    closeDepositBtn?.addEventListener('click', () => {
-        depositModal.classList.add('hidden');
-        starsView.classList.add('hidden');
-        categoriesView.classList.remove('hidden');
-        backBtn.classList.add('hidden');
-        depositModalTitle.textContent = 'Пополнение баланса';
-    });
-
-    // Открытие модалки — всегда показываем Экран 1
+    // Открыть Шаг 1 по клику на «+» в шапке.
     openDepositBtn?.addEventListener('click', () => {
-        depositModal.classList.remove('hidden');
-        starsView.classList.add('hidden');
-        categoriesView.classList.remove('hidden');
-        backBtn.classList.add('hidden');
-        depositModalTitle.textContent = 'Пополнение баланса';
+        showScreen('deposit');
     });
 
-    // Закрытие по клику на фон
-    depositModal?.addEventListener('click', (e) => {
-        if (e.target === depositModal) {
-            depositModal.classList.add('hidden');
-            starsView.classList.add('hidden');
-            categoriesView.classList.remove('hidden');
-            backBtn.classList.add('hidden');
-            depositModalTitle.textContent = 'Пополнение баланса';
+    // Шаг 1 -> Шаг 2 (Telegram Stars).
+    selectStarsCategory?.addEventListener('click', () => {
+        showScreen('stars-amount');
+    });
+
+    // Шаг 2 -> Шаг 1.
+    starsBack?.addEventListener('click', () => {
+        showScreen('deposit');
+    });
+
+    // Шаг 1 -> Главный экран.
+    depositBack?.addEventListener('click', () => {
+        showScreen('home');
+    });
+
+    // Крипта: заглушка «Скоро» (без функционала).
+    selectCryptoCategory?.addEventListener('click', () => {
+        showToast('Криптовалюта скоро появится');
+    });
+
+    // Промокод: поле есть, обработка появится позже (заглушка).
+    promoApply?.addEventListener('click', () => {
+        const code = (promoInput?.value || '').trim();
+        if (!code) {
+            showToast('Введите промокод');
+            return;
         }
+        showToast('Промокод не найден');
     });
 
-    // Вызов инвойса Telegram Stars
-    document.querySelectorAll('.star-card').forEach((card) => {
-        card.addEventListener('click', async () => {
-            const amount = card.dataset.amount;
-
-            // Запрос к бэкенду на получение invoiceLink
-            try {
-                const response = await fetch('/api/create-invoice', {
-                    method: 'POST',
-                    headers: Object.assign(tgAuthHeader(), { 'Content-Type': 'application/json' }),
-                    body: JSON.stringify({ amount: Number(amount) })
+    // Вызов инвойса Telegram Stars (клик по карточке суммы).
+    async function buyStars(amount) {
+        try {
+            const data = await apiFetch('/api/create-invoice', {
+                method: 'POST',
+                body: JSON.stringify({ amount: Number(amount) }),
+            });
+            if (data.invoiceLink && window.Telegram?.WebApp?.openInvoice) {
+                window.Telegram.WebApp.openInvoice(data.invoiceLink, (status) => {
+                    if (status === 'paid') {
+                        // Баланс подтверждает только сервер (вебхук): подтягиваем из БД.
+                        syncFromServer();
+                        showScreen('home');
+                    }
                 });
-                const data = await response.json();
-
-                if (data.invoiceLink && window.Telegram?.WebApp) {
-                    window.Telegram.WebApp.openInvoice(data.invoiceLink, (status) => {
-                        if (status === 'paid') {
-                            depositModal.classList.add('hidden');
-                            // Баланс подтверждает только сервер: подтягиваем из БД.
-                            syncFromServer();
-                        }
-                    });
-                }
-            } catch (e) {
-                console.error("Ошибка проведения платежа:", e);
             }
-        });
+        } catch (e) {
+            showToast(e.message || 'Ошибка создания платежа');
+        }
+    }
+
+    document.querySelectorAll('#starsGrid .dep-card').forEach((card) => {
+        card.addEventListener('click', () => buyStars(card.dataset.amount));
     });
 })();

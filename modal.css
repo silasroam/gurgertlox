@@ -683,47 +683,50 @@
 }
 
 /* ============================================
-   DEPOSIT MODAL — Покупка Telegram Stars
+   DEPOSIT SCREENS — полноэкранные (data-screen:
+   deposit / stars-amount). Тёмный фон, зелёные
+   акценты. Классы dep-*.
    ============================================ */
 
-/* Класс hidden для модалки пополнения (работает с classList) */
-.modal-overlay.hidden {
-    display: none;
+/* ---------- Шапка экрана депозита ---------- */
+.dep-section {
+    width: 100%;
+    padding-bottom: 24px;
 }
 
-/* ---------- HEADER (universal 3-slot grid) ---------- */
-.modal-header {
+.dep-header {
     display: grid;
     grid-template-columns: 80px 1fr 80px;
     align-items: center;
     width: 100%;
+    padding: 12px 16px 0;
+    box-sizing: border-box;
 }
 
-.header-slot {
-    display: flex;
-    align-items: center;
-    min-height: 32px;
-}
-
-.header-left {
-    justify-self: start;
-}
-
-.header-right {
-    justify-self: end;
-}
-
-#modal-title {
+.dep-title {
     justify-self: center;
     text-align: center;
     margin: 0;
     white-space: nowrap;
-    font-size: 18px;
+    font-size: 15px;
     font-weight: 800;
     letter-spacing: 0.5px;
     color: var(--text-primary);
     line-height: 1;
     padding: 0;
+}
+
+.dep-header-slot {
+    width: 32px;
+    height: 32px;
+    justify-self: end;
+}
+
+.dep-body {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px 16px 0;
 }
 
 .close-btn {
@@ -770,23 +773,116 @@
     color: #ffffff;
 }
 
-/* ---------- DEPOSIT SCREENS (two-step) ---------- */
-#deposit-categories,
-#deposit-stars-packages {
+/* ---------- Промокод ---------- */
+.dep-promo {
+    display: flex;
+    gap: 8px;
+}
+
+.dep-promo-input {
+    flex: 1;
+    height: 46px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%), #14161d;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    color: var(--text-primary);
+    font-size: 14px;
+    font-weight: 600;
+    padding: 0 14px;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.dep-promo-input::placeholder {
+    color: rgba(234, 246, 255, 0.35);
+    font-weight: 500;
+}
+
+.dep-promo-input:focus {
+    border-color: rgba(34, 197, 94, 0.55);
+}
+
+.dep-promo-apply {
+    height: 46px;
+    min-width: 56px;
+    padding: 0 14px;
+    background: linear-gradient(180deg, #22c55e 0%, #16a34a 100%);
+    color: #fff;
+    font-weight: 700;
+    font-size: 13px;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 14px rgba(34, 197, 94, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+    cursor: pointer;
+    transition: opacity 0.15s ease;
+}
+
+.dep-promo-apply:active {
+    opacity: 0.85;
+}
+
+/* ---------- Секция способов оплаты ---------- */
+.dep-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: rgba(234, 246, 255, 0.45);
+    padding: 4px 2px 0;
+}
+
+.dep-methods {
     display: flex;
     flex-direction: column;
-    flex: 1; /* Растягиваем на всю доступную высоту */
+    gap: 10px;
 }
 
-#deposit-categories {
-    padding: 20px 0 8px;
+.dep-method {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%), #14161d;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 14px;
+    padding: 14px 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    cursor: pointer;
+    transition: border-color 0.2s ease, transform 0.15s ease;
 }
 
-#deposit-stars-packages {
-    padding: 20px 0 8px;
+.dep-method.active {
+    border-color: rgba(34, 197, 94, 0.45);
 }
 
-.method-card .badge {
+.dep-method.active:active {
+    transform: translateY(-1px);
+}
+
+.dep-method.disabled {
+    opacity: 0.5;
+    cursor: default;
+}
+
+.dep-method-ico {
+    font-size: 22px;
+    line-height: 1;
+}
+
+.dep-method-name {
+    flex: 1;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.dep-method-arrow {
+    font-size: 20px;
+    color: rgba(234, 246, 255, 0.4);
+    line-height: 1;
+}
+
+.dep-badge {
     font-size: 10px;
     font-weight: 700;
     letter-spacing: 0.5px;
@@ -798,39 +894,21 @@
     text-transform: uppercase;
 }
 
-.featured-badge {
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    font-size: 9px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    color: #FFD700;
-    background: rgba(255, 215, 0, 0.15);
-    border: 1px solid rgba(255, 215, 0, 0.4);
-    padding: 3px 8px;
-    border-radius: 6px;
-    text-transform: uppercase;
-}
-
-/* ---------- SUBTITLE ---------- */
-.modal-subtitle {
+/* ---------- Экран суммы: подсказка курса + сетка пакетов ---------- */
+.dep-rate {
     font-size: 12px;
-    font-weight: 500;
-    color: var(--text-secondary);
-    padding: 8px 20px 16px;
-    text-align: left;
+    font-weight: 600;
+    color: rgba(234, 246, 255, 0.5);
+    padding: 2px 2px 0;
 }
 
-/* ---------- PACKAGES ---------- */
-.stars-packages {
+.dep-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 12px;
-    padding: 8px 0;
 }
 
-.star-card {
+.dep-card {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -846,63 +924,47 @@
     transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
-.method-card {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%), #14161d;
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    border-radius: 14px;
-    padding: 14px 16px;
-    margin-bottom: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
-    cursor: pointer;
-    transition: border-color 0.2s ease, transform 0.15s ease;
-}
-
-.star-card:active {
+.dep-card:active {
     transform: translateY(-2px);
 }
 
-.star-card.full-width {
+.dep-card-wide {
     grid-column: span 2;
 }
 
-.star-card.featured {
-    border: 1px solid rgba(255, 215, 0, 0.5);
-    box-shadow: 0 0 15px rgba(255, 215, 0, 0.15), 0 4px 12px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+.dep-card.is-popular {
+    border: 1px solid rgba(34, 197, 94, 0.55);
+    box-shadow: 0 0 15px rgba(34, 197, 94, 0.18), 0 4px 12px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
-.star-info {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
+.dep-popular {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #4ade80;
+    background: rgba(34, 197, 94, 0.15);
+    border: 1px solid rgba(34, 197, 94, 0.45);
+    padding: 3px 8px;
+    border-radius: 6px;
+    text-transform: uppercase;
 }
 
-.star-icon {
+.dep-card-icon {
     font-size: 28px;
     line-height: 1;
 }
 
-.star-amount {
+.dep-card-amount {
     font-size: 18px;
     font-weight: 800;
     color: var(--text-primary);
     text-align: center;
 }
 
-.star-ton-sub {
-    font-size: 11px;
-    font-weight: 600;
-    color: rgba(234, 246, 255, 0.5);
-    text-align: center;
-    margin-top: -4px;
-}
-
-.buy-btn {
+.dep-buy {
     width: 100%;
     background: linear-gradient(180deg, #22c55e 0%, #16a34a 100%);
     color: #fff;
@@ -916,34 +978,33 @@
     transition: opacity 0.15s ease;
 }
 
-.buy-btn:active {
+.dep-buy:active {
     opacity: 0.85;
 }
 
 /* ---------- COMPACT SCREENS (width ≤ 360px) ---------- */
 @media (max-width: 360px) {
-    .modal-header {
-        padding: 16px 16px 0;
+    .dep-header {
+        padding: 10px 12px 0;
     }
 
-    .modal-subtitle {
-        padding: 6px 16px 12px;
-        font-size: 11px;
+    .dep-body {
+        padding: 12px 12px 0;
     }
 
-    .stars-packages {
-        padding: 0 16px 18px;
+    .dep-grid {
+        gap: 10px;
     }
 
-    .star-card {
+    .dep-card {
         padding: 12px 14px;
     }
 
-    .star-amount {
+    .dep-card-amount {
         font-size: 14px;
     }
 
-    .buy-btn {
+    .dep-buy {
         padding: 7px 12px;
         font-size: 12px;
     }

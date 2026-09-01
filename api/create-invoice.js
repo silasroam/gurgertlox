@@ -5,8 +5,8 @@
 'use strict';
 import { json, readJson } from './_lib/http.mjs';
 
-// Пакеты Stars из index.html (star-card data-amount) — строго белый список.
-const ALLOWED_AMOUNTS = new Set([50, 100, 250, 500, 1000]);
+// Пакеты Stars с экрана пополнения (dep-card data-amount) — строго белый список.
+const ALLOWED_AMOUNTS = new Set([5, 20, 50, 100, 500, 1000]);
 
 export default async function handler(req, res) {
     if (req.method !== 'POST') return json(res, 405, { error: 'Method not allowed' });
