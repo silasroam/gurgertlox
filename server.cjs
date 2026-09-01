@@ -14,6 +14,7 @@ const { Pool } = require('pg');
 const { verifyInitData } = require('./server/auth.cjs');
 const { openCase, sellItems } = require('./server/caseEngine.cjs');
 const { registerUser } = require('./server/users.cjs');
+const { grantStars, validateReq, safeEqual } = require('./server/grantEngine.cjs');
 const CASES_CONF = require('./casesConfig.json');
 
 // ---------- PostgreSQL ----------
@@ -26,6 +27,29 @@ const pool = new Pool({
 const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN || '';
 const SEED_BALANCE = Number(process.env.SEED_BALANCE_STARS || 0);
 const REQUIRE_TG_AUTH = process.env.REQUIRE_TG_AUTH !== 'false';
+// Админ-секрет для /api/admin/grant (задаётся в .env; НЕ попадает на клиент).
+const ADMIN_SECRET = process.env.ADMIN_SECRET || '';
+const CRON_SECRET = process.env.CRON_SECRET || ADMIN_SECRET;
+// Крипто-реквизиты (Exodus, без KYC).
+const WALLETS = {
+    USDT_TRC20: process.env.WALLET_USDT_TRC20 || 'TWq6JByvRy4S1KrJze7krqpfhUb7pbK7oR',
+    TON: process.env.WALLET_TON || 'UQDbde4KnNiqjiWkx4IhsB5ChhVlKWtY6DSAyZzZ-G0mM6k7',
+    LTC: process.env.WALLET_LTC || 'LaoDjKGe3NMdTLFQEt1ifVyHXcFXZ2wSF9',
+};
+const DEFAULTS = { USDT_TRC20: 100, TON: 450, LTC: 8000 }; // stars/1 unit
+function cryptoRates() {
+    try { return { ...DEFAULTS, ...JSON.parse(process.env.CRYPTO_RATES || '{}') }; } catch (e) { return DEFAULTS; }
+}
+// Гибрид: USDT/LTC — точная сумма с уникальной микро-частью; TON — ровная (мемо).
+const MICRO_LOCAL = { USDT_TRC20: [0.0001, 0.02], LTC: [0.00001, 0.002] };
+const STORE_LOCAL = { USDT_TRC20: 4, TON: 4, LTC: 5 };
+function saturateLocal(currency, base) {
+    const range = MICRO_LOCAL[currency];
+    const p = STORE_LOCAL[currency] ?? 4;
+    if (!range) return Number(base.toFixed(p));
+    const micro = range[0] + Math.random() * (range[1] - range[0]);
+    return Number((base + micro).toFixed(p));
+}
 
 // Per-user in-flight lock (dedupe rapid double-clicks).
 const inFlight = new Map();
@@ -166,6 +190,80 @@ const server = http.createServer(async (req, res) => {
         } catch (e) {
             release(user.id);
             return send(res, codeMap[e.code] || 500, { error: e.message });
+        }
+    }
+
+    // ---------- Admin: выдача игровых звёзд (защищено ADMIN_SECRET) ----------
+    if (p === '/api/admin/grant' && req.method === 'POST') {
+        if (!ADMIN_SECRET || !safeEqual(req.headers['x-admin-secret'], ADMIN_SECRET)) {
+            return send(res, 401, { error: 'Forbidden: invalid admin secret' });
+        }
+        try {
+            const body = await readJson(req);
+            const valid = validateReq(body);
+            const result = await grantStars(pool, valid);
+            return send(res, 200, result);
+        } catch (e) {
+            return send(res, codeMap[e.code] || 500, { error: e.message });
+        }
+    }
+
+    // ---------- Crypto deposit (пополнение криптой, без KYC) ----------
+    if (p === '/api/payment/create-crypto-deposit' && req.method === 'POST') {
+        const user = await authMiddleware(req);
+        if (!user) return send(res, 401, { error: 'Unauthorized' });
+        try {
+            const body = await readJson(req);
+            const currency = String(body.currency || '').toUpperCase();
+            const coins = { USDT_TRC20: 'TRON / TRC-20', TON: 'TON', LTC: 'Litecoin' };
+            const symbols = { USDT_TRC20: 'USDT', TON: 'TON', LTC: 'LTC' };
+            const prec = { USDT_TRC20: 2, TON: 4, LTC: 5 };
+            if (!coins[currency]) return send(res, 400, { error: 'Bad currency' });
+            const stars = Math.round(Number(body.stars_amount));
+            if (!Number.isInteger(stars) || stars < 1 || stars > 1000000) return send(res, 400, { error: 'Bad stars_amount' });
+            const rate = cryptoRates()[currency];
+            const base = Number((stars / rate).toFixed(2));
+            if (base <= 0) return send(res, 400, { error: 'Bad amount' });
+            const amountCrypto = saturateLocal(currency, base);
+
+            let memo = `DEP_${user.tg_id}_${Math.floor(1000 + Math.random() * 9000)}`;
+            let dep;
+            for (let attempt = 0; attempt < 3; attempt++) {
+                try {
+                    const ins = await pool.query(
+                        `INSERT INTO crypto_deposits (tg_id, currency, amount_crypto, stars_to_add, memo, status)
+                         VALUES ($1,$2,$3,$4,$5,'pending')
+                         RETURNING id, currency, amount_crypto::float8, stars_to_add, memo`,
+                        [user.tg_id, currency, amountCrypto, stars, memo]
+                    );
+                    dep = ins.rows[0];
+                    break;
+                } catch (e) {
+                    if (String(e.code) !== '23505' || attempt === 2) throw e;
+                    memo = `DEP_${user.tg_id}_${Math.floor(1000 + Math.random() * 9000)}`;
+                }
+            }
+            return send(res, 200, {
+                ok: true, currency, symbol: symbols[currency], network: coins[currency],
+                wallet_address: WALLETS[currency], amount_crypto: Number(dep.amount_crypto),
+                memo, stars_amount: stars,
+            });
+        } catch (e) {
+            return send(res, codeMap[e.code] || 500, { error: e.message });
+        }
+    }
+
+    // ---------- Crypto deposit cron (локальный авто-воркер) ----------
+    if (p === '/api/cron/crypto-deposits' && (req.method === 'GET' || req.method === 'POST')) {
+        if (!CRON_SECRET || !safeEqual((req.headers['authorization'] || '').replace(/^Bearer\s+/i, ''), CRON_SECRET)) {
+            return send(res, 401, { error: 'Forbidden' });
+        }
+        try {
+            const { processPendingDeposits } = await import('./api/_lib/cryptoWorker.mjs');
+            const result = await processPendingDeposits();
+            return send(res, 200, { ok: true, ...result });
+        } catch (e) {
+            return send(res, 500, { ok: false, error: e.message });
         }
     }
 

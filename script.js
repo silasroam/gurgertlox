@@ -2588,10 +2588,9 @@
         showScreen('home');
     });
 
-    // Крипта: заглушка «Скоро» (без функционала).
-    selectCryptoCategory?.addEventListener('click', () => {
-        showToast('Криптовалюта скоро появится');
-    });
+    // Крипта: экран выбора монеты/суммы.
+    const selectCrypto = () => showScreen('crypto');
+    selectCryptoCategory?.addEventListener('click', selectCrypto);
 
     // Своя сумма: валидация (целое >= 1) -> /api/create-invoice -> Invoice.
     async function payCustomAmount() {
@@ -2639,4 +2638,118 @@
     document.querySelectorAll('#starsGrid .dep-row').forEach((card) => {
         card.addEventListener('click', () => buyStars(card.dataset.amount));
     });
+
+    /* ============ CRYPTO DEPOSIT (бэкенд + матовое окно) ============ */
+    const cryptoBack = document.getElementById('cryptoBack');
+    const cryptoCoins = document.getElementById('cryptoCoins');
+    const cryptoPresets = document.getElementById('cryptoPresets');
+    const cryptoAmountInput = document.getElementById('cryptoAmount');
+    const cryptoCreateBtn = document.getElementById('cryptoCreate');
+    const cryptoModal = document.getElementById('cryptoModal');
+    const cryptoModalClose = document.getElementById('cryptoModalClose');
+    const cryptoIpaid = document.getElementById('cryptoIpaid');
+    const cryptoPaidStatus = document.getElementById('cryptoPaidStatus');
+    const COIN_META_UI = {
+        USDT_TRC20: { sym: '₮', name: 'USDT', net: 'TRC-20' },
+        TON: { sym: 'T', name: 'TON', net: 'TON' },
+        LTC: { sym: 'Ł', name: 'LTC', net: 'Litecoin' },
+    };
+
+    // Нав. crypto -> deposit.
+    cryptoBack?.addEventListener('click', () => showScreen('deposit'));
+
+    // Выбор монеты.
+    let selectedCurrency = 'USDT_TRC20';
+    cryptoCoins?.addEventListener('click', (e) => {
+        const btn = e.target.closest('.crypto-coin');
+        if (!btn) return;
+        cryptoCoins.querySelectorAll('.crypto-coin').forEach((b) => b.classList.remove('is-selected'));
+        btn.classList.add('is-selected');
+        selectedCurrency = btn.dataset.currency;
+    });
+
+    // Пресеты суммы.
+    cryptoPresets?.addEventListener('click', (e) => {
+        const btn = e.target.closest('.crypto-preset');
+        if (!btn) return;
+        if (cryptoAmountInput) cryptoAmountInput.value = btn.dataset.amount;
+    });
+
+    // Создать депозит -> /api/payment/create-crypto-deposit -> модалка.
+    async function createCryptoDeposit() {
+        const raw = cryptoAmountInput ? cryptoAmountInput.value : '';
+        const stars = parseInt(raw, 10);
+        if (!Number.isInteger(stars) || stars < 1) { showToast('Введите целое число от 1'); return; }
+        if (cryptoCreateBtn) cryptoCreateBtn.disabled = true;
+        try {
+            const data = await apiFetch('/api/payment/create-crypto-deposit', {
+                method: 'POST',
+                body: JSON.stringify({ currency: selectedCurrency, stars_amount: stars }),
+            });
+            fillCryptoModal(data);
+        } catch (e) {
+            showToast(e.message || 'Ошибка создания депозита');
+        } finally {
+            if (cryptoCreateBtn) cryptoCreateBtn.disabled = false;
+        }
+    }
+
+    function fillCryptoModal(d) {
+        const meta = COIN_META_UI[d.currency] || {};
+        const sym = document.getElementById('cryptoModalSymbol');
+        const amount = document.getElementById('cryptoModalAmount');
+        const stars = document.getElementById('cryptoModalStars');
+        const net = document.getElementById('cryptoModalNet');
+        const wallet = document.getElementById('cryptoModalWallet');
+        const amountVal = document.getElementById('cryptoModalAmountVal');
+        const memo = document.getElementById('cryptoModalMemo');
+        if (sym) sym.textContent = meta.sym || '';
+        if (amount) amount.textContent = `${d.amount_crypto} ${meta.name || d.symbol}`;
+        if (stars) stars.textContent = `за ${d.stars_amount} ⭐`;
+        if (net) net.textContent = `(${d.network})`;
+        if (wallet) wallet.textContent = d.wallet_address;
+        if (amountVal) amountVal.textContent = `${d.amount_crypto} ${meta.name || d.symbol}`;
+        if (memo) memo.textContent = d.memo;
+        if (cryptoPaidStatus) cryptoPaidStatus.hidden = true;
+        if (cryptoModal) cryptoModal.hidden = false;
+    }
+
+    cryptoCreateBtn?.addEventListener('click', createCryptoDeposit);
+    cryptoAmountInput?.addEventListener('keydown', (e) => { if (e.key === 'Enter') createCryptoDeposit(); });
+
+    // Копирование значений (data-copy = id источника).
+    async function copyToClipboard(id, btn) {
+        const el = document.getElementById(id);
+        if (!el) return;
+        let text = el.textContent.trim();
+        try {
+            await navigator.clipboard.writeText(text);
+        } catch (e) {
+            const ta = document.createElement('textarea');
+            ta.value = text;
+            document.body.appendChild(ta);
+            ta.select();
+            try { document.execCommand('copy'); } catch (e2) {}
+            ta.remove();
+        }
+        btn.classList.add('copied');
+        const oldText = btn.textContent;
+        btn.textContent = 'Скопировано ✓';
+        setTimeout(() => { btn.textContent = oldText; btn.classList.remove('copied'); }, 1500);
+    }
+    document.querySelectorAll('.crypto-copy-btn').forEach((btn) => {
+        btn.addEventListener('click', () => copyToClipboard(btn.dataset.copy, btn));
+    });
+
+    // «Я оплатил» -> режим ожидания + закрыть (сервер подтвердит через воркер).
+    cryptoIpaid?.addEventListener('click', () => {
+        if (cryptoPaidStatus) cryptoPaidStatus.hidden = false;
+        if (cryptoModal) cryptoModal.hidden = true;
+        showToast('Ожидаем подтверждение перевода…');
+        setTimeout(() => { try { syncFromServer(); } catch (e) {} }, 5000);
+    });
+
+    // Закрытие модалки крестиком/оверлеем.
+    cryptoModalClose?.addEventListener('click', () => { if (cryptoModal) cryptoModal.hidden = true; });
+    cryptoModal?.addEventListener('click', (e) => { if (e.target === cryptoModal) cryptoModal.hidden = true; });
 })();

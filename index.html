@@ -657,6 +657,62 @@
             </div>
         </div>
 
+        <!-- CRYPTO DEPOSIT MODAL (матовое окно с реквизитами) -->
+        <div class="modal-overlay crypto-modal-overlay" id="cryptoModal" hidden>
+            <div class="modal-card crypto-modal-card">
+                <button class="modal-close" id="cryptoModalClose" aria-label="Закрыть">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path d="M3 3L13 13M13 3L3 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </button>
+
+                <div class="modal-body">
+                    <h3 class="modal-title">ПОПОЛНЕНИЕ КРИПТОЙ</h3>
+                    <div class="crypto-sum-head">
+                        <span id="cryptoModalSymbol" class="crypto-sum-sym">₮</span>
+                        <div class="crypto-sum-text">
+                            <span class="crypto-sum-amount" id="cryptoModalAmount">0.00 USDT</span>
+                            <span class="crypto-sum-stars" id="cryptoModalStars">за 500 ⭐</span>
+                        </div>
+                    </div>
+
+                    <div class="crypto-field">
+                        <span class="crypto-field-label">Адрес кошелька <em id="cryptoModalNet">(TRC-20)</em></span>
+                        <div class="crypto-copy-row">
+                            <span class="crypto-copy-val" id="cryptoModalWallet">…</span>
+                            <button class="crypto-copy-btn" data-copy="cryptoModalWallet" type="button">Скопировать</button>
+                        </div>
+                    </div>
+
+                    <div class="crypto-field">
+                        <span class="crypto-field-label">Точная сумма перевода</span>
+                        <div class="crypto-copy-row">
+                            <span class="crypto-copy-val" id="cryptoModalAmountVal">…</span>
+                            <button class="crypto-copy-btn" data-copy="cryptoModalAmountVal" type="button">Скопировать</button>
+                        </div>
+                    </div>
+
+                    <div class="crypto-field">
+                        <span class="crypto-field-label">Комментарий / Memo</span>
+                        <div class="crypto-copy-row">
+                            <span class="crypto-copy-val" id="cryptoModalMemo">…</span>
+                            <button class="crypto-copy-btn" data-copy="cryptoModalMemo" type="button">Скопировать</button>
+                        </div>
+                    </div>
+
+                    <div class="crypto-warn">
+                        ⚠️ ОБЯЗАТЕЛЬНО укажите этот Memo при отправке перевода! Без него зачисление невозможно.
+                    </div>
+
+                    <div class="crypto-paid-status" id="cryptoPaidStatus" hidden>
+                        ✅ Оплата получена, ожидаем подтверждение сети…
+                    </div>
+
+                    <button class="modal-open crypto-paid-btn" id="cryptoIpaid" type="button">Я ОПЛАТИЛ</button>
+                </div>
+            </div>
+        </div>
+
         <!-- ============================================================
              FULLSCREEN PAGE: ПРОДАЖА ПРЕДМЕТОВ (Web3)
              ============================================================ -->
@@ -766,10 +822,10 @@
                             <span class="dep-method-name">Telegram Stars</span>
                             <span class="dep-method-arrow">&rsaquo;</span>
                         </div>
-                        <div class="dep-method is-disabled" id="select-crypto-category" role="button" tabindex="-1">
+                        <div class="dep-method" id="select-crypto-category" role="button" tabindex="0">
                             <span class="dep-method-ico">💎</span>
                             <span class="dep-method-name">Криптовалюта</span>
-                            <span class="dep-badge">СКОРО</span>
+                            <span class="dep-method-arrow">&rsaquo;</span>
                         </div>
                     </div>
                 </div>
@@ -843,6 +899,50 @@
                         <input type="number" id="customAmount" class="dep-custom-input" placeholder="Введите сумму..." min="1" max="100000" step="1" inputmode="numeric" autocomplete="off">
                         <button class="dep-custom-pay" id="customPay" type="button">Оплатить</button>
                     </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- SCREEN: CRYPTO (пополнение криптой — без KYC) -->
+        <div class="screen hidden" data-screen="crypto">
+            <section class="dep-section">
+                <header class="dep-header">
+                    <button class="dep-back" id="cryptoBack" aria-label="Назад">←</button>
+                    <h2 class="dep-title">КРИПТОВАЛЮТА</h2>
+                </header>
+
+                <div class="dep-body">
+                    <div class="dep-label">Выберите монету</div>
+                    <div class="crypto-coins" id="cryptoCoins">
+                        <button class="crypto-coin is-selected" data-currency="USDT_TRC20" type="button">
+                            <span class="crypto-coin-sym">₮</span>
+                            <span class="crypto-coin-name">USDT</span>
+                            <span class="crypto-coin-net">TRC-20</span>
+                        </button>
+                        <button class="crypto-coin" data-currency="TON" type="button">
+                            <span class="crypto-coin-sym">T</span>
+                            <span class="crypto-coin-name">Toncoin</span>
+                            <span class="crypto-coin-net">TON</span>
+                        </button>
+                        <button class="crypto-coin" data-currency="LTC" type="button">
+                            <span class="crypto-coin-sym">Ł</span>
+                            <span class="crypto-coin-name">Litecoin</span>
+                            <span class="crypto-coin-net">LTC</span>
+                        </button>
+                    </div>
+
+                    <div class="dep-label">Сумма (⭐ звёзд)</div>
+                    <div class="dep-presets" id="cryptoPresets">
+                        <button class="crypto-preset" data-amount="100" type="button">100</button>
+                        <button class="crypto-preset" data-amount="500" type="button">500</button>
+                        <button class="crypto-preset" data-amount="1000" type="button">1000</button>
+                        <button class="crypto-preset" data-amount="5000" type="button">5000</button>
+                    </div>
+                    <div class="dep-custom">
+                        <input type="number" id="cryptoAmount" class="dep-custom-input" placeholder="Своя сумма в звёздах…" min="1" max="1000000" step="1" inputmode="numeric" autocomplete="off">
+                        <button class="dep-custom-pay" id="cryptoCreate" type="button">Создать</button>
+                    </div>
+                    <p class="crypto-hint">Отправьте перевод напрямую на кошелёк. Зачисление по уникальному Memo обычно занимает до 2 минут.</p>
                 </div>
             </section>
         </div>
@@ -1120,10 +1220,6 @@
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script src="currency.js"></script>
     <script src="script.js"></script>
-    <!-- caseLogic.js ОТКЛЮЧЁН: дублировал обработчики script.js и рендерил заглушки
-         (эмодзи-иконки вместо PNG, техническое имя «Bonus»). Вся логика экрана
-         кейса теперь единая — в script.js -->
-    <!-- <script src="caseLogic.js"></script> -->
     <script type="module" src="giftMatcher.js"></script>
 </body>
 </html>

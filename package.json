@@ -7,6 +7,8 @@
   "scripts": {
     "start": "node server.cjs",
     "dev": "node server.cjs",
+    "grant": "node server/grant.cjs",
+    "crypto:worker": "node worker/crypto-deposit-worker.cjs",
     "test": "node tests/auth.test.mjs && node tests/engine.test.mjs && node tests/handlers.test.mjs && node tests/smoke-neon.mjs",
     "db:init": "node db/init.cjs"
   },

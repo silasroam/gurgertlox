@@ -1058,3 +1058,170 @@
         padding: 10px 14px;
     }
 }
+/* ---------- CRYPTO DEPOSIT SCREEN ---------- */
+.crypto-coins {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+}
+.crypto-coin {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 16px 8px;
+    background: #12151c;
+    border: 1px solid #262b37;
+    border-radius: 14px;
+    color: #c8cfd8;
+    cursor: pointer;
+    transition: border-color 0.15s ease, transform 0.15s ease, background 0.15s ease;
+}
+.crypto-coin:hover { border-color: #3b4252; transform: translateY(-1px); }
+.crypto-coin.is-selected {
+    border-color: #34a853;
+    background: linear-gradient(180deg, rgba(52, 168, 83, 0.15), rgba(52, 168, 83, 0.04));
+    color: #34a853;
+}
+.crypto-coin-sym {
+    font-size: 26px;
+    font-weight: 800;
+    line-height: 1;
+}
+.crypto-coin-name { font-size: 12px; font-weight: 700; }
+.crypto-coin-net { font-size: 10px; color: #7b8595; }
+
+.dep-presets {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-bottom: 12px;
+}
+.crypto-preset {
+    height: 46px;
+    background: #12151c;
+    border: 1px solid #262b37;
+    border-radius: 12px;
+    color: #e7ecf3;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    transition: border-color 0.15s ease, background 0.15s ease;
+}
+.crypto-preset:hover { border-color: #3b4252; background: #191c24; }
+.crypto-preset:active { transform: translateY(-1px); }
+
+.crypto-hint {
+    margin-top: 14px;
+    font-size: 12px;
+    line-height: 1.5;
+    color: #7b8595;
+    text-align: center;
+}
+
+/* ---------- CRYPTO DEPOSIT MODAL (матовое окно) ---------- */
+.crypto-modal-overlay {
+    background: rgba(5, 6, 8, 0.82);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+}
+.crypto-modal-card {
+    max-width: 360px;
+    width: 92vw;
+}
+.crypto-sum-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px;
+    margin-bottom: 16px;
+    border: 1px solid #2f6b46;
+    border-radius: 14px;
+    background: rgba(52, 168, 83, 0.08);
+}
+.crypto-sum-sym {
+    width: 46px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: 800;
+    border-radius: 50%;
+    background: #1a1e26;
+    border: 1px solid #2f6b46;
+    color: #4ade80;
+    flex-shrink: 0;
+}
+.crypto-sum-text { display: flex; flex-direction: column; gap: 3px; }
+.crypto-sum-amount { font-size: 20px; font-weight: 800; color: #fff; }
+.crypto-sum-stars { font-size: 13px; color: #8a93a5; }
+
+.crypto-field { margin-bottom: 14px; }
+.crypto-field-label {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    color: #8a93a5;
+    margin-bottom: 6px;
+}
+.crypto-field-label em { font-style: normal; color: #5b6472; }
+.crypto-copy-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #12151c;
+    border: 1px solid #262b37;
+    border-radius: 10px;
+    padding: 10px 12px;
+}
+.crypto-copy-val {
+    flex: 1;
+    min-width: 0;
+    font-size: 13px;
+    color: #e7ecf3;
+    font-family: monospace;
+    word-break: break-all;
+    user-select: all;
+}
+.crypto-copy-btn {
+    flex-shrink: 0;
+    padding: 8px 12px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #4ade80;
+    background: #1f2937;
+    border: 1px solid #2f6b46;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.15s ease;
+}
+.crypto-copy-btn:hover { background: #263446; }
+.crypto-copy-btn.copied { color: #ffd54f; border-color: #e8a200; }
+
+.crypto-warn {
+    margin-top: 6px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    background: rgba(232, 162, 0, 0.10);
+    border: 1px solid rgba(232, 162, 0, 0.35);
+    color: #ffd54f;
+    font-size: 12.5px;
+    line-height: 1.5;
+    font-weight: 600;
+    text-align: center;
+}
+.crypto-paid-status {
+    margin-top: 12px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    background: rgba(52, 168, 83, 0.12);
+    border: 1px solid rgba(52, 168, 83, 0.35);
+    color: #4ade80;
+    font-size: 13px;
+    font-weight: 700;
+    text-align: center;
+}
+.crypto-paid-btn { margin-top: 16px; width: 100%; }

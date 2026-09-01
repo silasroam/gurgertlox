@@ -87,6 +87,20 @@ CREATE UNIQUE INDEX IF NOT EXISTS uq_transactions_charge_id
     ON transactions ((meta->>'charge_id'))
     WHERE meta->>'charge_id' IS NOT NULL;
 
+CREATE TABLE IF NOT EXISTS crypto_deposits (
+    id            BIGSERIAL PRIMARY KEY,
+    tg_id         BIGINT       NOT NULL REFERENCES users(tg_id),
+    currency      TEXT         NOT NULL,          -- 'USDT_TRC20' | 'TON' | 'LTC'
+    amount_crypto NUMERIC(30,10) NOT NULL CHECK (amount_crypto > 0),
+    stars_to_add  BIGINT       NOT NULL DEFAULT 0,
+    memo          TEXT         NOT NULL UNIQUE,   -- 'DEP_{tg_id}_{rand}'
+    status        TEXT         NOT NULL DEFAULT 'pending',  -- 'pending' | 'completed'
+    created_at    TIMESTAMPTZ  NOT NULL DEFAULT now(),
+    completed_at  TIMESTAMPTZ
+);
+CREATE INDEX IF NOT EXISTS idx_crypto_deposits_status ON crypto_deposits (status, created_at);
+CREATE INDEX IF NOT EXISTS idx_crypto_deposits_memo ON crypto_deposits (memo);
+
 -- Lock + safe atomic debit. Returns the locked user row (FOR UPDATE) or NULL.
 -- Used inside a transaction to serialise opens/sells (race-condition protection).
 CREATE OR REPLACE FUNCTION lock_user(p_user_id BIGINT)
