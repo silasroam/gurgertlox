@@ -255,7 +255,7 @@ const server = http.createServer(async (req, res) => {
 
     // ---------- Version endpoint (для проверки деплоя без Telegram) ----------
     if (p === '/api/version') {
-        return send(res, 200, { version: '1.0.2', status: 'ok' });
+        return send(res, 200, { version: '1.0.3', status: 'ok' });
     }
 
     // ---------- Crypto deposit cron (локальный авто-воркер) ----------
