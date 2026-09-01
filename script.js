@@ -2566,7 +2566,6 @@
     const depositBack = document.getElementById('depositBack');
     const starsBack = document.getElementById('starsBack');
     const promoInput = document.getElementById('promoInput');
-    const promoApply = document.getElementById('promoApply');
 
     // Открыть Шаг 1 по клику на «+» в шапке.
     openDepositBtn?.addEventListener('click', () => {
@@ -2593,14 +2592,12 @@
         showToast('Криптовалюта скоро появится');
     });
 
-    // Промокод: поле есть, обработка появится позже (заглушка).
-    promoApply?.addEventListener('click', () => {
-        const code = (promoInput?.value || '').trim();
-        if (!code) {
-            showToast('Введите промокод');
-            return;
+    // Промокод: единый инпут без кнопок. Обработка — по Enter (пока заглушка).
+    promoInput?.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            const code = (promoInput?.value || '').trim();
+            showToast(code ? 'Промокод не найден' : 'Введите промокод');
         }
-        showToast('Промокод не найден');
     });
 
     // Вызов инвойса Telegram Stars (клик по карточке суммы).
@@ -2624,7 +2621,7 @@
         }
     }
 
-    document.querySelectorAll('#starsGrid .dep-card').forEach((card) => {
+    document.querySelectorAll('#starsGrid .dep-row').forEach((card) => {
         card.addEventListener('click', () => buyStars(card.dataset.amount));
     });
 })();

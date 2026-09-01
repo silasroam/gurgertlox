@@ -683,50 +683,172 @@
 }
 
 /* ============================================
-   DEPOSIT SCREENS — полноэкранные (data-screen:
-   deposit / stars-amount). Тёмный фон, зелёные
-   акценты. Классы dep-*.
+   DEPOSIT SCREENS — по UI/UX-спецификации.
+   Фон #0d0e12, акцент #00ff66, классы dep-*.
    ============================================ */
 
-/* ---------- Шапка экрана депозита ---------- */
+/* ---------- ОБЩЕЕ (экраны 1 и 2) ---------- */
 .dep-section {
     width: 100%;
     padding-bottom: 24px;
 }
 
 .dep-header {
-    display: grid;
-    grid-template-columns: 80px 1fr 80px;
+    display: flex;
     align-items: center;
     width: 100%;
-    padding: 12px 16px 0;
+    padding: 16px 16px 0;
     box-sizing: border-box;
 }
 
+/* Стрелка назад: font-size 20px, cursor pointer */
+.dep-back {
+    font-size: 20px;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    padding: 0 12px 0 0;
+    margin: 0;
+    line-height: 1;
+    transition: color 0.2s ease;
+}
+
+.dep-back:hover {
+    color: #00ff66;
+}
+
+/* КРУПНЫЙ ЖИРНЫЙ заголовок в верхнем регистре */
 .dep-title {
-    justify-self: center;
+    flex: 1;
     text-align: center;
     margin: 0;
-    white-space: nowrap;
-    font-size: 15px;
+    text-transform: uppercase;
     font-weight: 800;
-    letter-spacing: 0.5px;
-    color: var(--text-primary);
+    letter-spacing: 1px;
+    font-size: 20px;
+    color: #ffffff;
     line-height: 1;
-    padding: 0;
+    white-space: nowrap;
 }
 
-.dep-header-slot {
-    width: 32px;
-    height: 32px;
-    justify-self: end;
-}
-
+/* Контент: max-width 100%, боковые отступы 16px */
 .dep-body {
+    padding: 0 16px;
+    box-sizing: border-box;
+}
+
+/* Зеленый круглый логотип 64x64 с черным алмазом */
+.dep-logo {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: #00ff66;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 16px auto 0;
+    box-shadow: 0 0 24px rgba(0, 255, 102, 0.35);
+}
+
+/* ---------- ЭКРАН 1: Промокод ---------- */
+.dep-promo {
+    position: relative;
+    margin-top: 16px;
+}
+
+.dep-promo-tag {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+.dep-promo-input {
+    width: 100%;
+    height: 48px;
+    background: #1a1c23;
+    border: 1px solid #2a2d37;
+    border-radius: 12px;
+    color: #fff;
+    font-size: 14px;
+    padding: 0 14px 0 38px;
+    outline: none;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease;
+}
+
+.dep-promo-input::placeholder {
+    color: #808080;
+}
+
+.dep-promo-input:focus {
+    border-color: #00ff66;
+}
+
+/* ---------- ЭКРАН 1: Секция способов оплаты ---------- */
+.dep-label {
+    color: #ffffff;
+    font-size: 14px;
+    opacity: 0.8;
+    margin-top: 24px;
+    margin-bottom: 12px;
+}
+
+.dep-methods {
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    padding: 16px 16px 0;
+}
+
+/* Карточка способа: height 56px, flex, padding 0 16px */
+.dep-method {
+    height: 56px;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    background: #1a1c23;
+    border: 1px solid #2a2d37;
+    border-radius: 14px;
+    margin-bottom: 10px;
+    gap: 12px;
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: border-color 0.2s ease, transform 0.15s ease;
+}
+
+.dep-method.is-selected {
+    border: 2px solid #00ff66;
+    box-shadow: 0 0 16px rgba(0, 255, 102, 0.25);
+}
+
+.dep-method.is-selected:active {
+    transform: translateY(-1px);
+}
+
+.dep-method.is-disabled {
+    cursor: default;
+}
+
+.dep-method-ico {
+    font-size: 24px;
+    line-height: 1;
+}
+
+.dep-method-name {
+    flex: 1;
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+}
+
+.dep-badge {
+    background: #2a2d37;
+    color: #888;
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 6px;
+    text-transform: uppercase;
 }
 
 .close-btn {
@@ -773,239 +895,120 @@
     color: #ffffff;
 }
 
-/* ---------- Промокод ---------- */
-.dep-promo {
-    display: flex;
-    gap: 8px;
-}
-
-.dep-promo-input {
-    flex: 1;
-    height: 46px;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%), #14161d;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 12px;
-    color: var(--text-primary);
-    font-size: 14px;
-    font-weight: 600;
-    padding: 0 14px;
-    outline: none;
-    transition: border-color 0.2s ease;
-}
-
-.dep-promo-input::placeholder {
-    color: rgba(234, 246, 255, 0.35);
-    font-weight: 500;
-}
-
-.dep-promo-input:focus {
-    border-color: rgba(34, 197, 94, 0.55);
-}
-
-.dep-promo-apply {
-    height: 46px;
-    min-width: 56px;
-    padding: 0 14px;
-    background: linear-gradient(180deg, #22c55e 0%, #16a34a 100%);
-    color: #fff;
-    font-weight: 700;
-    font-size: 13px;
-    border: none;
-    border-radius: 12px;
-    box-shadow: 0 4px 14px rgba(34, 197, 94, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.35);
-    cursor: pointer;
-    transition: opacity 0.15s ease;
-}
-
-.dep-promo-apply:active {
-    opacity: 0.85;
-}
-
-/* ---------- Секция способов оплаты ---------- */
-.dep-label {
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    color: rgba(234, 246, 255, 0.45);
-    padding: 4px 2px 0;
-}
-
-.dep-methods {
+/* ---------- ЭКРАН 2: Строго ОДНОКОЛОНОЧНЫЙ список плашек ---------- */
+.dep-list {
+    margin-top: 16px;
     display: flex;
     flex-direction: column;
     gap: 10px;
+    width: 100%;
 }
 
-.dep-method {
+/* Горизонтальная плашка height 72px */
+.dep-row {
     position: relative;
+    height: 72px;
     display: flex;
     align-items: center;
-    gap: 12px;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%), #14161d;
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    justify-content: space-between;
+    background: #16181e;
+    border: 1px solid #242731;
     border-radius: 14px;
-    padding: 14px 16px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    padding: 12px 16px;
+    box-sizing: border-box;
     cursor: pointer;
-    transition: border-color 0.2s ease, transform 0.15s ease;
+    transition: transform 0.15s ease, border-color 0.2s ease;
 }
 
-.dep-method.active {
-    border-color: rgba(34, 197, 94, 0.45);
-}
-
-.dep-method.active:active {
+.dep-row:active {
     transform: translateY(-1px);
 }
 
-.dep-method.disabled {
-    opacity: 0.5;
-    cursor: default;
-}
-
-.dep-method-ico {
-    font-size: 22px;
-    line-height: 1;
-}
-
-.dep-method-name {
-    flex: 1;
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--text-primary);
-}
-
-.dep-method-arrow {
-    font-size: 20px;
-    color: rgba(234, 246, 255, 0.4);
-    line-height: 1;
-}
-
-.dep-badge {
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    color: #9ca3af;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 3px 8px;
-    border-radius: 8px;
-    text-transform: uppercase;
-}
-
-/* ---------- Экран суммы: подсказка курса + сетка пакетов ---------- */
-.dep-rate {
-    font-size: 12px;
-    font-weight: 600;
-    color: rgba(234, 246, 255, 0.5);
-    padding: 2px 2px 0;
-}
-
-.dep-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-}
-
-.dep-card {
-    position: relative;
+/* Левый блок: зеленый квадрат-иконка + текст */
+.dep-row-left {
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+}
+
+/* Зеленый скругленный квадрат 44x44 (эмодзи затемняется фильтром) */
+.dep-row-ico {
+    width: 44px;
+    height: 44px;
+    background: #00ff66;
+    border-radius: 10px;
+    display: flex;
     align-items: center;
     justify-content: center;
-    padding: 16px;
-    gap: 8px;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%), #14161d;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 16px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
-    cursor: pointer;
-    transition: transform 0.2s ease, border-color 0.2s ease;
+    font-size: 20px;
+    flex-shrink: 0;
+    filter: grayscale(1) brightness(0.15);
 }
 
-.dep-card:active {
-    transform: translateY(-2px);
+/* Сверху крупное число, снизу мелкий серый подтекст */
+.dep-row-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.15;
 }
 
-.dep-card-wide {
-    grid-column: span 2;
+.dep-row-text b {
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
 }
 
-.dep-card.is-popular {
-    border: 1px solid rgba(34, 197, 94, 0.55);
-    box-shadow: 0 0 15px rgba(34, 197, 94, 0.18), 0 4px 12px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+.dep-row-text small {
+    font-size: 12px;
+    color: #808080;
 }
 
+/* Правый блок: золотая звезда + белый жирный текст */
+.dep-row-price {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+}
+
+/* Пакет 500: рамка 2px #00ff66 */
+.dep-row.is-popular {
+    border: 2px solid #00ff66;
+    box-shadow: 0 0 16px rgba(0, 255, 102, 0.2);
+}
+
+/* Бейдж ПОПУЛЯРНО: top -10px, right 16px, зеленая плашка */
 .dep-popular {
     position: absolute;
-    top: 8px;
-    right: 8px;
-    font-size: 9px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    color: #4ade80;
-    background: rgba(34, 197, 94, 0.15);
-    border: 1px solid rgba(34, 197, 94, 0.45);
-    padding: 3px 8px;
-    border-radius: 6px;
+    top: -10px;
+    right: 16px;
+    background: #00ff66;
+    color: #000;
+    font-weight: 800;
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 10px;
     text-transform: uppercase;
 }
 
-.dep-card-icon {
-    font-size: 28px;
-    line-height: 1;
-}
-
-.dep-card-amount {
-    font-size: 18px;
-    font-weight: 800;
-    color: var(--text-primary);
-    text-align: center;
-}
-
-.dep-buy {
-    width: 100%;
-    background: linear-gradient(180deg, #22c55e 0%, #16a34a 100%);
-    color: #fff;
-    font-weight: 700;
-    font-size: 13px;
-    border: none;
-    border-radius: 10px;
-    padding: 10px 18px;
-    box-shadow: 0 4px 14px rgba(34, 197, 94, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.35);
-    cursor: pointer;
-    transition: opacity 0.15s ease;
-}
-
-.dep-buy:active {
-    opacity: 0.85;
-}
-
-/* ---------- COMPACT SCREENS (width ≤ 360px) ---------- */
+/* ---------- COMPACT (width ≤ 360px) ---------- */
 @media (max-width: 360px) {
     .dep-header {
-        padding: 10px 12px 0;
-    }
-
-    .dep-body {
         padding: 12px 12px 0;
     }
 
-    .dep-grid {
-        gap: 10px;
+    .dep-body {
+        padding: 0 12px;
     }
 
-    .dep-card {
-        padding: 12px 14px;
+    .dep-row {
+        padding: 10px 14px;
     }
 
-    .dep-card-amount {
-        font-size: 14px;
-    }
-
-    .dep-buy {
-        padding: 7px 12px;
-        font-size: 12px;
+    .dep-row-ico {
+        width: 40px;
+        height: 40px;
     }
 }
