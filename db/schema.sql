@@ -21,6 +21,9 @@ CREATE INDEX IF NOT EXISTS idx_users_tg_id ON users (tg_id);
 -- (ДО создания индексов, зависящих от custom_id).
 ALTER TABLE users ADD COLUMN IF NOT EXISTS custom_id BIGINT;
 ALTER TABLE users ADD COLUMN IF NOT EXISTS last_active TIMESTAMPTZ NOT NULL DEFAULT now();
+-- tg_id обязан быть BIGINT: Telegram ID — 10-значные числа (до ~5e9),
+-- INTEGER (max 2147483647) падает с overflow. Идемпотентно для старых баз.
+ALTER TABLE users ALTER COLUMN tg_id TYPE BIGINT;
 
 -- Уникальный Custom ID (покрывает и свежие, и мигрированные базы).
 CREATE UNIQUE INDEX IF NOT EXISTS uq_users_custom_id ON users (custom_id);

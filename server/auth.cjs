@@ -47,8 +47,16 @@ function verifyInitData(initData, botToken) {
     try {
         const user = JSON.parse(params.get('user') || '{}');
         if (!user || user.id == null) return null;
+        // tg_id -> СТРОКА (см. api/_lib/auth.mjs): BIGINT-безопасно.
+        const rawId = user.id;
+        const idStr = (typeof rawId === 'number' && Number.isInteger(rawId) && rawId > 0)
+            ? String(rawId)
+            : (typeof rawId === 'string' && /^\d{1,20}$/.test(rawId.trim()))
+                ? rawId.trim().replace(/^0+(?=\d)/, '')
+                : null;
+        if (!idStr) return null;
         return {
-            tg_id: user.id,
+            tg_id: idStr,
             username: user.username || null,
             first_name: user.first_name || null,
             photo_url: user.photo_url || null

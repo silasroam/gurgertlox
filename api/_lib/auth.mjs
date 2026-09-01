@@ -54,8 +54,18 @@ export function verifyInitData(initData, botToken) {
         const userPair = pairs.find(([k]) => k === 'user');
         const user = JSON.parse(decodeURIComponent(userPair ? userPair[1] : '{}'));
         if (!user || user.id == null) return null;
+        // tg_id нормализуем в СТРОКУ сразу при парсинге initData:
+        // Telegram-ID 10-значные (~5e9) — Number их вмещает точно (< 2^53),
+        // но в БД уходит строка, чтобы pg/BIGINT не терял точность ни при каких ID.
+        const rawId = user.id;
+        const idStr = (typeof rawId === 'number' && Number.isInteger(rawId) && rawId > 0)
+            ? String(rawId)
+            : (typeof rawId === 'string' && /^\d{1,20}$/.test(rawId.trim()))
+                ? rawId.trim().replace(/^0+(?=\d)/, '')
+                : null;
+        if (!idStr) return null;
         return {
-            tg_id: user.id,
+            tg_id: idStr,
             username: user.username || null,
             first_name: user.first_name || null,
             photo_url: user.photo_url || null,

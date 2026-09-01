@@ -1,5 +1,5 @@
 // Smoke-тесты регистрации: генерация Custom ID + registerUser на фейковой БД.
-import { generateCustomId, registerUser, fixCustomIdCollision } from '../api/_lib/users.mjs';
+import { generateCustomId, registerUser, fixCustomIdCollision, normalizeTgId } from '../api/_lib/users.mjs';
 
 let failed = 0;
 function check(name, cond) {
@@ -71,6 +71,14 @@ function fakeDb(script) {
     const id = await fixCustomIdCollision(db, 7);
     check('коллизия 23505 -> перегенерация ID', id === '11111111' && calls >= 3);
 }
+
+// ── 4. normalizeTgId: 10-значные Telegram ID и крайние случаи ──
+check('normalizeTgId: 10-значный TG ID строкой', normalizeTgId('7969090536') === '7969090536');
+check('normalizeTgId: number 5000000000 (> int32) без потери', normalizeTgId(5000000000) === '5000000000');
+check('normalizeTgId: number 2147483648 (> INT4 max)', normalizeTgId(2147483648) === '2147483648');
+check('normalizeTgId: bigint 9007199254740993 (> 2^53, Number терял бы точность)', normalizeTgId(9007199254740993n) === '9007199254740993');
+check('normalizeTgId: ведущие нули срезаются', normalizeTgId('007969090536') === '7969090536');
+check('normalizeTgId: мусор -> null', normalizeTgId('12abc') === null && normalizeTgId(-5) === null && normalizeTgId('') === null);
 
 console.log(failed ? ('FAILED: ' + failed) : 'ALL OK');
 process.exit(failed ? 1 : 0);

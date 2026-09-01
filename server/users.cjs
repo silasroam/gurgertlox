@@ -10,6 +10,22 @@ const crypto = require('crypto');
 
 const CUSTOM_ID_ATTEMPTS = 30; // попыток против коллизий (пространство ~90 млн)
 
+// Нормализация Telegram ID (идентично api/_lib/users.mjs):
+// строка из цифр (1..20 знаков) -> безопасная передача в BIGINT через pg.
+function normalizeTgId(raw) {
+    if (raw == null) return null;
+    let s;
+    if (typeof raw === 'bigint') s = raw.toString();
+    else if (typeof raw === 'number') {
+        if (!Number.isInteger(raw) || raw <= 0) return null;
+        s = String(raw);
+    } else {
+        s = String(raw).trim();
+    }
+    if (!/^\d{1,20}$/.test(s)) return null;
+    return s.replace(/^0+(?=\d)/, '');
+}
+
 // Случайный 8-значный ID только из цифр (криптостойкий ГСЧ).
 function generateCustomId() {
     const span = 90000000n; // 99999999 - 10000000 + 1
@@ -53,7 +69,11 @@ async function fixCustomIdCollision(pool, userId) {
 
 // Единая точка регистрации при любом заходе пользователя.
 async function registerUser(pool, tgUser, seedBalance = 0) {
-    const result = await registerUserSql(pool, tgUser, seedBalance);
+    // Валидация tg_id до запроса к БД (невалидный -> BAD_REQUEST, не ошибка pg).
+    const tgId = normalizeTgId(tgUser && tgUser.tg_id);
+    if (!tgId) throw Object.assign(new Error('Invalid Telegram ID'), { code: 'BAD_REQUEST' });
+
+    const result = await registerUserSql(pool, { ...tgUser, tg_id: tgId }, seedBalance);
     const user = result.rows[0];
     if (user.custom_id == null) {
         user.custom_id = await fixCustomIdCollision(pool, user.id);
@@ -61,4 +81,4 @@ async function registerUser(pool, tgUser, seedBalance = 0) {
     return user;
 }
 
-module.exports = { generateCustomId, registerUser };
+module.exports = { generateCustomId, normalizeTgId, registerUser };

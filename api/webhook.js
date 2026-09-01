@@ -37,8 +37,10 @@ export default async function handler(req, res) {
     const chargeId = pay.telegram_payment_charge_id || '';
     const stars = Math.round(Number(pay.total_amount) || 0);
     const from = (msg && msg.from) || {};
-    const tgId = Number(from.id) || 0;
-    if (!chargeId || !tgId || stars <= 0) return json(res, 200, { ok: true });
+    // tg_id как строка цифр (BIGINT-безопасно, см. _lib/users.mjs normalizeTgId).
+    const tgId = String(from.id == null ? '' : from.id).trim();
+    const tgIdOk = /^\d{1,20}$/.test(tgId);
+    if (!chargeId || !tgIdOk || stars <= 0) return json(res, 200, { ok: true });
 
     const db = await getDb();
     try {
