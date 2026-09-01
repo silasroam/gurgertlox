@@ -41,12 +41,14 @@ export async function readJson(req) {
 }
 
 function initDataFrom(req) {
-    // Telegram initData: заголовок x-init-data (любой регистр) или query init_data.
-    // Клиент шлёт RAW — двойное декодирование не делаем; одного достаточно.
+    // Telegram initData: заголовок x-init-data или query init_data.
+    // ВАЖНО: заголовок берём КАК ЕСТЬ (RAW, значения url-encoded Telegram).
+    // decodeURIComponent здесь ломал HMAC: подпись Telegram считается над
+    // RAW-парами, а после декода проверка шла по перекрученным данным -> 401
+    // у всех реальных пользователей. verifyInitData сам понимает RAW и
+    // декодированный (фолбэк для прокси) форматы.
     const h = req.headers['x-init-data'] || '';
-    if (h) {
-        try { return decodeURIComponent(String(h)); } catch (e) { return String(h); }
-    }
+    if (h) return String(h);
     const u = new URL(req.url, 'http://localhost');
     return u.searchParams.get('init_data') || '';
 }
