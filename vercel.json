@@ -1,40 +1,6 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "builds": [
-    {
-      "src": "api/**/*.js",
-      "use": "@vercel/node",
-      "config": {
-        "maxDuration": 15,
-        "includeFiles": "casesConfig.json"
-      }
-    },
-    { "src": "index.html", "use": "@vercel/static" },
-    { "src": "style.css", "use": "@vercel/static" },
-    { "src": "modal.css", "use": "@vercel/static" },
-    { "src": "script.js", "use": "@vercel/static" },
-    { "src": "currency.js", "use": "@vercel/static" },
-    { "src": "giftMatcher.js", "use": "@vercel/static" },
-    { "src": "casesData.js", "use": "@vercel/static" },
-    { "src": "giftsData.js", "use": "@vercel/static" },
-    { "src": "giftsPrices.js", "use": "@vercel/static" },
-    { "src": "shopData.js", "use": "@vercel/static" },
-    { "src": "caseLogic.js", "use": "@vercel/static" },
-    { "src": "renderGifts.js", "use": "@vercel/static" },
-    { "src": "image/**", "use": "@vercel/static" },
-    { "src": "gift image/**", "use": "@vercel/static" },
-    { "src": "standard-gifts/**", "use": "@vercel/static" },
-    { "src": "TelegramGiftsAssests-main/webp/**", "use": "@vercel/static" }
-  ],
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/api/$1" }
-  ],
-  "headers": [
-    {
-      "source": "/(.*)\\.(css|js|webp|png|jpg|jpeg|svg|gif|json)",
-      "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=3600" }
-      ]
-    }
   ]
 }
