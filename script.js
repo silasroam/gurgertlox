@@ -2703,6 +2703,7 @@
         const wallet = document.getElementById('cryptoModalWallet');
         const amountVal = document.getElementById('cryptoModalAmountVal');
         const memo = document.getElementById('cryptoModalMemo');
+        const warning = document.getElementById('cryptoModalWarning');
         if (sym) sym.textContent = meta.sym || '';
         if (amount) amount.textContent = `${d.amount_crypto} ${meta.name || d.symbol}`;
         if (stars) stars.textContent = `за ${d.stars_amount} ⭐`;
@@ -2710,6 +2711,14 @@
         if (wallet) wallet.textContent = d.wallet_address;
         if (amountVal) amountVal.textContent = `${d.amount_crypto} ${meta.name || d.symbol}`;
         if (memo) memo.textContent = d.memo;
+        if (warning) {
+            if (d.currency === 'USDT_TRC20' || d.currency === 'LTC') {
+                warning.textContent = 'ОБЯЗАТЕЛЬНО отправляйте ТОЧНУЮ сумму до последней цифры, чтобы платеж зачислился автоматически!';
+                warning.hidden = false;
+            } else {
+                warning.hidden = true;
+            }
+        }
         if (cryptoPaidStatus) cryptoPaidStatus.hidden = true;
         if (cryptoModal) cryptoModal.hidden = false;
     }

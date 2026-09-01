@@ -253,6 +253,11 @@ const server = http.createServer(async (req, res) => {
         }
     }
 
+    // ---------- Version endpoint (для проверки деплоя без Telegram) ----------
+    if (p === '/api/version') {
+        return send(res, 200, { version: '1.0.1', status: 'ok' });
+    }
+
     // ---------- Crypto deposit cron (локальный авто-воркер) ----------
     if (p === '/api/cron/crypto-deposits' && (req.method === 'GET' || req.method === 'POST')) {
         if (!CRON_SECRET || !safeEqual((req.headers['authorization'] || '').replace(/^Bearer\s+/i, ''), CRON_SECRET)) {

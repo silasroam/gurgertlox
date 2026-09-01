@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="modal.css">
+    <link rel="stylesheet" href="modal.css?v=1.0.1">
 </head>
 <body>
     <!-- Спрайт золотой звезды Telegram Stars -->
@@ -700,6 +700,10 @@
                         </div>
                     </div>
 
+                    <div class="crypto-warn" id="cryptoModalWarning" hidden>
+                        ⚠️ ОБЯЗАТЕЛЬНО отправляйте ТОЧНУЮ сумму до последней цифры, чтобы платеж зачислился автоматически!
+                    </div>
+
                     <div class="crypto-warn">
                         ⚠️ ОБЯЗАТЕЛЬНО укажите этот Memo при отправке перевода! Без него зачисление невозможно.
                     </div>
@@ -1219,7 +1223,7 @@
     <!-- Telegram WebApp SDK: ДОЛЖЕН быть до script.js (initData для авторизации) -->
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script src="currency.js"></script>
-    <script src="script.js"></script>
+    <script src="script.js?v=1.0.1"></script>
     <script type="module" src="giftMatcher.js"></script>
 </body>
 </html>

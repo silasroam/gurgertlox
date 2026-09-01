@@ -109,11 +109,11 @@ async function incomingByAddress(currency) {
   return [];
 }
 
-// Единый проход: для всех pending депозитов сматчить по Memo.
+// Единый проход: для всех pending депозитов сматчить по Memo (TON) или точной сумме (USDT/LTC).
 export async function processPendingDeposits() {
   const db = await getDb();
   const pending = await db.query(
-    `SELECT id, tg_id, currency, amount_crypto::float8, stars_to_add, memo, status
+    `SELECT id, tg_id, currency, amount_crypto::float8, stars_to_add, memo, status, created_at
      FROM crypto_deposits WHERE status = 'pending' ORDER BY created_at LIMIT 200`
   );
   if (!pending.rows.length) return { matched: 0, pending: 0 };
@@ -124,32 +124,76 @@ export async function processPendingDeposits() {
   }
 
   let matched = 0;
-  for (const row of pending.rows) {
-    if (!parseMemo(row.memo)) continue;
-    const txs = (incoming[row.currency] || []).filter((t) => t.comment === row.memo);
-    const hit = txs.find((t) => t.confirms >= MIN_CONFIRMS && t.amount > 0 && t.amount >= row.amount_crypto * AMOUNT_TOLERANCE);
-    if (!hit) continue;
+  const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000).toISOString();
 
-    try {
-      await withTransaction(async (client) => {
-        await client.query(`SELECT id FROM crypto_deposits WHERE id = $1 FOR UPDATE`, [row.id]);
-        const cur = await client.query(`SELECT status FROM crypto_deposits WHERE id = $1`, [row.id]);
-        if (cur.rows[0]?.status !== 'pending') return;
-        await client.query(
-          `UPDATE users SET balance_stars = balance_stars + $2, updated_at = now() WHERE tg_id = $1`,
-          [row.tg_id, row.stars_to_add]
-        );
-        await client.query(
-          `UPDATE crypto_deposits SET status = 'completed', completed_at = now() WHERE id = $1`, [row.id]
-        );
-        await client.query(
-          `INSERT INTO transactions (user_id, type, amount_stars, item_id, meta)
-           SELECT id, 'deposit', $2, NULL, $3::jsonb FROM users WHERE tg_id = $1`,
-          [row.tg_id, row.stars_to_add, JSON.stringify({ crypto_deposit_id: row.id, currency: row.currency, memo: row.memo })]
-        );
-      });
-      matched++;
-    } catch (e) { /* конфликт/дубль — пропускаем, не роняем worker. */ }
+  for (const row of pending.rows) {
+    // TON: идентификация по Memo
+    if (row.currency === 'TON') {
+      if (!parseMemo(row.memo)) continue;
+      const txs = (incoming[row.currency] || []).filter((t) => t.comment === row.memo);
+      const hit = txs.find((t) => t.confirms >= MIN_CONFIRMS && t.amount > 0 && t.amount >= row.amount_crypto * AMOUNT_TOLERANCE);
+      if (!hit) continue;
+
+      try {
+        await withTransaction(async (client) => {
+          await client.query(`SELECT id FROM crypto_deposits WHERE id = $1 FOR UPDATE`, [row.id]);
+          const cur = await client.query(`SELECT status FROM crypto_deposits WHERE id = $1`, [row.id]);
+          if (cur.rows[0]?.status !== 'pending') return;
+          await client.query(
+            `UPDATE users SET balance_stars = balance_stars + $2, updated_at = now() WHERE tg_id = $1`,
+            [row.tg_id, row.stars_to_add]
+          );
+          await client.query(
+            `UPDATE crypto_deposits SET status = 'completed', completed_at = now() WHERE id = $1`, [row.id]
+          );
+          await client.query(
+            `INSERT INTO transactions (user_id, type, amount_stars, item_id, meta)
+             SELECT id, 'deposit', $2, NULL, $3::jsonb FROM users WHERE tg_id = $1`,
+            [row.tg_id, row.stars_to_add, JSON.stringify({ crypto_deposit_id: row.id, currency: row.currency, memo: row.memo })]
+          );
+        });
+        matched++;
+      } catch (e) { /* конфликт/дубль — пропускаем, не роняем worker. */ }
+    }
+    // USDT/LTC: идентификация по ТОЧНОЙ сумме за последний час
+    else if (row.currency === 'USDT_TRC20' || row.currency === 'LTC') {
+      const recentPending = pending.rows.filter(
+        r => r.currency === row.currency && r.created_at >= oneHourAgo
+      );
+      const txs = (incoming[row.currency] || []).filter((t) => t.confirms >= MIN_CONFIRMS && t.amount > 0);
+      
+      // Ищем точное совпадение amount_crypto
+      const hit = txs.find((t) => Math.abs(t.amount - row.amount_crypto) < 0.000001);
+      if (!hit) continue;
+
+      // Проверяем, что эта транзакция не использована другим депозитом
+      const alreadyUsed = await db.query(
+        `SELECT id FROM crypto_deposits WHERE status = 'completed' AND currency = $1 AND amount_crypto::float8 = $2`,
+        [row.currency, hit.amount]
+      );
+      if (alreadyUsed.rows.length > 0) continue;
+
+      try {
+        await withTransaction(async (client) => {
+          await client.query(`SELECT id FROM crypto_deposits WHERE id = $1 FOR UPDATE`, [row.id]);
+          const cur = await client.query(`SELECT status FROM crypto_deposits WHERE id = $1`, [row.id]);
+          if (cur.rows[0]?.status !== 'pending') return;
+          await client.query(
+            `UPDATE users SET balance_stars = balance_stars + $2, updated_at = now() WHERE tg_id = $1`,
+            [row.tg_id, row.stars_to_add]
+          );
+          await client.query(
+            `UPDATE crypto_deposits SET status = 'completed', completed_at = now() WHERE id = $1`, [row.id]
+          );
+          await client.query(
+            `INSERT INTO transactions (user_id, type, amount_stars, item_id, meta)
+             SELECT id, 'deposit', $2, NULL, $3::jsonb FROM users WHERE tg_id = $1`,
+            [row.tg_id, row.stars_to_add, JSON.stringify({ crypto_deposit_id: row.id, currency: row.currency, amount: row.amount_crypto })]
+          );
+        });
+        matched++;
+      } catch (e) { /* конфликт/дубль — пропускаем, не роняем worker. */ }
+    }
   }
   return { matched, pending: pending.rows.length };
 }
