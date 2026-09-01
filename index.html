@@ -1076,6 +1076,8 @@
 
         window.dispatchEvent(new Event('gifts-ready'));
     </script>
+    <!-- Telegram WebApp SDK: ДОЛЖЕН быть до script.js (initData для авторизации) -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script src="currency.js"></script>
     <script src="script.js"></script>
     <!-- caseLogic.js ОТКЛЮЧЁН: дублировал обработчики script.js и рендерил заглушки

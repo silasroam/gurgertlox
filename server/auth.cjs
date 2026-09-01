@@ -15,22 +15,30 @@ function verifyInitData(initData, botToken) {
     if (!hash) return null;
     params.delete('hash');
 
-    // data_check_string: sorted key=value pairs joined by \n (URL-unescaped values)
+    // data_check_string: sorted key=value pairs joined by \n.
+    // ВАЖНО: значения остаются RAW (как прислал Telegram) — decodeURIComponent
+    // ломает HMAC. Фолбэк с декодированием оставлен для прокси-клиентов.
     const pairs = [...params.entries()]
-        .sort((a, b) => a[0].localeCompare(b[0]))
-        .map(([k, v]) => `${k}=${decodeURIComponent(v)}`)
-        .join('\n');
+        .sort((a, b) => a[0].localeCompare(b[0]));
 
-    // secret_key = HMAC_SHA256(bot_token, "WebAppData")
+    // secret_key = HMAC_SHA256(key="WebAppData", msg=bot_token)
     const secretKey = crypto.createHmac('sha256', 'WebAppData').update(botToken).digest();
-    // computed hash over data_check_string
-    const computed = crypto.createHmac('sha256', secretKey).update(pairs).digest('hex');
 
-    // Constant-time compare
+    // Вариант 1 (каноничный): RAW-значения.
+    const rawString = pairs.map(([k, v]) => `${k}=${v}`).join('\n');
+    // Вариант 2 (фолбэк): декодированные значения.
+    const decString = pairs.map(([k, v]) => { try { return `${k}=${decodeURIComponent(v)}`; } catch (e) { return `${k}=${v}`; } }).join('\n');
+
+    const computed = crypto.createHmac('sha256', secretKey).update(rawString).digest('hex');
+    const computedDec = crypto.createHmac('sha256', secretKey).update(decString).digest('hex');
+
+    // Constant-time compare (принимаем RAW или декодированный вариант).
     const a = Buffer.from(computed, 'hex');
+    const ad = Buffer.from(computedDec, 'hex');
     const b = Buffer.from(hash, 'hex');
-    if (a.length !== b.length) return null;
-    if (!crypto.timingSafeEqual(a, b)) return null;
+    const rawOk = a.length === b.length && crypto.timingSafeEqual(a, b);
+    const decOk = !rawOk && ad.length === b.length && crypto.timingSafeEqual(ad, b);
+    if (!rawOk && !decOk) return null;
 
     // Extract & verify auth_date freshness (within 24h)
     const authDate = Number(params.get('auth_date') || 0);

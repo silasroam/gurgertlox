@@ -41,6 +41,8 @@ export async function readJson(req) {
 }
 
 function initDataFrom(req) {
+    // Telegram initData: заголовок x-init-data (любой регистр) или query init_data.
+    // Клиент шлёт RAW — двойное декодирование не делаем; одного достаточно.
     const h = req.headers['x-init-data'] || '';
     if (h) {
         try { return decodeURIComponent(String(h)); } catch (e) { return String(h); }

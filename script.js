@@ -242,15 +242,47 @@
        Балансы, цены и результаты дропов фронтенд НЕ вычисляет:
        только отправляет намерения, всё решает сервер.
        ============================================================ */
+    // ---------- Telegram auth: ждём SDK и initData (ретрай до 3с) ----------
+    // SDK telegram-web-app.js грузится асинхронно: если дёрнуть API раньше,
+    // initData будет пустой и сервер ответит 401. Гарантируем готовность.
+    let tgReadyPromise = null;
+    function ensureTelegramReady() {
+        if (tgReadyPromise) return tgReadyPromise;
+        tgReadyPromise = new Promise((resolve) => {
+            const started = Date.now();
+            (function poll() {
+                const td = window.Telegram && window.Telegram.WebApp;
+                if (td && typeof td.initData === 'string' && td.initData.length > 0) return resolve(true);
+                if (Date.now() - started > 3000) return resolve(false); // dev-браузер без ТГ
+                setTimeout(poll, 100);
+            })();
+        });
+        return tgReadyPromise;
+    }
+
     function tgAuthHeader() {
         // Telegram WebApp сам валидируется на сервере через initData HMAC.
+        // ВАЖНО: initData шлём КАК ЕСТЬ (RAW, уже url-encoded Telegram) —
+        // сервер считает HMAC над сырыми парами, любое перекодирование ломает подпись.
         const initData = (window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.initData) || '';
-        return { 'X-Init-Data': encodeURIComponent(initData), 'Content-Type': 'application/json' };
+        return { 'x-init-data': initData, 'Content-Type': 'application/json' };
     }
 
     async function apiFetch(path, options) {
-        const opts = Object.assign({ headers: tgAuthHeader() }, options || {});
-        const resp = await fetch(path, opts);
+        // Абсолютно КАЖДЫЙ запрос к /api/* несёт x-init-data:
+        // сливаем заголовки вызывающего кода с auth-заголовком (auth не перебить).
+        const opts = Object.assign({}, options || {}, {
+            headers: Object.assign(tgAuthHeader(), (options && options.headers) || {}),
+        });
+        let resp = await fetch(path, opts);
+        // Один автоповтор при 401: initData мог догрузиться после первого запроса.
+        if (resp.status === 401) {
+            const ready = await ensureTelegramReady();
+            if (ready) {
+                opts.headers = Object.assign(tgAuthHeader(), (options && options.headers) || {});
+                resp = await fetch(path, opts);
+            }
+        }
         let data = {};
         try { data = await resp.json(); } catch (e) {}
         if (!resp.ok) {
@@ -267,6 +299,9 @@
 
     // GET /api/user/me — баланс, инвентарь и лучшие дропы из БД.
     async function syncFromServer() {
+        // Ждём Telegram SDK/initData: первый запрос должен уйти авторизованным
+        // сразу после СТАРТ в боте (без 401 и повторных заходов).
+        await ensureTelegramReady();
         try {
             const data = await apiFetch('/api/user/me');
             serverBalanceStars = Number(data.user && data.user.balance_stars) || 0;
@@ -2586,7 +2621,7 @@
             try {
                 const response = await fetch('/api/create-invoice', {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: Object.assign(tgAuthHeader(), { 'Content-Type': 'application/json' }),
                     body: JSON.stringify({ amount: Number(amount) })
                 });
                 const data = await response.json();
