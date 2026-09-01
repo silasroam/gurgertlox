@@ -123,7 +123,7 @@ export async function sellItems(client, userId, inventoryIds) {
     if (lockU.rowCount === 0) throw Object.assign(new Error('User not found'), { code: 'NOT_FOUND' });
 
     const itemsRes = await client.query(
-        `SELECT id, price_stars FROM user_inventory
+        `SELECT id, item_id, price_stars FROM user_inventory
          WHERE user_id = $1 AND id = ANY($2::bigint[]) AND status = 'owned'
          FOR UPDATE`,
         [userId, ids]
@@ -143,10 +143,11 @@ export async function sellItems(client, userId, inventoryIds) {
         [userId, total]
     );
     await client.query(`DELETE FROM user_inventory WHERE user_id = $1 AND id = ANY($2::bigint[])`, [userId, ids]);
+    // Log transaction (one per sold batch, item_id = first sold item).
     await client.query(
         `INSERT INTO transactions (user_id, type, amount_stars, item_id, meta)
-         VALUES ($1,'sell',$2,NULL,$3::jsonb)`,
-        [userId, total, JSON.stringify({ ids })]
+         VALUES ($1,'item_sell',$2,$3,$4::jsonb)`,
+        [userId, total, items[0].item_id !== undefined ? items[0].item_id : String(items[0].id), JSON.stringify({ ids })]
     );
 
     return { credited: total, balance: Number(credited.rows[0].balance_stars) };

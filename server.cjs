@@ -11,8 +11,9 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 const { Pool } = require('pg');
-const { verifyInitData } = require('./server/auth');
-const { openCase, sellItems } = require('./server/caseEngine');
+const { verifyInitData } = require('./server/auth.cjs');
+const { openCase, sellItems } = require('./server/caseEngine.cjs');
+const { registerUser } = require('./server/users.cjs');
 const CASES_CONF = require('./casesConfig.json');
 
 // ---------- PostgreSQL ----------
@@ -60,7 +61,8 @@ function urlGet(req, key) {
     return u.searchParams.get(key) || '';
 }
 
-// Upsert user by valid Telegram identity.
+// Register/refresh user by valid Telegram identity on ANY entry:
+// new user -> INSERT with unique 8-digit custom_id; existing -> last_active = NOW().
 async function authMiddleware(req) {
     let tgUser = null;
     const initData = req.headers['x-init-data'] || urlGet(req, 'init_data');
@@ -70,15 +72,7 @@ async function authMiddleware(req) {
     } else {
         tgUser = { tg_id: Number(initData || 1), username: 'dev', first_name: 'Dev' };
     }
-    const result = await pool.query(
-        `INSERT INTO users (tg_id, username, first_name, balance_stars)
-         VALUES ($1,$2,$3,$4)
-         ON CONFLICT (tg_id) DO UPDATE
-           SET username = EXCLUDED.username, first_name = EXCLUDED.first_name, updated_at = now()
-         RETURNING id, tg_id, username, first_name, balance_stars`,
-        [tgUser.tg_id, tgUser.username || null, tgUser.first_name || null, SEED_BALANCE]
-    );
-    return result.rows[0];
+    return registerUser(pool, tgUser, SEED_BALANCE);
 }
 
 async function fetchInventory(userId) {

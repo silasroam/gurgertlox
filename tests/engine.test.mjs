@@ -66,9 +66,9 @@ const CASE_PRICE_STARS = Math.round(getCaseConfig('case_19').price * 80);
 {
     const c = fakeClient((sql, params) => {
         if (sql.startsWith('SELECT id FROM users')) return { rowCount: 1, rows: [{ id: 1 }] };
-        if (sql.startsWith('SELECT id, price_stars FROM user_inventory')) {
+        if (sql.startsWith('SELECT id, item_id, price_stars FROM user_inventory')) {
             const want = params[1];
-            const rows = [500, 501].includes(want[0]) ? [{ id: 500, price_stars: 852 }] : [];
+            const rows = [500, 501].includes(want[0]) ? [{ id: 500, item_id: 'trophy_100', price_stars: 852 }] : [];
             return { rowCount: rows.length, rows };
         }
         if (sql.startsWith('UPDATE users SET balance_stars = balance_stars +')) return { rowCount: 1, rows: [{ balance_stars: 852 }] };
@@ -78,12 +78,13 @@ const CASE_PRICE_STARS = Math.round(getCaseConfig('case_19').price * 80);
     check('sellItems: зачтена сумма из БД', r.credited === 852 && r.balance === 852);
     check('sellItems: удаляет только статусы owned', c.calls.some((x) => x.sql.includes("status = 'owned'")));
     check('sellItems: FOR UPDATE на предметах', c.calls.some((x) => x.sql.includes('FOR UPDATE')));
+    check('sellItems: лог item_sell с item_id', c.calls.some((x) => x.sql.includes("'item_sell'") && x.params[2] === 'trophy_100'));
 }
 {
     // Часть ID не существует / уже на выводе -> CONFLICT.
     const c = fakeClient((sql, params) => {
         if (sql.startsWith('SELECT id FROM users')) return { rowCount: 1, rows: [{ id: 1 }] };
-        if (sql.startsWith('SELECT id, price_stars FROM user_inventory')) return { rowCount: 1, rows: [{ id: 500, price_stars: 100 }] };
+        if (sql.startsWith('SELECT id, item_id, price_stars FROM user_inventory')) return { rowCount: 1, rows: [{ id: 500, item_id: 'trophy_100', price_stars: 100 }] };
         return { rowCount: 1, rows: [] };
     });
     let err = null;

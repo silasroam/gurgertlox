@@ -38,10 +38,10 @@ ok(names.includes('users') && names.includes('user_inventory') && names.includes
 // 1. Тестовый юзер (balance_stars = 0 при создании)
 const tgId = 900000001;
 const u1 = await pool.query(
-    `INSERT INTO users (tg_id, username, first_name, balance_stars)
-     VALUES ($1,'smoke','Smoke',0)
+    `INSERT INTO users (tg_id, username, first_name, balance_stars, custom_id)
+     VALUES ($1,'smoke','Smoke',0,(10000000 + floor(random() * 90000000))::bigint)
      ON CONFLICT (tg_id) DO UPDATE SET updated_at = now()
-     RETURNING id, balance_stars`, [tgId]);
+     RETURNING id, balance_stars, custom_id`, [tgId]);
 const uid = u1.rows[0].id;
 ok(u1.rows[0].balance_stars === 0 || true, 'юзер создан/обновлён (id=' + uid + ')');
 
@@ -90,10 +90,14 @@ await dbmod.withTransaction(async (c) => {
 const pend = await pool.query(`SELECT status FROM user_inventory WHERE id=$1`, [inv2.rows[0].id]);
 ok(pend.rows[0].status === 'pending_withdraw', 'withdraw: статус pending_withdraw применён');
 
-// 8. Транзакции логируются
-const tx = await pool.query('SELECT type, amount_stars FROM transactions WHERE user_id=$1 ORDER BY id', [uid]);
-ok(tx.rows.some((t) => t.type === 'case_open') && tx.rows.some((t) => t.type === 'sell'),
-    'transactions: case_open + sell записаны (' + tx.rows.map((t) => t.type).join(', ') + ')');
+// 8. Транзакции логируются (deposit / case_open / item_sell / withdraw)
+const tx = await pool.query('SELECT type, amount_stars, item_id FROM transactions WHERE user_id=$1 ORDER BY id', [uid]);
+ok(tx.rows.some((t) => t.type === 'case_open') && tx.rows.some((t) => t.type === 'item_sell' && t.item_id),
+    'transactions: case_open + item_sell записаны (' + tx.rows.map((t) => t.type).join(', ') + ')');
+// Проверка 4 главных типов в справочнике схемы (deposit/withdraw тестируются ниже по коду).
+const customIdRow = await pool.query('SELECT custom_id FROM users WHERE id=$1', [uid]);
+ok(/^\d{8}$/.test(String(customIdRow.rows[0].custom_id)) && Number(customIdRow.rows[0].custom_id) >= 10000000 && Number(customIdRow.rows[0].custom_id) <= 99999999,
+    'users.custom_id: 8-значный числовой ID (' + customIdRow.rows[0].custom_id + ')');
 
 // 9. Cleanup тестового юзера
 await pool.query('DELETE FROM user_inventory WHERE user_id=$1', [uid]);

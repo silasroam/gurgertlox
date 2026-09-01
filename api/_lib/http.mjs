@@ -5,6 +5,7 @@
 'use strict';
 import { getDb } from './db.mjs';
 import { verifyInitData } from './auth.mjs';
+import { registerUser } from './users.mjs';
 
 const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN || '';
 const SEED_BALANCE = Number(process.env.SEED_BALANCE_STARS || 0);
@@ -48,7 +49,8 @@ function initDataFrom(req) {
     return u.searchParams.get('init_data') || '';
 }
 
-// Validate Telegram identity and upsert the user (balance_stars = 0 on first login).
+// Validate Telegram identity and register/refresh the user on ANY entry:
+// new user -> INSERT with unique 8-digit custom_id; existing -> last_active = NOW().
 export async function authUser(req) {
     const initData = initDataFrom(req);
     let tgUser;
@@ -60,13 +62,5 @@ export async function authUser(req) {
     }
 
     const db = await getDb();
-    const result = await db.query(
-        `INSERT INTO users (tg_id, username, first_name, balance_stars)
-         VALUES ($1,$2,$3,$4)
-         ON CONFLICT (tg_id) DO UPDATE
-           SET username = EXCLUDED.username, first_name = EXCLUDED.first_name, updated_at = now()
-         RETURNING id, tg_id, username, first_name, balance_stars`,
-        [tgUser.tg_id, tgUser.username || null, tgUser.first_name || null, SEED_BALANCE]
-    );
-    return result.rows[0];
+    return registerUser(db, tgUser, SEED_BALANCE);
 }
